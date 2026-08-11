@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IELTS Basics | Online Exams</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 30px 20px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 900px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 36px;
+      margin-bottom: 10px;
+      color: #1f2937;
+    }
+
+    .subtitle {
+      color: #6b7280;
+      margin-bottom: 35px;
+      font-size: 17px;
+    }
+
+    .exam-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .exam-card {
+      background: white;
+      border-radius: 14px;
+      padding: 30px 20px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+      transition: 0.3s ease;
+    }
+
+    .exam-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+    }
+
+    .exam-card h2 {
+      font-size: 22px;
+      color: #111827;
+      margin-bottom: 18px;
+    }
+
+    .btn {
+      display: inline-block;
+      text-decoration: none;
+      background: #16a34a;
+      color: white;
+      padding: 12px 22px;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: 0.2s ease;
+    }
+
+    .btn:hover {
+      background: #15803d;
+    }
+
+    footer {
+      margin-top: 35px;
+      color: #9ca3af;
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <h1>IELTS Basics</h1>
+    <p class="subtitle">Online Practice Examination</p>
+
+    <div class="exam-grid">
+
+      <div class="exam-card">
+        <h2>BPE SET-01</h2>
+        <a class="btn" href="BPE_SET-01.html">
+          Start Exam
+        </a>
+      </div>
+
+      <div class="exam-card">
+        <h2>BPE SET-02</h2>
+        <a class="btn" href="BPE_SET-02.html">
+          Start Exam
+        </a>
+      </div>
+
+      <div class="exam-card">
+        <h2>BPE SET-03</h2>
+        <a class="btn" href="BPE_SET-03.html">
+          Start Exam
+        </a>
+      </div>
+
+    </div>
+
+    <footer>
+      IELTS Basics • Online Exam Portal
+    </footer>
+
+  </div>
+
+</body>
+</html>
