@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Homework on Nouns — বাংলায় IELTS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Baloo+Da+2:wght@500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<style>
+html,body[data-theme="light"]{
+  --bg:#FCF5EE; --bg-soft:#FFF9F4; --card:#FFFFFF; --card-alt:#FFF3EC;
+  --text:#402028; --text-soft:#7a4a56; --heading:#850E35;
+  --accent:#EE6983; --accent-soft:#FFC4C4; --border:#FFD9D9;
+  --ok:#2e8b57; --bad:#c0392b; --shadow:0 8px 24px rgba(133,14,53,.08);
+}
+body[data-theme="dark"]{
+  --bg:#2A0A16; --bg-soft:#33101F; --card:#3B1224; --card-alt:#451529;
+  --text:#FCEFEF; --text-soft:#E9B9C4; --heading:#FFC4C4;
+  --accent:#EE6983; --accent-soft:#850E35; --border:#5C1A34;
+  --ok:#6fcf97; --bad:#ff8a80; --shadow:0 8px 24px rgba(0,0,0,.35);
+}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--bg);color:var(--text);font-family:'Hind Siliguri',sans-serif;transition:background .3s,color .3s;padding-bottom:60px;}
+h1,h2,h3,.brand{font-family:'Baloo Da 2',cursive;color:var(--heading);}
+.wrap{max-width:900px;margin:0 auto;padding:16px;}
+.topbar{position:sticky;top:0;z-index:50;background:var(--bg);padding:10px 16px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border);}
+.brand{font-size:15px;}
+.theme-btn{border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:20px;padding:8px 14px;cursor:pointer;font-family:inherit;font-weight:600;}
+.header-card{background:var(--card);border-radius:18px;box-shadow:var(--shadow);padding:22px;margin:16px 0;border:1px solid var(--border);}
+.header-card h1{margin:0 0 4px;font-size:26px;}
+.subtitle{color:var(--text-soft);font-size:14px;margin-bottom:14px;}
+.meta-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;}
+@media(max-width:600px){.meta-grid{grid-template-columns:1fr;}}
+.meta-grid label{font-size:13px;font-weight:600;color:var(--text-soft);display:block;margin-bottom:4px;}
+.meta-grid input{width:100%;padding:9px 10px;border-radius:10px;border:1.5px solid var(--border);background:var(--bg-soft);color:var(--text);font-family:inherit;font-size:14px;}
+.section-title{margin:26px 0 6px;font-size:20px;}
+.section-sub{color:var(--text-soft);font-size:13px;margin-bottom:14px;}
+.task{background:var(--card);border-radius:16px;box-shadow:var(--shadow);padding:18px;margin-bottom:16px;border:1px solid var(--border);}
+.task-head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:6px;}
+.task-head h3{margin:0;font-size:16px;}
+.marks-pill{background:var(--accent-soft);color:var(--heading);font-weight:700;font-size:12px;padding:4px 10px;border-radius:20px;white-space:nowrap;}
+.instr{font-size:13.5px;color:var(--text-soft);margin-bottom:4px;}
+.hint{font-size:12.5px;background:var(--card-alt);border-left:3px solid var(--accent);padding:8px 10px;border-radius:8px;margin-top:8px;color:var(--text-soft);}
+table.qtable{width:100%;border-collapse:collapse;margin-top:10px;font-size:13.5px;}
+table.qtable th,table.qtable td{border:1px solid var(--border);padding:6px 8px;text-align:left;vertical-align:middle;}
+table.qtable th{background:var(--card-alt);}
+input[type=text],select,textarea{width:100%;padding:6px 8px;border-radius:8px;border:1.5px solid var(--border);background:var(--bg-soft);color:var(--text);font-family:inherit;font-size:13.5px;}
+textarea{resize:vertical;min-height:44px;}
+.radio-row{display:flex;gap:12px;flex-wrap:wrap;}
+.radio-row label{display:flex;align-items:center;gap:4px;font-size:13px;cursor:pointer;}
+.given{opacity:.7;}
+.given input,.given select{background:var(--accent-soft);font-weight:600;}
+.freeitem{margin-bottom:12px;}
+.freeitem .prompt{font-size:13.5px;margin-bottom:5px;}
+.result-tag{display:inline-block;font-size:11.5px;font-weight:700;padding:2px 8px;border-radius:10px;margin-left:6px;}
+.tag-full{background:#d6f5df;color:var(--ok);}
+.tag-partial{background:#fff3cd;color:#8a6500;}
+.tag-zero{background:#ffe0e0;color:var(--bad);}
+[data-theme="dark"] .tag-full{background:#154a2c;}
+[data-theme="dark"] .tag-partial{background:#4a3c10;color:#ffd76b;}
+[data-theme="dark"] .tag-zero{background:#4a1414;}
+.footer-bar{position:sticky;bottom:0;background:var(--card);border-top:1px solid var(--border);padding:14px 16px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;box-shadow:0 -6px 18px rgba(0,0,0,.06);}
+.btn{border:none;border-radius:24px;padding:12px 22px;font-weight:700;font-family:inherit;font-size:14.5px;cursor:pointer;transition:transform .15s;}
+.btn:active{transform:scale(.97);}
+.btn-primary{background:var(--accent);color:#fff;}
+.btn-secondary{background:var(--heading);color:#fff;}
+.score-banner{text-align:center;margin:18px 0;}
+.score-banner .big{font-size:44px;font-weight:800;color:var(--heading);font-family:'Baloo Da 2',cursive;}
+.tracker{width:100%;border-collapse:collapse;margin-top:16px;font-size:13px;}
+.tracker th,.tracker td{border:1px solid var(--border);padding:6px 8px;text-align:center;}
+.tracker th{background:var(--card-alt);}
+.page-footer{text-align:center;color:var(--text-soft);font-size:12px;padding:26px 0 6px;}
+#resultCardHolder{position:fixed;left:-9999px;top:0;}
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;align-items:center;justify-content:center;z-index:100;}
+.modal-box{background:var(--card);border-radius:16px;padding:22px;max-width:340px;width:90%;box-shadow:var(--shadow);}
+.modal-box h3{margin-top:0;}
+.modal-box input{margin-bottom:10px;}
+.modal-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:10px;}
+</style>
+</head>
+<body data-theme="light">
+
+<div class="topbar">
+  <div class="brand">বাংলায় IELTS · Grammar Foundation Series</div>
+  <button class="theme-btn" onclick="toggleTheme()">🌓 Theme</button>
+</div>
+
+<div class="wrap">
+  <div class="header-card">
+    <h1>NOUN — EXTENSIVE WORKSHEET</h1>
+    <div class="subtitle">Section A: Guided (50) + Section B: Independent (50) = 100 marks · Homework on Nouns</div>
+    <div class="meta-grid">
+      <div><label>Name / নাম</label><input type="text" id="stuName" placeholder="তোমার নাম লেখো"></div>
+      <div><label>Batch / ব্যাচ</label><input type="text" id="stuBatch" placeholder="ব্যাচ নম্বর"></div>
+      <div><label>Date / তারিখ</label><input type="date" id="stuDate"></div>
+    </div>
+  </div>
+
+  <div id="renderRoot"></div>
+
+  <div class="score-banner" id="scoreBanner" style="display:none;">
+    <div>মোট স্কোর</div>
+    <div class="big" id="scoreBig">0 / 100</div>
+    <table class="tracker" id="trackerTable"></table>
+  </div>
+
+  <div class="page-footer">Developed by Abidur Rahman Tahmid</div>
+</div>
+
+<div class="footer-bar">
+  <button class="btn btn-primary" onclick="checkScore()">✅ Check My Score</button>
+  <button class="btn btn-secondary" onclick="openSaveModal()">🖼️ Save your result as an image</button>
+</div>
+
+<div class="modal-overlay" id="saveModal">
+  <div class="modal-box">
+    <h3>Confirm details</h3>
+    <p style="font-size:13px;color:var(--text-soft);">ছবি তৈরির আগে নাম ও তারিখ দিন।</p>
+    <label style="font-size:13px;">Name</label>
+    <input type="text" id="modalName" placeholder="তোমার নাম">
+    <label style="font-size:13px;">Date</label>
+    <input type="date" id="modalDate">
+    <div class="modal-actions">
+      <button class="btn" style="background:var(--border);color:var(--text);" onclick="closeSaveModal()">বাতিল</button>
+      <button class="btn btn-primary" onclick="generateImage()">তৈরি করো</button>
+    </div>
+  </div>
+</div>
+
+<div id="resultCardHolder"></div>
+
+<script>
+/* ===================== WORKSHEET CONFIG (reusable template) ===================== */
+const TOPIC = "Noun — Extensive Worksheet";
+const SECTIONS = [
+{ id:'A', title:'SECTION A · GUIDED PRACTICE', sub:'গাইডেড অনুশীলন — প্রতিটি টাস্কে উদাহরণ ও ইঙ্গিত আছে', tasks:[
+
+  { id:'t1', title:'TASK 1 · SORT THEM: CONCRETE OR ABSTRACT', marks:8, type:'sort2',
+    instr:'Tick one column for each noun. There are exactly four of each.',
+    cols:['Concrete','Abstract'],
+    items:[
+      {noun:'kettle', given:true, correct:'Concrete'},
+      {noun:'gratitude', correct:'Abstract'},
+      {noun:'cyclone', correct:'Concrete'},
+      {noun:'discipline', correct:'Abstract'},
+      {noun:'buffalo', correct:'Concrete'},
+      {noun:'envy', correct:'Abstract'},
+      {noun:'lantern', correct:'Concrete'},
+      {noun:'boredom', correct:'Abstract'},
+      {noun:'mango', correct:'Concrete'}
+    ], hint:'Ask yourself: can I see, hear, smell, touch or taste it? A cyclone you can hear and feel — so it counts.' },
+
+  { id:'t2', title:'TASK 2 · NAME THE NOUN TYPE', marks:6, type:'fillblank',
+    instr:'Write the exact type: Proper, Common, Collective, Material or Abstract.',
+    items:[
+      {label:'Jaflong', given:true, correct:['Proper']},
+      {label:'ladder', correct:['Common']},
+      {label:'colony', correct:['Collective']},
+      {label:'leather', correct:['Material']},
+      {label:'Tuesday', correct:['Proper']},
+      {label:'chalk', correct:['Material']},
+      {label:'humility', correct:['Abstract']}
+    ], hint:'One names a group, one a substance, one a feeling, and two are names of one particular thing.' },
+
+  { id:'t3', title:'TASK 3 · COLLECTIVE NOUN GAPS', marks:6, type:'fillblank',
+    instr:'Word bank: pride · pod · litter · colony · crew · panel · choir · deck · shoal (two are extra).',
+    items:[
+      {label:'a __ of lions rested under the tree', given:true, correct:['pride']},
+      {label:'a __ of dolphins followed the boat', correct:['pod']},
+      {label:'a __ of puppies was born last week', correct:['litter']},
+      {label:'a __ of ants crossed the kitchen floor', correct:['colony']},
+      {label:'a __ of sailors repaired the broken mast', correct:['crew']},
+      {label:'a __ of singers performed at the fair', correct:['choir']},
+      {label:'a __ of experts reviewed the report', correct:['panel']}
+    ], hint:'The two extras belong to cards and to fish.' },
+
+  { id:'t4', title:'TASK 4 · PLURALS — THE RULE IS GIVEN', marks:6, type:'fillblank',
+    instr:'Apply the given rule and write the plural.',
+    items:[
+      {label:'box (ends in -x → add -es)', given:true, correct:['boxes']},
+      {label:'lorry (consonant+y → drop y, add -ies)', correct:['lorries']},
+      {label:'shelf (ends in -f → change to -ves)', correct:['shelves']},
+      {label:'mango (consonant+o → add -es)', correct:['mangoes']},
+      {label:'ox (irregular)', correct:['oxen']},
+      {label:'goose (irregular — vowel changes)', correct:['geese']},
+      {label:'deer (no change)', correct:['deer']}
+    ], hint:'Three of these you simply have to know by heart.' },
+
+  { id:'t5', title:'TASK 5 · MUCH / MANY / LITTLE / FEW', marks:6, type:'fields',
+    instr:'Circle the correct word, then say if the noun is Countable (C) or Uncountable (U).',
+    fieldNames:['Circle one','C / U'],
+    items:[
+      {label:'How __ chalk do we need for the board?', given:true, fields:[{type:'radio',options:['much','many'],correct:'much'},{type:'radio',options:['C','U'],correct:'U'}]},
+      {label:'She poured __ honey into the bowl.', fields:[{type:'radio',options:['a few','a little'],correct:'a little'},{type:'radio',options:['C','U'],correct:'U'}]},
+      {label:'There were __ lanterns hanging in the yard.', fields:[{type:'radio',options:['many','much'],correct:'many'},{type:'radio',options:['C','U'],correct:'C'}]},
+      {label:'We do not have __ flour left in the tin.', fields:[{type:'radio',options:['many','much'],correct:'much'},{type:'radio',options:['C','U'],correct:'U'}]},
+      {label:'His family owns very __ land in the village.', fields:[{type:'radio',options:['few','little'],correct:'little'},{type:'radio',options:['C','U'],correct:'U'}]},
+      {label:'__ passengers missed the last train.', fields:[{type:'radio',options:['Many','Much'],correct:'Many'},{type:'radio',options:['C','U'],correct:'C'}]},
+      {label:'There is too __ smoke in this kitchen.', fields:[{type:'radio',options:['many','much'],correct:'much'},{type:'radio',options:['C','U'],correct:'U'}]}
+    ], hint:'much/little go with things you cannot count; many/few go with things you can count.' },
+
+  { id:'t6', title:'TASK 6 · CAPITAL LETTER REPAIR', marks:6, type:'freetext',
+    instr:'Every proper noun below is in small letters. Rewrite each sentence correctly.',
+    items:[
+      {prompt:'my cousin studies arabic at a madrasa in comilla.', correct:['My cousin studies Arabic at a madrasa in Comilla.']},
+      {prompt:'the ratargul swamp forest is famous all over bangladesh.', correct:['The Ratargul Swamp Forest is famous all over Bangladesh.']},
+      {prompt:'samsung opened a service centre near amberkhana.', correct:['Samsung opened a service centre near Amberkhana.']},
+      {prompt:'during pohela boishakh the whole of rajshahi celebrates.', correct:['During Pohela Boishakh the whole of Rajshahi celebrates.']},
+      {prompt:'next thursday professor karim will visit jaflong.', correct:['Next Thursday Professor Karim will visit Jaflong.']},
+      {prompt:'she reads the daily star every morning before breakfast.', correct:['She reads The Daily Star every morning before breakfast.']}
+    ], hint:'Count the capitals: sentence opening, plus every person, place, day, month, festival, language, brand, newspaper title.' },
+
+  { id:'t7', title:'TASK 7 · BUILD THE ABSTRACT NOUN', marks:6, type:'fillblank',
+    instr:'Endings: -ness · -ity · -dom · -itude · -osity · -ality · -ance (each used once).',
+    items:[
+      {label:'lazy → ?', given:true, correct:['laziness']},
+      {label:'humble → ?', correct:['humility']},
+      {label:'bored → ?', correct:['boredom']},
+      {label:'curious → ?', correct:['curiosity']},
+      {label:'punctual → ?', correct:['punctuality']},
+      {label:'generous → ?', correct:['generosity']},
+      {label:'grateful → ?', correct:['gratitude']}
+    ], hint:'humble and grateful lose letters before the ending is added.' },
+
+  { id:'t8', title:'TASK 8 · NUMBER & PERSON', marks:6, type:'fields',
+    instr:'For each bold/underlined word write the Number and the Person.',
+    fieldNames:['Number','Person'],
+    items:[
+      {label:'We reached the station before sunrise.', given:true, fields:[{type:'radio',options:['Singular','Plural'],correct:'Plural'},{type:'radio',options:['1st','2nd','3rd'],correct:'1st'}]},
+      {label:'The lanterns were lit at seven o\u2019clock.', fields:[{type:'radio',options:['Singular','Plural'],correct:'Plural'},{type:'radio',options:['1st','2nd','3rd'],correct:'3rd'}]},
+      {label:'You must all bring your notebooks. (to the class)', fields:[{type:'radio',options:['Singular','Plural'],correct:'Plural'},{type:'radio',options:['1st','2nd','3rd'],correct:'2nd'}]},
+      {label:'Mr Karim teaches at a school in Comilla.', fields:[{type:'radio',options:['Singular','Plural'],correct:'Singular'},{type:'radio',options:['1st','2nd','3rd'],correct:'3rd'}]},
+      {label:'I forgot my umbrella at the tea stall.', fields:[{type:'radio',options:['Singular','Plural'],correct:'Singular'},{type:'radio',options:['1st','2nd','3rd'],correct:'1st'}]},
+      {label:'The crew was praised for its quick thinking.', fields:[{type:'radio',options:['Singular','Plural'],correct:'Singular'},{type:'radio',options:['1st','2nd','3rd'],correct:'3rd'}]},
+      {label:'Two geese wandered onto the road.', fields:[{type:'radio',options:['Singular','Plural'],correct:'Plural'},{type:'radio',options:['1st','2nd','3rd'],correct:'3rd'}]}
+    ], hint:'Only pronouns can be 1st or 2nd person. Ordinary nouns are always 3rd person.' }
+]},
+
+{ id:'B', title:'SECTION B · INDEPENDENT PRACTICE', sub:'ইনডিপেনডেন্ট অনুশীলন — কোনো উদাহরণ নেই, ৩৫ মিনিট, closed book', tasks:[
+
+  { id:'t9', title:'TASK 9 · FULL NOUN ANALYSIS', marks:10, type:'fields',
+    instr:'Analyse the bold noun in each sentence.',
+    fieldNames:['Conc./Abs.','Specific type','Count./Uncount.','Number','Person'],
+    items:[
+      {label:'The crew worked through the whole night.', fields:[
+        {type:'radio',options:['Concrete','Abstract'],correct:'Concrete'},
+        {type:'select',options:['Proper','Common','Collective','Material','Abstract'],correct:'Collective'},
+        {type:'radio',options:['Countable','Uncountable'],correct:'Countable'},
+        {type:'radio',options:['Singular','Plural'],correct:'Singular'},
+        {type:'radio',options:['1st','2nd','3rd'],correct:'3rd'}]},
+      {label:'His humility impressed every interviewer.', fields:[
+        {type:'radio',options:['Concrete','Abstract'],correct:'Abstract'},
+        {type:'select',options:['Proper','Common','Collective','Material','Abstract'],correct:'Abstract'},
+        {type:'radio',options:['Countable','Uncountable'],correct:'Uncountable'},
+        {type:'radio',options:['Singular','Plural'],correct:'Singular'},
+        {type:'radio',options:['1st','2nd','3rd'],correct:'3rd'}]},
+      {label:'We bought three jars of honey at the fair.', fields:[
+        {type:'radio',options:['Concrete','Abstract'],correct:'Concrete'},
+        {type:'select',options:['Proper','Common','Collective','Material','Abstract'],correct:'Common'},
+        {type:'radio',options:['Countable','Uncountable'],correct:'Countable'},
+        {type:'radio',options:['Singular','Plural'],correct:'Plural'},
+        {type:'radio',options:['1st','2nd','3rd'],correct:'3rd'}]},
+      {label:'Jaflong attracts thousands of visitors each winter.', fields:[
+        {type:'radio',options:['Concrete','Abstract'],correct:'Concrete'},
+        {type:'select',options:['Proper','Common','Collective','Material','Abstract'],correct:'Proper'},
+        {type:'radio',options:['Countable','Uncountable'],correct:'Countable'},
+        {type:'radio',options:['Singular','Plural'],correct:'Singular'},
+        {type:'radio',options:['1st','2nd','3rd'],correct:'3rd'}]},
+      {label:'The leather in this bag is completely genuine.', fields:[
+        {type:'radio',options:['Concrete','Abstract'],correct:'Concrete'},
+        {type:'select',options:['Proper','Common','Collective','Material','Abstract'],correct:'Material'},
+        {type:'radio',options:['Countable','Uncountable'],correct:'Uncountable'},
+        {type:'radio',options:['Singular','Plural'],correct:'Singular'},
+        {type:'radio',options:['1st','2nd','3rd'],correct:'3rd'}]}
+    ]},
+
+  { id:'t10', title:'TASK 10 · CLOZE — CHOOSE THE CORRECT FORM', marks:8, type:'fields',
+    instr:'Choose the correct option for each numbered gap.',
+    fieldNames:['Answer'],
+    items:[
+      {label:'1. Last month our __ arranged a short trip...', fields:[{type:'radio',options:['staff','staffs'],correct:'staff'}]},
+      {label:'2. ...a jute __ near Fenchuganj.', fields:[{type:'radio',options:['factory','factories'],correct:'factory'}]},
+      {label:'3. The supervisor gave us some helpful __ ...', fields:[{type:'radio',options:['information','informations'],correct:'information'}]},
+      {label:'4. ...and answered several __.', fields:[{type:'radio',options:['question','questions'],correct:'questions'}]},
+      {label:'5. ...we noticed a __ of small fish...', fields:[{type:'radio',options:['shoal','pride'],correct:'shoal'}]},
+      {label:'6. ...near the gate a __ of trucks stood waiting.', fields:[{type:'radio',options:['convoy','choir'],correct:'convoy'}]},
+      {label:'7. The __ of the visiting group...', fields:[{type:'radio',options:['luggage','luggages'],correct:'luggage'}]},
+      {label:'8. ...__ locked in the office.', fields:[{type:'radio',options:['was','were'],correct:'was'}]}
+    ]},
+
+  { id:'t11', title:'TASK 11 · ODD ONE OUT', marks:5, type:'oddone',
+    instr:'One noun in each set does not belong. Select it, and (optionally) write why.',
+    items:[
+      {options:['leather','clay','bronze','gratitude'], correct:'gratitude'},
+      {options:['pride','colony','crew','farmer'], correct:'farmer'},
+      {options:['Jaflong','lake','Surma','Samsung'], correct:'lake'},
+      {options:['honey','flour','ladder','cement'], correct:'ladder'},
+      {options:['geese','oxen','lanterns','goose'], correct:'goose'}
+    ]},
+
+  { id:'t12', title:'TASK 12 · SINGULAR ↔ PLURAL TRANSFORMATION', marks:6, type:'freetext',
+    instr:'Rewrite each sentence, changing the bold noun from singular↔plural. Everything must agree.',
+    items:[
+      {prompt:'The goose is standing near the pond.', correct:['The geese are standing near the pond.']},
+      {prompt:'That lady works in a jute mill.', correct:['Those ladies work in a jute mill.']},
+      {prompt:'The knives were kept inside the drawer.', correct:['The knife was kept inside the drawer.']},
+      {prompt:'An ox pulled the heavy cart uphill.', correct:['Oxen pulled the heavy cart uphill.']},
+      {prompt:'These shelves look completely empty.', correct:['This shelf looks completely empty.']},
+      {prompt:'The child\u2019s toy was left in the yard.', correct:['The children\u2019s toys were left in the yard.']}
+    ]},
+
+  { id:'t13', title:'TASK 13 · ERROR CORRECTION', marks:8, type:'freetext',
+    instr:'Each sentence has one noun error. Rewrite it correctly.',
+    items:[
+      {prompt:'He has visited many countryes in South Asia.', correct:['He has visited many countries in South Asia.']},
+      {prompt:'The luggages are waiting at the counter.', correct:['The luggage is waiting at the counter.']},
+      {prompt:'My brother bought three breads from the shop.', correct:['My brother bought three loaves of bread from the shop.']},
+      {prompt:'Those womans are waiting outside the office.', correct:['Those women are waiting outside the office.']},
+      {prompt:'There is many passengers in the waiting room.', correct:['There are many passengers in the waiting room.']},
+      {prompt:'She has done a lot of researches on jute.', correct:['She has done a lot of research on jute.']},
+      {prompt:'we celebrate pohela boishakh in april every year.', correct:['We celebrate Pohela Boishakh in April every year.']},
+      {prompt:'The scissor is lying on the table.', correct:['The scissors are lying on the table.']}
+    ]},
+
+  { id:'t14', title:'TASK 14 · MULTIPLE CHOICE', marks:6, type:'mcq',
+    items:[
+      {prompt:'Which of these is an abstract noun?', options:['kettle','gratitude','buffalo','lantern'], correct:1},
+      {prompt:'A __ of dolphins swam beside the boat.', options:['litter','pod','colony','panel'], correct:1},
+      {prompt:'Which sentence is correct?', options:['I need an information.','I need informations.','I need some information.','I need many information.'], correct:2},
+      {prompt:'What is the plural of "analysis"?', options:['analysises','analysis','analyses','analysis\u2019s'], correct:2},
+      {prompt:'Which noun is countable?', options:['honey','chalk','ladder','cement'], correct:2},
+      {prompt:'A pair of scissors __ missing from the drawer.', options:['are','is','have','were'], correct:1}
+    ]},
+
+  { id:'t15', title:'TASK 15 · MATCH THE UNIT TO THE NOUN', marks:4, type:'match',
+    instr:'Match each unit to the noun it naturally partners.',
+    options:['flour','cloth','chalk','honey'],
+    items:[
+      {label:'a stick of', correct:'chalk'},
+      {label:'a jar of', correct:'honey'},
+      {label:'a sack of', correct:'flour'},
+      {label:'a roll of', correct:'cloth'}
+    ]},
+
+  { id:'t16', title:'TASK 16 · WRITE YOUR OWN', marks:3, type:'writeown',
+    instr:'Write three sentences of your own, each following its instruction exactly. (Auto-check is keyword based — your teacher may review this task manually.)',
+    items:[
+      {prompt:'A sentence with a collective noun + a singular verb.', keywords:['panel','crew','colony','litter','pod','choir','staff','team','herd','flock','jury','committee','family','group','class','army','audience','navy','band','gang']},
+      {prompt:'A sentence with an uncountable noun counted by a unit.', keywords:['flour','honey','rice','water','milk','sugar','salt','bread','furniture','information','luggage','advice','news','research','tea','coffee','cloth','chalk']},
+      {prompt:'A sentence with an irregular plural noun.', keywords:['oxen','geese','children','men','women','teeth','feet','mice','people','deer','sheep','fish','analyses','cacti','knives','shelves','leaves']}
+    ]}
+]}
+];
+
+/* ===================== RENDER ===================== */
+const root = document.getElementById('renderRoot');
+let html = '';
+SECTIONS.forEach(sec=>{
+  html += `<h2 class="section-title">${sec.title}</h2><div class="section-sub">${sec.sub}</div>`;
+  sec.tasks.forEach(t=>{
+    html += `<div class="task" id="${t.id}"><div class="task-head"><h3>${t.title}</h3><span class="marks-pill">${t.marks} marks</span></div>`;
+    if(t.instr) html += `<div class="instr">${t.instr}</div>`;
+    html += renderTask(t);
+    if(t.hint) html += `<div class="hint">💡 ${t.hint}</div>`;
+    html += `<div id="${t.id}_result" style="margin-top:8px;font-size:13px;font-weight:600;"></div></div>`;
+  });
+});
+root.innerHTML = html;
+
+function renderTask(t){
+  if(t.type==='sort2') return renderSort2(t);
+  if(t.type==='fillblank') return renderFillblank(t);
+  if(t.type==='fields') return renderFields(t);
+  if(t.type==='freetext') return renderFreetext(t);
+  if(t.type==='mcq') return renderMcq(t);
+  if(t.type==='match') return renderMatch(t);
+  if(t.type==='oddone') return renderOddone(t);
+  if(t.type==='writeown') return renderFreetext(t,true);
+  return '';
+}
+
+function renderSort2(t){
+  let h = `<table class="qtable"><tr><th>Noun</th><th>${t.cols[0]}</th><th>${t.cols[1]}</th></tr>`;
+  t.items.forEach((it,i)=>{
+    const name=`${t.id}_i${i}`;
+    if(it.given){
+      h+=`<tr class="given"><td>${it.noun}</td><td colspan="2">✅ ${it.correct} (example)</td></tr>`;
+    } else {
+      h+=`<tr><td>${it.noun}</td>
+        <td style="text-align:center;"><input type="radio" name="${name}" value="${t.cols[0]}"></td>
+        <td style="text-align:center;"><input type="radio" name="${name}" value="${t.cols[1]}"></td></tr>`;
+    }
+  });
+  return h+'</table>';
+}
+
+function renderFillblank(t){
+  let h='';
+  t.items.forEach((it,i)=>{
+    const id=`${t.id}_i${i}`;
+    if(it.given){
+      h+=`<div class="freeitem given"><div class="prompt">${it.label}</div><input type="text" value="✅ ${it.correct[0]} (example)" disabled></div>`;
+    } else {
+      h+=`<div class="freeitem"><div class="prompt">${it.label}</div><input type="text" id="${id}" placeholder="তোমার উত্তর"></div>`;
+    }
+  });
+  return h;
+}
+
+function renderFields(t){
+  let h='';
+  t.items.forEach((it,i)=>{
+    h+=`<div class="freeitem ${it.given?'given':''}"><div class="prompt">${it.label}${it.given?' <b>(example)</b>':''}</div>`;
+    it.fields.forEach((f,fi)=>{
+      const name=`${t.id}_i${i}_f${fi}`;
+      const fname = t.fieldNames && t.fieldNames[fi] ? t.fieldNames[fi] : '';
+      if(it.given){
+        h+=`<span style="margin-right:14px;font-size:12.5px;">${fname}: <b>✅ ${f.correct}</b></span>`;
+      } else if(f.type==='radio'){
+        h+=`<div style="margin-bottom:4px;"><span style="font-size:12px;color:var(--text-soft);">${fname}: </span><span class="radio-row">`;
+        f.options.forEach(op=>{ h+=`<label><input type="radio" name="${name}" value="${op}">${op}</label>`; });
+        h+=`</span></div>`;
+      } else if(f.type==='select'){
+        h+=`<div style="margin-bottom:4px;"><span style="font-size:12px;color:var(--text-soft);">${fname}: </span><select id="${name}"><option value="">--</option>`;
+        f.options.forEach(op=>{ h+=`<option value="${op}">${op}</option>`; });
+        h+=`</select></div>`;
+      }
+    });
+    h+=`</div>`;
+  });
+  return h;
+}
+
+function renderFreetext(t,isWriteOwn){
+  let h='';
+  t.items.forEach((it,i)=>{
+    const id=`${t.id}_i${i}`;
+    const label = isWriteOwn ? it.prompt : it.prompt;
+    h+=`<div class="freeitem"><div class="prompt">${(i+1)}. ${label}</div><textarea id="${id}" placeholder="তোমার উত্তর লেখো"></textarea></div>`;
+  });
+  return h;
+}
+
+function renderMcq(t){
+  let h='';
+  t.items.forEach((it,i)=>{
+    const name=`${t.id}_i${i}`;
+    h+=`<div class="freeitem"><div class="prompt">${(i+1)}. ${it.prompt}</div><div class="radio-row">`;
+    it.options.forEach((op,oi)=>{ h+=`<label><input type="radio" name="${name}" value="${oi}">${op}</label>`; });
+    h+=`</div></div>`;
+  });
+  return h;
+}
+
+function renderMatch(t){
+  let h=`<table class="qtable"><tr><th>Unit</th><th>Match</th></tr>`;
+  t.items.forEach((it,i)=>{
+    const id=`${t.id}_i${i}`;
+    h+=`<tr><td>${it.label}</td><td><select id="${id}"><option value="">--</option>`;
+    t.options.forEach(op=>{ h+=`<option value="${op}">${op}</option>`; });
+    h+=`</select></td></tr>`;
+  });
+  return h+'</table>';
+}
+
+function renderOddone(t){
+  let h='';
+  t.items.forEach((it,i)=>{
+    const name=`${t.id}_i${i}`;
+    h+=`<div class="freeitem"><div class="prompt">${(i+1)}. ${it.options.join(' · ')}</div><div class="radio-row">`;
+    it.options.forEach(op=>{ h+=`<label><input type="radio" name="${name}" value="${op}">${op}</label>`; });
+    h+=`</div><textarea id="${name}_reason" placeholder="কারণ লেখো (optional, manually checked)"></textarea></div>`;
+  });
+  return h;
+}
+
+/* ===================== GRADING ===================== */
+function normalize(s){
+  return (s||'').toLowerCase().trim().replace(/[.,!?;:'"’‘“”]/g,'').replace(/\s+/g,' ');
+}
+function similarity(user, acceptableList){
+  const u = normalize(user);
+  if(!u) return 0;
+  for(const a of acceptableList){ if(normalize(a)===u) return 1; }
+  // word-overlap (Jaccard) against best acceptable answer
+  let best=0;
+  const uWords = new Set(u.split(' '));
+  acceptableList.forEach(a=>{
+    const aWords = new Set(normalize(a).split(' '));
+    const inter = [...uWords].filter(w=>aWords.has(w)).length;
+    const union = new Set([...uWords,...aWords]).size;
+    const j = union? inter/union : 0;
+    if(j>best) best=j;
+  });
+  return best;
+}
+
+let lastResults = null;
+
+function checkScore(){
+  let sectionScores = {};
+  let total=0, totalMax=0;
+  SECTIONS.forEach(sec=>{
+    let secScore=0, secMax=0;
+    sec.tasks.forEach(t=>{
+      const r = gradeTask(t);
+      secScore+=r.score; secMax+=t.marks;
+      const el=document.getElementById(t.id+'_result');
+      const pct = t.marks? r.score/t.marks:0;
+      const tag = pct>=0.99?'tag-full':(pct>0?'tag-partial':'tag-zero');
+      const tagText = pct>=0.99?'সম্পূর্ণ সঠিক':(pct>0?'আংশিক':'ভুল/অসম্পূর্ণ');
+      el.innerHTML = `স্কোর: ${round1(r.score)} / ${t.marks} <span class="result-tag ${tag}">${tagText}</span>`;
+    });
+    sectionScores[sec.id]={score:secScore,max:secMax};
+    total+=secScore; totalMax+=secMax;
+  });
+  lastResults = {sectionScores, total, totalMax};
+
+  // attempt counter (hidden)
+  let attempts = parseInt(localStorage.getItem('noun_ws_attempts')||'0',10)+1;
+  localStorage.setItem('noun_ws_attempts', attempts);
+
+  document.getElementById('scoreBanner').style.display='block';
+  document.getElementById('scoreBig').textContent = `${round1(total)} / ${totalMax}`;
+  renderTracker(sectionScores);
+  document.getElementById('scoreBanner').scrollIntoView({behavior:'smooth'});
+}
+
+function round1(n){ return Math.round(n*10)/10; }
+
+function gradeTask(t){
+  let score=0;
+  if(t.type==='sort2'){
+    t.items.forEach(it=>{
+      const per = t.marks/t.items.length;
+      if(it.given){ score+=per; return; }
+      const idx=t.items.indexOf(it);
+      const sel=document.querySelector(`input[name="${t.id}_i${idx}"]:checked`);
+      if(sel && sel.value===it.correct) score+=per;
+    });
+  } else if(t.type==='fillblank'){
+    t.items.forEach((it,i)=>{
+      const per=t.marks/t.items.length;
+      if(it.given){ score+=per; return; }
+      const val=document.getElementById(`${t.id}_i${i}`).value;
+      score += per*similarity(val,it.correct);
+    });
+  } else if(t.type==='fields'){
+    t.items.forEach((it,i)=>{
+      const perItem = t.marks/t.items.length;
+      const perField = perItem/it.fields.length;
+      if(it.given){ score+=perItem; return; }
+      it.fields.forEach((f,fi)=>{
+        const name=`${t.id}_i${i}_f${fi}`;
+        let val='';
+        if(f.type==='radio'){
+          const sel=document.querySelector(`input[name="${name}"]:checked`);
+          val = sel?sel.value:'';
+        } else if(f.type==='select'){
+          const el=document.getElementById(name); val = el?el.value:'';
+        }
+        if(val && val.toLowerCase()===String(f.correct).toLowerCase()) score+=perField;
+      });
+    });
+  } else if(t.type==='freetext'){
+    t.items.forEach((it,i)=>{
+      const per=t.marks/t.items.length;
+      const val=document.getElementById(`${t.id}_i${i}`).value;
+      score += per*similarity(val, it.correct);
+    });
+  } else if(t.type==='mcq'){
+    t.items.forEach((it,i)=>{
+      const per=t.marks/t.items.length;
+      const sel=document.querySelector(`input[name="${t.id}_i${i}"]:checked`);
+      if(sel && parseInt(sel.value,10)===it.correct) score+=per;
+    });
+  } else if(t.type==='match'){
+    t.items.forEach((it,i)=>{
+      const per=t.marks/t.items.length;
+      const el=document.getElementById(`${t.id}_i${i}`);
+      if(el && el.value===it.correct) score+=per;
+    });
+  } else if(t.type==='oddone'){
+    t.items.forEach((it,i)=>{
+      const per=t.marks/t.items.length;
+      const sel=document.querySelector(`input[name="${t.id}_i${i}"]:checked`);
+      if(sel && sel.value===it.correct) score+=per;
+    });
+  } else if(t.type==='writeown'){
+    t.items.forEach((it,i)=>{
+      const per=t.marks/t.items.length;
+      const val=normalize(document.getElementById(`${t.id}_i${i}`).value);
+      if(val && it.keywords.some(k=>val.includes(k.toLowerCase()))) score+=per;
+    });
+  }
+  return {score};
+}
+
+function renderTracker(sectionScores){
+  let h='<tr><th>Section</th><th>Score</th></tr>';
+  SECTIONS.forEach(sec=>{
+    const s=sectionScores[sec.id];
+    h+=`<tr><td>Section ${sec.id}</td><td>${round1(s.score)} / ${s.max}</td></tr>`;
+  });
+  document.getElementById('trackerTable').innerHTML=h;
+}
+
+/* ===================== THEME ===================== */
+function toggleTheme(){
+  const html=document.body;
+  const cur=html.getAttribute('data-theme');
+  html.setAttribute('data-theme', cur==='light'?'dark':'light');
+}
+
+/* ===================== SAVE AS IMAGE ===================== */
+function openSaveModal(){
+  if(!lastResults){ alert('আগে "Check My Score" বাটনে ক্লিক করো।'); return; }
+  document.getElementById('modalName').value = document.getElementById('stuName').value;
+  document.getElementById('modalDate').value = document.getElementById('stuDate').value;
+  document.getElementById('saveModal').style.display='flex';
+}
+function closeSaveModal(){ document.getElementById('saveModal').style.display='none'; }
+
+function generateImage(){
+  const name = document.getElementById('modalName').value.trim();
+  const date = document.getElementById('modalDate').value;
+  if(!name || !date){ alert('নাম ও তারিখ দুটোই দিতে হবে।'); return; }
+  document.getElementById('stuName').value=name;
+  document.getElementById('stuDate').value=date;
+  const batch = document.getElementById('stuBatch').value.trim() || 'N/A';
+  const attempts = localStorage.getItem('noun_ws_attempts')||'1';
+  const theme = document.body.getAttribute('data-theme');
+  const bg = theme==='dark' ? '#2A0A16' : '#FCF5EE';
+  const card = theme==='dark' ? '#3B1224' : '#FFFFFF';
+  const heading = theme==='dark' ? '#FFC4C4' : '#850E35';
+  const text = theme==='dark' ? '#FCEFEF' : '#402028';
+  const accent = '#EE6983';
+
+  const holder = document.getElementById('resultCardHolder');
+  holder.innerHTML = `
+  <div id="resultCard" style="width:1080px;height:1080px;background:${bg};font-family:'Hind Siliguri',sans-serif;display:flex;flex-direction:column;justify-content:space-between;padding:70px;color:${text};">
+    <div>
+      <div style="font-family:'Baloo Da 2',cursive;color:${heading};font-size:34px;text-align:center;margin-bottom:36px;">বাংলায় IELTS · Homework Result</div>
+      <div style="background:${card};border-radius:24px;padding:40px;text-align:center;box-shadow:0 10px 30px rgba(0,0,0,.12);">
+        <div style="font-size:26px;margin-bottom:6px;"><b>Name:</b> ${escapeHtml(name)}</div>
+        <div style="font-size:22px;margin-bottom:6px;color:${text};opacity:.85;"><b>Batch:</b> ${escapeHtml(batch)} &nbsp;&nbsp; <b>Date:</b> ${date}</div>
+        <div style="height:1px;background:${accent};opacity:.3;margin:20px 0;"></div>
+        <div style="font-size:20px;margin-bottom:8px;opacity:.85;">Attempts made: <b>${attempts}</b></div>
+        <div style="font-size:22px;margin-bottom:20px;color:${heading};font-weight:700;">Topic: ${TOPIC}</div>
+        <div style="font-family:'Baloo Da 2',cursive;font-size:64px;color:${accent};font-weight:800;">${round1(lastResults.total)} / ${lastResults.totalMax}</div>
+      </div>
+    </div>
+    <div style="text-align:center;">
+      <div style="font-size:22px;line-height:1.6;color:${text};margin-bottom:20px;">Take love from Abidur Rahman Tahmid.<br>You have successfully completed your homework.<br>Now submit it via Google Classroom.</div>
+      <div style="font-size:16px;color:${text};opacity:.6;">Developed by Abidur Rahman Tahmid</div>
+    </div>
+  </div>`;
+
+  html2canvas(document.getElementById('resultCard'), {backgroundColor:bg, scale:1}).then(canvas=>{
+    const link=document.createElement('a');
+    link.download = `Noun_Homework_Result_${name.replace(/\s+/g,'_')}.png`;
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+    closeSaveModal();
+  });
+}
+function escapeHtml(s){ const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+</script>
+</body>
+</html>

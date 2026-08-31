@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Homework on Verbs, Adjectives & Adverbs — বাংলায় IELTS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Baloo+Da+2:wght@500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<style>
+html,body[data-theme="light"]{
+  --bg:#FCF5EE; --bg-soft:#FFF9F4; --card:#FFFFFF; --card-alt:#FFF3EC;
+  --text:#402028; --text-soft:#7a4a56; --heading:#850E35;
+  --accent:#EE6983; --accent-soft:#FFC4C4; --border:#FFD9D9;
+  --ok:#2e8b57; --bad:#c0392b; --shadow:0 8px 24px rgba(133,14,53,.08);
+}
+body[data-theme="dark"]{
+  --bg:#2A0A16; --bg-soft:#33101F; --card:#3B1224; --card-alt:#451529;
+  --text:#FCEFEF; --text-soft:#E9B9C4; --heading:#FFC4C4;
+  --accent:#EE6983; --accent-soft:#850E35; --border:#5C1A34;
+  --ok:#6fcf97; --bad:#ff8a80; --shadow:0 8px 24px rgba(0,0,0,.35);
+}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--bg);color:var(--text);font-family:'Hind Siliguri',sans-serif;transition:background .3s,color .3s;padding-bottom:60px;}
+h1,h2,h3,.brand{font-family:'Baloo Da 2',cursive;color:var(--heading);}
+.wrap{max-width:900px;margin:0 auto;padding:16px;}
+.topbar{position:sticky;top:0;z-index:50;background:var(--bg);padding:10px 16px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border);}
+.brand{font-size:15px;}
+.theme-btn{border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:20px;padding:8px 14px;cursor:pointer;font-family:inherit;font-weight:600;}
+.header-card{background:var(--card);border-radius:18px;box-shadow:var(--shadow);padding:22px;margin:16px 0;border:1px solid var(--border);}
+.header-card h1{margin:0 0 4px;font-size:24px;}
+.subtitle{color:var(--text-soft);font-size:14px;margin-bottom:14px;}
+.meta-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;}
+@media(max-width:600px){.meta-grid{grid-template-columns:1fr;}}
+.meta-grid label{font-size:13px;font-weight:600;color:var(--text-soft);display:block;margin-bottom:4px;}
+.meta-grid input{width:100%;padding:9px 10px;border-radius:10px;border:1.5px solid var(--border);background:var(--bg-soft);color:var(--text);font-family:inherit;font-size:14px;}
+.section-title{margin:26px 0 6px;font-size:19px;}
+.section-sub{color:var(--text-soft);font-size:13px;margin-bottom:14px;}
+.task{background:var(--card);border-radius:16px;box-shadow:var(--shadow);padding:18px;margin-bottom:16px;border:1px solid var(--border);}
+.task-head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:6px;}
+.task-head h3{margin:0;font-size:15.5px;}
+.marks-pill{background:var(--accent-soft);color:var(--heading);font-weight:700;font-size:12px;padding:4px 10px;border-radius:20px;white-space:nowrap;}
+.instr{font-size:13.5px;color:var(--text-soft);margin-bottom:4px;}
+.hint{font-size:12.5px;background:var(--card-alt);border-left:3px solid var(--accent);padding:8px 10px;border-radius:8px;margin-top:8px;color:var(--text-soft);}
+table.qtable{width:100%;border-collapse:collapse;margin-top:10px;font-size:13px;}
+table.qtable th,table.qtable td{border:1px solid var(--border);padding:6px 7px;text-align:left;vertical-align:middle;}
+table.qtable th{background:var(--card-alt);}
+input[type=text],select,textarea{width:100%;padding:6px 8px;border-radius:8px;border:1.5px solid var(--border);background:var(--bg-soft);color:var(--text);font-family:inherit;font-size:13.5px;}
+textarea{resize:vertical;min-height:44px;}
+.radio-row{display:flex;gap:10px;flex-wrap:wrap;}
+.radio-row label{display:flex;align-items:center;gap:4px;font-size:12.5px;cursor:pointer;}
+.given{opacity:.75;}
+.given input,.given select{background:var(--accent-soft);font-weight:600;}
+.freeitem{margin-bottom:12px;}
+.freeitem .prompt{font-size:13.5px;margin-bottom:5px;}
+.subfield{margin-bottom:5px;}
+.subfield .flabel{font-size:11.5px;color:var(--text-soft);}
+.result-tag{display:inline-block;font-size:11.5px;font-weight:700;padding:2px 8px;border-radius:10px;margin-left:6px;}
+.tag-full{background:#d6f5df;color:var(--ok);}
+.tag-partial{background:#fff3cd;color:#8a6500;}
+.tag-zero{background:#ffe0e0;color:var(--bad);}
+[data-theme="dark"] .tag-full{background:#154a2c;}
+[data-theme="dark"] .tag-partial{background:#4a3c10;color:#ffd76b;}
+[data-theme="dark"] .tag-zero{background:#4a1414;}
+.footer-bar{position:sticky;bottom:0;background:var(--card);border-top:1px solid var(--border);padding:14px 16px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;box-shadow:0 -6px 18px rgba(0,0,0,.06);}
+.btn{border:none;border-radius:24px;padding:12px 22px;font-weight:700;font-family:inherit;font-size:14.5px;cursor:pointer;transition:transform .15s;}
+.btn:active{transform:scale(.97);}
+.btn-primary{background:var(--accent);color:#fff;}
+.btn-secondary{background:var(--heading);color:#fff;}
+.score-banner{text-align:center;margin:18px 0;}
+.score-banner .big{font-size:44px;font-weight:800;color:var(--heading);font-family:'Baloo Da 2',cursive;}
+.tracker{width:100%;border-collapse:collapse;margin-top:16px;font-size:12.5px;}
+.tracker th,.tracker td{border:1px solid var(--border);padding:6px 8px;text-align:center;}
+.tracker th{background:var(--card-alt);}
+.page-footer{text-align:center;color:var(--text-soft);font-size:12px;padding:26px 0 6px;}
+#resultCardHolder{position:fixed;left:-9999px;top:0;}
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;align-items:center;justify-content:center;z-index:100;}
+.modal-box{background:var(--card);border-radius:16px;padding:22px;max-width:340px;width:90%;box-shadow:var(--shadow);}
+.modal-box h3{margin-top:0;}
+.modal-box input{margin-bottom:10px;}
+.modal-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:10px;}
+.ungraded-note{font-size:11.5px;color:var(--text-soft);margin:4px 0 8px;font-style:italic;}
+</style>
+</head>
+<body data-theme="light">
+
+<div class="topbar">
+  <div class="brand">বাংলায় IELTS · Grammar Foundation Series · Practice Sheet 02</div>
+  <button class="theme-btn" onclick="toggleTheme()">🌓 Theme</button>
+</div>
+
+<div class="wrap">
+  <div class="header-card">
+    <h1>VERBS, ADJECTIVES &amp; ADVERBS</h1>
+    <div class="subtitle">Extended Homework Worksheet · Sections 01–05 · 18 Tasks · 100 marks</div>
+    <div class="meta-grid">
+      <div><label>Name / নাম</label><input type="text" id="stuName" placeholder="তোমার নাম লেখো"></div>
+      <div><label>Batch / ব্যাচ</label><input type="text" id="stuBatch" placeholder="ব্যাচ নম্বর"></div>
+      <div><label>Date / তারিখ</label><input type="date" id="stuDate"></div>
+    </div>
+  </div>
+
+  <div id="renderRoot"></div>
+
+  <div class="score-banner" id="scoreBanner" style="display:none;">
+    <div>মোট স্কোর</div>
+    <div class="big" id="scoreBig">0 / 100</div>
+    <table class="tracker" id="trackerTable"></table>
+  </div>
+
+  <div class="page-footer">Developed by Abidur Rahman Tahmid</div>
+</div>
+
+<div class="footer-bar">
+  <button class="btn btn-primary" onclick="checkScore()">✅ Check My Score</button>
+  <button class="btn btn-secondary" onclick="openSaveModal()">🖼️ Save your result as an image</button>
+</div>
+
+<div class="modal-overlay" id="saveModal">
+  <div class="modal-box">
+    <h3>Confirm details</h3>
+    <p style="font-size:13px;color:var(--text-soft);">ছবি তৈরির আগে নাম ও তারিখ দিন।</p>
+    <label style="font-size:13px;">Name</label>
+    <input type="text" id="modalName" placeholder="তোমার নাম">
+    <label style="font-size:13px;">Date</label>
+    <input type="date" id="modalDate">
+    <div class="modal-actions">
+      <button class="btn" style="background:var(--border);color:var(--text);" onclick="closeSaveModal()">বাতিল</button>
+      <button class="btn btn-primary" onclick="generateImage()">তৈরি করো</button>
+    </div>
+  </div>
+</div>
+
+<div id="resultCardHolder"></div>
+
+<script>
+/* ===================== WORKSHEET CONFIG ===================== */
+const TOPIC = "Verbs, Adjectives & Adverbs — Extended Homework Worksheet";
+const SECTIONS = [
+{ id:'01', title:'01 · VERB PRACTICE', sub:'The engine of every sentence', tasks:[
+
+  { id:'t1', title:'TASK 1 · IDENTIFY THE VERB TYPE', marks:5, type:'fields',
+    instr:'Write the verb, then its type: T=Transitive, I=Intransitive, A=Auxiliary, P=Phrasal.',
+    fieldNames:['The Verb','Type'],
+    items:[
+      {label:'1. The farmer harvested the paddy last week.', fields:[{type:'text',correct:['harvested']},{type:'radio',options:['T','I','A','P'],correct:'T'}]},
+      {label:'2. My sister sings in the school programme.', fields:[{type:'text',correct:['sings']},{type:'radio',options:['T','I','A','P'],correct:'I'}]},
+      {label:'3. We are preparing for the mock test.', fields:[{type:'text',correct:['are']},{type:'radio',options:['T','I','A','P'],correct:'A'}]},
+      {label:'4. Please fill out this admission form.', fields:[{type:'text',correct:['fill out']},{type:'radio',options:['T','I','A','P'],correct:'P'}]},
+      {label:'5. The children ran towards the field.', fields:[{type:'text',correct:['ran']},{type:'radio',options:['T','I','A','P'],correct:'I'}]},
+      {label:'6. Karim bought a new dictionary.', fields:[{type:'text',correct:['bought']},{type:'radio',options:['T','I','A','P'],correct:'T'}]},
+      {label:'7. She has finished her homework.', fields:[{type:'text',correct:['has']},{type:'radio',options:['T','I','A','P'],correct:'A'}]},
+      {label:'8. My uncle looks after our family shop.', fields:[{type:'text',correct:['looks after']},{type:'radio',options:['T','I','A','P'],correct:'P'}]},
+      {label:'9. The baby cried loudly at midnight.', fields:[{type:'text',correct:['cried']},{type:'radio',options:['T','I','A','P'],correct:'I'}]},
+      {label:'10. Our teacher explained the rule twice.', fields:[{type:'text',correct:['explained']},{type:'radio',options:['T','I','A','P'],correct:'T'}]},
+      {label:'11. They called off the picnic because of rain.', fields:[{type:'text',correct:['called off']},{type:'radio',options:['T','I','A','P'],correct:'P'}]},
+      {label:'12. Nadia does not eat fast food.', fields:[{type:'text',correct:['does']},{type:'radio',options:['T','I','A','P'],correct:'A'}]},
+      {label:'13. The old bridge collapsed suddenly.', fields:[{type:'text',correct:['collapsed']},{type:'radio',options:['T','I','A','P'],correct:'I'}]},
+      {label:'14. Everybody praised her presentation.', fields:[{type:'text',correct:['praised']},{type:'radio',options:['T','I','A','P'],correct:'T'}]},
+      {label:'15. I get up before sunrise.', fields:[{type:'text',correct:['get up']},{type:'radio',options:['T','I','A','P'],correct:'P'}]}
+    ]},
+
+  { id:'t2', title:'TASK 2 · FIND THE OBJECT', marks:4, type:'fields',
+    instr:'Write the verb, then the object. If none, write "No Object".',
+    fieldNames:['Verb','Object / No Object'],
+    items:[
+      {label:'1. Rina opened the window.', fields:[{type:'text',correct:['opened']},{type:'text',correct:['the window','window']}]},
+      {label:'2. The guests arrived at noon.', fields:[{type:'text',correct:['arrived']},{type:'text',correct:['No Object','no object']}]},
+      {label:'3. He carried a heavy suitcase.', fields:[{type:'text',correct:['carried']},{type:'text',correct:['a heavy suitcase','heavy suitcase']}]},
+      {label:'4. My grandfather sleeps early.', fields:[{type:'text',correct:['sleeps']},{type:'text',correct:['No Object','no object']}]},
+      {label:'5. The students answered all the questions.', fields:[{type:'text',correct:['answered']},{type:'text',correct:['all the questions','the questions']}]},
+      {label:'6. The sun rises in the east.', fields:[{type:'text',correct:['rises']},{type:'text',correct:['No Object','no object']}]},
+      {label:'7. Our branch organised a free seminar.', fields:[{type:'text',correct:['organised','organized']},{type:'text',correct:['a free seminar','free seminar']}]},
+      {label:'8. The train stopped near Sylhet.', fields:[{type:'text',correct:['stopped']},{type:'text',correct:['No Object','no object']}]},
+      {label:'9. She borrowed my notebook.', fields:[{type:'text',correct:['borrowed']},{type:'text',correct:['my notebook','notebook']}]},
+      {label:'10. The old man walked slowly.', fields:[{type:'text',correct:['walked']},{type:'text',correct:['No Object','no object']}]}
+    ]},
+
+  { id:'t3', title:'TASK 3 · SAME VERB, DIFFERENT JOB', marks:4, type:'fields',
+    instr:'Mark T if the verb takes an Object, I if it does not.',
+    fieldNames:['T or I'],
+    items:[
+      {label:'1a. The cook boiled the water.', fields:[{type:'radio',options:['T','I'],correct:'T'}]},
+      {label:'1b. The water boiled within five minutes.', fields:[{type:'radio',options:['T','I'],correct:'I'}]},
+      {label:'2a. My uncle drives a microbus.', fields:[{type:'radio',options:['T','I'],correct:'T'}]},
+      {label:'2b. My uncle drives very carefully.', fields:[{type:'radio',options:['T','I'],correct:'I'}]},
+      {label:'3a. She writes short stories.', fields:[{type:'radio',options:['T','I'],correct:'T'}]},
+      {label:'3b. She writes every morning.', fields:[{type:'radio',options:['T','I'],correct:'I'}]},
+      {label:'4a. The wind closed the door.', fields:[{type:'radio',options:['T','I'],correct:'T'}]},
+      {label:'4b. The door closed with a loud noise.', fields:[{type:'radio',options:['T','I'],correct:'I'}]},
+      {label:'5a. My brother plays football.', fields:[{type:'radio',options:['T','I'],correct:'T'}]},
+      {label:'5b. The children are playing outside.', fields:[{type:'radio',options:['T','I'],correct:'I'}]},
+      {label:'6a. Rina paints beautiful pictures.', fields:[{type:'radio',options:['T','I'],correct:'T'}]},
+      {label:'6b. Rina paints in the evening.', fields:[{type:'radio',options:['T','I'],correct:'I'}]},
+      {label:'7a. The porter moved my luggage.', fields:[{type:'radio',options:['T','I'],correct:'T'}]},
+      {label:'7b. The queue moved very slowly.', fields:[{type:'radio',options:['T','I'],correct:'I'}]},
+      {label:'8a. The driver started the engine.', fields:[{type:'radio',options:['T','I'],correct:'T'}]},
+      {label:'8b. Our class started at nine.', fields:[{type:'radio',options:['T','I'],correct:'I'}]}
+    ]},
+
+  { id:'t4', title:'TASK 4 · AUXILIARY OR MAIN VERB?', marks:4, type:'fields',
+    instr:'Write the auxiliary (helping) verb and the main verb separately.',
+    fieldNames:['Auxiliary Verb','Main Verb'],
+    items:[
+      {label:'1. She is studying for the IELTS exam.', fields:[{type:'text',correct:['is']},{type:'text',correct:['studying']}]},
+      {label:'2. They have completed the assignment.', fields:[{type:'text',correct:['have']},{type:'text',correct:['completed']}]},
+      {label:'3. We were waiting at the bus stop.', fields:[{type:'text',correct:['were']},{type:'text',correct:['waiting']}]},
+      {label:'4. He does not understand the question.', fields:[{type:'text',correct:['does']},{type:'text',correct:['understand']}]},
+      {label:'5. The report has been submitted.', fields:[{type:'text',correct:['has been']},{type:'text',correct:['submitted']}]},
+      {label:'6. I am writing an email now.', fields:[{type:'text',correct:['am']},{type:'text',correct:['writing']}]},
+      {label:'7. You should practise every day.', fields:[{type:'text',correct:['should']},{type:'text',correct:['practise','practice']}]},
+      {label:'8. The letter was posted yesterday.', fields:[{type:'text',correct:['was']},{type:'text',correct:['posted']}]},
+      {label:'9. My friends are coming tomorrow.', fields:[{type:'text',correct:['are']},{type:'text',correct:['coming']}]},
+      {label:'10. She did not attend the class.', fields:[{type:'text',correct:['did']},{type:'text',correct:['attend']}]}
+    ]},
+
+  { id:'t5', title:'TASK 5 · PHRASAL VERB MEANING', marks:3, type:'match',
+    instr:'Match each phrasal verb with its meaning.',
+    options:['to continue','to submit','to leave the ground (a plane)','to search for information','to tolerate','to stop working (a machine)','to complete a form','to have a friendly relationship','to refuse or reject','to establish or start something'],
+    items:[
+      {label:'carry on', correct:'to continue'},
+      {label:'hand in', correct:'to submit'},
+      {label:'take off', correct:'to leave the ground (a plane)'},
+      {label:'look up', correct:'to search for information'},
+      {label:'put up with', correct:'to tolerate'},
+      {label:'break down', correct:'to stop working (a machine)'},
+      {label:'fill in', correct:'to complete a form'},
+      {label:'get along with', correct:'to have a friendly relationship'},
+      {label:'turn down', correct:'to refuse or reject'},
+      {label:'set up', correct:'to establish or start something'}
+    ],
+    extraNote:'নিচে (ঐচ্ছিক) — যেকোনো ৫টি phrasal verb দিয়ে নিজের বাক্য লেখার প্র্যাকটিস করো। এই অংশ auto-score হয় না।',
+    extraCount:5 }
+]},
+
+{ id:'02', title:'02 · ADJECTIVE PRACTICE', sub:'Describing the noun', tasks:[
+
+  { id:'t6', title:'TASK 6 · ADD A SUITABLE ADJECTIVE', marks:3, type:'adjcheck',
+    instr:'Put a suitable adjective in front of each noun, then use the pair in a short phrase. (Auto-check: your phrase must include the adjective you wrote.)',
+    items:['Market','Road','Mother','Answer','Village','Weather','Student','Classroom','Bag','Decision','Food','Friend','Rickshaw','Result','Morning'] },
+
+  { id:'t7', title:'TASK 7 · FIND THE ADJECTIVE', marks:6, type:'fields',
+    instr:'Write the adjective, then which noun/pronoun it describes.',
+    fieldNames:['Adjective','Describes'],
+    items:[
+      {label:'1. The hungry child asked for food.', fields:[{type:'text',correct:['hungry']},{type:'text',correct:['child']}]},
+      {label:'2. This shirt is expensive.', fields:[{type:'text',correct:['expensive']},{type:'text',correct:['shirt']}]},
+      {label:'3. Sylhet has beautiful tea gardens.', fields:[{type:'text',correct:['beautiful']},{type:'text',correct:['tea gardens','gardens']}]},
+      {label:'4. Her answer was correct.', fields:[{type:'text',correct:['correct']},{type:'text',correct:['answer']}]},
+      {label:'5. We met a helpful officer at the office.', fields:[{type:'text',correct:['helpful']},{type:'text',correct:['officer']}]},
+      {label:'6. The soup tastes salty.', fields:[{type:'text',correct:['salty']},{type:'text',correct:['soup']}]},
+      {label:'7. I need something warm to wear.', fields:[{type:'text',correct:['warm']},{type:'text',correct:['something']}]},
+      {label:'8. The brave are honoured everywhere.', fields:[{type:'text',correct:['brave']},{type:'text',correct:['brave people','the brave','people']}]},
+      {label:'9. My father is a strict man.', fields:[{type:'text',correct:['strict']},{type:'text',correct:['man']}]},
+      {label:'10. The road became narrow near the bridge.', fields:[{type:'text',correct:['narrow']},{type:'text',correct:['road']}]},
+      {label:'11. They painted the gate green.', fields:[{type:'text',correct:['green']},{type:'text',correct:['gate']}]},
+      {label:'12. Nothing important was discussed yesterday.', fields:[{type:'text',correct:['important']},{type:'text',correct:['nothing']}]}
+    ]},
+
+  { id:'t8', title:'TASK 8 · POSITION OF ADJECTIVES', marks:6, type:'fields',
+    instr:'A=Adjective+Noun · B=S+V+Adjective · C=S+V+Object+Adjective · D=Pronoun+Adjective · E=The+Adjective (a group)',
+    fieldNames:['Structure Code'],
+    items:[
+      {label:'1. She wore a golden saree at the wedding.', fields:[{type:'radio',options:['A','B','C','D','E'],correct:'A'}]},
+      {label:'2. The tea is very sweet.', fields:[{type:'radio',options:['A','B','C','D','E'],correct:'B'}]},
+      {label:'3. The news made my mother happy.', fields:[{type:'radio',options:['A','B','C','D','E'],correct:'C'}]},
+      {label:'4. I want something spicy for dinner.', fields:[{type:'radio',options:['A','B','C','D','E'],correct:'D'}]},
+      {label:'5. The poor need our support.', fields:[{type:'radio',options:['A','B','C','D','E'],correct:'E'}]},
+      {label:'6. He lives in a quiet neighbourhood.', fields:[{type:'radio',options:['A','B','C','D','E'],correct:'A'}]},
+      {label:'7. My hands feel cold.', fields:[{type:'radio',options:['A','B','C','D','E'],correct:'B'}]},
+      {label:'8. We found the exam easy.', fields:[{type:'radio',options:['A','B','C','D','E'],correct:'C'}]},
+      {label:'9. Is there anyone free this evening?', fields:[{type:'radio',options:['A','B','C','D','E'],correct:'D'}]},
+      {label:'10. The young must respect the old.', fields:[{type:'radio',options:['A','B','C','D','E'],correct:'E'}]},
+      {label:'11. A tall building stands beside our branch.', fields:[{type:'radio',options:['A','B','C','D','E'],correct:'A'}]},
+      {label:'12. The children look tired.', fields:[{type:'radio',options:['A','B','C','D','E'],correct:'B'}]},
+      {label:'13. They painted the wall white.', fields:[{type:'radio',options:['A','B','C','D','E'],correct:'C'}]},
+      {label:'14. He said nothing wrong.', fields:[{type:'radio',options:['A','B','C','D','E'],correct:'D'}]},
+      {label:'15. The rich should not forget the poor.', fields:[{type:'radio',options:['A','B','C','D','E'],correct:'E'}]}
+    ]},
+
+  { id:'t9', title:'TASK 9 · COMPLETE WITH THE CORRECT ADJECTIVE', marks:5, type:'fillblank',
+    instr:'Word bank: polite · serious · strict · generous · helpful · narrow · crowded · expensive · tired · important (use each once).',
+    items:[
+      {label:'1. The lane behind our school is very ____, so a car cannot pass.', correct:['narrow']},
+      {label:'2. Our headmaster is ____ about punctuality; nobody dares to come late.', correct:['strict']},
+      {label:'3. This laptop is too ____ for a student like me.', correct:['expensive']},
+      {label:'4. After working in the field all day, my father felt ____.', correct:['tired']},
+      {label:'5. Zainal Uncle is a ____ man; he donates to the local orphanage every month.', correct:['generous']},
+      {label:'6. The bus was so ____ that we had to stand for an hour.', correct:['crowded']},
+      {label:'7. Always be ____ when you speak to the examiner.', correct:['polite']},
+      {label:'8. Regular attendance is ____ if you want to sit for the mock test.', correct:['important']},
+      {label:'9. Our librarian is very ____; she finds any book within a minute.', correct:['helpful']},
+      {label:'10. His face became ____ when he heard the bad news.', correct:['serious']}
+    ]}
+]},
+
+{ id:'03', title:'03 · ADVERB PRACTICE', sub:'Describing everything else', tasks:[
+
+  { id:'t10', title:'TASK 10 · FIND THE ADVERB', marks:6, type:'fields',
+    instr:'Write the adverb, then what it modifies (a verb, adjective, adverb, or the whole sentence).',
+    fieldNames:['Adverb','Modifies'],
+    items:[
+      {label:'1. The peon opened the gate slowly.', fields:[{type:'text',correct:['slowly']},{type:'text',correct:['opened']}]},
+      {label:'2. This question is quite difficult.', fields:[{type:'text',correct:['quite']},{type:'text',correct:['difficult']}]},
+      {label:'3. She explained the rule very clearly.', fields:[{type:'text',correct:['clearly','very']},{type:'text',correct:['explained','clearly']}]},
+      {label:'4. We will meet tomorrow.', fields:[{type:'text',correct:['tomorrow']},{type:'text',correct:['meet']}]},
+      {label:'5. They always arrive early.', fields:[{type:'text',correct:['always']},{type:'text',correct:['arrive']}]},
+      {label:'6. Fortunately, nobody was injured.', fields:[{type:'text',correct:['Fortunately','fortunately']},{type:'text',correct:['whole sentence','sentence']}]},
+      {label:'7. My cousin lives nearby.', fields:[{type:'text',correct:['nearby']},{type:'text',correct:['lives']}]},
+      {label:'8. The film was terribly boring.', fields:[{type:'text',correct:['terribly']},{type:'text',correct:['boring']}]},
+      {label:'9. He answered the question honestly.', fields:[{type:'text',correct:['honestly']},{type:'text',correct:['answered']}]},
+      {label:'10. She rarely misses a class.', fields:[{type:'text',correct:['rarely']},{type:'text',correct:['misses']}]},
+      {label:'11. Honestly, I did not read the passage.', fields:[{type:'text',correct:['Honestly','honestly']},{type:'text',correct:['whole sentence','sentence']}]},
+      {label:'12. He studied hard; therefore, he passed.', fields:[{type:'text',correct:['therefore']},{type:'text',correct:['joins the two sentences','joins','connects the sentences']}]}
+    ]},
+
+  { id:'t11', title:'TASK 11 · TYPE OF ADVERB', marks:6, type:'fields',
+    instr:'M=Manner T=Time P=Place F=Frequency D=Degree S=Sentence Adverb C=Connecting Adverb',
+    fieldNames:['Adverb','Type'],
+    items:[
+      {label:'1. The students worked quietly.', fields:[{type:'text',correct:['quietly']},{type:'radio',options:['M','T','P','F','D','S','C'],correct:'M'}]},
+      {label:'2. We will start the class soon.', fields:[{type:'text',correct:['soon']},{type:'radio',options:['M','T','P','F','D','S','C'],correct:'T'}]},
+      {label:'3. Put your bag there.', fields:[{type:'text',correct:['there']},{type:'radio',options:['M','T','P','F','D','S','C'],correct:'P'}]},
+      {label:'4. He often forgets his pen.', fields:[{type:'text',correct:['often']},{type:'radio',options:['M','T','P','F','D','S','C'],correct:'F'}]},
+      {label:'5. The room is very small.', fields:[{type:'text',correct:['very']},{type:'radio',options:['M','T','P','F','D','S','C'],correct:'D'}]},
+      {label:'6. Obviously, she was not prepared.', fields:[{type:'text',correct:['Obviously','obviously']},{type:'radio',options:['M','T','P','F','D','S','C'],correct:'S'}]},
+      {label:'7. It rained heavily; therefore, the picnic was cancelled.', fields:[{type:'text',correct:['therefore']},{type:'radio',options:['M','T','P','F','D','S','C'],correct:'C'}]},
+      {label:'8. My mother cooks beautifully.', fields:[{type:'text',correct:['beautifully']},{type:'radio',options:['M','T','P','F','D','S','C'],correct:'M'}]},
+      {label:'9. I met him yesterday.', fields:[{type:'text',correct:['yesterday']},{type:'radio',options:['M','T','P','F','D','S','C'],correct:'T'}]},
+      {label:'10. They are waiting outside.', fields:[{type:'text',correct:['outside']},{type:'radio',options:['M','T','P','F','D','S','C'],correct:'P'}]},
+      {label:'11. She never tells a lie.', fields:[{type:'text',correct:['never']},{type:'radio',options:['M','T','P','F','D','S','C'],correct:'F'}]},
+      {label:'12. The question was extremely easy.', fields:[{type:'text',correct:['extremely']},{type:'radio',options:['M','T','P','F','D','S','C'],correct:'D'}]},
+      {label:'13. Honestly, I forgot the deadline.', fields:[{type:'text',correct:['Honestly','honestly']},{type:'radio',options:['M','T','P','F','D','S','C'],correct:'S'}]},
+      {label:'14. First, boil the water; then, add the tea leaves.', fields:[{type:'text',correct:['then']},{type:'radio',options:['M','T','P','F','D','S','C'],correct:'C'}]},
+      {label:'15. He completed the task carefully.', fields:[{type:'text',correct:['carefully']},{type:'radio',options:['M','T','P','F','D','S','C'],correct:'M'}]}
+    ]},
+
+  { id:'t12', title:'TASK 12 · ADVERB OR ADJECTIVE?', marks:5, type:'fields',
+    instr:'Choose the correct form.',
+    fieldNames:['Correct Answer'],
+    items:[
+      {label:'1. She speaks English (fluent / fluently).', fields:[{type:'radio',options:['fluent','fluently'],correct:'fluently'}]},
+      {label:'2. The mango tastes (sweet / sweetly).', fields:[{type:'radio',options:['sweet','sweetly'],correct:'sweet'}]},
+      {label:'3. He drove (careful / carefully) in the rain.', fields:[{type:'radio',options:['careful','carefully'],correct:'carefully'}]},
+      {label:'4. Your handwriting is very (neat / neatly).', fields:[{type:'radio',options:['neat','neatly'],correct:'neat'}]},
+      {label:'5. The children behaved (good / well) at the programme.', fields:[{type:'radio',options:['good','well'],correct:'well'}]},
+      {label:'6. This exercise looks (easy / easily).', fields:[{type:'radio',options:['easy','easily'],correct:'easy'}]},
+      {label:'7. She answered the question (correct / correctly).', fields:[{type:'radio',options:['correct','correctly'],correct:'correctly'}]},
+      {label:'8. My brother runs (quick / quickly).', fields:[{type:'radio',options:['quick','quickly'],correct:'quickly'}]},
+      {label:'9. The soup smells (delicious / deliciously).', fields:[{type:'radio',options:['delicious','deliciously'],correct:'delicious'}]},
+      {label:'10. He works (hard / hardly) every day.', fields:[{type:'radio',options:['hard','hardly'],correct:'hard'}]},
+      {label:'11. They were (real / really) happy with the result.', fields:[{type:'radio',options:['real','really'],correct:'really'}]},
+      {label:'12. The old man walked (slow / slowly) towards the mosque.', fields:[{type:'radio',options:['slow','slowly'],correct:'slowly'}]}
+    ]},
+
+  { id:'t13', title:'TASK 13 · CONNECTING ADVERBS', marks:3, type:'freetext',
+    instr:'Join or begin each pair using one word from the bank: therefore · however · then · moreover · fortunately · honestly · obviously · finally. (Auto-check: your sentence must contain the required connector.)',
+    items:[
+      {prompt:'I studied for six hours. I could not finish the syllabus.', keyword:'however', correct:['I studied for six hours; however, I could not finish the syllabus.']},
+      {prompt:'The main road was blocked. We took another route.', keyword:'therefore', correct:['The main road was blocked; therefore, we took another route.']},
+      {prompt:'Wash the vegetables. Cut them into small pieces.', keyword:'then', correct:['First, wash the vegetables; then, cut them into small pieces.']},
+      {prompt:'She is a good writer. She speaks confidently.', keyword:'moreover', correct:['She is a good writer; moreover, she speaks confidently.']},
+      {prompt:'The bus fell into the ditch. Nobody was seriously hurt.', keyword:'fortunately', correct:['The bus fell into the ditch; fortunately, nobody was seriously hurt.']},
+      {prompt:'He did not attend a single class. He failed the test.', keyword:'obviously', correct:['He did not attend a single class; obviously, he failed the test.']},
+      {prompt:'We practised for three months. We got our results.', keyword:'finally', correct:['We practised for three months; finally, we got our results.']},
+      {prompt:'I did not read the newspaper today. (begin with an opinion adverb)', keyword:'honestly', correct:['Honestly, I did not read the newspaper today.']}
+    ]}
+]},
+
+{ id:'04', title:'04 · WORD FAMILY PRACTICE', sub:'One family, four forms', tasks:[
+
+  { id:'t14', title:'TASK 14 · COMPLETE THE WORD FAMILY TABLE', marks:15, type:'wordfamily',
+    instr:'Fill in the missing forms. A dash (—) means there is no common word for that form.',
+    cols:['Noun Form','Verb Form','Adjective Form','Adverb Form'],
+    rows:[
+      {vals:['Beauty','Beautify','Beautiful','Beautifully'], given:[true,false,true,false]},
+      {vals:['Care','Care','Careful','Carefully'], given:[true,true,false,false]},
+      {vals:['Success','Succeed','Successful','Successfully'], given:[false,true,true,false]},
+      {vals:['Creation','Create','Creative','Creatively'], given:[true,false,false,true]},
+      {vals:['Help','Help','Helpful','Helpfully'], given:[true,true,false,false]},
+      {vals:['Strength','Strengthen','Strong','Strongly'], given:[true,false,true,false]},
+      {vals:['Difference','Differ','Different','Differently'], given:[true,true,false,false]},
+      {vals:['Confidence','—','Confident','Confidently'], given:[true,true,false,false]},
+      {vals:['Honesty','—','Honest','Honestly'], given:[true,true,true,false]},
+      {vals:['Fluency','—','Fluent','Fluently'], given:[false,true,true,true]},
+      {vals:['Patience','—','Patient','Patiently'], given:[true,true,false,true]},
+      {vals:['Clarity','Clarify','Clear','Clearly'], given:[true,true,false,false]}
+    ]},
+
+  { id:'t15', title:'TASK 15 · USE THE WORD FORMS', marks:5, type:'formcheck',
+    instr:'Write two sentences for each family, using two different forms of the word. (Auto-check: looks for two different word-forms across your sentences.)',
+    items:[
+      {label:'success / succeed / successful / successfully', forms:['success','succeed','successful','successfully']},
+      {label:'care / careful / carefully', forms:['care','careful','carefully']},
+      {label:'beauty / beautify / beautiful / beautifully', forms:['beauty','beautify','beautiful','beautifully']},
+      {label:'strength / strengthen / strong / strongly', forms:['strength','strengthen','strong','strongly']},
+      {label:'clarity / clarify / clear / clearly', forms:['clarity','clarify','clear','clearly']},
+      {label:'difference / differ / different / differently', forms:['difference','differ','different','differently']},
+      {label:'help / helpful / helpfully', forms:['help','helpful','helpfully']},
+      {label:'creation / create / creative / creatively', forms:['creation','create','creative','creatively']}
+    ]}
+]},
+
+{ id:'05', title:'05 · MIXED REVIEW', sub:'Final grammar challenge', tasks:[
+
+  { id:'t16', title:'TASK 16 · IDENTIFY THE WORD CLASS', marks:10, type:'fields',
+    instr:'Is the bold word a Noun, Verb, Adjective or Adverb?',
+    fieldNames:['Word Class'],
+    items:[
+      {label:'1. The student answered politely.', fields:[{type:'radio',options:['Noun','Verb','Adjective','Adverb'],correct:'Noun'}]},
+      {label:'2. She answered the question politely.', fields:[{type:'radio',options:['Noun','Verb','Adjective','Adverb'],correct:'Verb'}]},
+      {label:'3. She answered the question politely.', fields:[{type:'radio',options:['Noun','Verb','Adjective','Adverb'],correct:'Adverb'}]},
+      {label:'4. He is a polite boy.', fields:[{type:'radio',options:['Noun','Verb','Adjective','Adverb'],correct:'Adjective'}]},
+      {label:'5. Our teacher explained the lesson clearly.', fields:[{type:'radio',options:['Noun','Verb','Adjective','Adverb'],correct:'Noun'}]},
+      {label:'6. The tea is very hot.', fields:[{type:'radio',options:['Noun','Verb','Adjective','Adverb'],correct:'Adverb'}]},
+      {label:'7. My father works in a bank.', fields:[{type:'radio',options:['Noun','Verb','Adjective','Adverb'],correct:'Verb'}]},
+      {label:'8. It was a difficult question.', fields:[{type:'radio',options:['Noun','Verb','Adjective','Adverb'],correct:'Adjective'}]},
+      {label:'9. Honesty is the best policy.', fields:[{type:'radio',options:['Noun','Verb','Adjective','Adverb'],correct:'Noun'}]},
+      {label:'10. She always helps her friends.', fields:[{type:'radio',options:['Noun','Verb','Adjective','Adverb'],correct:'Adverb'}]},
+      {label:'11. The children play in the field every evening.', fields:[{type:'radio',options:['Noun','Verb','Adjective','Adverb'],correct:'Verb'}]},
+      {label:'12. He has a loud voice.', fields:[{type:'radio',options:['Noun','Verb','Adjective','Adverb'],correct:'Adjective'}]},
+      {label:'13. Fortunately, we reached the centre on time.', fields:[{type:'radio',options:['Noun','Verb','Adjective','Adverb'],correct:'Adverb'}]},
+      {label:'14. Rahim bought a new cycle.', fields:[{type:'radio',options:['Noun','Verb','Adjective','Adverb'],correct:'Noun'}]},
+      {label:'15. They completed the project last month.', fields:[{type:'radio',options:['Noun','Verb','Adjective','Adverb'],correct:'Verb'}]},
+      {label:'16. The road near our branch is narrow.', fields:[{type:'radio',options:['Noun','Verb','Adjective','Adverb'],correct:'Adjective'}]},
+      {label:'17. She sings beautifully.', fields:[{type:'radio',options:['Noun','Verb','Adjective','Adverb'],correct:'Adverb'}]},
+      {label:'18. Patience brings success.', fields:[{type:'radio',options:['Noun','Verb','Adjective','Adverb'],correct:'Noun'}]},
+      {label:'19. Please turn off the fan before leaving.', fields:[{type:'radio',options:['Noun','Verb','Adjective','Adverb'],correct:'Verb'}]},
+      {label:'20. This is an important notice.', fields:[{type:'radio',options:['Noun','Verb','Adjective','Adverb'],correct:'Adjective'}]}
+    ]},
+
+  { id:'t17', title:'TASK 17 · CORRECT THE MISTAKE', marks:7, type:'freetext',
+    instr:'Each sentence has one mistake. Rewrite the correct sentence.',
+    items:[
+      {prompt:'She sings very beautiful.', correct:['She sings very beautifully.']},
+      {prompt:'The children is playing outside.', correct:['The children are playing outside.']},
+      {prompt:'I am agree with your opinion.', correct:['I agree with your opinion.']},
+      {prompt:'He looked after of his sick mother.', correct:['He looked after his sick mother.']},
+      {prompt:'This is a very much difficult question.', correct:['This is a very difficult question.']},
+      {prompt:'She writes clear and correct.', correct:['She writes clearly and correctly.']},
+      {prompt:'My father does not drives fast.', correct:['My father does not drive fast.']},
+      {prompt:'The food tastes deliciously.', correct:['The food tastes delicious.']},
+      {prompt:'We discussed about the topic in class.', correct:['We discussed the topic in class.']},
+      {prompt:'He gave up to smoke last year.', correct:['He gave up smoking last year.']},
+      {prompt:'The train arrived the station at eight.', correct:['The train arrived at the station at eight.']},
+      {prompt:'I have finish my homework.', correct:['I have finished my homework.']}
+    ]},
+
+  { id:'t18', title:'TASK 18 · IELTS SENTENCE UPGRADE', marks:3, type:'upgradecheck',
+    instr:'Improve each sentence by adding suitable adjectives and adverbs. (Auto-check: your sentence should be meaningfully longer than the original.)',
+    items:[
+      {label:'The boy read a book.'},
+      {label:'The teacher explained the topic.'},
+      {label:'A man crossed the road.'},
+      {label:'The students attended the class.'},
+      {label:'She answered the questions.'},
+      {label:'The bus stopped.'},
+      {label:'My friend helped me.'},
+      {label:'The rain started.'}
+    ]}
+]}
+];
+
+/* ===================== RENDER ===================== */
+const root = document.getElementById('renderRoot');
+let outHtml = '';
+SECTIONS.forEach(sec=>{
+  outHtml += `<h2 class="section-title">${sec.title}</h2><div class="section-sub">${sec.sub}</div>`;
+  sec.tasks.forEach(t=>{
+    outHtml += `<div class="task" id="${t.id}"><div class="task-head"><h3>${t.title}</h3><span class="marks-pill">${t.marks} marks</span></div>`;
+    if(t.instr) outHtml += `<div class="instr">${t.instr}</div>`;
+    outHtml += renderTask(t);
+    if(t.hint) outHtml += `<div class="hint">💡 ${t.hint}</div>`;
+    outHtml += `<div id="${t.id}_result" style="margin-top:8px;font-size:13px;font-weight:600;"></div></div>`;
+  });
+});
+root.innerHTML = outHtml;
+
+function renderTask(t){
+  if(t.type==='fields') return renderFields(t);
+  if(t.type==='fillblank') return renderFillblank(t);
+  if(t.type==='freetext') return renderFreetext(t);
+  if(t.type==='match') return renderMatch(t);
+  if(t.type==='adjcheck') return renderAdjcheck(t);
+  if(t.type==='wordfamily') return renderWordfamily(t);
+  if(t.type==='formcheck') return renderFormcheck(t);
+  if(t.type==='upgradecheck') return renderUpgradecheck(t);
+  return '';
+}
+
+function renderFields(t){
+  let h='';
+  t.items.forEach((it,i)=>{
+    h+=`<div class="freeitem"><div class="prompt">${it.label}</div>`;
+    it.fields.forEach((f,fi)=>{
+      const name=`${t.id}_i${i}_f${fi}`;
+      const fname = t.fieldNames && t.fieldNames[fi] ? t.fieldNames[fi] : '';
+      h+=`<div class="subfield"><span class="flabel">${fname}: </span>`;
+      if(f.type==='text'){
+        h+=`<input type="text" id="${name}" placeholder="উত্তর">`;
+      } else if(f.type==='radio'){
+        h+=`<span class="radio-row">`;
+        f.options.forEach(op=>{ h+=`<label><input type="radio" name="${name}" value="${op}">${op}</label>`; });
+        h+=`</span>`;
+      } else if(f.type==='select'){
+        h+=`<select id="${name}"><option value="">--</option>`;
+        f.options.forEach(op=>{ h+=`<option value="${op}">${op}</option>`; });
+        h+=`</select>`;
+      }
+      h+=`</div>`;
+    });
+    h+=`</div>`;
+  });
+  return h;
+}
+
+function renderFillblank(t){
+  let h='';
+  t.items.forEach((it,i)=>{
+    const id=`${t.id}_i${i}`;
+    h+=`<div class="freeitem"><div class="prompt">${it.label}</div><input type="text" id="${id}" placeholder="তোমার উত্তর"></div>`;
+  });
+  return h;
+}
+
+function renderFreetext(t){
+  let h='';
+  t.items.forEach((it,i)=>{
+    const id=`${t.id}_i${i}`;
+    h+=`<div class="freeitem"><div class="prompt">${(i+1)}. ${it.prompt}</div><textarea id="${id}" placeholder="তোমার উত্তর লেখো"></textarea></div>`;
+  });
+  return h;
+}
+
+function renderMatch(t){
+  let h=`<table class="qtable"><tr><th>Phrasal Verb</th><th>Meaning</th></tr>`;
+  t.items.forEach((it,i)=>{
+    const id=`${t.id}_i${i}`;
+    h+=`<tr><td>${it.label}</td><td><select id="${id}"><option value="">--</option>`;
+    t.options.forEach(op=>{ h+=`<option value="${op}">${op}</option>`; });
+    h+=`</select></td></tr>`;
+  });
+  h+='</table>';
+  if(t.extraNote){
+    h+=`<div class="ungraded-note">${t.extraNote}</div>`;
+    for(let k=0;k<t.extraCount;k++){ h+=`<textarea id="${t.id}_extra${k}" placeholder="Sentence ${k+1} (optional, not scored)" style="margin-bottom:6px;"></textarea>`; }
+  }
+  return h;
+}
+
+function renderAdjcheck(t){
+  let h='';
+  t.items.forEach((noun,i)=>{
+    h+=`<div class="freeitem"><div class="prompt">${(i+1)}. ${noun}</div>
+      <div class="subfield"><span class="flabel">Your Adjective: </span><input type="text" id="${t.id}_i${i}_adj" placeholder="adjective"></div>
+      <div class="subfield"><span class="flabel">Short phrase: </span><input type="text" id="${t.id}_i${i}_phr" placeholder="e.g. a busy market"></div>
+    </div>`;
+  });
+  return h;
+}
+
+function renderWordfamily(t){
+  let h=`<table class="qtable"><tr><th>#</th>`;
+  t.cols.forEach(c=>{ h+=`<th>${c}</th>`; });
+  h+=`</tr>`;
+  t.rows.forEach((row,ri)=>{
+    h+=`<tr><td>${ri+1}</td>`;
+    row.vals.forEach((val,ci)=>{
+      const id=`${t.id}_r${ri}_c${ci}`;
+      if(row.given[ci]){
+        h+=`<td class="given">${val}</td>`;
+      } else {
+        h+=`<td><input type="text" id="${id}" placeholder="?"></td>`;
+      }
+    });
+    h+=`</tr>`;
+  });
+  return h+'</table>';
+}
+
+function renderFormcheck(t){
+  let h='';
+  t.items.forEach((it,i)=>{
+    h+=`<div class="freeitem"><div class="prompt">${(i+1)}. ${it.label}</div>
+      <textarea id="${t.id}_i${i}_a" placeholder="Sentence 1"></textarea>
+      <textarea id="${t.id}_i${i}_b" placeholder="Sentence 2" style="margin-top:6px;"></textarea>
+    </div>`;
+  });
+  return h;
+}
+
+function renderUpgradecheck(t){
+  let h='';
+  t.items.forEach((it,i)=>{
+    const id=`${t.id}_i${i}`;
+    h+=`<div class="freeitem"><div class="prompt">${(i+1)}. ${it.label}</div><textarea id="${id}" placeholder="তোমার উন্নত বাক্য লেখো"></textarea></div>`;
+  });
+  return h;
+}
+
+/* ===================== GRADING HELPERS ===================== */
+function normalize(s){
+  return (s||'').toLowerCase().trim().replace(/[.,!?;:'"’‘“”]/g,'').replace(/\s+/g,' ');
+}
+function similarity(user, acceptableList){
+  const u = normalize(user);
+  if(!u) return 0;
+  for(const a of acceptableList){ if(normalize(a)===u) return 1; }
+  let best=0;
+  const uWords = new Set(u.split(' '));
+  acceptableList.forEach(a=>{
+    const aWords = new Set(normalize(a).split(' '));
+    const inter = [...uWords].filter(w=>aWords.has(w)).length;
+    const union = new Set([...uWords,...aWords]).size;
+    const j = union? inter/union : 0;
+    if(j>best) best=j;
+  });
+  return best;
+}
+function round1(n){ return Math.round(n*10)/10; }
+
+let lastResults = null;
+
+function checkScore(){
+  let sectionScores = {};
+  let total=0, totalMax=0;
+  SECTIONS.forEach(sec=>{
+    let secScore=0, secMax=0;
+    sec.tasks.forEach(t=>{
+      const r = gradeTask(t);
+      secScore+=r.score; secMax+=t.marks;
+      const el=document.getElementById(t.id+'_result');
+      const pct = t.marks? r.score/t.marks:0;
+      const tag = pct>=0.99?'tag-full':(pct>0?'tag-partial':'tag-zero');
+      const tagText = pct>=0.99?'সম্পূর্ণ সঠিক':(pct>0?'আংশিক':'ভুল/অসম্পূর্ণ');
+      el.innerHTML = `স্কোর: ${round1(r.score)} / ${t.marks} <span class="result-tag ${tag}">${tagText}</span>`;
+    });
+    sectionScores[sec.id]={score:secScore,max:secMax};
+    total+=secScore; totalMax+=secMax;
+  });
+  lastResults = {sectionScores, total, totalMax};
+
+  let attempts = parseInt(localStorage.getItem('vaa_ws_attempts')||'0',10)+1;
+  localStorage.setItem('vaa_ws_attempts', attempts);
+
+  document.getElementById('scoreBanner').style.display='block';
+  document.getElementById('scoreBig').textContent = `${round1(total)} / ${totalMax}`;
+  renderTracker(sectionScores);
+  document.getElementById('scoreBanner').scrollIntoView({behavior:'smooth'});
+}
+
+function gradeTask(t){
+  let score=0;
+  if(t.type==='fields'){
+    t.items.forEach((it,i)=>{
+      const perItem = t.marks/t.items.length;
+      const perField = perItem/it.fields.length;
+      it.fields.forEach((f,fi)=>{
+        const name=`${t.id}_i${i}_f${fi}`;
+        if(f.type==='text'){
+          const val=document.getElementById(name)?document.getElementById(name).value:'';
+          score += perField*similarity(val, f.correct);
+        } else if(f.type==='radio'){
+          const sel=document.querySelector(`input[name="${name}"]:checked`);
+          const val=sel?sel.value:'';
+          if(val && val.toLowerCase()===String(f.correct).toLowerCase()) score+=perField;
+        } else if(f.type==='select'){
+          const el=document.getElementById(name); const val=el?el.value:'';
+          if(val && val.toLowerCase()===String(f.correct).toLowerCase()) score+=perField;
+        }
+      });
+    });
+  } else if(t.type==='fillblank'){
+    t.items.forEach((it,i)=>{
+      const per=t.marks/t.items.length;
+      const val=document.getElementById(`${t.id}_i${i}`).value;
+      score += per*similarity(val,it.correct);
+    });
+  } else if(t.type==='freetext'){
+    t.items.forEach((it,i)=>{
+      const per=t.marks/t.items.length;
+      const val=document.getElementById(`${t.id}_i${i}`).value;
+      const nval=normalize(val);
+      if(it.keyword && nval.includes(it.keyword.toLowerCase())){
+        score+=per;
+      } else {
+        score += per*similarity(val,it.correct);
+      }
+    });
+  } else if(t.type==='match'){
+    t.items.forEach((it,i)=>{
+      const per=t.marks/t.items.length;
+      const el=document.getElementById(`${t.id}_i${i}`);
+      if(el && el.value===it.correct) score+=per;
+    });
+  } else if(t.type==='adjcheck'){
+    t.items.forEach((noun,i)=>{
+      const per=t.marks/t.items.length;
+      const adj=(document.getElementById(`${t.id}_i${i}_adj`).value||'').trim().toLowerCase();
+      const phr=(document.getElementById(`${t.id}_i${i}_phr`).value||'').trim().toLowerCase();
+      if(adj && phr && phr.includes(adj)) score+=per;
+    });
+  } else if(t.type==='wordfamily'){
+    let blanks=[];
+    t.rows.forEach((row,ri)=>{ row.vals.forEach((val,ci)=>{ if(!row.given[ci]) blanks.push({ri,ci,val}); }); });
+    const per = t.marks/blanks.length;
+    blanks.forEach(b=>{
+      const el=document.getElementById(`${t.id}_r${b.ri}_c${b.ci}`);
+      const v=el?el.value:'';
+      score += per*similarity(v,[b.val]);
+    });
+  } else if(t.type==='formcheck'){
+    t.items.forEach((it,i)=>{
+      const per=t.marks/t.items.length;
+      const a=normalize(document.getElementById(`${t.id}_i${i}_a`).value);
+      const b=normalize(document.getElementById(`${t.id}_i${i}_b`).value);
+      const combined = a+' '+b;
+      let distinctFound=0;
+      it.forms.forEach(f=>{ if(combined.includes(f.toLowerCase())) distinctFound++; });
+      if(distinctFound>=2) score+=per;
+      else if(distinctFound===1) score+=per*0.5;
+    });
+  } else if(t.type==='upgradecheck'){
+    t.items.forEach((it,i)=>{
+      const per=t.marks/t.items.length;
+      const val=(document.getElementById(`${t.id}_i${i}`).value||'').trim();
+      const origWords = it.label.split(/\s+/).length;
+      const userWords = val? val.split(/\s+/).length : 0;
+      if(userWords >= origWords+2) score+=per;
+      else if(userWords > origWords) score+=per*0.5;
+    });
+  }
+  return {score};
+}
+
+function renderTracker(sectionScores){
+  let h='<tr><th>Section</th><th>Score</th></tr>';
+  SECTIONS.forEach(sec=>{
+    const s=sectionScores[sec.id];
+    h+=`<tr><td>Section ${sec.id}</td><td>${round1(s.score)} / ${s.max}</td></tr>`;
+  });
+  document.getElementById('trackerTable').innerHTML=h;
+}
+
+/* ===================== THEME ===================== */
+function toggleTheme(){
+  const cur=document.body.getAttribute('data-theme');
+  document.body.setAttribute('data-theme', cur==='light'?'dark':'light');
+}
+
+/* ===================== SAVE AS IMAGE ===================== */
+function openSaveModal(){
+  if(!lastResults){ alert('আগে "Check My Score" বাটনে ক্লিক করো।'); return; }
+  document.getElementById('modalName').value = document.getElementById('stuName').value;
+  document.getElementById('modalDate').value = document.getElementById('stuDate').value;
+  document.getElementById('saveModal').style.display='flex';
+}
+function closeSaveModal(){ document.getElementById('saveModal').style.display='none'; }
+
+function generateImage(){
+  const name = document.getElementById('modalName').value.trim();
+  const date = document.getElementById('modalDate').value;
+  if(!name || !date){ alert('নাম ও তারিখ দুটোই দিতে হবে।'); return; }
+  document.getElementById('stuName').value=name;
+  document.getElementById('stuDate').value=date;
+  const batch = document.getElementById('stuBatch').value.trim() || 'N/A';
+  const attempts = localStorage.getItem('vaa_ws_attempts')||'1';
+  const theme = document.body.getAttribute('data-theme');
+  const bg = theme==='dark' ? '#2A0A16' : '#FCF5EE';
+  const card = theme==='dark' ? '#3B1224' : '#FFFFFF';
+  const heading = theme==='dark' ? '#FFC4C4' : '#850E35';
+  const text = theme==='dark' ? '#FCEFEF' : '#402028';
+  const accent = '#EE6983';
+
+  const holder = document.getElementById('resultCardHolder');
+  holder.innerHTML = `
+  <div id="resultCard" style="width:1080px;height:1080px;background:${bg};font-family:'Hind Siliguri',sans-serif;display:flex;flex-direction:column;justify-content:space-between;padding:70px;color:${text};">
+    <div>
+      <div style="font-family:'Baloo Da 2',cursive;color:${heading};font-size:34px;text-align:center;margin-bottom:36px;">বাংলায় IELTS · Homework Result</div>
+      <div style="background:${card};border-radius:24px;padding:40px;text-align:center;box-shadow:0 10px 30px rgba(0,0,0,.12);">
+        <div style="font-size:26px;margin-bottom:6px;"><b>Name:</b> ${escapeHtml(name)}</div>
+        <div style="font-size:22px;margin-bottom:6px;color:${text};opacity:.85;"><b>Batch:</b> ${escapeHtml(batch)} &nbsp;&nbsp; <b>Date:</b> ${date}</div>
+        <div style="height:1px;background:${accent};opacity:.3;margin:20px 0;"></div>
+        <div style="font-size:20px;margin-bottom:8px;opacity:.85;">Attempts made: <b>${attempts}</b></div>
+        <div style="font-size:20px;margin-bottom:20px;color:${heading};font-weight:700;">Topic: ${TOPIC}</div>
+        <div style="font-family:'Baloo Da 2',cursive;font-size:64px;color:${accent};font-weight:800;">${round1(lastResults.total)} / ${lastResults.totalMax}</div>
+      </div>
+    </div>
+    <div style="text-align:center;">
+      <div style="font-size:22px;line-height:1.6;color:${text};margin-bottom:20px;">Take love from Abidur Rahman Tahmid.<br>You have successfully completed your homework.<br>Now submit it via Google Classroom.</div>
+      <div style="font-size:16px;color:${text};opacity:.6;">Developed by Abidur Rahman Tahmid</div>
+    </div>
+  </div>`;
+
+  html2canvas(document.getElementById('resultCard'), {backgroundColor:bg, scale:1}).then(canvas=>{
+    const link=document.createElement('a');
+    link.download = `VAA_Homework_Result_${name.replace(/\s+/g,'_')}.png`;
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+    closeSaveModal();
+  });
+}
+function escapeHtml(s){ const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+</script>
+</body>
+</html>
