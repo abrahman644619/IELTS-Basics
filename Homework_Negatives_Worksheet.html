@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Negatives — Practice Worksheet — বাংলায় IELTS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Baloo+Da+2:wght@500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<style>
+html,body[data-theme="light"]{
+  --bg:#FCF5EE; --bg-soft:#FFF9F4; --card:#FFFFFF; --card-alt:#FFF3EC;
+  --text:#402028; --text-soft:#7a4a56; --heading:#850E35;
+  --accent:#EE6983; --accent-soft:#FFC4C4; --border:#FFD9D9;
+  --ok:#2e8b57; --bad:#c0392b; --shadow:0 8px 24px rgba(133,14,53,.08);
+}
+body[data-theme="dark"]{
+  --bg:#2A0A16; --bg-soft:#33101F; --card:#3B1224; --card-alt:#451529;
+  --text:#FCEFEF; --text-soft:#E9B9C4; --heading:#FFC4C4;
+  --accent:#EE6983; --accent-soft:#850E35; --border:#5C1A34;
+  --ok:#6fcf97; --bad:#ff8a80; --shadow:0 8px 24px rgba(0,0,0,.35);
+}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--bg);color:var(--text);font-family:'Hind Siliguri',sans-serif;transition:background .3s,color .3s;padding-bottom:60px;}
+h1,h2,h3,.brand{font-family:'Baloo Da 2',cursive;color:var(--heading);}
+.wrap{max-width:900px;margin:0 auto;padding:16px;}
+.topbar{position:sticky;top:0;z-index:50;background:var(--bg);padding:10px 16px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border);}
+.brand{font-size:15px;}
+.theme-btn{border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:20px;padding:8px 14px;cursor:pointer;font-family:inherit;font-weight:600;}
+.header-card{background:var(--card);border-radius:18px;box-shadow:var(--shadow);padding:22px;margin:16px 0;border:1px solid var(--border);}
+.header-card h1{margin:0 0 4px;font-size:24px;}
+.subtitle{color:var(--text-soft);font-size:14px;margin-bottom:14px;}
+.meta-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;}
+@media(max-width:600px){.meta-grid{grid-template-columns:1fr;}}
+.meta-grid label{font-size:13px;font-weight:600;color:var(--text-soft);display:block;margin-bottom:4px;}
+.meta-grid input{width:100%;padding:9px 10px;border-radius:10px;border:1.5px solid var(--border);background:var(--bg-soft);color:var(--text);font-family:inherit;font-size:14px;}
+.engine-table{width:100%;border-collapse:collapse;margin:10px 0 16px;font-size:12.5px;}
+.engine-table th,.engine-table td{border:1px solid var(--border);padding:5px 7px;text-align:left;}
+.engine-table th{background:var(--card-alt);}
+.section-title{margin:26px 0 6px;font-size:18px;}
+.section-sub{color:var(--text-soft);font-size:13px;margin-bottom:14px;}
+.task{background:var(--card);border-radius:16px;box-shadow:var(--shadow);padding:18px;margin-bottom:16px;border:1px solid var(--border);}
+.task-head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:6px;}
+.task-head h3{margin:0;font-size:15px;}
+.marks-pill{background:var(--accent-soft);color:var(--heading);font-weight:700;font-size:12px;padding:4px 10px;border-radius:20px;white-space:nowrap;}
+.instr{font-size:13px;color:var(--text-soft);margin-bottom:4px;}
+.hint{font-size:12.5px;background:var(--card-alt);border-left:3px solid var(--accent);padding:8px 10px;border-radius:8px;margin-top:8px;color:var(--text-soft);}
+table.qtable{width:100%;border-collapse:collapse;margin-top:10px;font-size:12.5px;}
+table.qtable th,table.qtable td{border:1px solid var(--border);padding:5px 6px;text-align:left;vertical-align:middle;}
+table.qtable th{background:var(--card-alt);}
+input[type=text],select,textarea{width:100%;padding:6px 8px;border-radius:8px;border:1.5px solid var(--border);background:var(--bg-soft);color:var(--text);font-family:inherit;font-size:13px;}
+textarea{resize:vertical;min-height:40px;}
+.radio-row{display:flex;gap:9px;flex-wrap:wrap;}
+.radio-row label{display:flex;align-items:center;gap:4px;font-size:12px;cursor:pointer;}
+.given{opacity:.75;}
+.given input,.given select,.given td{background:var(--accent-soft);font-weight:600;}
+.freeitem{margin-bottom:11px;}
+.freeitem .prompt{font-size:13px;margin-bottom:4px;}
+.subfield{margin-bottom:4px;}
+.subfield .flabel{font-size:11px;color:var(--text-soft);}
+.result-tag{display:inline-block;font-size:11.5px;font-weight:700;padding:2px 8px;border-radius:10px;margin-left:6px;}
+.tag-full{background:#d6f5df;color:var(--ok);}
+.tag-partial{background:#fff3cd;color:#8a6500;}
+.tag-zero{background:#ffe0e0;color:var(--bad);}
+[data-theme="dark"] .tag-full{background:#154a2c;}
+[data-theme="dark"] .tag-partial{background:#4a3c10;color:#ffd76b;}
+[data-theme="dark"] .tag-zero{background:#4a1414;}
+.footer-bar{position:sticky;bottom:0;background:var(--card);border-top:1px solid var(--border);padding:14px 16px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;box-shadow:0 -6px 18px rgba(0,0,0,.06);}
+.btn{border:none;border-radius:24px;padding:12px 22px;font-weight:700;font-family:inherit;font-size:14.5px;cursor:pointer;transition:transform .15s;}
+.btn:active{transform:scale(.97);}
+.btn-primary{background:var(--accent);color:#fff;}
+.btn-secondary{background:var(--heading);color:#fff;}
+.score-banner{text-align:center;margin:18px 0;}
+.score-banner .big{font-size:44px;font-weight:800;color:var(--heading);font-family:'Baloo Da 2',cursive;}
+.tracker{width:100%;border-collapse:collapse;margin-top:16px;font-size:12px;}
+.tracker th,.tracker td{border:1px solid var(--border);padding:5px 7px;text-align:center;}
+.tracker th{background:var(--card-alt);}
+.page-footer{text-align:center;color:var(--text-soft);font-size:12px;padding:26px 0 6px;}
+#resultCardHolder{position:fixed;left:-9999px;top:0;}
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;align-items:center;justify-content:center;z-index:100;}
+.modal-box{background:var(--card);border-radius:16px;padding:22px;max-width:340px;width:90%;box-shadow:var(--shadow);}
+.modal-box h3{margin-top:0;}
+.modal-box input{margin-bottom:10px;}
+.modal-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:10px;}
+</style>
+</head>
+<body data-theme="light">
+
+<div class="topbar">
+  <div class="brand">বাংলায় IELTS · Grammar Foundation Series · Companion to Lecture Sheet 04</div>
+  <button class="theme-btn" onclick="toggleTheme()">🌓 Theme</button>
+</div>
+
+<div class="wrap">
+  <div class="header-card">
+    <h1>NEGATIVES — PRACTICE WORKSHEET</h1>
+    <div class="subtitle">27 exercises · 288 marks · find the helping verb, put not right after it — for the Do-engine, the main verb goes back to its base form</div>
+    <div class="meta-grid">
+      <div><label>Name / নাম</label><input type="text" id="stuName" placeholder="তোমার নাম লেখো"></div>
+      <div><label>Batch / ব্যাচ</label><input type="text" id="stuBatch" placeholder="ব্যাচ নম্বর"></div>
+      <div><label>Date / তারিখ</label><input type="date" id="stuDate"></div>
+    </div>
+    <table class="engine-table">
+      <tr><th>Engine</th><th>Helping verb + not</th><th>Used for</th></tr>
+      <tr><td><b>BE</b></td><td>am/is/are/was/were + not</td><td>Be-sentences &amp; Continuous</td></tr>
+      <tr><td><b>DO</b></td><td>do/does/did + not + V1</td><td>Present &amp; Past Simple</td></tr>
+      <tr><td><b>HAVE</b></td><td>have/has/had + not + V3</td><td>Perfect tenses</td></tr>
+      <tr><td><b>WILL</b></td><td>will/can/should + not + V1</td><td>Future &amp; modals</td></tr>
+    </table>
+  </div>
+
+  <div id="renderRoot"></div>
+
+  <div class="score-banner" id="scoreBanner" style="display:none;">
+    <div>মোট স্কোর</div>
+    <div class="big" id="scoreBig">0 / 288</div>
+    <table class="tracker" id="trackerTable"></table>
+  </div>
+
+  <div class="page-footer">Developed by Abidur Rahman Tahmid</div>
+</div>
+
+<div class="footer-bar">
+  <button class="btn btn-primary" onclick="checkScore()">✅ Check My Score</button>
+  <button class="btn btn-secondary" onclick="openSaveModal()">🖼️ Save your result as an image</button>
+</div>
+
+<div class="modal-overlay" id="saveModal">
+  <div class="modal-box">
+    <h3>Confirm details</h3>
+    <p style="font-size:13px;color:var(--text-soft);">ছবি তৈরির আগে নাম ও তারিখ দিন।</p>
+    <label style="font-size:13px;">Name</label>
+    <input type="text" id="modalName" placeholder="তোমার নাম">
+    <label style="font-size:13px;">Date</label>
+    <input type="date" id="modalDate">
+    <div class="modal-actions">
+      <button class="btn" style="background:var(--border);color:var(--text);" onclick="closeSaveModal()">বাতিল</button>
+      <button class="btn btn-primary" onclick="generateImage()">তৈরি করো</button>
+    </div>
+  </div>
+</div>
+
+<div id="resultCardHolder"></div>
+
+<script>
+/* ===================== WORKSHEET CONFIG ===================== */
+const TOPIC = "Negatives — Practice Worksheet";
+const SECTIONS = [
+{ id:'A', title:'A · RECOGNISE THE ENGINE', sub:'', tasks:[
+  { id:'e1', title:'EXERCISE 1 · Match the helper to its engine', marks:12, type:'fields',
+    instr:'Write the engine for each helping verb: B=Be, D=Do, H=Have, W=Will/Modal.', fieldNames:['Engine'],
+    items:[
+      {label:"1. isn't", fields:[{type:'radio',options:['B','D','H','W'],correct:'B'}]},
+      {label:"2. doesn't", fields:[{type:'radio',options:['B','D','H','W'],correct:'D'}]},
+      {label:"3. haven't", fields:[{type:'radio',options:['B','D','H','W'],correct:'H'}]},
+      {label:"4. wasn't", fields:[{type:'radio',options:['B','D','H','W'],correct:'B'}]},
+      {label:"5. don't", fields:[{type:'radio',options:['B','D','H','W'],correct:'D'}]},
+      {label:"6. hadn't", fields:[{type:'radio',options:['B','D','H','W'],correct:'H'}]},
+      {label:"7. aren't", fields:[{type:'radio',options:['B','D','H','W'],correct:'B'}]},
+      {label:"8. didn't", fields:[{type:'radio',options:['B','D','H','W'],correct:'D'}]},
+      {label:"9. hasn't", fields:[{type:'radio',options:['B','D','H','W'],correct:'H'}]},
+      {label:"10. weren't", fields:[{type:'radio',options:['B','D','H','W'],correct:'B'}]},
+      {label:"11. won't", fields:[{type:'radio',options:['B','D','H','W'],correct:'W'}]},
+      {label:"12. can't", fields:[{type:'radio',options:['B','D','H','W'],correct:'W'}]}
+    ]},
+  { id:'e2', title:'EXERCISE 2 · Which engine would you use?', marks:15, type:'fields',
+    instr:'Write which engine you would use to make each sentence negative.', fieldNames:['Engine'],
+    items:[
+      {label:'1. She is a nurse.', fields:[{type:'radio',options:['B','D','H','W'],correct:'B'}]},
+      {label:'2. They play cricket.', fields:[{type:'radio',options:['B','D','H','W'],correct:'D'}]},
+      {label:'3. He has finished.', fields:[{type:'radio',options:['B','D','H','W'],correct:'H'}]},
+      {label:'4. I will go tomorrow.', fields:[{type:'radio',options:['B','D','H','W'],correct:'W'}]},
+      {label:'5. We were at school.', fields:[{type:'radio',options:['B','D','H','W'],correct:'B'}]},
+      {label:'6. Rahim speaks French.', fields:[{type:'radio',options:['B','D','H','W'],correct:'D'}]},
+      {label:'7. The baby is crying.', fields:[{type:'radio',options:['B','D','H','W'],correct:'B'}]},
+      {label:'8. You have seen it.', fields:[{type:'radio',options:['B','D','H','W'],correct:'H'}]},
+      {label:'9. My father drove home.', fields:[{type:'radio',options:['B','D','H','W'],correct:'D'}]},
+      {label:'10. The shops are open.', fields:[{type:'radio',options:['B','D','H','W'],correct:'B'}]},
+      {label:'11. She had left early.', fields:[{type:'radio',options:['B','D','H','W'],correct:'H'}]},
+      {label:'12. Birds fly south.', fields:[{type:'radio',options:['B','D','H','W'],correct:'D'}]},
+      {label:'13. I can swim.', fields:[{type:'radio',options:['B','D','H','W'],correct:'W'}]},
+      {label:'14. We are studying.', fields:[{type:'radio',options:['B','D','H','W'],correct:'B'}]},
+      {label:'15. He watched TV.', fields:[{type:'radio',options:['B','D','H','W'],correct:'D'}]}
+    ]},
+  { id:'e3', title:'EXERCISE 3 · Circle the correct helper', marks:12, type:'mcq',
+    items:[
+      {prompt:'1. She ___ tired.', options:["isn't","don't","hasn't"], correct:0},
+      {prompt:'2. They ___ play football.', options:["aren't","don't","haven't"], correct:1},
+      {prompt:'3. He ___ finished his work.', options:["isn't","doesn't","hasn't"], correct:2},
+      {prompt:'4. I ___ ready.', options:["amn't","'m not","don't"], correct:1},
+      {prompt:'5. We ___ go there yesterday.', options:["don't","didn't","weren't"], correct:1},
+      {prompt:'6. The train ___ arrive on time.', options:["isn't","doesn't","hasn't"], correct:1},
+      {prompt:'7. You ___ seen this film.', options:["aren't","don't","haven't"], correct:2},
+      {prompt:'8. She ___ at home last night.', options:["isn't","wasn't","doesn't"], correct:1},
+      {prompt:'9. They ___ arrived yet.', options:["aren't","don't","haven't"], correct:2},
+      {prompt:'10. He ___ come tomorrow.', options:["doesn't","won't","isn't"], correct:1},
+      {prompt:'11. My parents ___ speak English.', options:["doesn't","don't","aren't"], correct:1},
+      {prompt:'12. It ___ raining now.', options:["doesn't","isn't","hasn't"], correct:1}
+    ]}
+]},
+
+{ id:'B', title:'B · BE VERB NEGATIVES', sub:'am / is / are / was / were + not', tasks:[
+  { id:'e4', title:'EXERCISE 4 · Fill in the Be-negative', marks:12, type:'fillblank',
+    items:[
+      {label:'1. I ___ a doctor.', correct:['am not']},
+      {label:'2. She ___ my teacher.', correct:['is not']},
+      {label:'3. They ___ at home.', correct:['are not']},
+      {label:'4. He ___ in Dhaka last week.', correct:['was not']},
+      {label:'5. We ___ tired yesterday.', correct:['were not']},
+      {label:'6. The cat ___ on the bed.', correct:['is not']},
+      {label:'7. You ___ late today.', correct:['are not']},
+      {label:'8. It ___ cold now.', correct:['is not']},
+      {label:'9. Rahim and Karim ___ ready.', correct:['are not']},
+      {label:'10. The film ___ boring.', correct:['is not']},
+      {label:'11. I ___ hungry an hour ago.', correct:['was not']},
+      {label:'12. The boys ___ in the field then.', correct:['were not']}
+    ]},
+  { id:'e5', title:'EXERCISE 5 · Make it negative — full form', marks:10, type:'freetext',
+    instr:'Write not, not the contraction.',
+    items:[
+      {prompt:'1. I am a student.', keyword:'am not', correct:['I am not a student.']},
+      {prompt:'2. She is happy.', keyword:'is not', correct:['She is not happy.']},
+      {prompt:'3. They are ready.', keyword:'are not', correct:['They are not ready.']},
+      {prompt:'4. He was late.', keyword:'was not', correct:['He was not late.']},
+      {prompt:'5. We were friends.', keyword:'were not', correct:['We were not friends.']},
+      {prompt:'6. The shop is open.', keyword:'is not', correct:['The shop is not open.']},
+      {prompt:'7. You are my neighbour.', keyword:'are not', correct:['You are not my neighbour.']},
+      {prompt:'8. The children are noisy.', keyword:'are not', correct:['The children are not noisy.']},
+      {prompt:'9. It was a good day.', keyword:'was not', correct:['It was not a good day.']},
+      {prompt:'10. The rooms are clean.', keyword:'are not', correct:['The rooms are not clean.']}
+    ]},
+  { id:'e6', title:'EXERCISE 6 · Write the short form', marks:12, type:'fillblank',
+    items:[
+      {label:'1. is not', correct:["isn't"]},
+      {label:'2. are not', correct:["aren't"]},
+      {label:'3. was not', correct:["wasn't"]},
+      {label:'4. were not', correct:["weren't"]},
+      {label:'5. do not', correct:["don't"]},
+      {label:'6. does not', correct:["doesn't"]},
+      {label:'7. did not', correct:["didn't"]},
+      {label:'8. have not', correct:["haven't"]},
+      {label:'9. has not', correct:["hasn't"]},
+      {label:'10. had not', correct:["hadn't"]},
+      {label:'11. will not', correct:["won't"]},
+      {label:'12. cannot', correct:["can't"]}
+    ]},
+  { id:'e7', title:'EXERCISE 7 · Continuous-tense negatives', marks:8, type:'freetext',
+    instr:'Still the Be-engine: be + not + V-ing.',
+    items:[
+      {prompt:'1. She is cooking now.', keyword:["isn't","is not"], correct:['She is not cooking now.']},
+      {prompt:'2. They are playing outside.', keyword:["aren't","are not"], correct:['They are not playing outside.']},
+      {prompt:'3. I am reading a book.', keyword:["'m not","am not"], correct:['I am not reading a book.']},
+      {prompt:'4. He was sleeping at noon.', keyword:["wasn't","was not"], correct:['He was not sleeping at noon.']},
+      {prompt:'5. We were watching TV.', keyword:["weren't","were not"], correct:['We were not watching TV.']},
+      {prompt:'6. The baby is crying.', keyword:["isn't","is not"], correct:['The baby is not crying.']},
+      {prompt:'7. You are listening to me.', keyword:["aren't","are not"], correct:['You are not listening to me.']},
+      {prompt:'8. The dogs were barking.', keyword:["weren't","were not"], correct:['The dogs were not barking.']}
+    ]}
+]},
+
+{ id:'C', title:'C · DO VERB NEGATIVES', sub:'do / does / did + not + base verb', tasks:[
+  { id:'e8', title:'EXERCISE 8 · Choose do / does / did', marks:12, type:'fillblank',
+    items:[
+      {label:'1. I ___ like tea.', correct:["don't"]},
+      {label:'2. She ___ eat meat.', correct:["doesn't"]},
+      {label:'3. They ___ come yesterday.', correct:["didn't"]},
+      {label:'4. He ___ play the guitar.', correct:["doesn't"]},
+      {label:'5. We ___ watch horror films.', correct:["don't"]},
+      {label:'6. The bus ___ stop here.', correct:["doesn't"]},
+      {label:'7. You ___ finish the work last night.', correct:["didn't"]},
+      {label:'8. My friends ___ live nearby.', correct:["don't"]},
+      {label:'9. It ___ rain much in winter.', correct:["doesn't"]},
+      {label:'10. Rahim ___ call me last week.', correct:["didn't"]},
+      {label:'11. The children ___ sleep early.', correct:["don't"]},
+      {label:'12. She ___ understand the question.', correct:["doesn't"]}
+    ]},
+  { id:'e9', title:'EXERCISE 9 · The base-verb trap', marks:12, type:'mcq',
+    instr:'The helper already carries the tense — circle the base form.',
+    items:[
+      {prompt:"1. He doesn't ___ cricket.", options:['play','plays','played'], correct:0},
+      {prompt:"2. She didn't ___ home.", options:['go','goes','went'], correct:0},
+      {prompt:"3. They don't ___ TV.", options:['watch','watches','watched'], correct:0},
+      {prompt:"4. It doesn't ___ here.", options:['rain','rains','rained'], correct:0},
+      {prompt:"5. We didn't ___ rice.", options:['eat','eats','ate'], correct:0},
+      {prompt:"6. My father doesn't ___ a car.", options:['drive','drives','drove'], correct:0},
+      {prompt:"7. Birds don't ___ at night.", options:['fly','flies','flew'], correct:0},
+      {prompt:"8. He didn't ___ the letter.", options:['write','writes','wrote'], correct:0},
+      {prompt:"9. The teacher doesn't ___ us homework.", options:['give','gives','gave'], correct:0},
+      {prompt:"10. I don't ___ coffee.", options:['like','likes','liked'], correct:0},
+      {prompt:"11. She didn't ___ well.", options:['sing','sings','sang'], correct:0},
+      {prompt:"12. Children don't ___ fast.", options:['run','runs','ran'], correct:0}
+    ]},
+  { id:'e10', title:'EXERCISE 10 · Spot & fix the mistake', marks:10, type:'freetext',
+    items:[
+      {prompt:"1. He doesn't plays football.", keyword:'play', correct:["He doesn't play football."]},
+      {prompt:"2. She don't like coffee.", keyword:"doesn't", correct:["She doesn't like coffee."]},
+      {prompt:"3. They doesn't watch TV.", keyword:"don't", correct:["They don't watch TV."]},
+      {prompt:"4. I doesn't know him.", keyword:"don't", correct:["I don't know him."]},
+      {prompt:"5. We didn't went home.", keyword:'go', correct:["We didn't go home."]},
+      {prompt:"6. He didn't ate lunch.", keyword:'eat', correct:["He didn't eat lunch."]},
+      {prompt:"7. The train don't stop here.", keyword:"doesn't", correct:["The train doesn't stop here."]},
+      {prompt:"8. She doesn't goes to school.", keyword:'go', correct:["She doesn't go to school."]},
+      {prompt:"9. You didn't finished the task.", keyword:'finish', correct:["You didn't finish the task."]},
+      {prompt:"10. Birds doesn't fly at night.", keyword:"don't", correct:["Birds don't fly at night."]}
+    ]},
+  { id:'e11', title:'EXERCISE 11 · Make it negative — Do-engine', marks:12, type:'freetext',
+    instr:'Nos. 7, 8, 10 and 11 are past tense — base form.',
+    items:[
+      {prompt:'1. He plays football.', keyword:"doesn't", correct:["He doesn't play football."]},
+      {prompt:'2. I like cold coffee.', keyword:"don't", correct:["I don't like cold coffee."]},
+      {prompt:'3. She goes to school by bus.', keyword:"doesn't", correct:["She doesn't go to school by bus."]},
+      {prompt:'4. They watch TV at night.', keyword:"don't", correct:["They don't watch TV at night."]},
+      {prompt:'5. The train leaves at nine.', keyword:"doesn't", correct:["The train doesn't leave at nine."]},
+      {prompt:'6. Rahim speaks English well.', keyword:"doesn't", correct:["Rahim doesn't speak English well."]},
+      {prompt:'7. We ate rice yesterday.', keyword:"didn't", correct:["We didn't eat rice yesterday."]},
+      {prompt:'8. My father drove the car.', keyword:"didn't", correct:["My father didn't drive the car."]},
+      {prompt:'9. The birds fly south in winter.', keyword:"don't", correct:["The birds don't fly south in winter."]},
+      {prompt:'10. Children ran in the field.', keyword:"didn't", correct:["Children didn't run in the field."]},
+      {prompt:'11. She wrote a letter.', keyword:"didn't", correct:["She didn't write a letter."]},
+      {prompt:'12. The shop opens at eight.', keyword:"doesn't", correct:["The shop doesn't open at eight."]}
+    ]}
+]},
+
+{ id:'D', title:'D · HAVE VERB NEGATIVES', sub:'have / has / had + not', tasks:[
+  { id:'e12', title:'EXERCISE 12 · Fill in the Have-negative', marks:10, type:'fillblank',
+    items:[
+      {label:'1. I ___ finished my homework.', correct:['have not']},
+      {label:'2. She ___ read the book.', correct:['has not']},
+      {label:'3. They ___ arrived yet.', correct:['have not']},
+      {label:'4. He ___ eaten since morning.', correct:['has not']},
+      {label:'5. We ___ seen that film.', correct:['have not']},
+      {label:'6. You ___ met him before.', correct:['had not']},
+      {label:'7. The students ___ completed the test.', correct:['have not']},
+      {label:'8. Rahim ___ called me yet.', correct:['has not']},
+      {label:'9. By 9 pm, they ___ left.', correct:['had not']},
+      {label:'10. She ___ done her work when I arrived.', correct:['had not']}
+    ]},
+  { id:'e13', title:'EXERCISE 13 · Make it negative — Perfect tenses', marks:10, type:'freetext',
+    instr:'The V3 (past participle) never changes.',
+    items:[
+      {prompt:'1. I have done my homework.', keyword:"haven't", correct:["I haven't done my homework."]},
+      {prompt:'2. She has read the book.', keyword:"hasn't", correct:["She hasn't read the book."]},
+      {prompt:'3. They have arrived.', keyword:"haven't", correct:["They haven't arrived."]},
+      {prompt:'4. He had left before noon.', keyword:"hadn't", correct:["He hadn't left before noon."]},
+      {prompt:'5. We have seen this movie.', keyword:"haven't", correct:["We haven't seen this movie."]},
+      {prompt:'6. The students have finished the test.', keyword:"haven't", correct:["The students haven't finished the test."]},
+      {prompt:'7. Rahim has eaten lunch.', keyword:"hasn't", correct:["Rahim hasn't eaten lunch."]},
+      {prompt:'8. You had met him before.', keyword:"hadn't", correct:["You hadn't met him before."]},
+      {prompt:'9. She has written the letter.', keyword:"hasn't", correct:["She hasn't written the letter."]},
+      {prompt:'10. The team has won the match.', keyword:"hasn't", correct:["The team hasn't won the match."]}
+    ]},
+  { id:'e14', title:'EXERCISE 14 · Perfect have vs. possessive have', marks:8, type:'mcq',
+    instr:'Perfect helper → have/has not. Possess → do/does + not have.',
+    items:[
+      {prompt:'1. She has finished her lunch.', options:["She hasn't finished her lunch.","She doesn't have finished her lunch."], correct:0},
+      {prompt:'2. She has a red bag.', options:["She hasn't a red bag.","She doesn't have a red bag."], correct:1},
+      {prompt:'3. They have seen the film.', options:["They haven't seen the film.","They don't have seen the film."], correct:0},
+      {prompt:'4. They have three cats.', options:["They haven't three cats.","They don't have three cats."], correct:1},
+      {prompt:'5. He has eaten.', options:["He hasn't eaten.","He doesn't have eaten."], correct:0},
+      {prompt:'6. He has a headache.', options:["He hasn't a headache.","He doesn't have a headache."], correct:1},
+      {prompt:'7. I have done it.', options:["I haven't done it.","I don't have done it."], correct:0},
+      {prompt:'8. I have a pen.', options:["I haven't a pen.","I don't have a pen."], correct:1}
+    ]}
+]},
+
+{ id:'E', title:'E · MIXED MASTERY', sub:'All engines together', tasks:[
+  { id:'e15', title:'EXERCISE 15 · Choose the engine, then complete', marks:15, type:'fields',
+    fieldNames:['Engine (B/D/H/W)','Your negative sentence'],
+    items:[
+      {label:'1. She is a doctor.', fields:[{type:'radio',options:['B','D','H','W'],correct:'B'},{keyword:["isn't","is not"]}]},
+      {label:'2. They play chess.', fields:[{type:'radio',options:['B','D','H','W'],correct:'D'},{keyword:["don't","do not"]}]},
+      {label:'3. He has finished.', fields:[{type:'radio',options:['B','D','H','W'],correct:'H'},{keyword:["hasn't","has not"]}]},
+      {label:'4. I was tired.', fields:[{type:'radio',options:['B','D','H','W'],correct:'B'},{keyword:["wasn't","was not"]}]},
+      {label:'5. We go to the mosque.', fields:[{type:'radio',options:['B','D','H','W'],correct:'D'},{keyword:["don't","do not"]}]},
+      {label:'6. The baby is crying.', fields:[{type:'radio',options:['B','D','H','W'],correct:'B'},{keyword:["isn't","is not"]}]},
+      {label:'7. Karim did his work.', fields:[{type:'radio',options:['B','D','H','W'],correct:'D'},{keyword:["didn't","did not"]}]},
+      {label:'8. You have seen her.', fields:[{type:'radio',options:['B','D','H','W'],correct:'H'},{keyword:["haven't","have not"]}]},
+      {label:'9. My mother cooks well.', fields:[{type:'radio',options:['B','D','H','W'],correct:'D'},{keyword:["doesn't","does not"]}]},
+      {label:'10. The shops were open.', fields:[{type:'radio',options:['B','D','H','W'],correct:'B'},{keyword:["weren't","were not"]}]},
+      {label:'11. I will call you.', fields:[{type:'radio',options:['B','D','H','W'],correct:'W'},{keyword:["won't","will not"]}]},
+      {label:'12. She has eaten.', fields:[{type:'radio',options:['B','D','H','W'],correct:'H'},{keyword:["hasn't","has not"]}]},
+      {label:'13. They arrived late.', fields:[{type:'radio',options:['B','D','H','W'],correct:'D'},{keyword:["didn't","did not"]}]},
+      {label:'14. He is watching TV.', fields:[{type:'radio',options:['B','D','H','W'],correct:'B'},{keyword:["isn't","is not"]}]},
+      {label:'15. We can swim.', fields:[{type:'radio',options:['B','D','H','W'],correct:'W'},{keyword:["can't","cannot"]}]}
+    ]},
+  { id:'e16', title:'EXERCISE 16 · Fix the mistake — all engines', marks:12, type:'freetext',
+    items:[
+      {prompt:"1. He don't play cricket.", keyword:"doesn't", correct:["He doesn't play cricket."]},
+      {prompt:"2. She isn't have a car.", keyword:"doesn't", correct:["She doesn't have a car."]},
+      {prompt:"3. They doesn't like it.", keyword:"don't", correct:["They don't like it."]},
+      {prompt:"4. I amn't ready.", keyword:["'m not","am not"], correct:["I'm not ready."]},
+      {prompt:"5. We didn't went out.", keyword:'go', correct:["We didn't go out."]},
+      {prompt:"6. He hasn't ate.", keyword:'eaten', correct:["He hasn't eaten."]},
+      {prompt:"7. You doesn't know her.", keyword:"don't", correct:["You don't know her."]},
+      {prompt:"8. The baby aren't sleeping.", keyword:"isn't", correct:["The baby isn't sleeping."]},
+      {prompt:"9. She haven't finished.", keyword:"hasn't", correct:["She hasn't finished."]},
+      {prompt:"10. They wasn't at home.", keyword:"weren't", correct:["They weren't at home."]},
+      {prompt:"11. He doesn't goes there.", keyword:'go', correct:["He doesn't go there."]},
+      {prompt:"12. I don't have seen it.", keyword:"haven't", correct:["I haven't seen it."]}
+    ]},
+  { id:'e17', title:'EXERCISE 17 · Rewrite the paragraph in the negative', marks:7, type:'paragraph',
+    instr:'Keep the meaning and tense; only change what makes each sentence negative.',
+    original:'Maria is a busy student. She wakes up early. She eats breakfast at home. She goes to school by bus. She has finished her science project. She was late yesterday. She will come to the party tonight.',
+    groups:[
+      {forms:['is not',"isn't"], count:1},
+      {forms:['does not',"doesn't"], count:3},
+      {forms:['has not',"hasn't"], count:1},
+      {forms:['was not',"wasn't"], count:1},
+      {forms:['will not',"won't"], count:1}
+    ]},
+  { id:'e18', title:'EXERCISE 18 · Unscramble the negative', marks:10, type:'fillblank',
+    instr:'Add a capital letter and a full stop.',
+    items:[
+      {label:'1. is / she / happy / not', correct:['She is not happy.']},
+      {label:'2. do / I / like / not / tea', correct:['I do not like tea.']},
+      {label:'3. finished / has / he / not', correct:['He has not finished.']},
+      {label:'4. were / they / not / ready', correct:['They were not ready.']},
+      {label:'5. does / not / he / play / cricket', correct:['He does not play cricket.']},
+      {label:'6. have / we / not / seen / it', correct:['We have not seen it.']},
+      {label:'7. did / not / go / she / home', correct:['She did not go home.']},
+      {label:'8. not / are / you / tired', correct:['You are not tired.']},
+      {label:'9. had / not / left / they', correct:['They had not left.']},
+      {label:'10. will / not / I / go', correct:['I will not go.']}
+    ]},
+  { id:'e19', title:'EXERCISE 19 · Complete the dialogue', marks:8, type:'fillblank',
+    items:[
+      {label:'A: Do you like coffee?  B: No, I ___ like coffee.', correct:["don't"]},
+      {label:'A: Is Rahim at home?  B: No, he ___ at home.', correct:["isn't"]},
+      {label:'A: Have you finished the book?  B: No, I ___ finished it yet.', correct:["haven't"]},
+      {label:'A: Did they come yesterday?  B: No, they ___ come.', correct:["didn't"]},
+      {label:'A: Are the shops open?  B: No, they ___ open.', correct:["aren't"]},
+      {label:'A: Does she speak French?  B: No, she ___ speak French.', correct:["doesn't"]},
+      {label:'A: Was the film good?  B: No, it ___ good.', correct:["wasn't"]},
+      {label:'A: Will you be late?  B: No, I ___ be late.', correct:["won't"]}
+    ]},
+  { id:'e20', title:'EXERCISE 20 · বাংলা → English (negative)', marks:15, type:'freetext',
+    items:[
+      {prompt:'১. আমি ছাত্র নই।', keyword:["'m not","am not"], correct:['I am not a student.']},
+      {prompt:'২. সে স্কুলে যায় না।', keyword:["doesn't","does not"], correct:['She does not go to school.']},
+      {prompt:'৩. তারা এখন বাড়িতে নেই।', keyword:["aren't","are not"], correct:['They are not at home now.']},
+      {prompt:'৪. আমরা গতকাল খেলিনি।', keyword:["didn't","did not"], correct:['We did not play yesterday.']},
+      {prompt:'৫. রহিম ভালো গান গায় না।', keyword:["doesn't","does not"], correct:['Rahim does not sing well.']},
+      {prompt:'৬. আমি আমার কাজ শেষ করিনি।', keyword:["haven't","have not"], correct:['I have not finished my work.']},
+      {prompt:'৭. পাখিরা রাতে ওড়ে না।', keyword:["don't","do not"], correct:['Birds do not fly at night.']},
+      {prompt:'৮. তুমি সেদিন সুখী ছিলে না।', keyword:["weren't","were not"], correct:['You were not happy that day.']},
+      {prompt:'৯. বাচ্চারা এখন ঘুমাচ্ছে না।', keyword:["aren't","are not"], correct:['The children are not sleeping now.']},
+      {prompt:'১০. আমার বাবা গাড়ি চালাননি।', keyword:["didn't","did not"], correct:['My father did not drive the car.']},
+      {prompt:'১১. সে বইটি পড়েনি।', keyword:["hasn't","has not"], correct:['She has not read the book.']},
+      {prompt:'১২. দোকানগুলো খোলা ছিল না।', keyword:["weren't","were not"], correct:['The shops were not open.']},
+      {prompt:'১৩. আমি আগামীকাল আসব না।', keyword:["won't","will not"], correct:['I will not come tomorrow.']},
+      {prompt:'১৪. সে এখনো আসেনি।', keyword:["hasn't","has not"], correct:['He has not come yet.']},
+      {prompt:'১৫. তারা ইংরেজি বলে না।', keyword:["don't","do not"], correct:['They do not speak English.']}
+    ]},
+  { id:'e21', title:'EXERCISE 21 · True or false?', marks:12, type:'fields',
+    instr:'Is the negative correct? T or F.', fieldNames:['T / F'],
+    items:[
+      {label:"1. He doesn't plays football.", fields:[{type:'radio',options:['T','F'],correct:'F'}]},
+      {label:"2. She isn't ready.", fields:[{type:'radio',options:['T','F'],correct:'T'}]},
+      {label:"3. They don't like it.", fields:[{type:'radio',options:['T','F'],correct:'T'}]},
+      {label:"4. I amn't happy.", fields:[{type:'radio',options:['T','F'],correct:'F'}]},
+      {label:"5. We didn't go home.", fields:[{type:'radio',options:['T','F'],correct:'T'}]},
+      {label:"6. He hasn't eaten.", fields:[{type:'radio',options:['T','F'],correct:'T'}]},
+      {label:"7. You doesn't know her.", fields:[{type:'radio',options:['T','F'],correct:'F'}]},
+      {label:"8. The baby isn't sleeping.", fields:[{type:'radio',options:['T','F'],correct:'T'}]},
+      {label:"9. She haven't finished.", fields:[{type:'radio',options:['T','F'],correct:'F'}]},
+      {label:"10. They weren't at home.", fields:[{type:'radio',options:['T','F'],correct:'T'}]},
+      {label:"11. He doesn't go there.", fields:[{type:'radio',options:['T','F'],correct:'T'}]},
+      {label:"12. I don't have seen it.", fields:[{type:'radio',options:['T','F'],correct:'F'}]}
+    ]}
+]},
+
+{ id:'F', title:'F · CHALLENGE ZONE', sub:'', tasks:[
+  { id:'e22', title:'EXERCISE 22 · Odd one out', marks:8, type:'mcq',
+    instr:'Circle the sentence that is NOT a correct negative.',
+    items:[
+      {prompt:'1.', options:["She isn't happy.","She doesn't happy.","She wasn't happy."], correct:1},
+      {prompt:'2.', options:["They don't play.","They didn't play.","They doesn't play."], correct:2},
+      {prompt:'3.', options:["He hasn't eaten.","He haven't eaten.","He hadn't eaten."], correct:1},
+      {prompt:'4.', options:["I'm not ready.","I amn't ready.","I wasn't ready."], correct:1},
+      {prompt:'5.', options:["We don't have time.","We haven't time.","We didn't have time."], correct:1},
+      {prompt:'6.', options:["It doesn't rain.","It isn't raining.","It doesn't raining."], correct:2},
+      {prompt:'7.', options:["You didn't go.","You don't went.","You won't go."], correct:1},
+      {prompt:'8.', options:["He isn't play.","He doesn't play.","He isn't playing."], correct:0}
+    ]},
+  { id:'e23', title:'EXERCISE 23 · Sentence transformation', marks:10, type:'freetext',
+    items:[
+      {prompt:'1. She is my friend.', keyword:["isn't","is not"], correct:["She is not my friend."]},
+      {prompt:'2. They play cricket every day.', keyword:["don't","do not"], correct:["They do not play cricket every day."]},
+      {prompt:'3. He has finished the work.', keyword:["hasn't","has not"], correct:["He has not finished the work."]},
+      {prompt:'4. We were at the party.', keyword:["weren't","were not"], correct:["We were not at the party."]},
+      {prompt:'5. I will help you.', keyword:["won't","will not"], correct:["I will not help you."]},
+      {prompt:'6. The bus arrives at ten.', keyword:["doesn't","does not"], correct:["The bus does not arrive at ten."]},
+      {prompt:'7. You went to the market.', keyword:["didn't","did not"], correct:["You did not go to the market."]},
+      {prompt:'8. Children are playing outside.', keyword:["aren't","are not"], correct:["Children are not playing outside."]},
+      {prompt:'9. My mother has cooked dinner.', keyword:["hasn't","has not"], correct:["My mother has not cooked dinner."]},
+      {prompt:'10. He can drive a car.', keyword:["can't","cannot"], correct:["He cannot drive a car."]}
+    ]}
+]},
+
+{ id:'G', title:'G · EXTRA DRILLS', sub:'', tasks:[
+  { id:'e24', title:'EXERCISE 24 · Choose the fully correct sentence', marks:10, type:'mcq',
+    items:[
+      {prompt:'1.', options:["She don't like tea.","She doesn't like tea.","She doesn't likes tea."], correct:1},
+      {prompt:'2.', options:["They isn't ready.","They aren't ready.","They aren't readies."], correct:1},
+      {prompt:'3.', options:["He hasn't went home.","He didn't went home.","He didn't go home."], correct:2},
+      {prompt:'4.', options:["I amn't hungry.","I'm not hungry.","I not hungry."], correct:1},
+      {prompt:'5.', options:["We haven't seen it.","We haven't saw it.","We don't seen it."], correct:0},
+      {prompt:'6.', options:["It doesn't raining.","It isn't rain.","It isn't raining."], correct:2},
+      {prompt:'7.', options:["You wasn't there.","You weren't there.","You weren't theres."], correct:1},
+      {prompt:'8.', options:["He doesn't plays.","He don't play.","He doesn't play."], correct:2},
+      {prompt:'9.', options:["She hasn't finish.","She hasn't finished.","She haven't finished."], correct:1},
+      {prompt:'10.', options:["They didn't arrived.","They hadn't arrive.","They hadn't arrived."], correct:2}
+    ]},
+  { id:'e25', title:'EXERCISE 25 · Negative short answers', marks:10, type:'fillblank',
+    instr:'Begin with "No,".',
+    items:[
+      {label:'1. Do you like coffee?  No, ___', correct:["I don't"]},
+      {label:'2. Is she your teacher?  No, ___', correct:["she isn't"]},
+      {label:'3. Have they arrived?  No, ___', correct:["they haven't"]},
+      {label:'4. Did he call you?  No, ___', correct:["he didn't"]},
+      {label:'5. Are the shops open?  No, ___', correct:["they aren't"]},
+      {label:'6. Does Rahim play cricket?  No, ___', correct:["he doesn't"]},
+      {label:'7. Was the film good?  No, ___', correct:["it wasn't"]},
+      {label:'8. Can you swim?  No, ___', correct:["I can't"]},
+      {label:'9. Has she finished?  No, ___', correct:["she hasn't"]},
+      {label:'10. Were they at home?  No, ___', correct:["they weren't"]}
+    ]},
+  { id:'e26', title:'EXERCISE 26 · Cloze passage', marks:10, type:'fillblank',
+    instr:'Word bank: isn\u2019t · aren\u2019t · doesn\u2019t · don\u2019t · didn\u2019t · wasn\u2019t · weren\u2019t · hasn\u2019t · haven\u2019t · won\u2019t',
+    items:[
+      {label:'My cousin Tamim is not a morning person. He (1) ___ wake up before nine.', correct:["doesn't"]},
+      {label:'His brothers (2) ___ early risers either.', correct:["aren't"]},
+      {label:'Yesterday Tamim (3) ___ go to college,', correct:["didn't"]},
+      {label:'and he still (4) ___ finished his assignment.', correct:["hasn't"]},
+      {label:'"I (5) ___ worried," he says,', correct:["'m not","am not"]},
+      {label:'but that (6) ___ true.', correct:["isn't","is not"]},
+      {label:'His teacher (7) ___ happy,', correct:["wasn't"]},
+      {label:'and his friends (8) ___ seen him in class all week.', correct:["haven't"]},
+      {label:'Tomorrow, I am afraid, he (9) ___ be on time,', correct:["won't"]},
+      {label:'and he (10) ___ have his notes ready.', correct:["won't"]}
+    ]},
+  { id:'e27', title:'EXERCISE 27 · About you — write your own negatives', marks:6, type:'personalcheck',
+    instr:'Write true negative sentences about yourself, using each engine at least once. (Auto-check: looks for a real negative construction — "not" or "n\u2019t" — in each sentence.)',
+    items:[
+      'something you are NOT (Be):',
+      'something you do NOT do (Do):',
+      'something you did NOT do yesterday (Do-past):',
+      'something you have NOT done yet (Have):',
+      'something you will NOT do tomorrow (Will):',
+      'a free negative sentence about your family:'
+    ]}
+]}
+];
+
+/* ===================== RENDER ===================== */
+const root = document.getElementById('renderRoot');
+let outHtml = '';
+SECTIONS.forEach(sec=>{
+  outHtml += `<h2 class="section-title">${sec.title}</h2>`;
+  if(sec.sub) outHtml += `<div class="section-sub">${sec.sub}</div>`;
+  sec.tasks.forEach(t=>{
+    outHtml += `<div class="task" id="${t.id}"><div class="task-head"><h3>${t.title}</h3><span class="marks-pill">${t.marks} marks</span></div>`;
+    if(t.instr) outHtml += `<div class="instr">${t.instr}</div>`;
+    outHtml += renderTask(t);
+    if(t.hint) outHtml += `<div class="hint">💡 ${t.hint}</div>`;
+    outHtml += `<div id="${t.id}_result" style="margin-top:8px;font-size:13px;font-weight:600;"></div></div>`;
+  });
+});
+root.innerHTML = outHtml;
+
+function renderTask(t){
+  if(t.type==='fields') return renderFields(t);
+  if(t.type==='fillblank') return renderFillblank(t);
+  if(t.type==='freetext') return renderFreetext(t);
+  if(t.type==='mcq') return renderMcq(t);
+  if(t.type==='paragraph') return renderParagraph(t);
+  if(t.type==='personalcheck') return renderPersonalcheck(t);
+  return '';
+}
+
+function renderFields(t){
+  let h='';
+  t.items.forEach((it,i)=>{
+    h+=`<div class="freeitem"><div class="prompt">${it.label}</div>`;
+    it.fields.forEach((f,fi)=>{
+      const name=`${t.id}_i${i}_f${fi}`;
+      const fname = t.fieldNames && t.fieldNames[fi] ? t.fieldNames[fi] : '';
+      h+=`<div class="subfield"><span class="flabel">${fname}: </span>`;
+      if(f.type==='radio'){
+        h+=`<span class="radio-row">`;
+        f.options.forEach(op=>{ h+=`<label><input type="radio" name="${name}" value="${op}">${op}</label>`; });
+        h+=`</span>`;
+      } else {
+        h+=`<input type="text" id="${name}" placeholder="উত্তর">`;
+      }
+      h+=`</div>`;
+    });
+    h+=`</div>`;
+  });
+  return h;
+}
+
+function renderFillblank(t){
+  let h='';
+  t.items.forEach((it,i)=>{
+    const id=`${t.id}_i${i}`;
+    h+=`<div class="freeitem"><div class="prompt">${it.label}</div><input type="text" id="${id}" placeholder="তোমার উত্তর"></div>`;
+  });
+  return h;
+}
+
+function renderFreetext(t){
+  let h='';
+  t.items.forEach((it,i)=>{
+    const id=`${t.id}_i${i}`;
+    h+=`<div class="freeitem"><div class="prompt">${it.prompt}</div><textarea id="${id}" placeholder="তোমার উত্তর লেখো"></textarea></div>`;
+  });
+  return h;
+}
+
+function renderMcq(t){
+  let h='';
+  t.items.forEach((it,i)=>{
+    const name=`${t.id}_i${i}`;
+    h+=`<div class="freeitem"><div class="prompt">${it.prompt}</div><div class="radio-row">`;
+    it.options.forEach((op,oi)=>{ h+=`<label><input type="radio" name="${name}" value="${oi}">${op}</label>`; });
+    h+=`</div></div>`;
+  });
+  return h;
+}
+
+function renderParagraph(t){
+  return `<div class="freeitem"><div class="prompt" style="font-style:italic;">${t.original}</div>
+    <textarea id="${t.id}_ans" style="min-height:100px;" placeholder="তোমার negative paragraph লেখো"></textarea></div>`;
+}
+
+function renderPersonalcheck(t){
+  let h='';
+  t.items.forEach((label,i)=>{
+    const id=`${t.id}_i${i}`;
+    h+=`<div class="freeitem"><div class="prompt">${(i+1)}. ${label}</div><textarea id="${id}" placeholder="তোমার বাক্য লেখো"></textarea></div>`;
+  });
+  return h;
+}
+
+/* ===================== GRADING HELPERS ===================== */
+function normalize(s){
+  return (s||'').toLowerCase().trim().replace(/[.,!?;:'"’‘“”]/g,'').replace(/\s+/g,' ');
+}
+function containsWord(text, phrase){
+  const n = normalize(text);
+  const p = normalize(phrase);
+  if(!n || !p) return false;
+  const re = new RegExp('(^|[^a-z])'+p.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'([^a-z]|$)','i');
+  return re.test(' '+n+' ');
+}
+function containsAny(text, phrases){
+  if(Array.isArray(phrases)) return phrases.some(p=>containsWord(text,p));
+  return containsWord(text,phrases);
+}
+function countOccurrences(text, phrase){
+  const n = ' '+normalize(text)+' ';
+  const p = normalize(phrase);
+  if(!p) return 0;
+  const re = new RegExp('(^|[^a-z])'+p.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'([^a-z]|$)','gi');
+  const matches = n.match(re);
+  return matches ? matches.length : 0;
+}
+function similarity(user, acceptableList){
+  const u = normalize(user);
+  if(!u) return 0;
+  for(const a of acceptableList){ if(normalize(a)===u) return 1; }
+  let best=0;
+  const uWords = new Set(u.split(' '));
+  acceptableList.forEach(a=>{
+    const aWords = new Set(normalize(a).split(' '));
+    const inter = [...uWords].filter(w=>aWords.has(w)).length;
+    const union = new Set([...uWords,...aWords]).size;
+    const j = union? inter/union : 0;
+    if(j>best) best=j;
+  });
+  return best;
+}
+function round1(n){ return Math.round(n*10)/10; }
+
+let lastResults = null;
+
+function checkScore(){
+  let sectionScores = {};
+  let total=0, totalMax=0;
+  SECTIONS.forEach(sec=>{
+    let secScore=0, secMax=0;
+    sec.tasks.forEach(t=>{
+      const r = gradeTask(t);
+      secScore+=r.score; secMax+=t.marks;
+      const el=document.getElementById(t.id+'_result');
+      const pct = t.marks? r.score/t.marks:0;
+      const tag = pct>=0.99?'tag-full':(pct>0?'tag-partial':'tag-zero');
+      const tagText = pct>=0.99?'সম্পূর্ণ সঠিক':(pct>0?'আংশিক':'ভুল/অসম্পূর্ণ');
+      el.innerHTML = `স্কোর: ${round1(r.score)} / ${t.marks} <span class="result-tag ${tag}">${tagText}</span>`;
+    });
+    sectionScores[sec.id]={score:secScore,max:secMax};
+    total+=secScore; totalMax+=secMax;
+  });
+  lastResults = {sectionScores, total, totalMax};
+
+  let attempts = parseInt(localStorage.getItem('neg_ws_attempts')||'0',10)+1;
+  localStorage.setItem('neg_ws_attempts', attempts);
+
+  document.getElementById('scoreBanner').style.display='block';
+  document.getElementById('scoreBig').textContent = `${round1(total)} / ${totalMax}`;
+  renderTracker(sectionScores);
+  document.getElementById('scoreBanner').scrollIntoView({behavior:'smooth'});
+}
+
+function gradeTask(t){
+  let score=0;
+  if(t.type==='fields'){
+    t.items.forEach((it,i)=>{
+      const perItem = t.marks/t.items.length;
+      const perField = perItem/it.fields.length;
+      it.fields.forEach((f,fi)=>{
+        const name=`${t.id}_i${i}_f${fi}`;
+        if(f.type==='radio'){
+          const sel=document.querySelector(`input[name="${name}"]:checked`);
+          const val=sel?sel.value:'';
+          if(val && val.toLowerCase()===String(f.correct).toLowerCase()) score+=perField;
+        } else {
+          const el=document.getElementById(name);
+          const val=el?el.value:'';
+          if(f.keyword){
+            if(containsAny(val,f.keyword)) score+=perField;
+          } else if(f.correct){
+            score += perField*similarity(val,[f.correct]);
+          }
+        }
+      });
+    });
+  } else if(t.type==='fillblank'){
+    t.items.forEach((it,i)=>{
+      const per=t.marks/t.items.length;
+      const val=document.getElementById(`${t.id}_i${i}`).value;
+      score += per*similarity(val,it.correct);
+    });
+  } else if(t.type==='freetext'){
+    t.items.forEach((it,i)=>{
+      const per=t.marks/t.items.length;
+      const val=document.getElementById(`${t.id}_i${i}`).value;
+      if(it.keyword && containsAny(val,it.keyword)){
+        score+=per;
+      } else {
+        score += per*similarity(val,it.correct);
+      }
+    });
+  } else if(t.type==='mcq'){
+    t.items.forEach((it,i)=>{
+      const per=t.marks/t.items.length;
+      const sel=document.querySelector(`input[name="${t.id}_i${i}"]:checked`);
+      if(sel && parseInt(sel.value,10)===it.correct) score+=per;
+    });
+  } else if(t.type==='paragraph'){
+    const val=document.getElementById(`${t.id}_ans`).value;
+    const totalCount = t.groups.reduce((s,g)=>s+g.count,0);
+    const per = t.marks/totalCount;
+    t.groups.forEach(g=>{
+      let found=0;
+      g.forms.forEach(f=>{ found+=countOccurrences(val,f); });
+      score += per*Math.min(found,g.count);
+    });
+  } else if(t.type==='personalcheck'){
+    t.items.forEach((label,i)=>{
+      const per=t.marks/t.items.length;
+      const val=document.getElementById(`${t.id}_i${i}`).value||'';
+      if(val.trim().length>0 && /n't|\bnot\b/i.test(val)) score+=per;
+    });
+  }
+  return {score};
+}
+
+function renderTracker(sectionScores){
+  let h='<tr><th>Section</th><th>Score</th></tr>';
+  SECTIONS.forEach(sec=>{
+    const s=sectionScores[sec.id];
+    h+=`<tr><td>${sec.id}</td><td>${round1(s.score)} / ${s.max}</td></tr>`;
+  });
+  document.getElementById('trackerTable').innerHTML=h;
+}
+
+/* ===================== THEME ===================== */
+function toggleTheme(){
+  const cur=document.body.getAttribute('data-theme');
+  document.body.setAttribute('data-theme', cur==='light'?'dark':'light');
+}
+
+/* ===================== SAVE AS IMAGE ===================== */
+function openSaveModal(){
+  if(!lastResults){ alert('আগে "Check My Score" বাটনে ক্লিক করো।'); return; }
+  document.getElementById('modalName').value = document.getElementById('stuName').value;
+  document.getElementById('modalDate').value = document.getElementById('stuDate').value;
+  document.getElementById('saveModal').style.display='flex';
+}
+function closeSaveModal(){ document.getElementById('saveModal').style.display='none'; }
+
+function generateImage(){
+  const name = document.getElementById('modalName').value.trim();
+  const date = document.getElementById('modalDate').value;
+  if(!name || !date){ alert('নাম ও তারিখ দুটোই দিতে হবে।'); return; }
+  document.getElementById('stuName').value=name;
+  document.getElementById('stuDate').value=date;
+  const batch = document.getElementById('stuBatch').value.trim() || 'N/A';
+  const attempts = localStorage.getItem('neg_ws_attempts')||'1';
+  const theme = document.body.getAttribute('data-theme');
+  const bg = theme==='dark' ? '#2A0A16' : '#FCF5EE';
+  const card = theme==='dark' ? '#3B1224' : '#FFFFFF';
+  const heading = theme==='dark' ? '#FFC4C4' : '#850E35';
+  const text = theme==='dark' ? '#FCEFEF' : '#402028';
+  const accent = '#EE6983';
+
+  const holder = document.getElementById('resultCardHolder');
+  holder.innerHTML = `
+  <div id="resultCard" style="width:1080px;height:1080px;background:${bg};font-family:'Hind Siliguri',sans-serif;display:flex;flex-direction:column;justify-content:space-between;padding:70px;color:${text};">
+    <div>
+      <div style="font-family:'Baloo Da 2',cursive;color:${heading};font-size:34px;text-align:center;margin-bottom:36px;">বাংলায় IELTS · Homework Result</div>
+      <div style="background:${card};border-radius:24px;padding:40px;text-align:center;box-shadow:0 10px 30px rgba(0,0,0,.12);">
+        <div style="font-size:26px;margin-bottom:6px;"><b>Name:</b> ${escapeHtml(name)}</div>
+        <div style="font-size:22px;margin-bottom:6px;color:${text};opacity:.85;"><b>Batch:</b> ${escapeHtml(batch)} &nbsp;&nbsp; <b>Date:</b> ${date}</div>
+        <div style="height:1px;background:${accent};opacity:.3;margin:20px 0;"></div>
+        <div style="font-size:20px;margin-bottom:8px;opacity:.85;">Attempts made: <b>${attempts}</b></div>
+        <div style="font-size:20px;margin-bottom:20px;color:${heading};font-weight:700;">Topic: ${TOPIC}</div>
+        <div style="font-family:'Baloo Da 2',cursive;font-size:60px;color:${accent};font-weight:800;">${round1(lastResults.total)} / ${lastResults.totalMax}</div>
+      </div>
+    </div>
+    <div style="text-align:center;">
+      <div style="font-size:22px;line-height:1.6;color:${text};margin-bottom:20px;">Take love from Abidur Rahman Tahmid.<br>You have successfully completed your homework.<br>Now submit it via Google Classroom.</div>
+      <div style="font-size:16px;color:${text};opacity:.6;">Developed by Abidur Rahman Tahmid</div>
+    </div>
+  </div>`;
+
+  html2canvas(document.getElementById('resultCard'), {backgroundColor:bg, scale:1}).then(canvas=>{
+    const link=document.createElement('a');
+    link.download = `Negatives_Homework_Result_${name.replace(/\s+/g,'_')}.png`;
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+    closeSaveModal();
+  });
+}
+function escapeHtml(s){ const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+</script>
+</body>
+</html>

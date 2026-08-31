@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tense — Extensive Worksheet — বাংলায় IELTS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Baloo+Da+2:wght@500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<style>
+html,body[data-theme="light"]{
+  --bg:#FCF5EE; --bg-soft:#FFF9F4; --card:#FFFFFF; --card-alt:#FFF3EC;
+  --text:#402028; --text-soft:#7a4a56; --heading:#850E35;
+  --accent:#EE6983; --accent-soft:#FFC4C4; --border:#FFD9D9;
+  --ok:#2e8b57; --bad:#c0392b; --shadow:0 8px 24px rgba(133,14,53,.08);
+}
+body[data-theme="dark"]{
+  --bg:#2A0A16; --bg-soft:#33101F; --card:#3B1224; --card-alt:#451529;
+  --text:#FCEFEF; --text-soft:#E9B9C4; --heading:#FFC4C4;
+  --accent:#EE6983; --accent-soft:#850E35; --border:#5C1A34;
+  --ok:#6fcf97; --bad:#ff8a80; --shadow:0 8px 24px rgba(0,0,0,.35);
+}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--bg);color:var(--text);font-family:'Hind Siliguri',sans-serif;transition:background .3s,color .3s;padding-bottom:60px;}
+h1,h2,h3,.brand{font-family:'Baloo Da 2',cursive;color:var(--heading);}
+.wrap{max-width:900px;margin:0 auto;padding:16px;}
+.topbar{position:sticky;top:0;z-index:50;background:var(--bg);padding:10px 16px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border);}
+.brand{font-size:15px;}
+.theme-btn{border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:20px;padding:8px 14px;cursor:pointer;font-family:inherit;font-weight:600;}
+.header-card{background:var(--card);border-radius:18px;box-shadow:var(--shadow);padding:22px;margin:16px 0;border:1px solid var(--border);}
+.header-card h1{margin:0 0 4px;font-size:24px;}
+.subtitle{color:var(--text-soft);font-size:14px;margin-bottom:14px;}
+.meta-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;}
+@media(max-width:600px){.meta-grid{grid-template-columns:1fr;}}
+.meta-grid label{font-size:13px;font-weight:600;color:var(--text-soft);display:block;margin-bottom:4px;}
+.meta-grid input{width:100%;padding:9px 10px;border-radius:10px;border:1.5px solid var(--border);background:var(--bg-soft);color:var(--text);font-family:inherit;font-size:14px;}
+.section-title{margin:26px 0 6px;font-size:19px;}
+.section-sub{color:var(--text-soft);font-size:13px;margin-bottom:14px;}
+.task{background:var(--card);border-radius:16px;box-shadow:var(--shadow);padding:18px;margin-bottom:16px;border:1px solid var(--border);}
+.task-head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:6px;}
+.task-head h3{margin:0;font-size:15.5px;}
+.marks-pill{background:var(--accent-soft);color:var(--heading);font-weight:700;font-size:12px;padding:4px 10px;border-radius:20px;white-space:nowrap;}
+.instr{font-size:13.5px;color:var(--text-soft);margin-bottom:4px;}
+.hint{font-size:12.5px;background:var(--card-alt);border-left:3px solid var(--accent);padding:8px 10px;border-radius:8px;margin-top:8px;color:var(--text-soft);}
+table.qtable{width:100%;border-collapse:collapse;margin-top:10px;font-size:13px;}
+table.qtable th,table.qtable td{border:1px solid var(--border);padding:6px 7px;text-align:left;vertical-align:middle;}
+table.qtable th{background:var(--card-alt);}
+input[type=text],select,textarea{width:100%;padding:6px 8px;border-radius:8px;border:1.5px solid var(--border);background:var(--bg-soft);color:var(--text);font-family:inherit;font-size:13.5px;}
+textarea{resize:vertical;min-height:44px;}
+.radio-row{display:flex;gap:10px;flex-wrap:wrap;}
+.radio-row label{display:flex;align-items:center;gap:4px;font-size:12.5px;cursor:pointer;}
+.given{opacity:.75;}
+.given input,.given select,.given td{background:var(--accent-soft);font-weight:600;}
+.freeitem{margin-bottom:12px;}
+.freeitem .prompt{font-size:13.5px;margin-bottom:5px;}
+.subfield{margin-bottom:5px;}
+.subfield .flabel{font-size:11.5px;color:var(--text-soft);}
+.result-tag{display:inline-block;font-size:11.5px;font-weight:700;padding:2px 8px;border-radius:10px;margin-left:6px;}
+.tag-full{background:#d6f5df;color:var(--ok);}
+.tag-partial{background:#fff3cd;color:#8a6500;}
+.tag-zero{background:#ffe0e0;color:var(--bad);}
+[data-theme="dark"] .tag-full{background:#154a2c;}
+[data-theme="dark"] .tag-partial{background:#4a3c10;color:#ffd76b;}
+[data-theme="dark"] .tag-zero{background:#4a1414;}
+.footer-bar{position:sticky;bottom:0;background:var(--card);border-top:1px solid var(--border);padding:14px 16px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;box-shadow:0 -6px 18px rgba(0,0,0,.06);}
+.btn{border:none;border-radius:24px;padding:12px 22px;font-weight:700;font-family:inherit;font-size:14.5px;cursor:pointer;transition:transform .15s;}
+.btn:active{transform:scale(.97);}
+.btn-primary{background:var(--accent);color:#fff;}
+.btn-secondary{background:var(--heading);color:#fff;}
+.score-banner{text-align:center;margin:18px 0;}
+.score-banner .big{font-size:44px;font-weight:800;color:var(--heading);font-family:'Baloo Da 2',cursive;}
+.tracker{width:100%;border-collapse:collapse;margin-top:16px;font-size:12.5px;}
+.tracker th,.tracker td{border:1px solid var(--border);padding:6px 8px;text-align:center;}
+.tracker th{background:var(--card-alt);}
+.page-footer{text-align:center;color:var(--text-soft);font-size:12px;padding:26px 0 6px;}
+#resultCardHolder{position:fixed;left:-9999px;top:0;}
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;align-items:center;justify-content:center;z-index:100;}
+.modal-box{background:var(--card);border-radius:16px;padding:22px;max-width:340px;width:90%;box-shadow:var(--shadow);}
+.modal-box h3{margin-top:0;}
+.modal-box input{margin-bottom:10px;}
+.modal-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:10px;}
+.oral-card{background:var(--card-alt);border:1.5px dashed var(--accent);border-radius:14px;padding:18px;margin:16px 0;font-size:13.5px;}
+</style>
+</head>
+<body data-theme="light">
+
+<div class="topbar">
+  <div class="brand">বাংলায় IELTS · Grammar Foundation Series · Practice Sheet 03</div>
+  <button class="theme-btn" onclick="toggleTheme()">🌓 Theme</button>
+</div>
+
+<div class="wrap">
+  <div class="header-card">
+    <h1>TENSE — EXTENSIVE WORKSHEET</h1>
+    <div class="subtitle">Section A: Guided (50) + Section B: Independent (50) = 100 marks</div>
+    <div class="meta-grid">
+      <div><label>Name / নাম</label><input type="text" id="stuName" placeholder="তোমার নাম লেখো"></div>
+      <div><label>Batch / ব্যাচ</label><input type="text" id="stuBatch" placeholder="ব্যাচ নম্বর"></div>
+      <div><label>Date / তারিখ</label><input type="date" id="stuDate"></div>
+    </div>
+  </div>
+
+  <div id="renderRoot"></div>
+
+  <div class="oral-card">
+    🗣️ <b>SECTION C · 100-Pair Oral Drill</b> — এটা মুখে বলার জন্য (তিনবার), কোনো নম্বর নেই। এই ডিজিটাল worksheet-এ এই অংশটা অন্তর্ভুক্ত করা হয়নি যেহেতু এটা spoken practice-এর জন্য — আলাদা প্রিন্টেড শীট থেকে অনুশীলন করবে।
+  </div>
+
+  <div class="score-banner" id="scoreBanner" style="display:none;">
+    <div>মোট স্কোর</div>
+    <div class="big" id="scoreBig">0 / 100</div>
+    <table class="tracker" id="trackerTable"></table>
+  </div>
+
+  <div class="page-footer">Developed by Abidur Rahman Tahmid</div>
+</div>
+
+<div class="footer-bar">
+  <button class="btn btn-primary" onclick="checkScore()">✅ Check My Score</button>
+  <button class="btn btn-secondary" onclick="openSaveModal()">🖼️ Save your result as an image</button>
+</div>
+
+<div class="modal-overlay" id="saveModal">
+  <div class="modal-box">
+    <h3>Confirm details</h3>
+    <p style="font-size:13px;color:var(--text-soft);">ছবি তৈরির আগে নাম ও তারিখ দিন।</p>
+    <label style="font-size:13px;">Name</label>
+    <input type="text" id="modalName" placeholder="তোমার নাম">
+    <label style="font-size:13px;">Date</label>
+    <input type="date" id="modalDate">
+    <div class="modal-actions">
+      <button class="btn" style="background:var(--border);color:var(--text);" onclick="closeSaveModal()">বাতিল</button>
+      <button class="btn btn-primary" onclick="generateImage()">তৈরি করো</button>
+    </div>
+  </div>
+</div>
+
+<div id="resultCardHolder"></div>
+
+<script>
+/* ===================== WORKSHEET CONFIG ===================== */
+const TOPIC = "Tense — Extensive Worksheet";
+const SECTIONS = [
+{ id:'A', title:'SECTION A · GUIDED PRACTICE', sub:'গাইডেড অনুশীলন — প্রতিটি টাস্কে উদাহরণ ও ইঙ্গিত আছে', tasks:[
+
+  { id:'t1', title:'TASK 1 · REBUILD THE WHOLE CHART', marks:8, type:'tensechart',
+    instr:'Write the structure of each tense form. Four boxes are filled in for you; complete the other eight.',
+    cols:['PRESENT','PAST','FUTURE'],
+    rows:[
+      {label:'Indefinite (Simple)', vals:['Sub + V1 (+s/es)','Sub + V2','Sub + will + V1'], given:[true,false,false]},
+      {label:'Continuous', vals:['Sub + am/is/are + V-ing','Sub + was/were + V-ing','Sub + will be + V-ing'], given:[false,true,false]},
+      {label:'Perfect', vals:['Sub + have/has + V3','Sub + had + V3','Sub + will have + V3'], given:[true,false,false]},
+      {label:'Perfect Continuous', vals:['Sub + have/has been + V-ing','Sub + had been + V-ing','Sub + will have been + V-ing'], given:[false,false,true]}
+    ],
+    hint:'Read down each column: the subject stays, only the helping verb changes. Past Perfect uses had, Future Perfect uses will have.' },
+
+  { id:'t2', title:'TASK 2 · WHO TAKES THE s/es?', marks:6, type:'sort2',
+    instr:'Tick one column for each subject.',
+    cols:['3rd person singular','Not 3rd person singular'],
+    items:[
+      {noun:'The gardener', given:true, correct:'3rd person singular'},
+      {noun:'Those farmers', correct:'Not 3rd person singular'},
+      {noun:'Nadia', correct:'3rd person singular'},
+      {noun:'My cousins', correct:'Not 3rd person singular'},
+      {noun:'The old clock', correct:'3rd person singular'},
+      {noun:'Rickshaw pullers', correct:'Not 3rd person singular'},
+      {noun:'Hasan and Ruma', correct:'Not 3rd person singular'},
+      {noun:'The nurse', correct:'3rd person singular'},
+      {noun:'Our neighbours', correct:'Not 3rd person singular'},
+      {noun:'That machine', correct:'3rd person singular'},
+      {noun:'The imam', correct:'3rd person singular'},
+      {noun:'Tourists', correct:'Not 3rd person singular'},
+      {noun:'Chittagong', correct:'3rd person singular'}
+    ], hint:'Replace the subject with he, she or it. If it fits, the verb takes s/es. If they fits instead, it does not.' },
+
+  { id:'t3', title:'TASK 3 · BUILD IT — PRESENT SIMPLE', marks:6, type:'freetext',
+    instr:'Use each Subject with the Verb given, add your own extension, and write a full Present Simple sentence. (Auto-check looks for the correctly-agreed verb form.)',
+    items:[
+      {prompt:'My uncle + repair', keyword:'repairs', correct:['My uncle repairs the shop.']},
+      {prompt:'Those farmers + harvest', keyword:'harvest', correct:['Those farmers harvest rice.']},
+      {prompt:'Nadia + sing', keyword:'sings', correct:['Nadia sings well.']},
+      {prompt:'The shopkeepers + open', keyword:'open', correct:['The shopkeepers open the shop.']},
+      {prompt:'The old clock + ring', keyword:'rings', correct:['The old clock rings loudly.']},
+      {prompt:'Our neighbours + help', keyword:'help', correct:['Our neighbours help us.']}
+    ], hint:'Three of these six subjects are third person singular, so exactly three of your verbs must end in -s.' },
+
+  { id:'t4', title:'TASK 4 · SHIFT THE TIME — PAST & FUTURE', marks:6, type:'fields',
+    instr:'Take your six Task 3 sentences and rewrite each one twice — Past Simple, then Future Simple.',
+    fieldNames:['Past Simple (V2)','Future Simple (will + V1)'],
+    items:[
+      {label:'1. My uncle...', given:true, fields:[{correct:'repaired'},{correct:'will repair'}]},
+      {label:'2. Those farmers...', fields:[{type:'text',keyword:'harvested'},{type:'text',keyword:'will harvest'}]},
+      {label:'3. Nadia...', fields:[{type:'text',keyword:'sang'},{type:'text',keyword:'will sing'}]},
+      {label:'4. The shopkeepers...', fields:[{type:'text',keyword:'opened'},{type:'text',keyword:'will open'}]},
+      {label:'5. The old clock...', fields:[{type:'text',keyword:'rang'},{type:'text',keyword:'will ring'}]},
+      {label:'6. Our neighbours...', fields:[{type:'text',keyword:'helped'},{type:'text',keyword:'will help'}]}
+    ], hint:'In the Future Simple the s/es disappears completely — will repair, never will repairs.' },
+
+  { id:'t5', title:'TASK 5 · BE FORM — am / is / are / was / were / will be', marks:6, type:'fillblank',
+    instr:'Fill each gap with the correct Be form. Look at the subject first, then at the time word.',
+    items:[
+      {label:'1. My uncle ___ a mechanic.', given:true, correct:['is']},
+      {label:'2. The nurses ___ very kind to us yesterday.', correct:['were']},
+      {label:'3. I ___ absent last Monday.', correct:['was']},
+      {label:'4. Tourists ___ everywhere in Sreemangal in December.', correct:['are']},
+      {label:'5. Nadia ___ ready by six o\u2019clock tomorrow.', correct:['will be']},
+      {label:'6. That machine ___ out of order last week.', correct:['was']},
+      {label:'7. We ___ at the station in an hour.', correct:['will be']}
+    ], hint:'I → am/was · he,she,it,one name → is/was · we,you,they,plural → are/were · every subject → will be.' },
+
+  { id:'t6', title:'TASK 6 · HAVE / HAS / HAD / WILL HAVE', marks:6, type:'fillblank',
+    instr:'Fill each gap with the correct form of the verb "to have".',
+    items:[
+      {label:'1. My cousin ___ a new bicycle.', given:true, correct:['has']},
+      {label:'2. The fishermen ___ three boats last year.', correct:['had']},
+      {label:'3. I ___ enough time tomorrow.', correct:['will have']},
+      {label:'4. Nadia ___ a beautiful voice.', correct:['has']},
+      {label:'5. Our neighbours ___ two cows.', correct:['have']},
+      {label:'6. The tailor ___ no helper last season.', correct:['had']},
+      {label:'7. You ___ a second chance next week.', correct:['will have']}
+    ], hint:'Only the present has two forms (have/has). The past is had for everybody, the future is will have for everybody.' },
+
+  { id:'t7', title:'TASK 7 · বাংলা → ENGLISH', marks:6, type:'freetext',
+    instr:'Translate each Bengali sentence. Two are Do-form, two are Be-form, two use "have".',
+    items:[
+      {prompt:'আমার চাচা একজন মিস্ত্রি।', keyword:'is', correct:['My uncle is a mechanic.']},
+      {prompt:'কৃষকেরা ভোরে মাঠে যায়।', keyword:'go', correct:['The farmers go to the field early in the morning.']},
+      {prompt:'নাদিয়া সুন্দর গান গায়।', keyword:'sings', correct:['Nadia sings beautifully.']},
+      {prompt:'গতকাল দোকানগুলো বন্ধ ছিল।', keyword:'were', correct:['The shops were closed yesterday.']},
+      {prompt:'আমার একটি নতুন সাইকেল আছে।', keyword:'have', correct:['I have a new bicycle.']},
+      {prompt:'আগামীকাল আমরা ব্যস্ত থাকব।', keyword:'will be', correct:['We will be busy tomorrow.']}
+    ], hint:'"আছি/ছিল/থাকব" needs a Be form, not a main verb. "আছে" meaning ownership needs have/has.' },
+
+  { id:'t8', title:'TASK 8 · THE ERROR IS NAMED — NOW FIX IT', marks:6, type:'freetext',
+    instr:'Each sentence has one agreement error, already named. Write the correct sentence.',
+    items:[
+      {prompt:'The gardener water the plants. (missing -s)', given:true, correct:['The gardener waters the plants.']},
+      {prompt:'My cousins visits us every Eid. (extra -s)', keyword:'visit', correct:['My cousins visit us every Eid.']},
+      {prompt:'Nadia sing in the school programme. (missing -s)', keyword:'sings', correct:['Nadia sings in the school programme.']},
+      {prompt:'The nurses was very kind. (wrong Be form)', keyword:'were', correct:['The nurses were very kind.']},
+      {prompt:'I has a new phone. (wrong have form)', keyword:'have', correct:['I have a new phone.']},
+      {prompt:'That machine were repaired last week. (wrong Be form)', keyword:'was', correct:['That machine was repaired last week.']},
+      {prompt:'Tourists comes here in winter. (extra -s)', keyword:'come', correct:['Tourists come here in winter.']}
+    ], hint:'Say the subject and verb together out loud — "cousins visit", "Nadia sings". Your ear catches the mismatch faster than your eye.' }
+]},
+
+{ id:'B', title:'SECTION B · INDEPENDENT PRACTICE', sub:'ইনডিপেনডেন্ট অনুশীলন — কোনো উদাহরণ নেই, ৪০ মিনিট, closed book', tasks:[
+
+  { id:'t9', title:'TASK 9 · CORRECT FORM OF THE VERB', marks:8, type:'fillblank',
+    instr:'Put the verb in brackets into the correct form. The time expression tells you which tense to use.',
+    items:[
+      {label:'1. The postman ___ (deliver) letters every morning.', correct:['delivers']},
+      {label:'2. Last Friday my aunt ___ (bake) a cake for all of us.', correct:['baked']},
+      {label:'3. Next month the engineers ___ (start) work on the new bridge.', correct:['will start']},
+      {label:'4. Rice ___ (grow) very well in this soil.', correct:['grows']},
+      {label:'5. The guards ___ (be) alert throughout last night.', correct:['were']},
+      {label:'6. My grandfather ___ (have) a small tea stall in 1990.', correct:['had']},
+      {label:'7. We ___ (be) at the playground tomorrow evening.', correct:['will be']},
+      {label:'8. Bees ___ (make) honey inside the hive.', correct:['make']}
+    ]},
+
+  { id:'t10', title:'TASK 10 · বাংলা → ENGLISH TRANSLATION', marks:10, type:'freetext',
+    instr:'Translate each sentence into English. Watch the subject, the verb form and the time carefully.',
+    items:[
+      {prompt:'আমার খালা প্রতি শুক্রবার পিঠা বানান।', keyword:'makes', correct:['My aunt makes pitha every Friday.']},
+      {prompt:'গতরাতে পাহারাদাররা সজাগ ছিল।', keyword:'were', correct:['The guards were alert last night.']},
+      {prompt:'আগামী বছর সে একজন ডাক্তার হবে।', keyword:'will be', correct:['He will be a doctor next year.']},
+      {prompt:'জেলেরা ভোরবেলা নদীতে যায়।', keyword:'go', correct:['The fishermen go to the river at dawn.']},
+      {prompt:'আমার দাদার একটি পুরনো ঘড়ি আছে।', keyword:'has', correct:['My grandfather has an old watch.']},
+      {prompt:'গত সোমবার আমরা চট্টগ্রামে গিয়েছিলাম।', keyword:'went', correct:['We went to Chittagong last Monday.']},
+      {prompt:'দর্জিটি খুব দ্রুত জামা সেলাই করে।', keyword:'stitches', correct:['The tailor stitches shirts very quickly.']},
+      {prompt:'আগামীকাল বাসটি সকাল সাতটায় ছাড়বে।', keyword:'will leave', correct:['The bus will leave at seven tomorrow morning.']},
+      {prompt:'তার দুই ভাই আছে।', keyword:'has', correct:['He has two brothers.']},
+      {prompt:'মেশিনটি গত সপ্তাহে নষ্ট ছিল।', keyword:'was', correct:['The machine was out of order last week.']}
+    ]},
+
+  { id:'t11', title:'TASK 11 · CONSTRUCT THE SENTENCE', marks:8, type:'freetext',
+    instr:'Build one complete sentence from each set. The time expression decides the tense.',
+    items:[
+      {prompt:'the mechanic + fix + every afternoon', keyword:'fixes', correct:['The mechanic fixes bikes every afternoon.']},
+      {prompt:'those journalists + report + last night', keyword:'reported', correct:['Those journalists reported the news last night.']},
+      {prompt:'my classmate + borrow + next week', keyword:'will borrow', correct:['My classmate will borrow my book next week.']},
+      {prompt:'the blacksmith + hammer + all day long', keyword:'hammers', correct:['The blacksmith hammers iron all day long.']},
+      {prompt:'our driver + arrive + an hour ago', keyword:'arrived', correct:['Our driver arrived an hour ago.']},
+      {prompt:'the singers + perform + next Friday', keyword:'will perform', correct:['The singers will perform next Friday.']},
+      {prompt:'street dogs + bark + at night', keyword:'bark', correct:['Street dogs bark at night.']},
+      {prompt:'the lawyer + defend + yesterday', keyword:'defended', correct:['The lawyer defended the case yesterday.']}
+    ]},
+
+  { id:'t12', title:'TASK 12 · READ THE TIME SIGNAL', marks:6, type:'fields',
+    instr:'For each time expression, name the tense it demands, then write one sentence using it.',
+    fieldNames:['Tense it demands','Your own sentence'],
+    items:[
+      {label:'1. every Ramadan', fields:[{type:'radio',options:['Present Simple','Past Simple','Future Simple'],correct:'Present Simple'},{type:'text',checkType:'nonempty'}]},
+      {label:'2. two years ago', fields:[{type:'radio',options:['Present Simple','Past Simple','Future Simple'],correct:'Past Simple'},{type:'text',checkType:'nonempty'}]},
+      {label:'3. next winter', fields:[{type:'radio',options:['Present Simple','Past Simple','Future Simple'],correct:'Future Simple'},{type:'text',checkType:'nonempty'}]},
+      {label:'4. last Thursday', fields:[{type:'radio',options:['Present Simple','Past Simple','Future Simple'],correct:'Past Simple'},{type:'text',checkType:'nonempty'}]},
+      {label:'5. in the rainy season', fields:[{type:'radio',options:['Present Simple','Past Simple','Future Simple'],correct:'Present Simple'},{type:'text',checkType:'nonempty'}]},
+      {label:'6. tomorrow evening', fields:[{type:'radio',options:['Present Simple','Past Simple','Future Simple'],correct:'Future Simple'},{type:'text',checkType:'nonempty'}]}
+    ], hint:'Half a mark for the tense name, half for actually writing a sentence with it.' },
+
+  { id:'t13', title:'TASK 13 · CORRECT THE MISTAKES', marks:10, type:'freetext',
+    instr:'Each sentence has one mistake of tense, agreement or capitalisation. Rewrite it correctly.',
+    items:[
+      {prompt:'My uncle repair motorbikes in his small workshop.', keyword:'repairs', correct:['My uncle repairs motorbikes in his small workshop.']},
+      {prompt:'The nurses is very busy today.', keyword:'are', correct:['The nurses are very busy today.']},
+      {prompt:'She have a new laptop.', keyword:'has', correct:['She has a new laptop.']},
+      {prompt:'Those farmers harvests rice in December.', keyword:'harvest', correct:['Those farmers harvest rice in December.']},
+      {prompt:'I was go to Chittagong last month.', keyword:'went', correct:['I went to Chittagong last month.']},
+      {prompt:'The bus will leaves at six tomorrow.', keyword:'will leave', correct:['The bus will leave at six tomorrow.']},
+      {prompt:'Last night the guards is alert.', keyword:'were', correct:['Last night the guards were alert.']},
+      {prompt:'Tourists comes to Sreemangal in winter.', keyword:'come', correct:['Tourists come to Sreemangal in winter.']},
+      {prompt:'My grandfather have a tea stall in 1990.', keyword:'had', correct:['My grandfather had a tea stall in 1990.']},
+      {prompt:'we will be busy next friday.', correct:['We will be busy next Friday.']}
+    ]},
+
+  { id:'t14', title:'TASK 14 · SHIFT THE WHOLE PARAGRAPH', marks:4, type:'paragraph',
+    instr:'Rewrite the paragraph below in the Past Simple. Five verb-forms must change.',
+    original:'Every morning my uncle opens his workshop at eight. He repairs motorbikes while his two helpers clean the tools. The customers wait outside, and by noon the shop is very busy.',
+    required:['opened','repaired','cleaned','waited','was'] },
+
+  { id:'t15', title:'TASK 15 · MULTIPLE CHOICE — THE RULES', marks:4, type:'mcq',
+    items:[
+      {prompt:'How many tense forms are there in total?', options:['3','9','12','16'], correct:2},
+      {prompt:'Which structure belongs to the Past Perfect?', options:['Sub + had + V3','Sub + have/has + V3','Sub + was/were + V-ing','Sub + will have + V3'], correct:0},
+      {prompt:'The verb takes s/es only when the subject is —', options:['plural','first person','third person singular','second person'], correct:2},
+      {prompt:'In the Future Simple Be form, which auxiliary is used with every subject?', options:['am','is','were','will be'], correct:3}
+    ]}
+]}
+];
+
+/* ===================== RENDER ===================== */
+const root = document.getElementById('renderRoot');
+let outHtml = '';
+SECTIONS.forEach(sec=>{
+  outHtml += `<h2 class="section-title">${sec.title}</h2><div class="section-sub">${sec.sub}</div>`;
+  sec.tasks.forEach(t=>{
+    outHtml += `<div class="task" id="${t.id}"><div class="task-head"><h3>${t.title}</h3><span class="marks-pill">${t.marks} marks</span></div>`;
+    if(t.instr) outHtml += `<div class="instr">${t.instr}</div>`;
+    outHtml += renderTask(t);
+    if(t.hint) outHtml += `<div class="hint">💡 ${t.hint}</div>`;
+    outHtml += `<div id="${t.id}_result" style="margin-top:8px;font-size:13px;font-weight:600;"></div></div>`;
+  });
+});
+root.innerHTML = outHtml;
+
+function renderTask(t){
+  if(t.type==='tensechart') return renderTensechart(t);
+  if(t.type==='sort2') return renderSort2(t);
+  if(t.type==='fields') return renderFields(t);
+  if(t.type==='fillblank') return renderFillblank(t);
+  if(t.type==='freetext') return renderFreetext(t);
+  if(t.type==='mcq') return renderMcq(t);
+  if(t.type==='paragraph') return renderParagraph(t);
+  return '';
+}
+
+function renderTensechart(t){
+  let h=`<table class="qtable"><tr><th>Aspect</th>`;
+  t.cols.forEach(c=>{ h+=`<th>${c}</th>`; });
+  h+=`</tr>`;
+  t.rows.forEach((row,ri)=>{
+    h+=`<tr><td><b>${row.label}</b></td>`;
+    row.vals.forEach((val,ci)=>{
+      const id=`${t.id}_r${ri}_c${ci}`;
+      if(row.given[ci]){ h+=`<td class="given">${val}</td>`; }
+      else { h+=`<td><input type="text" id="${id}" placeholder="Sub + ..."></td>`; }
+    });
+    h+=`</tr>`;
+  });
+  return h+'</table>';
+}
+
+function renderSort2(t){
+  let h = `<table class="qtable"><tr><th>Subject</th><th>${t.cols[0]}</th><th>${t.cols[1]}</th></tr>`;
+  t.items.forEach((it,i)=>{
+    const name=`${t.id}_i${i}`;
+    if(it.given){
+      h+=`<tr class="given"><td>${it.noun}</td><td colspan="2">✅ ${it.correct} (example)</td></tr>`;
+    } else {
+      h+=`<tr><td>${it.noun}</td>
+        <td style="text-align:center;"><input type="radio" name="${name}" value="${t.cols[0]}"></td>
+        <td style="text-align:center;"><input type="radio" name="${name}" value="${t.cols[1]}"></td></tr>`;
+    }
+  });
+  return h+'</table>';
+}
+
+function renderFields(t){
+  let h='';
+  t.items.forEach((it,i)=>{
+    h+=`<div class="freeitem ${it.given?'given':''}"><div class="prompt">${it.label}${it.given?' <b>(example)</b>':''}</div>`;
+    it.fields.forEach((f,fi)=>{
+      const name=`${t.id}_i${i}_f${fi}`;
+      const fname = t.fieldNames && t.fieldNames[fi] ? t.fieldNames[fi] : '';
+      if(it.given){
+        h+=`<span style="margin-right:14px;font-size:12.5px;">${fname}: <b>✅ ${f.correct}</b></span>`;
+        return;
+      }
+      h+=`<div class="subfield"><span class="flabel">${fname}: </span>`;
+      if(f.type==='radio'){
+        h+=`<span class="radio-row">`;
+        f.options.forEach(op=>{ h+=`<label><input type="radio" name="${name}" value="${op}">${op}</label>`; });
+        h+=`</span>`;
+      } else {
+        h+=`<input type="text" id="${name}" placeholder="উত্তর">`;
+      }
+      h+=`</div>`;
+    });
+    h+=`</div>`;
+  });
+  return h;
+}
+
+function renderFillblank(t){
+  let h='';
+  t.items.forEach((it,i)=>{
+    const id=`${t.id}_i${i}`;
+    if(it.given){
+      h+=`<div class="freeitem given"><div class="prompt">${it.label}</div><input type="text" value="✅ ${it.correct[0]} (example)" disabled></div>`;
+    } else {
+      h+=`<div class="freeitem"><div class="prompt">${it.label}</div><input type="text" id="${id}" placeholder="তোমার উত্তর"></div>`;
+    }
+  });
+  return h;
+}
+
+function renderFreetext(t){
+  let h='';
+  t.items.forEach((it,i)=>{
+    const id=`${t.id}_i${i}`;
+    if(it.given){
+      h+=`<div class="freeitem given"><div class="prompt">${(i+1)}. ${it.prompt}</div><input type="text" value="✅ ${it.correct[0]} (example)" disabled></div>`;
+    } else {
+      h+=`<div class="freeitem"><div class="prompt">${(i+1)}. ${it.prompt}</div><textarea id="${id}" placeholder="তোমার উত্তর লেখো"></textarea></div>`;
+    }
+  });
+  return h;
+}
+
+function renderMcq(t){
+  let h='';
+  t.items.forEach((it,i)=>{
+    const name=`${t.id}_i${i}`;
+    h+=`<div class="freeitem"><div class="prompt">${(i+1)}. ${it.prompt}</div><div class="radio-row">`;
+    it.options.forEach((op,oi)=>{ h+=`<label><input type="radio" name="${name}" value="${oi}">${op}</label>`; });
+    h+=`</div></div>`;
+  });
+  return h;
+}
+
+function renderParagraph(t){
+  return `<div class="freeitem"><div class="prompt" style="font-style:italic;">${t.original}</div>
+    <textarea id="${t.id}_ans" style="min-height:90px;" placeholder="তোমার Past Simple paragraph লেখো"></textarea></div>`;
+}
+
+/* ===================== GRADING HELPERS ===================== */
+function normalize(s){
+  return (s||'').toLowerCase().trim().replace(/[.,!?;:'"’‘“”]/g,'').replace(/\s+/g,' ');
+}
+function containsWord(text, phrase){
+  const n = normalize(text);
+  const p = normalize(phrase);
+  if(!n || !p) return false;
+  const re = new RegExp('(^|[^a-z])'+p.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'([^a-z]|$)','i');
+  return re.test(' '+n+' ');
+}
+function similarity(user, acceptableList){
+  const u = normalize(user);
+  if(!u) return 0;
+  for(const a of acceptableList){ if(normalize(a)===u) return 1; }
+  let best=0;
+  const uWords = new Set(u.split(' '));
+  acceptableList.forEach(a=>{
+    const aWords = new Set(normalize(a).split(' '));
+    const inter = [...uWords].filter(w=>aWords.has(w)).length;
+    const union = new Set([...uWords,...aWords]).size;
+    const j = union? inter/union : 0;
+    if(j>best) best=j;
+  });
+  return best;
+}
+function round1(n){ return Math.round(n*10)/10; }
+
+let lastResults = null;
+
+function checkScore(){
+  let sectionScores = {};
+  let total=0, totalMax=0;
+  SECTIONS.forEach(sec=>{
+    let secScore=0, secMax=0;
+    sec.tasks.forEach(t=>{
+      const r = gradeTask(t);
+      secScore+=r.score; secMax+=t.marks;
+      const el=document.getElementById(t.id+'_result');
+      const pct = t.marks? r.score/t.marks:0;
+      const tag = pct>=0.99?'tag-full':(pct>0?'tag-partial':'tag-zero');
+      const tagText = pct>=0.99?'সম্পূর্ণ সঠিক':(pct>0?'আংশিক':'ভুল/অসম্পূর্ণ');
+      el.innerHTML = `স্কোর: ${round1(r.score)} / ${t.marks} <span class="result-tag ${tag}">${tagText}</span>`;
+    });
+    sectionScores[sec.id]={score:secScore,max:secMax};
+    total+=secScore; totalMax+=secMax;
+  });
+  lastResults = {sectionScores, total, totalMax};
+
+  let attempts = parseInt(localStorage.getItem('tense_ws_attempts')||'0',10)+1;
+  localStorage.setItem('tense_ws_attempts', attempts);
+
+  document.getElementById('scoreBanner').style.display='block';
+  document.getElementById('scoreBig').textContent = `${round1(total)} / ${totalMax}`;
+  renderTracker(sectionScores);
+  document.getElementById('scoreBanner').scrollIntoView({behavior:'smooth'});
+}
+
+function gradeTask(t){
+  let score=0;
+  if(t.type==='tensechart'){
+    let blanks=[];
+    t.rows.forEach((row,ri)=>{ row.vals.forEach((val,ci)=>{ if(!row.given[ci]) blanks.push({ri,ci,val}); }); });
+    const per = t.marks/blanks.length;
+    blanks.forEach(b=>{
+      const el=document.getElementById(`${t.id}_r${b.ri}_c${b.ci}`);
+      const v=el?el.value:'';
+      score += per*similarity(v,[b.val]);
+    });
+  } else if(t.type==='sort2'){
+    const per = t.marks/t.items.length;
+    t.items.forEach((it,idx)=>{
+      if(it.given){ score+=per; return; }
+      const sel=document.querySelector(`input[name="${t.id}_i${idx}"]:checked`);
+      if(sel && sel.value===it.correct) score+=per;
+    });
+  } else if(t.type==='fields'){
+    t.items.forEach((it,i)=>{
+      const perItem = t.marks/t.items.length;
+      if(it.given){ score+=perItem; return; }
+      const perField = perItem/it.fields.length;
+      it.fields.forEach((f,fi)=>{
+        const name=`${t.id}_i${i}_f${fi}`;
+        if(f.type==='radio'){
+          const sel=document.querySelector(`input[name="${name}"]:checked`);
+          const val=sel?sel.value:'';
+          if(val && val.toLowerCase()===String(f.correct).toLowerCase()) score+=perField;
+        } else {
+          const el=document.getElementById(name);
+          const val=el?el.value:'';
+          if(f.checkType==='nonempty'){
+            if(val.trim().split(/\s+/).filter(Boolean).length>=3) score+=perField;
+          } else if(f.keyword){
+            if(containsWord(val,f.keyword)) score+=perField;
+          } else if(f.correct){
+            score += perField*similarity(val,[f.correct]);
+          }
+        }
+      });
+    });
+  } else if(t.type==='fillblank'){
+    t.items.forEach((it,i)=>{
+      const per=t.marks/t.items.length;
+      if(it.given){ score+=per; return; }
+      const val=document.getElementById(`${t.id}_i${i}`).value;
+      score += per*similarity(val,it.correct);
+    });
+  } else if(t.type==='freetext'){
+    t.items.forEach((it,i)=>{
+      const per=t.marks/t.items.length;
+      if(it.given){ score+=per; return; }
+      const val=document.getElementById(`${t.id}_i${i}`).value;
+      if(it.keyword && containsWord(val,it.keyword)){
+        score+=per;
+      } else {
+        score += per*similarity(val,it.correct);
+      }
+    });
+  } else if(t.type==='mcq'){
+    t.items.forEach((it,i)=>{
+      const per=t.marks/t.items.length;
+      const sel=document.querySelector(`input[name="${t.id}_i${i}"]:checked`);
+      if(sel && parseInt(sel.value,10)===it.correct) score+=per;
+    });
+  } else if(t.type==='paragraph'){
+    const val=document.getElementById(`${t.id}_ans`).value;
+    const per = t.marks/t.required.length;
+    t.required.forEach(w=>{ if(containsWord(val,w)) score+=per; });
+  }
+  return {score};
+}
+
+function renderTracker(sectionScores){
+  let h='<tr><th>Section</th><th>Score</th></tr>';
+  SECTIONS.forEach(sec=>{
+    const s=sectionScores[sec.id];
+    h+=`<tr><td>Section ${sec.id}</td><td>${round1(s.score)} / ${s.max}</td></tr>`;
+  });
+  document.getElementById('trackerTable').innerHTML=h;
+}
+
+/* ===================== THEME ===================== */
+function toggleTheme(){
+  const cur=document.body.getAttribute('data-theme');
+  document.body.setAttribute('data-theme', cur==='light'?'dark':'light');
+}
+
+/* ===================== SAVE AS IMAGE ===================== */
+function openSaveModal(){
+  if(!lastResults){ alert('আগে "Check My Score" বাটনে ক্লিক করো।'); return; }
+  document.getElementById('modalName').value = document.getElementById('stuName').value;
+  document.getElementById('modalDate').value = document.getElementById('stuDate').value;
+  document.getElementById('saveModal').style.display='flex';
+}
+function closeSaveModal(){ document.getElementById('saveModal').style.display='none'; }
+
+function generateImage(){
+  const name = document.getElementById('modalName').value.trim();
+  const date = document.getElementById('modalDate').value;
+  if(!name || !date){ alert('নাম ও তারিখ দুটোই দিতে হবে।'); return; }
+  document.getElementById('stuName').value=name;
+  document.getElementById('stuDate').value=date;
+  const batch = document.getElementById('stuBatch').value.trim() || 'N/A';
+  const attempts = localStorage.getItem('tense_ws_attempts')||'1';
+  const theme = document.body.getAttribute('data-theme');
+  const bg = theme==='dark' ? '#2A0A16' : '#FCF5EE';
+  const card = theme==='dark' ? '#3B1224' : '#FFFFFF';
+  const heading = theme==='dark' ? '#FFC4C4' : '#850E35';
+  const text = theme==='dark' ? '#FCEFEF' : '#402028';
+  const accent = '#EE6983';
+
+  const holder = document.getElementById('resultCardHolder');
+  holder.innerHTML = `
+  <div id="resultCard" style="width:1080px;height:1080px;background:${bg};font-family:'Hind Siliguri',sans-serif;display:flex;flex-direction:column;justify-content:space-between;padding:70px;color:${text};">
+    <div>
+      <div style="font-family:'Baloo Da 2',cursive;color:${heading};font-size:34px;text-align:center;margin-bottom:36px;">বাংলায় IELTS · Homework Result</div>
+      <div style="background:${card};border-radius:24px;padding:40px;text-align:center;box-shadow:0 10px 30px rgba(0,0,0,.12);">
+        <div style="font-size:26px;margin-bottom:6px;"><b>Name:</b> ${escapeHtml(name)}</div>
+        <div style="font-size:22px;margin-bottom:6px;color:${text};opacity:.85;"><b>Batch:</b> ${escapeHtml(batch)} &nbsp;&nbsp; <b>Date:</b> ${date}</div>
+        <div style="height:1px;background:${accent};opacity:.3;margin:20px 0;"></div>
+        <div style="font-size:20px;margin-bottom:8px;opacity:.85;">Attempts made: <b>${attempts}</b></div>
+        <div style="font-size:20px;margin-bottom:20px;color:${heading};font-weight:700;">Topic: ${TOPIC}</div>
+        <div style="font-family:'Baloo Da 2',cursive;font-size:64px;color:${accent};font-weight:800;">${round1(lastResults.total)} / ${lastResults.totalMax}</div>
+      </div>
+    </div>
+    <div style="text-align:center;">
+      <div style="font-size:22px;line-height:1.6;color:${text};margin-bottom:20px;">Take love from Abidur Rahman Tahmid.<br>You have successfully completed your homework.<br>Now submit it via Google Classroom.</div>
+      <div style="font-size:16px;color:${text};opacity:.6;">Developed by Abidur Rahman Tahmid</div>
+    </div>
+  </div>`;
+
+  html2canvas(document.getElementById('resultCard'), {backgroundColor:bg, scale:1}).then(canvas=>{
+    const link=document.createElement('a');
+    link.download = `Tense_Homework_Result_${name.replace(/\s+/g,'_')}.png`;
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+    closeSaveModal();
+  });
+}
+function escapeHtml(s){ const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+</script>
+</body>
+</html>
