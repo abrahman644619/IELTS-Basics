@@ -1,4 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Banglay IELTS BASIC Homework</title>
+
+<style>
+
+:root {
+    --black: #000000;
+    --dark: #090009;
+    --pink-dark: #CF0F47;
+    --pink: #FF0B55;
+    --soft: #FFDEDE;
+}
+
+
+* {
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+
+body {
+
+    font-family: Arial, Helvetica, sans-serif;
+    background:
+    radial-gradient(circle at top, #300010, #000000 45%);
+
+    min-height:100vh;
+    color:white;
+    overflow-x:hidden;
+
+}
+
+
+/* Cursor Glow */
+
+.cursor {
+
+    position:fixed;
+    width:25px;
+    height:25px;
+    border-radius:50%;
+
+    background:var(--pink);
+
+    pointer-events:none;
+
+    transform:translate(-50%,-50%);
+
+    box-shadow:
+    0 0 20px var(--pink),
+    0 0 40px var(--pink);
+
+    z-index:9999;
+
+}
+
+
+.container {
+
+    max-width:1100px;
+    margin:auto;
+
+    padding:50px 20px;
+
+    text-align:center;
+
+}
+
+
+/* Header */
+
+
+.brand {
+
+    display:inline-block;
+
+    color:var(--soft);
+
+    letter-spacing:5px;
+
+    font-size:14px;
+
+    border:1px solid var(--pink);
+
+    padding:10px 30px;
+
+    border-radius:50px;
+
+    box-shadow:
+    0 0 15px var(--pink);
+
+}
+
+
+h1 {
+
+    margin-top:25px;
+
+    font-size:70px;
+
+    font-weight:800;
+
+    background:linear-gradient(
+        90deg,
+        var(--soft),
+        var(--pink)
+    );
+
+    -webkit-background-clip:text;
+
+    color:transparent;
+
+
+    text-shadow:
+    0 0 20px rgba(255,11,85,.7);
+
+}
+
+
+
+.subtitle {
+
+    margin-top:15px;
+
+    color:var(--soft);
+
+    font-size:20px;
+
+}
+
+
+
+/* Cards */
+
+
+.grid {
+
+    margin-top:50px;
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(280px,1fr));
+
+    gap:30px;
+
+}
+
+
+
+.card {
+
+    background:
+
+    linear-gradient(
+        145deg,
+        rgba(255,11,85,.08),
+        rgba(0,0,0,.8)
+    );
+
+
+    border:1px solid var(--pink);
+
+    padding:35px 25px;
+
+    border-radius:18px;
+
+
+    box-shadow:
+
+    0 0 15px rgba(255,11,85,.4),
+
+    inset 0 0 20px rgba(207,15,71,.15);
+
+
+    transition:.4s;
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+
+
+.card::before {
+
+    content:"";
+
+    position:absolute;
+
+    width:150%;
+
+    height:2px;
+
+    background:var(--soft);
+
+    top:0;
+
+    left:-150%;
+
+    transition:.5s;
+
+}
+
+
+.card:hover::before {
+
+    left:100%;
+
+}
+
+
+
+.card:hover {
+
+    transform:
+    translateY(-10px)
+    scale(1.02);
+
+
+    box-shadow:
+
+    0 0 30px var(--pink),
+
+    inset 0 0 30px rgba(255,11,85,.3);
+
+}
+
+
+
+.card h2 {
+
+    color:var(--soft);
+
+    font-size:24px;
+
+    margin-bottom:18px;
+
+}
+
+
+
+.card p {
+
+    color:#ffd7df;
+
+    margin-bottom:25px;
+
+}
+
+
+
+/* Button */
+
+
+.btn {
+
+    display:inline-block;
+
+    text-decoration:none;
+
+    color:white;
+
+    padding:12px 28px;
+
+    border-radius:30px;
+
+
+    border:1px solid var(--pink);
+
+
+    background:
+
+    rgba(255,11,85,.1);
+
+
+    box-shadow:
+
+    0 0 15px rgba(255,11,85,.5);
+
+
+    transition:.3s;
+
+
+}
+
+
+
+.btn:hover {
+
+    background:var(--pink);
+
+    box-shadow:
+
+    0 0 25px var(--pink),
+
+    0 0 50px var(--pink);
+
+}
+
+
+
+
+.back {
+
+    display:inline-block;
+
+    margin-top:45px;
+
+    color:var(--soft);
+
+    text-decoration:none;
+
+    border-bottom:1px solid var(--pink);
+
+}
+
+
+
+
+footer {
+
+    margin-top:60px;
+
+    color:var(--pink);
+
+    font-size:16px;
+
+    letter-spacing:2px;
+
+}
+
+
+
+</style>
+
+</head>
+
+
+
+<body>
+
+
+<div class="cursor"></div>
+
+
+<div class="container">
+
+
+<div class="brand">
+B A N G L A Y &nbsp; I E L T S &nbsp; B A S I C
+</div>
+
+
+<h1>
+Homework
+</h1>
+
+
+<p class="subtitle">
+Grammar Worksheets & Practice Tasks
+</p>
+
+
+
 <div class="grid">
+
 
 
 <div class="card">
@@ -10,7 +384,7 @@ Practice worksheet on Nouns
 </p>
 
 <a class="btn" href="Homework_on_Nouns_Worksheet.html">
-Open Worksheet
+Open Worksheet →
 </a>
 
 </div>
@@ -26,10 +400,11 @@ Practice worksheet on word classes
 </p>
 
 <a class="btn" href="Homework_on_Verbs_Adjectives_Adverbs_Worksheet.html">
-Open Worksheet
+Open Worksheet →
 </a>
 
 </div>
+
 
 
 
@@ -42,10 +417,11 @@ Practice worksheet on Positive Sentences
 </p>
 
 <a class="btn" href="Homework_Tense_Extensive_Worksheet.html">
-Open Worksheet
+Open Worksheet →
 </a>
 
 </div>
+
 
 
 
@@ -58,10 +434,53 @@ Practice worksheet on Negative Sentences
 </p>
 
 <a class="btn" href="Homework_Negatives_Worksheet.html">
-Open Worksheet
+Open Worksheet →
 </a>
 
 </div>
 
 
+
 </div>
+
+
+
+<a class="back" href="index.html">
+← Back to IELTS Basics
+</a>
+
+
+
+<footer>
+
+Keep practicing, keep improving!
+
+</footer>
+
+
+
+</div>
+
+
+
+
+<script>
+
+const cursor = document.querySelector(".cursor");
+
+
+document.addEventListener("mousemove",(e)=>{
+
+    cursor.style.left = e.clientX+"px";
+
+    cursor.style.top = e.clientY+"px";
+
+});
+
+</script>
+
+
+
+</body>
+
+</html>
