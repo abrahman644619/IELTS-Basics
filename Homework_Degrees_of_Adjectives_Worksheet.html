@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Degrees of Adjectives — Worksheet 08 — বাংলায় IELTS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Baloo+Da+2:wght@500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<style>
+html,body[data-theme="light"]{
+  --bg:#FCF5EE; --bg-soft:#FFF9F4; --card:#FFFFFF; --card-alt:#FFF3EC;
+  --text:#402028; --text-soft:#7a4a56; --heading:#850E35;
+  --accent:#EE6983; --accent-soft:#FFC4C4; --border:#FFD9D9;
+  --ok:#2e8b57; --bad:#c0392b; --shadow:0 8px 24px rgba(133,14,53,.08);
+}
+body[data-theme="dark"]{
+  --bg:#2A0A16; --bg-soft:#33101F; --card:#3B1224; --card-alt:#451529;
+  --text:#FCEFEF; --text-soft:#E9B9C4; --heading:#FFC4C4;
+  --accent:#EE6983; --accent-soft:#850E35; --border:#5C1A34;
+  --ok:#6fcf97; --bad:#ff8a80; --shadow:0 8px 24px rgba(0,0,0,.35);
+}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--bg);color:var(--text);font-family:'Hind Siliguri',sans-serif;transition:background .3s,color .3s;padding-bottom:60px;}
+h1,h2,h3,.brand{font-family:'Baloo Da 2',cursive;color:var(--heading);}
+.wrap{max-width:900px;margin:0 auto;padding:16px;}
+.topbar{position:sticky;top:0;z-index:50;background:var(--bg);padding:10px 16px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border);}
+.brand{font-size:15px;}
+.theme-btn{border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:20px;padding:8px 14px;cursor:pointer;font-family:inherit;font-weight:600;}
+.header-card{background:var(--card);border-radius:18px;box-shadow:var(--shadow);padding:22px;margin:16px 0;border:1px solid var(--border);}
+.header-card h1{margin:0 0 4px;font-size:23px;}
+.subtitle{color:var(--text-soft);font-size:14px;margin-bottom:14px;}
+.meta-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;}
+@media(max-width:600px){.meta-grid{grid-template-columns:1fr;}}
+.meta-grid label{font-size:13px;font-weight:600;color:var(--text-soft);display:block;margin-bottom:4px;}
+.meta-grid input{width:100%;padding:9px 10px;border-radius:10px;border:1.5px solid var(--border);background:var(--bg-soft);color:var(--text);font-family:inherit;font-size:14px;}
+.engine-table{width:100%;border-collapse:collapse;margin:10px 0 16px;font-size:11.5px;}
+.engine-table th,.engine-table td{border:1px solid var(--border);padding:5px 6px;text-align:left;}
+.engine-table th{background:var(--card-alt);}
+.section-title{margin:26px 0 6px;font-size:18px;}
+.section-sub{color:var(--text-soft);font-size:13px;margin-bottom:14px;}
+.task{background:var(--card);border-radius:16px;box-shadow:var(--shadow);padding:18px;margin-bottom:16px;border:1px solid var(--border);}
+.task-head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:6px;}
+.task-head h3{margin:0;font-size:15px;}
+.marks-pill{background:var(--accent-soft);color:var(--heading);font-weight:700;font-size:12px;padding:4px 10px;border-radius:20px;white-space:nowrap;}
+.instr{font-size:13px;color:var(--text-soft);margin-bottom:4px;}
+.hint{font-size:12.5px;background:var(--card-alt);border-left:3px solid var(--accent);padding:8px 10px;border-radius:8px;margin-top:8px;color:var(--text-soft);}
+table.qtable{width:100%;border-collapse:collapse;margin-top:10px;font-size:12.5px;}
+table.qtable th,table.qtable td{border:1px solid var(--border);padding:5px 6px;text-align:left;vertical-align:middle;}
+table.qtable th{background:var(--card-alt);}
+input[type=text],select,textarea{width:100%;padding:6px 8px;border-radius:8px;border:1.5px solid var(--border);background:var(--bg-soft);color:var(--text);font-family:inherit;font-size:13px;}
+textarea{resize:vertical;min-height:40px;}
+.radio-row{display:flex;gap:9px;flex-wrap:wrap;}
+.radio-row label{display:flex;align-items:center;gap:4px;font-size:12px;cursor:pointer;}
+.given{opacity:.75;}
+.given input,.given select,.given td{background:var(--accent-soft);font-weight:600;}
+.freeitem{margin-bottom:11px;}
+.freeitem .prompt{font-size:13px;margin-bottom:4px;}
+.subfield{margin-bottom:4px;}
+.subfield .flabel{font-size:11px;color:var(--text-soft);}
+.result-tag{display:inline-block;font-size:11.5px;font-weight:700;padding:2px 8px;border-radius:10px;margin-left:6px;}
+.tag-full{background:#d6f5df;color:var(--ok);}
+.tag-partial{background:#fff3cd;color:#8a6500;}
+.tag-zero{background:#ffe0e0;color:var(--bad);}
+[data-theme="dark"] .tag-full{background:#154a2c;}
+[data-theme="dark"] .tag-partial{background:#4a3c10;color:#ffd76b;}
+[data-theme="dark"] .tag-zero{background:#4a1414;}
+.footer-bar{position:sticky;bottom:0;background:var(--card);border-top:1px solid var(--border);padding:14px 16px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;box-shadow:0 -6px 18px rgba(0,0,0,.06);}
+.btn{border:none;border-radius:24px;padding:12px 22px;font-weight:700;font-family:inherit;font-size:14.5px;cursor:pointer;transition:transform .15s;}
+.btn:active{transform:scale(.97);}
+.btn-primary{background:var(--accent);color:#fff;}
+.btn-secondary{background:var(--heading);color:#fff;}
+.score-banner{text-align:center;margin:18px 0;}
+.score-banner .big{font-size:44px;font-weight:800;color:var(--heading);font-family:'Baloo Da 2',cursive;}
+.tracker{width:100%;border-collapse:collapse;margin-top:16px;font-size:12px;}
+.tracker th,.tracker td{border:1px solid var(--border);padding:5px 7px;text-align:center;}
+.tracker th{background:var(--card-alt);}
+.page-footer{text-align:center;color:var(--text-soft);font-size:12px;padding:26px 0 6px;}
+#resultCardHolder{position:fixed;left:-9999px;top:0;}
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;align-items:center;justify-content:center;z-index:100;}
+.modal-box{background:var(--card);border-radius:16px;padding:22px;max-width:340px;width:90%;box-shadow:var(--shadow);}
+.modal-box h3{margin-top:0;}
+.modal-box input{margin-bottom:10px;}
+.modal-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:10px;}
+.passage-box{white-space:pre-wrap;background:var(--card-alt);border:1px solid var(--border);border-radius:10px;padding:12px;font-size:12.5px;line-height:1.7;margin-bottom:12px;font-family:monospace;}
+.errow{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px;}
+@media(max-width:520px){.errow{grid-template-columns:1fr;}}
+</style>
+</head>
+<body data-theme="light">
+
+<div class="topbar">
+  <div class="brand">বাংলায় IELTS · Grammar Foundation Series · Worksheet 08</div>
+  <button class="theme-btn" onclick="toggleTheme()">🌓 Theme</button>
+</div>
+
+<div class="wrap">
+  <div class="header-card">
+    <h1>DEGREES OF ADJECTIVES</h1>
+    <div class="subtitle">Part 1: Guided (50) + Part 2: Independent (50) = 100 marks · Sections A–J</div>
+    <div class="meta-grid">
+      <div><label>Name / নাম</label><input type="text" id="stuName" placeholder="তোমার নাম লেখো"></div>
+      <div><label>Batch / ব্যাচ</label><input type="text" id="stuBatch" placeholder="ব্যাচ নম্বর"></div>
+      <div><label>Date / তারিখ</label><input type="date" id="stuDate"></div>
+    </div>
+    <table class="engine-table">
+      <tr><th>Positive</th><th>Comparative</th><th>Superlative</th><th>নোট</th></tr>
+      <tr><td>good / well</td><td>better</td><td>best</td><td>ভালো</td></tr>
+      <tr><td>bad / ill</td><td>worse</td><td>worst</td><td>খারাপ / অসুস্থ</td></tr>
+      <tr><td>little</td><td>less</td><td>least</td><td>পরিমাণে কম</td></tr>
+      <tr><td>much / many</td><td>more</td><td>most</td><td>much=পরিমাণ, many=সংখ্যা</td></tr>
+      <tr><td>far</td><td>farther / further</td><td>farthest / furthest</td><td>farther=দূরত্ব, further=অতিরিক্ত</td></tr>
+      <tr><td>late</td><td>later / latter</td><td>latest / last</td><td>later=সময়ে পরে, latter=দুইয়ের দ্বিতীয়টি</td></tr>
+      <tr><td>old</td><td>older / elder</td><td>oldest / eldest</td><td>elder/eldest=শুধু পরিবারের জন্য</td></tr>
+      <tr><td>near</td><td>nearer</td><td>nearest / next</td><td>nearest=দূরত্বে, next=ক্রমে</td></tr>
+    </table>
+  </div>
+
+  <div id="renderRoot"></div>
+
+  <div class="score-banner" id="scoreBanner" style="display:none;">
+    <div>মোট স্কোর</div>
+    <div class="big" id="scoreBig">0 / 100</div>
+    <table class="tracker" id="trackerTable"></table>
+  </div>
+
+  <div class="page-footer">Developed by Abidur Rahman Tahmid</div>
+</div>
+
+<div class="footer-bar">
+  <button class="btn btn-primary" onclick="checkScore()">✅ Check My Score</button>
+  <button class="btn btn-secondary" onclick="openSaveModal()">🖼️ Save your result as an image</button>
+</div>
+
+<div class="modal-overlay" id="saveModal">
+  <div class="modal-box">
+    <h3>Confirm details</h3>
+    <p style="font-size:13px;color:var(--text-soft);">ছবি তৈরির আগে নাম ও তারিখ দিন।</p>
+    <label style="font-size:13px;">Name</label>
+    <input type="text" id="modalName" placeholder="তোমার নাম">
+    <label style="font-size:13px;">Date</label>
+    <input type="date" id="modalDate">
+    <div class="modal-actions">
+      <button class="btn" style="background:var(--border);color:var(--text);" onclick="closeSaveModal()">বাতিল</button>
+      <button class="btn btn-primary" onclick="generateImage()">তৈরি করো</button>
+    </div>
+  </div>
+</div>
+
+<div id="resultCardHolder"></div>
+
+<script>
+/* ===================== WORKSHEET CONFIG ===================== */
+const TOPIC = "Degrees of Adjectives — Worksheet 08";
+const RULES = ["Short + er/est","Long: more/most","Irregular Form","Comparative needs 'than'","Superlative needs 'the'","Spelling change (y\u2192i, double consonant, e\u2192r)","No double comparison","Two \u2192 Comparative, Three+ \u2192 Superlative","Equality: as ... as"];
+
+const SECTIONS = [
+{ id:'P1', title:'PART 1 · GUIDED PRACTICE', sub:'প্রতিটা Section-এ Worked Example ও Hint Box আছে', tasks:[
+
+  { id:'A', title:'A · CONCEPT CHECK: DO YOU REMEMBER THE RULES?', marks:8, type:'freetext',
+    instr:'এক কথায় উত্তর লেখো।',
+    items:[
+      {prompt:'1. দুইটি জিনিসের তুলনায় কোন degree ব্যবহার করি?', keyword:['comparative']},
+      {prompt:'2. তিন বা তার বেশির মধ্যে সর্বোচ্চ বোঝাতে কোন degree?', keyword:['superlative']},
+      {prompt:'3. Comparative বাক্যে প্রায় সবসময় কোন word টি থাকে?', keyword:['than']},
+      {prompt:'4. Superlative-এ adjective এর আগে কোন article বসে?', keyword:['the']},
+      {prompt:'5. \u2018beautiful\u2019 এর comparative কি \u2018beautifuller\u2019? তাহলে সঠিকটা কী?', keyword:['more beautiful']},
+      {prompt:'6. \u2018more taller\u2019 বা \u2018most tallest\u2019 কেন ভুল?', keyword:['double','দুইবার']},
+      {prompt:'7. \u2018big\u2019 এর comparative-এ বানান কীভাবে বদলায়?', keyword:['bigger']},
+      {prompt:'8. দুইটি জিনিস গুণে সমান হলে কোন structure ব্যবহার করি?', keyword:['as']}
+    ]},
+
+  { id:'B', title:'B · CHOOSE THE DEGREE AND NAME THE RULE', marks:16, type:'fields',
+    instr:'সঠিক রূপটি লেখো এবং কোন Rule-এর কারণে সেটা হলো সেটাও বেছে নাও।', fieldNames:['Answer','Rule'],
+    items:[
+      {label:'1. Gold is (heavier / more heavy) than silver.', fields:[{type:'text',keyword:'heavier'},{type:'select',options:RULES,correct:"Spelling change (y\u2192i, double consonant, e\u2192r)"}]},
+      {label:'2. This is (the interestingest / the most interesting) book here.', fields:[{type:'text',keyword:'most interesting'},{type:'select',options:RULES,correct:'Long: more/most'}]},
+      {label:'3. Health is (gooder / better) than wealth.', fields:[{type:'text',keyword:'better'},{type:'select',options:RULES,correct:'Irregular Form'}]},
+      {label:'4. He is (taller / tallest) than his brother.', fields:[{type:'text',keyword:'taller'},{type:'select',options:RULES,correct:"Comparative needs 'than'"}]},
+      {label:'5. Everest is (higher / the highest) mountain in the world.', fields:[{type:'text',keyword:'the highest'},{type:'select',options:RULES,correct:"Superlative needs 'the'"}]},
+      {label:'6. This box is (heavier / more heavier) than that one.', fields:[{type:'text',keyword:'heavier'},{type:'select',options:RULES,correct:'No double comparison'}]},
+      {label:'7. Of the three sisters, Mila is (younger / the youngest).', fields:[{type:'text',keyword:'the youngest'},{type:'select',options:RULES,correct:'Two \u2192 Comparative, Three+ \u2192 Superlative'}]},
+      {label:'8. This road is (as long as / longer as) the other one.', fields:[{type:'text',keyword:'as long as'},{type:'select',options:RULES,correct:'Equality: as ... as'}]}
+    ]},
+
+  { id:'C', title:'C · GUIDED TRANSLATION: বাংলা থেকে ENGLISH', marks:8, type:'fillblank',
+    instr:'বন্ধনীর adjective-কে সঠিক degree-তে বসাও।',
+    items:[
+      {label:'1. This bag is ___ than that one. (heavy)', correct:['heavier']},
+      {label:'2. Gold is ___ than silver. (valuable)', correct:['more valuable']},
+      {label:'3. Dhaka is ___ city in Bangladesh. (big)', correct:['the biggest']},
+      {label:'4. Health is ___ than wealth. (good)', correct:['better']},
+      {label:'5. He is ___ student in the class. (intelligent)', correct:['the most intelligent']},
+      {label:'6. Today is ___ than yesterday. (hot)', correct:['hotter']},
+      {label:'7. This is ___ building in the city. (old)', correct:['the oldest']},
+      {label:'8. Her problem is ___ mine. (difficult · as ... as)', correct:['as difficult as']}
+    ]},
+
+  { id:'D', title:'D · GUIDED CONSTRUCTION: FINISH THE SENTENCE', marks:6, type:'freetext',
+    instr:'বাকিটা নিজে লিখে শেষ করো। (Auto-check শুধু degree-র রূপ দেখে।)',
+    items:[
+      {prompt:'1. Rule: Comparative. Summer is hotter ...', keyword:'hotter'},
+      {prompt:'2. Rule: Superlative. Everest is the ...', keyword:'highest'},
+      {prompt:'3. Rule: Irregular (good). This idea is ...', keyword:'better'},
+      {prompt:'4. Rule: Equality (as ... as). This room is as ...', keyword:'as'},
+      {prompt:'5. Rule: Long adjective, Comparative. This book is more ...', keyword:'interesting'},
+      {prompt:'6. Rule: Superlative (of + time). February is the ...', keyword:'shortest'}
+    ]},
+
+  { id:'E', title:'E · GUIDED ERROR CORRECTION: THE ERROR IS MARKED', marks:12, type:'freetext',
+    instr:'ভুল অংশটা বোল্ড করা আছে। সঠিক রূপ লেখো। (মার্কস শুধু সঠিক Answer-এর ওপর।)',
+    items:[
+      {prompt:'1. He is more taller than his cousin.', keyword:'taller'},
+      {prompt:'2. This is the most easiest question of all.', keyword:'easiest'},
+      {prompt:'3. Rahim is the tallest of the two boys.', keyword:'taller'},
+      {prompt:'4. Gold is more heavier than iron.', keyword:'heavier'},
+      {prompt:'5. Everest is highest mountain in the world.', keyword:'the highest'},
+      {prompt:'6. This idea is more good than that one.', keyword:'better'}
+    ]}
+]},
+
+{ id:'P2', title:'PART 2 · INDEPENDENT PRACTICE', sub:'কোনো Example বা Hint নাই', tasks:[
+
+  { id:'F', title:'F · CHOOSE THE CORRECT DEGREE', marks:10, type:'mcq',
+    items:[
+      {prompt:'1. A train is ___ than a bus.', options:['faster','more fast'], correct:0},
+      {prompt:'2. This is ___ accident of the year.', options:['the worst','the baddest'], correct:0},
+      {prompt:'3. She is ___ than her sister.', options:['more careful','carefuller'], correct:0},
+      {prompt:'4. Iron is ___ than plastic here.', options:['useful','more useful'], correct:1},
+      {prompt:'5. Of all the boys, Karim is ___.', options:['stronger','the strongest'], correct:1},
+      {prompt:'6. My bag is ___ than yours.', options:['heavier','heavyer'], correct:0},
+      {prompt:'7. This sum is ___ than the last one.', options:['easier','more easy'], correct:0},
+      {prompt:'8. He works ___ than anyone else.', options:['harder','more hard'], correct:0},
+      {prompt:'9. February is ___ month of the year.', options:['shorter','the shortest'], correct:1},
+      {prompt:'10. This tea is ___ that one.', options:['as sweet as','sweeter as'], correct:0}
+    ]},
+
+  { id:'G', title:'G · TRANSLATION: বাংলা থেকে ENGLISH', marks:8, type:'freetext',
+    instr:'পুরো Sentence নিজে লেখো — কোনো Frame নেই।',
+    items:[
+      {prompt:'১. রহিম করিমের চেয়ে লম্বা।', keyword:'taller', correct:['Rahim is taller than Karim.']},
+      {prompt:'২. এই বইটি ঐ বইটির চেয়ে বেশি মূল্যবান।', keyword:'more valuable', correct:['This book is more valuable than that one.']},
+      {prompt:'৩. ঢাকা বাংলাদেশের সবচেয়ে বড় শহর।', keyword:'largest', correct:['Dhaka is the largest city in Bangladesh.']},
+      {prompt:'৪. স্বাস্থ্য সম্পদের চেয়ে ভালো।', keyword:'better', correct:['Health is better than wealth.']},
+      {prompt:'৫. এটি বছরের সবচেয়ে ঠান্ডা দিন।', keyword:'coldest', correct:['This is the coldest day of the year.']},
+      {prompt:'৬. তার আমার চেয়ে বড় একটা বাড়ি আছে।', keyword:'bigger', correct:['He has a bigger house than mine.']},
+      {prompt:'৭. এই প্রশ্নটি ঐটার মতোই সহজ।', keyword:'as easy as', correct:['This question is as easy as that one.']},
+      {prompt:'৮. সে দলের সবচেয়ে দ্রুত দৌড়বিদ।', keyword:'fastest', correct:['He is the fastest runner in the team.']}
+    ]},
+
+  { id:'H', title:'H · SENTENCE CONSTRUCTION FROM CUE WORDS', marks:6, type:'freetext',
+    instr:'নিচের শব্দগুলো ব্যবহার করে একটা সঠিক Sentence লেখো।',
+    items:[
+      {prompt:'1. iron / heavy / silver', keyword:'heavier'},
+      {prompt:'2. Everest / high / mountain / world', keyword:'the highest'},
+      {prompt:'3. this book / interesting / that one', keyword:'more interesting'},
+      {prompt:'4. she / good / singer / class', keyword:'the best'},
+      {prompt:'5. today / hot / yesterday', keyword:'hotter'},
+      {prompt:'6. health / valuable / wealth', keyword:'more valuable'}
+    ]},
+
+  { id:'I', title:'I · FIND AND FIX THE ERROR', marks:8, type:'freetext',
+    instr:'ভুলটা কোথায় বলা নেই — নিজে খুঁজে পুরো Sentence শুদ্ধ করে লেখো।',
+    items:[
+      {prompt:'1. He is more stronger than his brother.', keyword:'stronger'},
+      {prompt:'2. This is the most tallest building here.', keyword:'the tallest'},
+      {prompt:'3. She is elder of the two sisters.', keyword:'the elder'},
+      {prompt:'4. Gold is expensiver than silver.', keyword:'more expensive'},
+      {prompt:'5. This is best solution of all.', keyword:'the best'},
+      {prompt:'6. Winter is more cold than autumn.', keyword:'colder'},
+      {prompt:'7. Of the two roads, this is the shortest.', keyword:'the shorter'},
+      {prompt:'8. He is the most cleverest boy in the class.', keyword:'the cleverest'}
+    ]},
+
+  { id:'J1', title:'J1 · IELTS ERROR HUNT — Speaking Part 2', marks:6, type:'errorhunt',
+    instr:'Describe your favourite place. এই লেখায় degree ব্যবহারের ৬টি ভুল আছে।',
+    passage:'01  I want to talk about the most beautifulest place I have ever seen,\n02  which is Sylhet. For me it is more peaceful than any other city in\n03  Bangladesh. The hills there are more greener than the hills near my\n04  home town, and the tea gardens are the most calmest spot I know.\n05  The weather is also gooder than in Dhaka, especially during winter.\n06  Many people say it is one of the most safe cities in the country.\n07  To me, no other place is beautifuller than Sylhet, and every year\n08  it feels even more special than before.',
+    items:[
+      {wrong:'most beautifulest', correct:'the most beautiful'},
+      {wrong:'more greener', correct:'greener'},
+      {wrong:'most calmest', correct:'calmest'},
+      {wrong:'gooder', correct:'better'},
+      {wrong:'most safe', correct:'safest'},
+      {wrong:'beautifuller', correct:'more beautiful'}
+    ]},
+
+  { id:'J2', title:'J2 · IELTS ERROR HUNT — Writing Task 2', marks:8, type:'errorhunt',
+    instr:'Body paragraph comparing city and village life. এই লেখায় ৮টি ভুল আছে।',
+    passage:'01  Nowadays, life in the city is much more faster than life in a village.\n02  Many people believe that cities offer the most best opportunities for\n03  work and study. However, the air in a village is cleaner and more fresh\n04  than city air. In my opinion, villages are the peacefullest places to\n05  live, although cities are more convenienter for daily needs. The cost\n06  of living in a village is also more low than in a big city. Some experts\n07  say that village children are more healthier than city children. Yet\n08  the biggest problem is that villages have less facilities than towns.',
+    items:[
+      {wrong:'more faster', correct:'faster'},
+      {wrong:'the most best', correct:'the best'},
+      {wrong:'more fresh', correct:'fresher'},
+      {wrong:'peacefullest', correct:'most peaceful'},
+      {wrong:'more convenienter', correct:'more convenient'},
+      {wrong:'more low', correct:'lower'},
+      {wrong:'more healthier', correct:'healthier'},
+      {wrong:'less facilities', correct:'fewer facilities'}
+    ]},
+
+  { id:'J3', title:'J3 · IELTS ERROR HUNT — Speaking Part 3', marks:4, type:'errorhunt',
+    instr:'Are online classes better than traditional ones? এই লেখায় ৪টি ভুল আছে।',
+    passage:'01  In my view, traditional classes are more effective than online ones.\n02  A real classroom is the most liveliest place for learning, I think.\n03  Online lessons are convenienter, but students often feel more lonelier.\n04  Overall, face-to-face teaching gives the most good results of all.',
+    items:[
+      {wrong:'most liveliest', correct:'liveliest'},
+      {wrong:'convenienter', correct:'more convenient'},
+      {wrong:'more lonelier', correct:'lonelier'},
+      {wrong:'most good', correct:'best'}
+    ]}
+]}
+];
+
+/* ===================== RENDER ===================== */
+const root = document.getElementById('renderRoot');
+let outHtml = '';
+SECTIONS.forEach(sec=>{
+  outHtml += `<h2 class="section-title">${sec.title}</h2>`;
+  if(sec.sub) outHtml += `<div class="section-sub">${sec.sub}</div>`;
+  sec.tasks.forEach(t=>{
+    outHtml += `<div class="task" id="${t.id}"><div class="task-head"><h3>${t.title}</h3><span class="marks-pill">${t.marks} marks</span></div>`;
+    if(t.instr) outHtml += `<div class="instr">${t.instr}</div>`;
+    outHtml += renderTask(t);
+    if(t.hint) outHtml += `<div class="hint">💡 ${t.hint}</div>`;
+    outHtml += `<div id="${t.id}_result" style="margin-top:8px;font-size:13px;font-weight:600;"></div></div>`;
+  });
+});
+root.innerHTML = outHtml;
+
+function renderTask(t){
+  if(t.type==='fields') return renderFields(t);
+  if(t.type==='fillblank') return renderFillblank(t);
+  if(t.type==='freetext') return renderFreetext(t);
+  if(t.type==='mcq') return renderMcq(t);
+  if(t.type==='errorhunt') return renderErrorhunt(t);
+  return '';
+}
+
+function renderFields(t){
+  let h='';
+  t.items.forEach((it,i)=>{
+    h+=`<div class="freeitem"><div class="prompt">${it.label}</div>`;
+    it.fields.forEach((f,fi)=>{
+      const name=`${t.id}_i${i}_f${fi}`;
+      const fname = t.fieldNames && t.fieldNames[fi] ? t.fieldNames[fi] : '';
+      h+=`<div class="subfield"><span class="flabel">${fname}: </span>`;
+      if(f.type==='select'){
+        h+=`<select id="${name}"><option value="">--</option>`;
+        f.options.forEach(op=>{ h+=`<option value="${op}">${op}</option>`; });
+        h+=`</select>`;
+      } else {
+        h+=`<input type="text" id="${name}" placeholder="উত্তর">`;
+      }
+      h+=`</div>`;
+    });
+    h+=`</div>`;
+  });
+  return h;
+}
+
+function renderFillblank(t){
+  let h='';
+  t.items.forEach((it,i)=>{
+    const id=`${t.id}_i${i}`;
+    h+=`<div class="freeitem"><div class="prompt">${it.label}</div><input type="text" id="${id}" placeholder="তোমার উত্তর"></div>`;
+  });
+  return h;
+}
+
+function renderFreetext(t){
+  let h='';
+  t.items.forEach((it,i)=>{
+    const id=`${t.id}_i${i}`;
+    h+=`<div class="freeitem"><div class="prompt">${it.prompt}</div><textarea id="${id}" placeholder="তোমার উত্তর লেখো"></textarea></div>`;
+  });
+  return h;
+}
+
+function renderMcq(t){
+  let h='';
+  t.items.forEach((it,i)=>{
+    const name=`${t.id}_i${i}`;
+    h+=`<div class="freeitem"><div class="prompt">${it.prompt}</div><div class="radio-row">`;
+    it.options.forEach((op,oi)=>{ h+=`<label><input type="radio" name="${name}" value="${oi}">${op}</label>`; });
+    h+=`</div></div>`;
+  });
+  return h;
+}
+
+function renderErrorhunt(t){
+  let h = `<div class="passage-box">${t.passage}</div>`;
+  t.items.forEach((it,i)=>{
+    h+=`<div class="errow">
+      <div><span class="flabel">${i+1}. Wrong form you found: </span><input type="text" id="${t.id}_i${i}_w" placeholder="e.g. more taller"></div>
+      <div><span class="flabel">Correction: </span><input type="text" id="${t.id}_i${i}_c" placeholder="e.g. taller"></div>
+    </div>`;
+  });
+  return h;
+}
+
+/* ===================== GRADING HELPERS ===================== */
+function normalize(s){
+  return (s||'').toLowerCase().trim().replace(/[.,!?;:'"’‘“”]/g,'').replace(/\s+/g,' ');
+}
+function containsWord(text, phrase){
+  const n = normalize(text);
+  const p = normalize(phrase);
+  if(!n || !p) return false;
+  const re = new RegExp('(^|[^a-z])'+p.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'([^a-z]|$)','i');
+  return re.test(' '+n+' ');
+}
+function containsAny(text, phrases){
+  if(Array.isArray(phrases)) return phrases.some(p=>containsWord(text,p));
+  return containsWord(text,phrases);
+}
+function similarity(user, acceptableList){
+  const u = normalize(user);
+  if(!u) return 0;
+  if(!acceptableList || !acceptableList.length) return 0;
+  for(const a of acceptableList){ if(normalize(a)===u) return 1; }
+  let best=0;
+  const uWords = new Set(u.split(' '));
+  acceptableList.forEach(a=>{
+    const aWords = new Set(normalize(a).split(' '));
+    const inter = [...uWords].filter(w=>aWords.has(w)).length;
+    const union = new Set([...uWords,...aWords]).size;
+    const j = union? inter/union : 0;
+    if(j>best) best=j;
+  });
+  return best;
+}
+function round1(n){ return Math.round(n*10)/10; }
+
+let lastResults = null;
+
+function checkScore(){
+  let sectionScores = {};
+  let total=0, totalMax=0;
+  SECTIONS.forEach(sec=>{
+    let secScore=0, secMax=0;
+    sec.tasks.forEach(t=>{
+      const r = gradeTask(t);
+      secScore+=r.score; secMax+=t.marks;
+      const el=document.getElementById(t.id+'_result');
+      const pct = t.marks? r.score/t.marks:0;
+      const tag = pct>=0.99?'tag-full':(pct>0?'tag-partial':'tag-zero');
+      const tagText = pct>=0.99?'সম্পূর্ণ সঠিক':(pct>0?'আংশিক':'ভুল/অসম্পূর্ণ');
+      el.innerHTML = `স্কোর: ${round1(r.score)} / ${t.marks} <span class="result-tag ${tag}">${tagText}</span>`;
+    });
+    sectionScores[sec.id]={score:secScore,max:secMax};
+    total+=secScore; totalMax+=secMax;
+  });
+  lastResults = {sectionScores, total, totalMax};
+
+  let attempts = parseInt(localStorage.getItem('doa_ws_attempts')||'0',10)+1;
+  localStorage.setItem('doa_ws_attempts', attempts);
+
+  document.getElementById('scoreBanner').style.display='block';
+  document.getElementById('scoreBig').textContent = `${round1(total)} / ${totalMax}`;
+  renderTracker(sectionScores);
+  document.getElementById('scoreBanner').scrollIntoView({behavior:'smooth'});
+}
+
+function gradeTask(t){
+  let score=0;
+  if(t.type==='fields'){
+    t.items.forEach((it,i)=>{
+      const perItem = t.marks/t.items.length;
+      const perField = perItem/it.fields.length;
+      it.fields.forEach((f,fi)=>{
+        const name=`${t.id}_i${i}_f${fi}`;
+        if(f.type==='select'){
+          const el=document.getElementById(name);
+          const val=el?el.value:'';
+          if(val && val.toLowerCase()===String(f.correct).toLowerCase()) score+=perField;
+        } else {
+          const el=document.getElementById(name);
+          const val=el?el.value:'';
+          if(f.keyword){
+            if(containsAny(val,f.keyword)) score+=perField;
+          } else if(f.correct){
+            score += perField*similarity(val,[f.correct]);
+          }
+        }
+      });
+    });
+  } else if(t.type==='fillblank'){
+    t.items.forEach((it,i)=>{
+      const per=t.marks/t.items.length;
+      const val=document.getElementById(`${t.id}_i${i}`).value;
+      score += per*similarity(val,it.correct);
+    });
+  } else if(t.type==='freetext'){
+    t.items.forEach((it,i)=>{
+      const per=t.marks/t.items.length;
+      const val=document.getElementById(`${t.id}_i${i}`).value;
+      if(it.keyword && containsAny(val,it.keyword)){
+        score+=per;
+      } else if(it.correct && it.correct.length){
+        score += per*similarity(val,it.correct);
+      }
+    });
+  } else if(t.type==='mcq'){
+    t.items.forEach((it,i)=>{
+      const per=t.marks/t.items.length;
+      const sel=document.querySelector(`input[name="${t.id}_i${i}"]:checked`);
+      if(sel && parseInt(sel.value,10)===it.correct) score+=per;
+    });
+  } else if(t.type==='errorhunt'){
+    t.items.forEach((it,i)=>{
+      const perItem = t.marks/t.items.length;
+      const perField = perItem/2;
+      const w = document.getElementById(`${t.id}_i${i}_w`).value;
+      const c = document.getElementById(`${t.id}_i${i}_c`).value;
+      if(containsWord(w, it.wrong)) score+=perField;
+      if(containsWord(c, it.correct)) score+=perField;
+    });
+  }
+  return {score};
+}
+
+function renderTracker(sectionScores){
+  let h='<tr><th>Section</th><th>Score</th></tr>';
+  SECTIONS.forEach(sec=>{
+    const s=sectionScores[sec.id];
+    h+=`<tr><td>${sec.id}</td><td>${round1(s.score)} / ${s.max}</td></tr>`;
+  });
+  document.getElementById('trackerTable').innerHTML=h;
+}
+
+/* ===================== THEME ===================== */
+function toggleTheme(){
+  const cur=document.body.getAttribute('data-theme');
+  document.body.setAttribute('data-theme', cur==='light'?'dark':'light');
+}
+
+/* ===================== SAVE AS IMAGE ===================== */
+function openSaveModal(){
+  if(!lastResults){ alert('আগে "Check My Score" বাটনে ক্লিক করো।'); return; }
+  document.getElementById('modalName').value = document.getElementById('stuName').value;
+  document.getElementById('modalDate').value = document.getElementById('stuDate').value;
+  document.getElementById('saveModal').style.display='flex';
+}
+function closeSaveModal(){ document.getElementById('saveModal').style.display='none'; }
+
+function generateImage(){
+  const name = document.getElementById('modalName').value.trim();
+  const date = document.getElementById('modalDate').value;
+  if(!name || !date){ alert('নাম ও তারিখ দুটোই দিতে হবে।'); return; }
+  document.getElementById('stuName').value=name;
+  document.getElementById('stuDate').value=date;
+  const batch = document.getElementById('stuBatch').value.trim() || 'N/A';
+  const attempts = localStorage.getItem('doa_ws_attempts')||'1';
+  const theme = document.body.getAttribute('data-theme');
+  const bg = theme==='dark' ? '#2A0A16' : '#FCF5EE';
+  const card = theme==='dark' ? '#3B1224' : '#FFFFFF';
+  const heading = theme==='dark' ? '#FFC4C4' : '#850E35';
+  const text = theme==='dark' ? '#FCEFEF' : '#402028';
+  const accent = '#EE6983';
+
+  const holder = document.getElementById('resultCardHolder');
+  holder.innerHTML = `
+  <div id="resultCard" style="width:1080px;height:1080px;background:${bg};font-family:'Hind Siliguri',sans-serif;display:flex;flex-direction:column;justify-content:space-between;padding:70px;color:${text};">
+    <div>
+      <div style="font-family:'Baloo Da 2',cursive;color:${heading};font-size:34px;text-align:center;margin-bottom:36px;">বাংলায় IELTS · Homework Result</div>
+      <div style="background:${card};border-radius:24px;padding:40px;text-align:center;box-shadow:0 10px 30px rgba(0,0,0,.12);">
+        <div style="font-size:26px;margin-bottom:6px;"><b>Name:</b> ${escapeHtml(name)}</div>
+        <div style="font-size:22px;margin-bottom:6px;color:${text};opacity:.85;"><b>Batch:</b> ${escapeHtml(batch)} &nbsp;&nbsp; <b>Date:</b> ${date}</div>
+        <div style="height:1px;background:${accent};opacity:.3;margin:20px 0;"></div>
+        <div style="font-size:20px;margin-bottom:8px;opacity:.85;">Attempts made: <b>${attempts}</b></div>
+        <div style="font-size:20px;margin-bottom:20px;color:${heading};font-weight:700;">Topic: ${TOPIC}</div>
+        <div style="font-family:'Baloo Da 2',cursive;font-size:64px;color:${accent};font-weight:800;">${round1(lastResults.total)} / ${lastResults.totalMax}</div>
+      </div>
+    </div>
+    <div style="text-align:center;">
+      <div style="font-size:22px;line-height:1.6;color:${text};margin-bottom:20px;">Take love from Abidur Rahman Tahmid.<br>You have successfully completed your homework.<br>Now submit it via Google Classroom.</div>
+      <div style="font-size:16px;color:${text};opacity:.6;">Developed by Abidur Rahman Tahmid</div>
+    </div>
+  </div>`;
+
+  html2canvas(document.getElementById('resultCard'), {backgroundColor:bg, scale:1}).then(canvas=>{
+    const link=document.createElement('a');
+    link.download = `Degrees_of_Adjectives_Result_${name.replace(/\s+/g,'_')}.png`;
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+    closeSaveModal();
+  });
+}
+function escapeHtml(s){ const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+</script>
+</body>
+</html>
