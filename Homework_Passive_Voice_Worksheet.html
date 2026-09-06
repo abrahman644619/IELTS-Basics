@@ -8,81 +8,307 @@
 <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Baloo+Da+2:wght@500;600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <style>
-html,body[data-theme="light"]{
-  --bg:#FCF5EE; --bg-soft:#FFF9F4; --card:#FFFFFF; --card-alt:#FFF3EC;
-  --text:#402028; --text-soft:#7a4a56; --heading:#850E35;
-  --accent:#EE6983; --accent-soft:#FFC4C4; --border:#FFD9D9;
-  --ok:#2e8b57; --bad:#c0392b; --shadow:0 8px 24px rgba(133,14,53,.08);
+/* =========================================================
+   PREMIUM GLASS THEME + READABILITY
+========================================================= */
+:root{
+  --accent:#EE6983;
+  --accent-strong:#D94F70;
+  --ok:#2e8b57;
+  --bad:#c0392b;
 }
+
+body[data-theme="light"]{
+  --bg:#FCF5EE;
+  --bg-soft:#FFF9F4;
+  --text:#402028;
+  --text-soft:#7a4a56;
+  --heading:#850E35;
+  --accent-soft:#FFC4C4;
+  --border:#FFD9D9;
+  --glass:rgba(255,255,255,.68);
+  --glass-strong:rgba(255,255,255,.84);
+  --task-glass:rgba(255,255,255,.58);
+  --glass-border:rgba(255,255,255,.78);
+  --field-bg:rgba(255,249,244,.90);
+  --table-head:rgba(238,105,131,.08);
+  --shadow:0 16px 40px rgba(133,14,53,.09);
+  --shadow-hover:0 22px 52px rgba(133,14,53,.14);
+}
+
 body[data-theme="dark"]{
-  --bg:#2A0A16; --bg-soft:#33101F; --card:#3B1224; --card-alt:#451529;
-  --text:#FCEFEF; --text-soft:#E9B9C4; --heading:#FFC4C4;
-  --accent:#EE6983; --accent-soft:#850E35; --border:#5C1A34;
-  --ok:#6fcf97; --bad:#ff8a80; --shadow:0 8px 24px rgba(0,0,0,.35);
+  --bg:#220812;
+  --bg-soft:#33101F;
+  --text:#FCEFEF;
+  --text-soft:#E9B9C4;
+  --heading:#FFC4C4;
+  --accent-soft:#850E35;
+  --border:#5C1A34;
+  --glass:rgba(59,18,36,.62);
+  --glass-strong:rgba(59,18,36,.80);
+  --task-glass:rgba(69,21,41,.55);
+  --glass-border:rgba(255,196,196,.12);
+  --field-bg:rgba(42,10,22,.70);
+  --table-head:rgba(238,105,131,.09);
+  --ok:#6fcf97;
+  --bad:#ff8a80;
+  --shadow:0 18px 46px rgba(0,0,0,.32);
+  --shadow-hover:0 24px 58px rgba(0,0,0,.42);
 }
+
 *{box-sizing:border-box;}
-body{margin:0;background:var(--bg);color:var(--text);font-family:'Hind Siliguri',sans-serif;transition:background .3s,color .3s;padding-bottom:60px;}
+html{scroll-behavior:smooth;}
+
+body{
+  margin:0;
+  min-height:100vh;
+  color:var(--text);
+  font-family:'Hind Siliguri',sans-serif;
+  font-size:17px;
+  line-height:1.58;
+  padding-bottom:86px;
+  overflow-x:hidden;
+  transition:background .35s ease,color .35s ease;
+  background:
+    radial-gradient(circle at 8% 5%,rgba(238,105,131,.18),transparent 27%),
+    radial-gradient(circle at 95% 30%,rgba(133,14,53,.10),transparent 28%),
+    var(--bg);
+}
+
+body[data-theme="dark"]{
+  background:
+    radial-gradient(circle at 8% 5%,rgba(238,105,131,.15),transparent 28%),
+    radial-gradient(circle at 92% 34%,rgba(133,14,53,.20),transparent 30%),
+    var(--bg);
+}
+
+button,input,select,textarea{font-family:inherit;}
 h1,h2,h3,.brand{font-family:'Baloo Da 2',cursive;color:var(--heading);}
-.wrap{max-width:900px;margin:0 auto;padding:16px;}
-.topbar{position:sticky;top:0;z-index:50;background:var(--bg);padding:10px 16px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border);}
-.brand{font-size:15px;}
-.theme-btn{border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:20px;padding:8px 14px;cursor:pointer;font-family:inherit;font-weight:600;}
-.header-card{background:var(--card);border-radius:18px;box-shadow:var(--shadow);padding:22px;margin:16px 0;border:1px solid var(--border);}
-.header-card h1{margin:0 0 4px;font-size:24px;}
-.subtitle{color:var(--text-soft);font-size:14px;margin-bottom:14px;}
-.meta-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;}
-@media(max-width:600px){.meta-grid{grid-template-columns:1fr;}}
-.meta-grid label{font-size:13px;font-weight:600;color:var(--text-soft);display:block;margin-bottom:4px;}
-.meta-grid input{width:100%;padding:9px 10px;border-radius:10px;border:1.5px solid var(--border);background:var(--bg-soft);color:var(--text);font-family:inherit;font-size:14px;}
-.engine-table{width:100%;border-collapse:collapse;margin:10px 0 16px;font-size:12.5px;}
-.engine-table th,.engine-table td{border:1px solid var(--border);padding:5px 7px;text-align:left;}
-.engine-table th{background:var(--card-alt);}
-.trap-note{font-size:12.5px;background:var(--card-alt);border-left:3px solid var(--accent);padding:8px 10px;border-radius:8px;margin-bottom:6px;color:var(--text-soft);}
-.section-title{margin:26px 0 6px;font-size:18px;}
-.section-sub{color:var(--text-soft);font-size:13px;margin-bottom:14px;}
-.task{background:var(--card);border-radius:16px;box-shadow:var(--shadow);padding:18px;margin-bottom:16px;border:1px solid var(--border);}
-.task-head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:6px;}
-.task-head h3{margin:0;font-size:15px;}
-.marks-pill{background:var(--accent-soft);color:var(--heading);font-weight:700;font-size:12px;padding:4px 10px;border-radius:20px;white-space:nowrap;}
-.instr{font-size:13px;color:var(--text-soft);margin-bottom:4px;}
-.hint{font-size:12.5px;background:var(--card-alt);border-left:3px solid var(--accent);padding:8px 10px;border-radius:8px;margin-top:8px;color:var(--text-soft);}
-table.qtable{width:100%;border-collapse:collapse;margin-top:10px;font-size:12.5px;}
-table.qtable th,table.qtable td{border:1px solid var(--border);padding:5px 6px;text-align:left;vertical-align:middle;}
-table.qtable th{background:var(--card-alt);}
-input[type=text],select,textarea{width:100%;padding:6px 8px;border-radius:8px;border:1.5px solid var(--border);background:var(--bg-soft);color:var(--text);font-family:inherit;font-size:13px;}
-textarea{resize:vertical;min-height:40px;}
-.radio-row{display:flex;gap:9px;flex-wrap:wrap;}
-.radio-row label{display:flex;align-items:center;gap:4px;font-size:12px;cursor:pointer;}
-.given{opacity:.75;}
-.given input,.given select,.given td{background:var(--accent-soft);font-weight:600;}
-.freeitem{margin-bottom:11px;}
-.freeitem .prompt{font-size:13px;margin-bottom:4px;}
-.subfield{margin-bottom:4px;}
-.subfield .flabel{font-size:11px;color:var(--text-soft);}
-.result-tag{display:inline-block;font-size:11.5px;font-weight:700;padding:2px 8px;border-radius:10px;margin-left:6px;}
+.wrap{max-width:980px;margin:0 auto;padding:22px 18px;}
+
+/* Top bar */
+.topbar{
+  position:sticky;top:0;z-index:50;
+  display:flex;justify-content:space-between;align-items:center;gap:15px;
+  padding:13px 20px;
+  border-bottom:1px solid var(--glass-border);
+  background:var(--glass);
+  backdrop-filter:blur(18px) saturate(140%);
+  -webkit-backdrop-filter:blur(18px) saturate(140%);
+  box-shadow:0 7px 25px rgba(0,0,0,.05);
+}
+.brand{font-size:18px;font-weight:700;letter-spacing:.2px;}
+.theme-btn{
+  border:1px solid var(--border);background:var(--glass-strong);color:var(--text);
+  border-radius:999px;padding:10px 17px;cursor:pointer;font-size:15px;font-weight:700;
+  backdrop-filter:blur(10px);
+  transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease;
+}
+.theme-btn:hover{transform:translateY(-2px);border-color:var(--accent);box-shadow:0 8px 22px rgba(238,105,131,.16);}
+
+/* Header */
+.header-card{
+  position:relative;overflow:hidden;
+  padding:30px 28px;margin:22px 0 28px;border-radius:24px;
+  border:1px solid var(--glass-border);background:var(--glass);
+  backdrop-filter:blur(22px) saturate(145%);
+  -webkit-backdrop-filter:blur(22px) saturate(145%);
+  box-shadow:var(--shadow);
+}
+.header-card::before{
+  content:"";position:absolute;width:240px;height:240px;top:-145px;right:-120px;border-radius:50%;
+  background:radial-gradient(circle,rgba(238,105,131,.22),transparent 68%);pointer-events:none;
+}
+.header-card h1{position:relative;margin:0 0 6px;font-size:clamp(31px,5vw,40px);line-height:1.18;font-weight:800;}
+.subtitle{position:relative;color:var(--text-soft);font-size:17px;line-height:1.6;margin-bottom:22px;}
+
+/* Student details */
+.meta-grid{position:relative;display:grid;grid-template-columns:1fr 1fr 1fr;gap:13px;}
+.meta-grid label{display:block;margin-bottom:6px;color:var(--text-soft);font-size:15px;font-weight:700;}
+.meta-grid input{
+  width:100%;padding:11px 12px;border-radius:12px;border:1.5px solid var(--border);
+  background:var(--field-bg);color:var(--text);font-size:16px;outline:none;
+  transition:border-color .2s,box-shadow .2s;
+}
+.meta-grid input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(238,105,131,.12);}
+
+/* Reference table + traps */
+.engine-table{
+  width:100%;border-collapse:separate;border-spacing:0;margin:18px 0 18px;
+  font-size:15px;overflow:hidden;border-radius:14px;
+}
+.engine-table th,.engine-table td{border-right:1px solid var(--border);border-bottom:1px solid var(--border);padding:10px 11px;text-align:left;vertical-align:top;}
+.engine-table th:first-child,.engine-table td:first-child{border-left:1px solid var(--border);}
+.engine-table tr:first-child th{border-top:1px solid var(--border);background:var(--table-head);}
+.engine-table th:first-child{border-top-left-radius:14px;}
+.engine-table th:last-child{border-top-right-radius:14px;}
+.trap-note{
+  font-size:15px;line-height:1.6;background:rgba(238,105,131,.07);
+  border-left:4px solid var(--accent);padding:12px 14px;border-radius:11px;
+  margin:4px 0 0;color:var(--text-soft);
+}
+
+/* Section glass shell */
+.section-shell{
+  position:relative;margin:30px 0;padding:24px;border-radius:26px;
+  border:1px solid var(--glass-border);background:var(--glass);
+  backdrop-filter:blur(20px) saturate(135%);
+  -webkit-backdrop-filter:blur(20px) saturate(135%);
+  box-shadow:var(--shadow);
+}
+.section-title{margin:0 0 5px;font-size:28px;line-height:1.25;font-weight:800;}
+.section-sub{color:var(--text-soft);font-size:16px;line-height:1.55;margin-bottom:22px;}
+
+/* Task cards */
+.task{
+  position:relative;overflow:hidden;padding:24px;margin-bottom:20px;border-radius:20px;
+  border:1px solid var(--glass-border);background:var(--task-glass);
+  backdrop-filter:blur(15px) saturate(135%);
+  -webkit-backdrop-filter:blur(15px) saturate(135%);
+  box-shadow:0 10px 30px rgba(0,0,0,.055);
+  transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;
+}
+.task:last-child{margin-bottom:0;}
+.task::before{
+  content:"";position:absolute;width:150px;height:150px;top:-105px;right:-90px;border-radius:50%;
+  background:radial-gradient(circle,rgba(238,105,131,.18),transparent 68%);pointer-events:none;
+}
+.task:hover{transform:translateY(-3px);border-color:rgba(238,105,131,.32);box-shadow:var(--shadow-hover);}
+.task-head{position:relative;display:flex;justify-content:space-between;align-items:flex-start;gap:14px;margin-bottom:12px;}
+.task-head h3{margin:0;font-size:21px;line-height:1.35;font-weight:800;}
+.marks-pill{
+  flex-shrink:0;background:var(--accent-soft);color:var(--heading);font-weight:800;
+  font-size:13.5px;padding:6px 12px;border-radius:999px;white-space:nowrap;
+}
+
+/* Bilingual instructions */
+.instruction-box{
+  position:relative;margin:10px 0 16px;padding:14px 16px;border-radius:14px;
+  border:1px solid rgba(238,105,131,.16);background:rgba(238,105,131,.055);
+}
+.instr{font-size:16px;line-height:1.55;}
+.instr + .instr{margin-top:7px;}
+.instr-en{color:var(--text);}
+.instr-bn{color:var(--text-soft);font-weight:500;}
+.lang-label{
+  display:inline-block;min-width:44px;margin-right:7px;color:var(--heading);
+  font-size:12px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;
+}
+.hint{
+  margin-top:12px;padding:11px 13px;border-radius:11px;border-left:4px solid var(--accent);
+  background:rgba(238,105,131,.075);color:var(--text-soft);font-size:14.5px;line-height:1.55;
+}
+
+/* Tables */
+table.qtable{
+  width:100%;border-collapse:separate;border-spacing:0;margin-top:14px;
+  overflow:hidden;border-radius:12px;font-size:15.5px;
+}
+table.qtable th,table.qtable td{
+  border-right:1px solid var(--border);border-bottom:1px solid var(--border);
+  padding:10px 11px;text-align:left;vertical-align:middle;
+}
+table.qtable th:first-child,table.qtable td:first-child{border-left:1px solid var(--border);}
+table.qtable tr:first-child th{border-top:1px solid var(--border);}
+table.qtable th:first-child{border-top-left-radius:12px;}
+table.qtable th:last-child{border-top-right-radius:12px;}
+table.qtable th{background:var(--table-head);font-weight:700;}
+
+/* Fields */
+input[type=text],select,textarea{
+  width:100%;padding:9px 11px;border-radius:10px;border:1.5px solid var(--border);
+  background:var(--field-bg);color:var(--text);font-size:15.5px;outline:none;
+  transition:border-color .2s ease,box-shadow .2s ease;
+}
+input[type=text]:focus,select:focus,textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(238,105,131,.11);}
+textarea{resize:vertical;min-height:72px;line-height:1.5;}
+.radio-row{display:flex;gap:10px 16px;flex-wrap:wrap;margin-top:5px;}
+.radio-row label{display:flex;align-items:center;gap:6px;font-size:15px;cursor:pointer;}
+.radio-row input[type="radio"]{width:16px;height:16px;accent-color:var(--accent);}
+.given{opacity:.78;}
+.given input,.given select,.given td{background:var(--accent-soft);font-weight:700;}
+.freeitem{padding:7px 0;margin-bottom:14px;}
+.freeitem:last-child{margin-bottom:0;}
+.freeitem .prompt{margin-bottom:7px;font-size:16px;line-height:1.55;}
+.subfield{margin-bottom:9px;}
+.subfield .flabel{display:block;margin-bottom:5px;font-size:14px;color:var(--text-soft);font-weight:600;}
+
+/* Result tags */
+.result-tag{display:inline-block;margin-left:7px;padding:3px 9px;border-radius:999px;font-size:12.5px;font-weight:800;}
 .tag-full{background:#d6f5df;color:var(--ok);}
 .tag-partial{background:#fff3cd;color:#8a6500;}
 .tag-zero{background:#ffe0e0;color:var(--bad);}
 [data-theme="dark"] .tag-full{background:#154a2c;}
 [data-theme="dark"] .tag-partial{background:#4a3c10;color:#ffd76b;}
 [data-theme="dark"] .tag-zero{background:#4a1414;}
-.footer-bar{position:sticky;bottom:0;background:var(--card);border-top:1px solid var(--border);padding:14px 16px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;box-shadow:0 -6px 18px rgba(0,0,0,.06);}
-.btn{border:none;border-radius:24px;padding:12px 22px;font-weight:700;font-family:inherit;font-size:14.5px;cursor:pointer;transition:transform .15s;}
+
+/* Score */
+.score-banner{
+  margin:30px 0;padding:26px;text-align:center;border-radius:22px;
+  border:1px solid var(--glass-border);background:var(--glass);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);box-shadow:var(--shadow);
+}
+.score-banner .big{margin-top:4px;color:var(--heading);font-family:'Baloo Da 2',cursive;font-size:54px;font-weight:800;line-height:1.2;}
+.tracker{width:100%;border-collapse:collapse;margin-top:18px;font-size:15px;}
+.tracker th,.tracker td{border:1px solid var(--border);padding:9px 10px;text-align:center;}
+.tracker th{background:var(--table-head);}
+
+/* Sticky action bar */
+.footer-bar{
+  position:sticky;bottom:0;z-index:40;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;
+  padding:15px 16px;border-top:1px solid var(--glass-border);background:var(--glass-strong);
+  backdrop-filter:blur(20px) saturate(140%);-webkit-backdrop-filter:blur(20px) saturate(140%);
+  box-shadow:0 -8px 28px rgba(0,0,0,.08);
+}
+.btn{
+  border:none;border-radius:999px;padding:13px 24px;font-size:16px;font-weight:800;
+  cursor:pointer;transition:transform .18s ease,box-shadow .18s ease;
+}
+.btn:hover{transform:translateY(-2px);}
 .btn:active{transform:scale(.97);}
-.btn-primary{background:var(--accent);color:#fff;}
-.btn-secondary{background:var(--heading);color:#fff;}
-.score-banner{text-align:center;margin:18px 0;}
-.score-banner .big{font-size:44px;font-weight:800;color:var(--heading);font-family:'Baloo Da 2',cursive;}
-.tracker{width:100%;border-collapse:collapse;margin-top:16px;font-size:12px;}
-.tracker th,.tracker td{border:1px solid var(--border);padding:5px 7px;text-align:center;}
-.tracker th{background:var(--card-alt);}
-.page-footer{text-align:center;color:var(--text-soft);font-size:12px;padding:26px 0 6px;}
+.btn-primary{background:var(--accent);color:#fff;box-shadow:0 8px 20px rgba(238,105,131,.22);}
+.btn-secondary{background:var(--heading);color:#fff;box-shadow:0 8px 20px rgba(133,14,53,.17);}
+.page-footer{text-align:center;color:var(--text-soft);font-size:14px;padding:30px 0 8px;}
+
+/* Modal */
 #resultCardHolder{position:fixed;left:-9999px;top:0;}
-.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;align-items:center;justify-content:center;z-index:100;}
-.modal-box{background:var(--card);border-radius:16px;padding:22px;max-width:340px;width:90%;box-shadow:var(--shadow);}
-.modal-box h3{margin-top:0;}
-.modal-box input{margin-bottom:10px;}
-.modal-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:10px;}
+.modal-overlay{
+  position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;
+  padding:20px;background:rgba(0,0,0,.50);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);
+}
+.modal-box{
+  width:90%;max-width:380px;padding:26px;border-radius:22px;border:1px solid var(--glass-border);
+  background:var(--glass-strong);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);
+  box-shadow:0 24px 60px rgba(0,0,0,.28);
+}
+.modal-box h3{margin:0 0 5px;font-size:24px;}
+.modal-box input{margin-bottom:12px;}
+.modal-actions{display:flex;gap:9px;justify-content:flex-end;margin-top:12px;}
+
+/* Responsive */
+@media(max-width:700px){
+  body{font-size:16px;}
+  .wrap{padding:14px 12px;}
+  .topbar{padding:11px 13px;}
+  .brand{font-size:15px;line-height:1.25;}
+  .theme-btn{padding:8px 12px;font-size:14px;}
+  .header-card{padding:24px 19px;border-radius:20px;}
+  .header-card h1{font-size:30px;}
+  .subtitle{font-size:15.5px;}
+  .meta-grid{grid-template-columns:1fr;}
+  .section-shell{padding:17px 13px;border-radius:20px;}
+  .section-title{font-size:24px;}
+  .section-sub{font-size:15px;}
+  .task{padding:19px 15px;border-radius:17px;}
+  .task-head h3{font-size:19px;}
+  .marks-pill{font-size:12px;padding:5px 9px;}
+  .instruction-box{padding:12px;}
+  .instr{font-size:15px;}
+  .freeitem .prompt{font-size:15.5px;}
+  .engine-table,table.qtable{display:block;overflow-x:auto;white-space:normal;font-size:14.5px;}
+  input[type=text],select,textarea{font-size:16px;}
+  .btn{width:100%;max-width:420px;font-size:15px;}
+}
 </style>
 </head>
 <body data-theme="light">
@@ -130,10 +356,10 @@ textarea{resize:vertical;min-height:40px;}
 <div class="modal-overlay" id="saveModal">
   <div class="modal-box">
     <h3>Confirm details</h3>
-    <p style="font-size:13px;color:var(--text-soft);">ছবি তৈরির আগে নাম ও তারিখ দিন।</p>
-    <label style="font-size:13px;">Name</label>
+    <p style="font-size:15px;color:var(--text-soft);">ছবি তৈরির আগে নাম ও তারিখ দিন।</p>
+    <label style="font-size:15px;">Name</label>
     <input type="text" id="modalName" placeholder="তোমার নাম">
-    <label style="font-size:13px;">Date</label>
+    <label style="font-size:15px;">Date</label>
     <input type="date" id="modalDate">
     <div class="modal-actions">
       <button class="btn" style="background:var(--border);color:var(--text);" onclick="closeSaveModal()">বাতিল</button>
@@ -151,6 +377,7 @@ const SECTIONS = [
 { id:'A', title:'A · DOES IT QUALIFY FOR PASSIVE?', sub:'', tasks:[
   { id:'e1', title:'EXERCISE 1 · Find the qualifying object', marks:10, type:'fillblank',
     instr:'Write the object that would become the passive subject. If none, write "none".',
+    instrBn:'যে object passive sentence-এর subject হবে, সেটি লেখো। কোনো object না থাকলে “none” লেখো।',
     items:[
       {label:'1. The chef cooked a delicious meal.', correct:['a delicious meal','delicious meal']},
       {label:'2. Farmers grow rice.', correct:['rice']},
@@ -164,6 +391,8 @@ const SECTIONS = [
       {label:'10. This dress suits you.', correct:['none']}
     ]},
   { id:'e2', title:'EXERCISE 2 · Can it become passive?', marks:12, type:'fields',
+    instr:'Choose ✓ if the sentence can be changed into passive; choose ✗ if it cannot.',
+    instrBn:'Sentence-টি passive voice-এ পরিবর্তন করা সম্ভব হলে ✓ এবং সম্ভব না হলে ✗ নির্বাচন করো।',
     fieldNames:['✓ / ✗'],
     items:[
       {label:'1. The chef cooked a delicious meal.', fields:[{type:'radio',options:['✓','✗'],correct:'✓'}]},
@@ -180,7 +409,8 @@ const SECTIONS = [
       {label:'12. He hurt himself.', fields:[{type:'radio',options:['✓','✗'],correct:'✗'}]}
     ]},
   { id:'e3', title:'EXERCISE 3 · Name the trap', marks:10, type:'fields',
-    instr:'None of these can be passive — write which trap applies.', fieldNames:['Trap'],
+    instr:'None of these can be passive — write which trap applies.',
+    instrBn:'নিচের কোনো sentence-ই passive করা যায় না। প্রতিটির ক্ষেত্রে কোন trap বা কারণটি প্রযোজ্য তা নির্বাচন করো।', fieldNames:['Trap'],
     items:[
       {label:'1. They arrived at the station.', fields:[{type:'select',options:['Intransitive','Stative / possession','Subject complement','Reflexive'],correct:'Intransitive'}]},
       {label:'2. He has a luxury car.', fields:[{type:'select',options:['Intransitive','Stative / possession','Subject complement','Reflexive'],correct:'Stative / possession'}]},
@@ -194,6 +424,8 @@ const SECTIONS = [
       {label:'10. She blamed herself.', fields:[{type:'select',options:['Intransitive','Stative / possession','Subject complement','Reflexive'],correct:'Reflexive'}]}
     ]},
   { id:'e4', title:'EXERCISE 4 · Active or passive?', marks:12, type:'fields',
+    instr:'Choose A for an active sentence and P for a passive sentence.',
+    instrBn:'প্রতিটি sentence Active হলে A এবং Passive হলে P নির্বাচন করো।',
     fieldNames:['A / P'],
     items:[
       {label:'1. Rahim hits the ball.', fields:[{type:'radio',options:['A','P'],correct:'A'}]},
@@ -213,6 +445,8 @@ const SECTIONS = [
 
 { id:'B', title:'B · THE PAST PARTICIPLE ENGINE', sub:'', tasks:[
   { id:'e5', title:'EXERCISE 5 · Write the past participle (V3)', marks:15, type:'fillblank',
+    instr:'Write the past participle (V3) form of each verb.',
+    instrBn:'প্রতিটি verb-এর Past Participle বা V3 form লেখো।',
     items:[
       {label:'1. write', correct:['written']},{label:'2. eat', correct:['eaten']},
       {label:'3. do', correct:['done']},{label:'4. go', correct:['gone']},
@@ -224,6 +458,8 @@ const SECTIONS = [
       {label:'15. make', correct:['made']}
     ]},
   { id:'e6', title:'EXERCISE 6 · Choose the participle', marks:10, type:'mcq',
+    instr:'Choose the correct past participle (V3) to complete each passive sentence.',
+    instrBn:'প্রতিটি passive sentence সম্পূর্ণ করতে সঠিক Past Participle (V3) নির্বাচন করো।',
     items:[
       {prompt:'1. The letter was ___ by him.', options:['write','wrote','written'], correct:2},
       {prompt:'2. The song was ___ last night.', options:['sing','sang','sung'], correct:2},
@@ -240,6 +476,8 @@ const SECTIONS = [
 
 { id:'C', title:'C · CHOOSE THE AUXILIARY — TENSE & AGREEMENT', sub:'', tasks:[
   { id:'e7', title:'EXERCISE 7 · Fill the auxiliary', marks:12, type:'fillblank',
+    instr:'Fill each gap with the correct auxiliary according to tense and subject agreement.',
+    instrBn:'Tense এবং passive subject-এর number অনুযায়ী প্রতিটি gap-এ সঠিক auxiliary বসাও।',
     items:[
       {label:'1. The letter ___ written by him. (present · singular)', correct:['is']},
       {label:'2. The letters ___ written by him. (present · plural)', correct:['are']},
@@ -255,6 +493,8 @@ const SECTIONS = [
       {label:'12. The thieves ___ caught last night. (past)', correct:['were']}
     ]},
   { id:'e8', title:'EXERCISE 8 · Subject–auxiliary agreement', marks:10, type:'mcq',
+    instr:'Choose the auxiliary that agrees with the passive subject.',
+    instrBn:'Passive subject singular না plural—সেটি বিবেচনা করে সঠিক auxiliary নির্বাচন করো।',
     items:[
       {prompt:'1. The book ___ kept here.', options:['is','are'], correct:0},
       {prompt:'2. The books ___ kept here.', options:['is','are'], correct:1},
@@ -272,6 +512,7 @@ const SECTIONS = [
 { id:'D', title:'D · ACTIVE → PASSIVE', sub:'', tasks:[
   { id:'e9', title:'EXERCISE 9 · Present Indefinite', marks:10, type:'freetext',
     instr:'Object + am/is/are + V(P.P.) + by + Subject.',
+    instrBn:'প্রতিটি Present Indefinite active sentence-কে passive করো: Object সামনে আনো, am/is/are + V3 ব্যবহার করো এবং প্রয়োজন হলে by + Subject যোগ করো।',
     items:[
       {prompt:'1. Rahim hits the ball.', keyword:'is hit', correct:['The ball is hit by Rahim.']},
       {prompt:'2. Mother cooks the food.', keyword:'is cooked', correct:['The food is cooked by Mother.']},
@@ -286,6 +527,7 @@ const SECTIONS = [
     ]},
   { id:'e10', title:'EXERCISE 10 · Past Indefinite', marks:10, type:'freetext',
     instr:'Object + was/were + V(P.P.) + by + Subject. (No. 2 has an unknown agent.)',
+    instrBn:'প্রতিটি Past Indefinite active sentence-কে passive করো: Object + was/were + V3 ব্যবহার করো। ২ নম্বরে agent অজানা, তাই by + agent প্রয়োজন নেই।',
     items:[
       {prompt:'1. Rahim hit the ball.', keyword:'was hit', correct:['The ball was hit by Rahim.']},
       {prompt:'2. Someone stole my bicycle.', keyword:'was stolen', correct:['My bicycle was stolen.']},
@@ -300,6 +542,7 @@ const SECTIONS = [
     ]},
   { id:'e11', title:'EXERCISE 11 · Future Indefinite', marks:8, type:'freetext',
     instr:'Object + will be + V(P.P.) + by + Subject.',
+    instrBn:'প্রতিটি Future Indefinite active sentence-কে passive করো: Object + will be + V3 ব্যবহার করো এবং প্রয়োজন হলে by + Subject যোগ করো।',
     items:[
       {prompt:'1. Rahim will hit the ball.', keyword:'will be hit', correct:['The ball will be hit by Rahim.']},
       {prompt:'2. She will write a letter.', keyword:'will be written', correct:['A letter will be written by her.']},
@@ -312,6 +555,7 @@ const SECTIONS = [
     ]},
   { id:'e12', title:'EXERCISE 12 · Modal Passive', marks:8, type:'freetext',
     instr:'Object + modal + be + V(P.P.) + by + Subject. Drop the agent where not needed.',
+    instrBn:'Modal verb-যুক্ত sentence-কে passive করো: Object + modal + be + V3 ব্যবহার করো। Agent প্রয়োজনীয় না হলে by + agent বাদ দাও।',
     items:[
       {prompt:'1. You must follow the rules.', keyword:'must be followed', correct:['The rules must be followed.']},
       {prompt:'2. She can solve the problem.', keyword:'can be solved', correct:['The problem can be solved by her.']},
@@ -324,6 +568,7 @@ const SECTIONS = [
     ]},
   { id:'e13', title:'EXERCISE 13 · Mixed tenses & modals', marks:12, type:'freetext',
     instr:'Match the passive structure to the tense/modal shown.',
+    instrBn:'Bracket-এ দেওয়া tense বা modal অনুযায়ী প্রতিটি active sentence-কে সঠিক passive structure-এ পরিবর্তন করো।',
     items:[
       {prompt:'1. The chef cooks the meal. (Present)', keyword:'is cooked', correct:['The meal is cooked by the chef.']},
       {prompt:'2. The chef cooked the meal. (Past)', keyword:'was cooked', correct:['The meal was cooked by the chef.']},
@@ -343,6 +588,7 @@ const SECTIONS = [
 { id:'E', title:'E · REVERSE · FIX · AGENT', sub:'', tasks:[
   { id:'e14', title:'EXERCISE 14 · Passive → Active', marks:10, type:'freetext',
     instr:'The "by" phrase becomes the subject.',
+    instrBn:'প্রতিটি passive sentence-কে active করো। “by + agent”-এর agent-কে active sentence-এর subject বানাও এবং verb-এর tense ঠিক রাখো।',
     items:[
       {prompt:'1. The ball is hit by Rahim.', keyword:'hits', correct:['Rahim hits the ball.']},
       {prompt:'2. A letter was written by her.', keyword:'wrote', correct:['She wrote a letter.']},
@@ -357,6 +603,7 @@ const SECTIONS = [
     ]},
   { id:'e15', title:'EXERCISE 15 · Spot & fix the mistake', marks:12, type:'freetext',
     instr:'No. 7 is a trap — no passive is possible there.',
+    instrBn:'প্রতিটি ভুল passive sentence ঠিক করে সম্পূর্ণ sentence আবার লেখো। ৭ নম্বরটি trap—সেখানে passive সম্ভব নয়, তাই সঠিক active sentence লেখো।',
     items:[
       {prompt:'1. The letter is write by him.', keyword:'is written', correct:['The letter is written by him.']},
       {prompt:'2. The work was do yesterday.', keyword:'was done', correct:['The work was done yesterday.']},
@@ -373,6 +620,7 @@ const SECTIONS = [
     ]},
   { id:'e16', title:'EXERCISE 16 · By + agent: keep or drop?', marks:8, type:'freetext',
     instr:'Keep "by + agent" only when it matters; drop it when unknown, obvious, or unimportant.',
+    instrBn:'Active sentence-কে passive করো। Agent গুরুত্বপূর্ণ হলে “by + agent” রাখো; agent অজানা, obvious বা অপ্রয়োজনীয় হলে বাদ দাও।',
     items:[
       {prompt:'1. Someone stole my bicycle.', keyword:'was stolen', correct:['My bicycle was stolen.']},
       {prompt:'2. Shakespeare wrote this play.', keyword:'was written', correct:['This play was written by Shakespeare.']},
@@ -387,6 +635,8 @@ const SECTIONS = [
 
 { id:'F', title:'F · MIXED MASTERY & PRODUCTION', sub:'', tasks:[
   { id:'e17', title:'EXERCISE 17 · Choose the correct passive', marks:10, type:'mcq',
+    instr:'Choose the option that correctly changes the active sentence into passive.',
+    instrBn:'প্রতিটি active sentence-এর সঠিক passive form-টি options থেকে নির্বাচন করো।',
     items:[
       {prompt:'1. She writes a letter.', options:['A letter is written by her.','A letter was written by her.','A letter is write by her.'], correct:1},
       {prompt:'2. They built a house.', options:['A house is built.','A house was built.','A house was build.'], correct:1},
@@ -401,6 +651,7 @@ const SECTIONS = [
     ]},
   { id:'e18', title:'EXERCISE 18 · Match active to passive', marks:8, type:'match',
     instr:'Match each active sentence to its passive.',
+    instrBn:'প্রতিটি active sentence-এর সঙ্গে তার সঠিক passive sentence match করো।',
     options:['The car was driven by him.','A letter is written by her.','The rule must be followed.','A house will be built by them.','The glass was broken by the boy.','Rice is grown by farmers.','The food was cooked by Mother.','The problem can be solved by her.'],
     items:[
       {label:'1. She writes a letter.', correct:'A letter is written by her.'},
@@ -413,6 +664,8 @@ const SECTIONS = [
       {label:'8. Mother cooked the food.', correct:'The food was cooked by Mother.'}
     ]},
   { id:'e19', title:'EXERCISE 19 · বাংলা → English (passive)', marks:12, type:'freetext',
+    instr:'Translate each Bangla sentence into a correct English passive sentence.',
+    instrBn:'প্রতিটি বাংলা sentence-কে অর্থ ও tense ঠিক রেখে সঠিক English passive sentence-এ অনুবাদ করো।',
     items:[
       {prompt:'১. কাজটি করা হয়।', keyword:'is done', correct:['The work is done.']},
       {prompt:'২. চিঠিটি লেখা হলো।', keyword:'was written', correct:['The letter was written.']},
@@ -429,6 +682,7 @@ const SECTIONS = [
     ]},
   { id:'e20', title:'EXERCISE 20 · Cloze — a process in the passive', marks:10, type:'fillblank',
     instr:'How tea is made — put each bracketed verb into the present passive.',
+    instrBn:'চা তৈরির process-টি সম্পূর্ণ করতে bracket-এর প্রতিটি verb-কে Present Passive form-এ বসাও।',
     items:[
       {label:'First, the leaves (1) ___ (pick) from the bushes.', correct:['are picked']},
       {label:'They (2) ___ (dry) in the sun.', correct:['are dried']},
@@ -442,6 +696,8 @@ const SECTIONS = [
       {label:'and the cups (10) ___ (wash) afterwards.', correct:['are washed']}
     ]},
   { id:'e21', title:'EXERCISE 21 · Choose the fully correct sentence', marks:10, type:'mcq',
+    instr:'Choose the fully grammatical sentence in each set.',
+    instrBn:'প্রতিটি set থেকে grammar এবং passive structure—দুই দিক থেকেই সম্পূর্ণ সঠিক sentence-টি নির্বাচন করো।',
     items:[
       {prompt:'1.', options:['The letter is wrote.','The letter is written.','The letter is write.'], correct:1},
       {prompt:'2.', options:['Rice are grown here.','Rice is grown here.','Rice is grew here.'], correct:1},
@@ -456,6 +712,7 @@ const SECTIONS = [
     ]},
   { id:'e22', title:'EXERCISE 22 · Rewrite the process in the passive', marks:6, type:'paragraph',
     instr:'Rewrite the whole paragraph in the present passive. Drop the agent where not important.',
+    instrBn:'পুরো paragraph-টি Present Passive-এ আবার লেখো। Agent গুরুত্বপূর্ণ না হলে by + agent বাদ দাও।',
     original:'A farmer grows the vegetables. Workers pick them early in the morning. A truck carries them to the market. Sellers wash the vegetables. They arrange them on the stalls. Finally, customers buy the fresh vegetables.',
     groups:[
       {forms:['are grown'], count:1},
@@ -467,6 +724,7 @@ const SECTIONS = [
     ]},
   { id:'e23', title:'EXERCISE 23 · Write your own passives', marks:6, type:'passiveown',
     instr:'Write full passive sentences using each structure named.',
+    instrBn:'প্রতিটি নির্দেশিত structure অনুযায়ী নিজের একটি সম্পূর্ণ passive sentence লেখো। Present, Past, Future, Modal এবং agent ব্যবহারের পার্থক্য ঠিক রাখবে।',
     items:[
       {prompt:'1. a present passive (something that is done every day):', mode:'present'},
       {prompt:'2. a past passive (something that was done):', mode:'past'},
@@ -482,15 +740,27 @@ const SECTIONS = [
 const root = document.getElementById('renderRoot');
 let outHtml = '';
 SECTIONS.forEach(sec=>{
-  outHtml += `<h2 class="section-title">${sec.title}</h2>`;
+  outHtml += `<section class="section-shell"><h2 class="section-title">${sec.title}</h2>`;
   if(sec.sub) outHtml += `<div class="section-sub">${sec.sub}</div>`;
   sec.tasks.forEach(t=>{
     outHtml += `<div class="task" id="${t.id}"><div class="task-head"><h3>${t.title}</h3><span class="marks-pill">${t.marks} marks</span></div>`;
-    if(t.instr) outHtml += `<div class="instr">${t.instr}</div>`;
+
+    if(t.instr || t.instrBn){
+      outHtml += `<div class="instruction-box">`;
+      if(t.instr){
+        outHtml += `<div class="instr instr-en"><span class="lang-label">EN</span>${t.instr}</div>`;
+      }
+      if(t.instrBn){
+        outHtml += `<div class="instr instr-bn"><span class="lang-label">বাংলা</span>${t.instrBn}</div>`;
+      }
+      outHtml += `</div>`;
+    }
+
     outHtml += renderTask(t);
     if(t.hint) outHtml += `<div class="hint">💡 ${t.hint}</div>`;
-    outHtml += `<div id="${t.id}_result" style="margin-top:8px;font-size:13px;font-weight:600;"></div></div>`;
+    outHtml += `<div id="${t.id}_result" style="margin-top:11px;font-size:14.5px;font-weight:700;"></div></div>`;
   });
+  outHtml += `</section>`;
 });
 root.innerHTML = outHtml;
 
