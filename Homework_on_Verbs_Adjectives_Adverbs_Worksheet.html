@@ -8,78 +8,317 @@
 <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Baloo+Da+2:wght@500;600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <style>
-html,body[data-theme="light"]{
-  --bg:#FCF5EE; --bg-soft:#FFF9F4; --card:#FFFFFF; --card-alt:#FFF3EC;
-  --text:#402028; --text-soft:#7a4a56; --heading:#850E35;
-  --accent:#EE6983; --accent-soft:#FFC4C4; --border:#FFD9D9;
-  --ok:#2e8b57; --bad:#c0392b; --shadow:0 8px 24px rgba(133,14,53,.08);
+:root{
+  --accent:#EE6983;
+  --accent-strong:#D94F70;
+  --ok:#2e8b57;
+  --bad:#c0392b;
+}
+
+body[data-theme="light"]{
+  --bg:#FCF5EE;
+  --bg-soft:#FFF9F4;
+  --text:#402028;
+  --text-soft:#7a4a56;
+  --heading:#850E35;
+  --accent-soft:#FFC4C4;
+  --border:#FFD9D9;
+  --glass:rgba(255,255,255,.68);
+  --glass-strong:rgba(255,255,255,.84);
+  --task-glass:rgba(255,255,255,.58);
+  --glass-border:rgba(255,255,255,.80);
+  --field-bg:rgba(255,249,244,.90);
+  --shadow:0 16px 40px rgba(133,14,53,.09);
+  --shadow-hover:0 20px 50px rgba(133,14,53,.14);
+}
+
+body[data-theme="dark"]{
+  --bg:#220812;
+  --bg-soft:#33101F;
+  --text:#FCEFEF;
+  --text-soft:#E9B9C4;
+  --heading:#FFC4C4;
+  --accent-soft:#850E35;
+  --border:#5C1A34;
+  --glass:rgba(59,18,36,.62);
+  --glass-strong:rgba(59,18,36,.80);
+  --task-glass:rgba(69,21,41,.56);
+  --glass-border:rgba(255,196,196,.12);
+  --field-bg:rgba(42,10,22,.70);
+  --ok:#6fcf97;
+  --bad:#ff8a80;
+  --shadow:0 18px 46px rgba(0,0,0,.32);
+  --shadow-hover:0 22px 56px rgba(0,0,0,.42);
+}
+
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  min-height:100vh;
+  color:var(--text);
+  font-family:'Hind Siliguri',sans-serif;
+  font-size:17px;
+  line-height:1.58;
+  padding-bottom:88px;
+  overflow-x:hidden;
+  transition:background .35s ease,color .35s ease;
+  background:
+    radial-gradient(circle at 8% 5%,rgba(238,105,131,.18),transparent 27%),
+    radial-gradient(circle at 95% 32%,rgba(133,14,53,.10),transparent 29%),
+    var(--bg);
 }
 body[data-theme="dark"]{
-  --bg:#2A0A16; --bg-soft:#33101F; --card:#3B1224; --card-alt:#451529;
-  --text:#FCEFEF; --text-soft:#E9B9C4; --heading:#FFC4C4;
-  --accent:#EE6983; --accent-soft:#850E35; --border:#5C1A34;
-  --ok:#6fcf97; --bad:#ff8a80; --shadow:0 8px 24px rgba(0,0,0,.35);
+  background:
+    radial-gradient(circle at 8% 5%,rgba(238,105,131,.15),transparent 28%),
+    radial-gradient(circle at 92% 34%,rgba(133,14,53,.20),transparent 30%),
+    var(--bg);
 }
-*{box-sizing:border-box;}
-body{margin:0;background:var(--bg);color:var(--text);font-family:'Hind Siliguri',sans-serif;transition:background .3s,color .3s;padding-bottom:60px;}
+button,input,select,textarea{font-family:inherit;}
 h1,h2,h3,.brand{font-family:'Baloo Da 2',cursive;color:var(--heading);}
-.wrap{max-width:900px;margin:0 auto;padding:16px;}
-.topbar{position:sticky;top:0;z-index:50;background:var(--bg);padding:10px 16px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border);}
-.brand{font-size:15px;}
-.theme-btn{border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:20px;padding:8px 14px;cursor:pointer;font-family:inherit;font-weight:600;}
-.header-card{background:var(--card);border-radius:18px;box-shadow:var(--shadow);padding:22px;margin:16px 0;border:1px solid var(--border);}
-.header-card h1{margin:0 0 4px;font-size:24px;}
-.subtitle{color:var(--text-soft);font-size:14px;margin-bottom:14px;}
-.meta-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;}
-@media(max-width:600px){.meta-grid{grid-template-columns:1fr;}}
-.meta-grid label{font-size:13px;font-weight:600;color:var(--text-soft);display:block;margin-bottom:4px;}
-.meta-grid input{width:100%;padding:9px 10px;border-radius:10px;border:1.5px solid var(--border);background:var(--bg-soft);color:var(--text);font-family:inherit;font-size:14px;}
-.section-title{margin:26px 0 6px;font-size:19px;}
-.section-sub{color:var(--text-soft);font-size:13px;margin-bottom:14px;}
-.task{background:var(--card);border-radius:16px;box-shadow:var(--shadow);padding:18px;margin-bottom:16px;border:1px solid var(--border);}
-.task-head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:6px;}
-.task-head h3{margin:0;font-size:15.5px;}
-.marks-pill{background:var(--accent-soft);color:var(--heading);font-weight:700;font-size:12px;padding:4px 10px;border-radius:20px;white-space:nowrap;}
-.instr{font-size:13.5px;color:var(--text-soft);margin-bottom:4px;}
-.hint{font-size:12.5px;background:var(--card-alt);border-left:3px solid var(--accent);padding:8px 10px;border-radius:8px;margin-top:8px;color:var(--text-soft);}
-table.qtable{width:100%;border-collapse:collapse;margin-top:10px;font-size:13px;}
-table.qtable th,table.qtable td{border:1px solid var(--border);padding:6px 7px;text-align:left;vertical-align:middle;}
-table.qtable th{background:var(--card-alt);}
-input[type=text],select,textarea{width:100%;padding:6px 8px;border-radius:8px;border:1.5px solid var(--border);background:var(--bg-soft);color:var(--text);font-family:inherit;font-size:13.5px;}
-textarea{resize:vertical;min-height:44px;}
-.radio-row{display:flex;gap:10px;flex-wrap:wrap;}
-.radio-row label{display:flex;align-items:center;gap:4px;font-size:12.5px;cursor:pointer;}
-.given{opacity:.75;}
-.given input,.given select{background:var(--accent-soft);font-weight:600;}
-.freeitem{margin-bottom:12px;}
-.freeitem .prompt{font-size:13.5px;margin-bottom:5px;}
-.subfield{margin-bottom:5px;}
-.subfield .flabel{font-size:11.5px;color:var(--text-soft);}
-.result-tag{display:inline-block;font-size:11.5px;font-weight:700;padding:2px 8px;border-radius:10px;margin-left:6px;}
+
+.wrap{max-width:1040px;margin:0 auto;padding:22px 18px;}
+
+.topbar{
+  position:sticky;
+  top:0;
+  z-index:50;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+  padding:13px 20px;
+  border-bottom:1px solid var(--glass-border);
+  background:var(--glass);
+  backdrop-filter:blur(18px) saturate(140%);
+  -webkit-backdrop-filter:blur(18px) saturate(140%);
+  box-shadow:0 7px 25px rgba(0,0,0,.05);
+}
+.brand{font-size:18px;font-weight:700;letter-spacing:.15px;}
+.theme-btn{
+  border:1px solid var(--border);
+  background:var(--glass-strong);
+  color:var(--text);
+  border-radius:999px;
+  padding:10px 17px;
+  cursor:pointer;
+  font-size:15px;
+  font-weight:700;
+  backdrop-filter:blur(10px);
+  transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease;
+}
+.theme-btn:hover{transform:translateY(-2px);border-color:var(--accent);box-shadow:0 8px 22px rgba(238,105,131,.16);}
+
+.header-card{
+  position:relative;
+  overflow:hidden;
+  padding:30px 28px;
+  margin:22px 0 28px;
+  border-radius:24px;
+  border:1px solid var(--glass-border);
+  background:var(--glass);
+  backdrop-filter:blur(22px) saturate(145%);
+  -webkit-backdrop-filter:blur(22px) saturate(145%);
+  box-shadow:var(--shadow);
+}
+.header-card::before{
+  content:"";
+  position:absolute;
+  width:220px;
+  height:220px;
+  top:-135px;
+  right:-115px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(238,105,131,.22),transparent 68%);
+  pointer-events:none;
+}
+.header-card h1{position:relative;margin:0 0 5px;font-size:clamp(31px,5vw,40px);line-height:1.2;font-weight:800;}
+.subtitle{position:relative;color:var(--text-soft);font-size:17px;line-height:1.6;margin-bottom:22px;}
+
+.meta-grid{position:relative;display:grid;grid-template-columns:1fr 1fr 1fr;gap:13px;}
+.meta-grid label{display:block;margin-bottom:6px;color:var(--text-soft);font-size:15px;font-weight:700;}
+.meta-grid input{
+  width:100%;
+  padding:11px 12px;
+  border-radius:12px;
+  border:1.5px solid var(--border);
+  background:var(--field-bg);
+  color:var(--text);
+  font-size:16px;
+  outline:none;
+  transition:border-color .2s,box-shadow .2s;
+}
+.meta-grid input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(238,105,131,.12);}
+
+.section-shell{
+  position:relative;
+  margin:30px 0;
+  padding:24px;
+  border-radius:26px;
+  border:1px solid var(--glass-border);
+  background:var(--glass);
+  backdrop-filter:blur(20px) saturate(135%);
+  -webkit-backdrop-filter:blur(20px) saturate(135%);
+  box-shadow:var(--shadow);
+}
+.section-title{margin:0 0 5px;font-size:28px;line-height:1.25;font-weight:800;}
+.section-sub{color:var(--text-soft);font-size:16px;line-height:1.55;margin-bottom:22px;}
+
+.task{
+  position:relative;
+  overflow:hidden;
+  padding:24px;
+  margin-bottom:20px;
+  border-radius:20px;
+  border:1px solid var(--glass-border);
+  background:var(--task-glass);
+  backdrop-filter:blur(15px) saturate(135%);
+  -webkit-backdrop-filter:blur(15px) saturate(135%);
+  box-shadow:0 10px 30px rgba(0,0,0,.055);
+  transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;
+}
+.task:last-child{margin-bottom:0;}
+.task::before{
+  content:"";
+  position:absolute;
+  width:150px;
+  height:150px;
+  top:-105px;
+  right:-90px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(238,105,131,.18),transparent 68%);
+  pointer-events:none;
+}
+.task:hover{transform:translateY(-3px);border-color:rgba(238,105,131,.32);box-shadow:var(--shadow-hover);}
+.task-head{position:relative;display:flex;justify-content:space-between;align-items:flex-start;gap:14px;margin-bottom:12px;}
+.task-head h3{margin:0;font-size:21px;line-height:1.35;font-weight:800;}
+.marks-pill{flex-shrink:0;background:var(--accent-soft);color:var(--heading);font-weight:800;font-size:13.5px;padding:6px 12px;border-radius:999px;white-space:nowrap;}
+
+.instruction-box{
+  position:relative;
+  margin:10px 0 16px;
+  padding:14px 16px;
+  border-radius:14px;
+  border:1px solid rgba(238,105,131,.16);
+  background:rgba(238,105,131,.055);
+}
+.instr{font-size:16px;line-height:1.55;}
+.instr+.instr{margin-top:7px;}
+.instr-en{color:var(--text);}
+.instr-bn{color:var(--text-soft);font-weight:500;}
+.lang-label{display:inline-block;min-width:44px;margin-right:7px;color:var(--heading);font-size:12px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;}
+
+.hint{font-size:14.5px;background:rgba(238,105,131,.075);border-left:4px solid var(--accent);padding:11px 13px;border-radius:11px;margin-top:12px;color:var(--text-soft);line-height:1.55;}
+
+.qtable-wrap{width:100%;overflow-x:auto;margin-top:14px;border-radius:12px;}
+table.qtable{width:100%;border-collapse:separate;border-spacing:0;font-size:15.5px;min-width:640px;}
+table.qtable th,table.qtable td{border-right:1px solid var(--border);border-bottom:1px solid var(--border);padding:10px 11px;text-align:left;vertical-align:middle;}
+table.qtable th:first-child,table.qtable td:first-child{border-left:1px solid var(--border);}
+table.qtable tr:first-child th{border-top:1px solid var(--border);}
+table.qtable th:first-child{border-top-left-radius:12px;}
+table.qtable th:last-child{border-top-right-radius:12px;}
+table.qtable th{background:rgba(238,105,131,.075);font-weight:700;}
+
+input[type=text],select,textarea{
+  width:100%;
+  padding:9px 11px;
+  border-radius:10px;
+  border:1.5px solid var(--border);
+  background:var(--field-bg);
+  color:var(--text);
+  font-size:15.5px;
+  outline:none;
+  transition:border-color .2s ease,box-shadow .2s ease;
+}
+input[type=text]:focus,select:focus,textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(238,105,131,.11);}
+textarea{resize:vertical;min-height:76px;line-height:1.5;}
+
+.radio-row{display:flex;gap:10px 16px;flex-wrap:wrap;margin-top:5px;}
+.radio-row label{display:flex;align-items:center;gap:6px;font-size:15px;cursor:pointer;}
+.radio-row input[type="radio"]{width:16px;height:16px;accent-color:var(--accent);}
+.given{opacity:.78;}
+.given input,.given select{background:var(--accent-soft);font-weight:700;}
+.freeitem{padding:7px 0;margin-bottom:14px;}
+.freeitem:last-child{margin-bottom:0;}
+.freeitem .prompt{font-size:16px;line-height:1.55;margin-bottom:7px;}
+.subfield{margin-bottom:9px;}
+.subfield .flabel{display:block;font-size:14px;color:var(--text-soft);font-weight:600;margin-bottom:5px;}
+.ungraded-note{font-size:14px;color:var(--text-soft);margin:10px 0 10px;font-style:italic;line-height:1.5;}
+
+.result-tag{display:inline-block;font-size:12.5px;font-weight:800;padding:3px 9px;border-radius:999px;margin-left:7px;}
 .tag-full{background:#d6f5df;color:var(--ok);}
 .tag-partial{background:#fff3cd;color:#8a6500;}
 .tag-zero{background:#ffe0e0;color:var(--bad);}
 [data-theme="dark"] .tag-full{background:#154a2c;}
 [data-theme="dark"] .tag-partial{background:#4a3c10;color:#ffd76b;}
 [data-theme="dark"] .tag-zero{background:#4a1414;}
-.footer-bar{position:sticky;bottom:0;background:var(--card);border-top:1px solid var(--border);padding:14px 16px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;box-shadow:0 -6px 18px rgba(0,0,0,.06);}
-.btn{border:none;border-radius:24px;padding:12px 22px;font-weight:700;font-family:inherit;font-size:14.5px;cursor:pointer;transition:transform .15s;}
+
+.score-banner{
+  text-align:center;
+  margin:30px 0;
+  padding:26px;
+  border-radius:22px;
+  border:1px solid var(--glass-border);
+  background:var(--glass);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  box-shadow:var(--shadow);
+}
+.score-banner .big{font-size:54px;font-weight:800;color:var(--heading);font-family:'Baloo Da 2',cursive;line-height:1.2;margin-top:4px;}
+.tracker{width:100%;border-collapse:collapse;margin-top:18px;font-size:15px;}
+.tracker th,.tracker td{border:1px solid var(--border);padding:9px 10px;text-align:center;}
+.tracker th{background:rgba(238,105,131,.08);}
+
+.footer-bar{
+  position:sticky;
+  bottom:0;
+  z-index:40;
+  background:var(--glass-strong);
+  border-top:1px solid var(--glass-border);
+  padding:15px 16px;
+  display:flex;
+  gap:12px;
+  justify-content:center;
+  flex-wrap:wrap;
+  box-shadow:0 -8px 28px rgba(0,0,0,.08);
+  backdrop-filter:blur(20px) saturate(140%);
+  -webkit-backdrop-filter:blur(20px) saturate(140%);
+}
+.btn{border:none;border-radius:999px;padding:13px 24px;font-weight:800;font-size:16px;cursor:pointer;transition:transform .18s ease,box-shadow .18s ease;}
+.btn:hover{transform:translateY(-2px);}
 .btn:active{transform:scale(.97);}
-.btn-primary{background:var(--accent);color:#fff;}
-.btn-secondary{background:var(--heading);color:#fff;}
-.score-banner{text-align:center;margin:18px 0;}
-.score-banner .big{font-size:44px;font-weight:800;color:var(--heading);font-family:'Baloo Da 2',cursive;}
-.tracker{width:100%;border-collapse:collapse;margin-top:16px;font-size:12.5px;}
-.tracker th,.tracker td{border:1px solid var(--border);padding:6px 8px;text-align:center;}
-.tracker th{background:var(--card-alt);}
-.page-footer{text-align:center;color:var(--text-soft);font-size:12px;padding:26px 0 6px;}
+.btn-primary{background:var(--accent);color:#fff;box-shadow:0 8px 20px rgba(238,105,131,.22);}
+.btn-secondary{background:var(--heading);color:#fff;box-shadow:0 8px 20px rgba(133,14,53,.17);}
+.page-footer{text-align:center;color:var(--text-soft);font-size:14px;padding:30px 0 8px;}
 #resultCardHolder{position:fixed;left:-9999px;top:0;}
-.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;align-items:center;justify-content:center;z-index:100;}
-.modal-box{background:var(--card);border-radius:16px;padding:22px;max-width:340px;width:90%;box-shadow:var(--shadow);}
-.modal-box h3{margin-top:0;}
-.modal-box input{margin-bottom:10px;}
-.modal-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:10px;}
-.ungraded-note{font-size:11.5px;color:var(--text-soft);margin:4px 0 8px;font-style:italic;}
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.50);display:none;align-items:center;justify-content:center;z-index:100;padding:20px;backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);}
+.modal-box{background:var(--glass-strong);border:1px solid var(--glass-border);border-radius:22px;padding:26px;max-width:380px;width:90%;box-shadow:0 24px 60px rgba(0,0,0,.28);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);}
+.modal-box h3{margin:0 0 5px;font-size:24px;}
+.modal-box input{margin-bottom:12px;}
+.modal-actions{display:flex;gap:9px;justify-content:flex-end;margin-top:12px;}
+
+@media(max-width:700px){
+  body{font-size:16px;}
+  .wrap{padding:14px 12px;}
+  .topbar{padding:11px 13px;}
+  .brand{font-size:14px;line-height:1.25;}
+  .theme-btn{padding:8px 12px;font-size:14px;}
+  .header-card{padding:24px 19px;border-radius:20px;}
+  .header-card h1{font-size:30px;}
+  .subtitle{font-size:15.5px;}
+  .meta-grid{grid-template-columns:1fr;}
+  .section-shell{padding:17px 13px;border-radius:20px;}
+  .section-title{font-size:24px;}
+  .section-sub{font-size:15px;}
+  .task{padding:19px 15px;border-radius:17px;}
+  .task-head h3{font-size:19px;}
+  .marks-pill{font-size:12px;padding:5px 9px;}
+  .instruction-box{padding:12px;}
+  .instr{font-size:15px;}
+  .freeitem .prompt{font-size:15.5px;}
+  input[type=text],select,textarea{font-size:16px;}
+  .btn{width:100%;max-width:430px;font-size:15px;}
+}
 </style>
 </head>
 <body data-theme="light">
@@ -119,10 +358,10 @@ textarea{resize:vertical;min-height:44px;}
 <div class="modal-overlay" id="saveModal">
   <div class="modal-box">
     <h3>Confirm details</h3>
-    <p style="font-size:13px;color:var(--text-soft);">ছবি তৈরির আগে নাম ও তারিখ দিন।</p>
-    <label style="font-size:13px;">Name</label>
+    <p style="font-size:15px;color:var(--text-soft);">ছবি তৈরির আগে নাম ও তারিখ দিন।</p>
+    <label style="font-size:15px;">Name</label>
     <input type="text" id="modalName" placeholder="তোমার নাম">
-    <label style="font-size:13px;">Date</label>
+    <label style="font-size:15px;">Date</label>
     <input type="date" id="modalDate">
     <div class="modal-actions">
       <button class="btn" style="background:var(--border);color:var(--text);" onclick="closeSaveModal()">বাতিল</button>
@@ -141,6 +380,7 @@ const SECTIONS = [
 
   { id:'t1', title:'TASK 1 · IDENTIFY THE VERB TYPE', marks:5, type:'fields',
     instr:'Write the verb, then its type: T=Transitive, I=Intransitive, A=Auxiliary, P=Phrasal.',
+    instrBn:'প্রতিটি sentence-এর verb-টি লিখো, তারপর তার type নির্বাচন করো: T = Transitive, I = Intransitive, A = Auxiliary, P = Phrasal Verb।',
     fieldNames:['The Verb','Type'],
     items:[
       {label:'1. The farmer harvested the paddy last week.', fields:[{type:'text',correct:['harvested']},{type:'radio',options:['T','I','A','P'],correct:'T'}]},
@@ -162,6 +402,7 @@ const SECTIONS = [
 
   { id:'t2', title:'TASK 2 · FIND THE OBJECT', marks:4, type:'fields',
     instr:'Write the verb, then the object. If none, write "No Object".',
+    instrBn:'প্রথমে verb-টি লিখো, এরপর তার object লিখো। যদি কোনো object না থাকে, তাহলে "No Object" লিখবে।',
     fieldNames:['Verb','Object / No Object'],
     items:[
       {label:'1. Rina opened the window.', fields:[{type:'text',correct:['opened']},{type:'text',correct:['the window','window']}]},
@@ -178,6 +419,7 @@ const SECTIONS = [
 
   { id:'t3', title:'TASK 3 · SAME VERB, DIFFERENT JOB', marks:4, type:'fields',
     instr:'Mark T if the verb takes an Object, I if it does not.',
+    instrBn:'Verb-এর পরে object থাকলে T এবং object না থাকলে I নির্বাচন করো।',
     fieldNames:['T or I'],
     items:[
       {label:'1a. The cook boiled the water.', fields:[{type:'radio',options:['T','I'],correct:'T'}]},
@@ -200,6 +442,7 @@ const SECTIONS = [
 
   { id:'t4', title:'TASK 4 · AUXILIARY OR MAIN VERB?', marks:4, type:'fields',
     instr:'Write the auxiliary (helping) verb and the main verb separately.',
+    instrBn:'প্রতিটি sentence-এর Auxiliary/Helping Verb এবং Main Verb আলাদাভাবে লিখো।',
     fieldNames:['Auxiliary Verb','Main Verb'],
     items:[
       {label:'1. She is studying for the IELTS exam.', fields:[{type:'text',correct:['is']},{type:'text',correct:['studying']}]},
@@ -216,6 +459,7 @@ const SECTIONS = [
 
   { id:'t5', title:'TASK 5 · PHRASAL VERB MEANING', marks:3, type:'match',
     instr:'Match each phrasal verb with its meaning.',
+    instrBn:'প্রতিটি phrasal verb-এর সঙ্গে তার সঠিক অর্থটি match করো।',
     options:['to continue','to submit','to leave the ground (a plane)','to search for information','to tolerate','to stop working (a machine)','to complete a form','to have a friendly relationship','to refuse or reject','to establish or start something'],
     items:[
       {label:'carry on', correct:'to continue'},
@@ -237,10 +481,12 @@ const SECTIONS = [
 
   { id:'t6', title:'TASK 6 · ADD A SUITABLE ADJECTIVE', marks:3, type:'adjcheck',
     instr:'Put a suitable adjective in front of each noun, then use the pair in a short phrase. (Auto-check: your phrase must include the adjective you wrote.)',
+    instrBn:'প্রতিটি noun-এর আগে একটি উপযুক্ত adjective লেখো। এরপর adjective + noun ব্যবহার করে একটি ছোট phrase তৈরি করো। Auto-check-এর জন্য phrase-এ তোমার লেখা adjective-টি অবশ্যই থাকতে হবে।',
     items:['Market','Road','Mother','Answer','Village','Weather','Student','Classroom','Bag','Decision','Food','Friend','Rickshaw','Result','Morning'] },
 
   { id:'t7', title:'TASK 7 · FIND THE ADJECTIVE', marks:6, type:'fields',
     instr:'Write the adjective, then which noun/pronoun it describes.',
+    instrBn:'প্রতিটি sentence থেকে adjective-টি লিখো, এরপর adjective-টি কোন noun বা pronoun-কে describe করছে সেটি লিখো।',
     fieldNames:['Adjective','Describes'],
     items:[
       {label:'1. The hungry child asked for food.', fields:[{type:'text',correct:['hungry']},{type:'text',correct:['child']}]},
@@ -259,6 +505,7 @@ const SECTIONS = [
 
   { id:'t8', title:'TASK 8 · POSITION OF ADJECTIVES', marks:6, type:'fields',
     instr:'A=Adjective+Noun · B=S+V+Adjective · C=S+V+Object+Adjective · D=Pronoun+Adjective · E=The+Adjective (a group)',
+    instrBn:'প্রতিটি sentence-এর adjective structure চিহ্নিত করে সঠিক code নির্বাচন করো: A = Adjective + Noun, B = S + V + Adjective, C = S + V + Object + Adjective, D = Pronoun + Adjective, E = The + Adjective (একটি group বোঝাতে)।',
     fieldNames:['Structure Code'],
     items:[
       {label:'1. She wore a golden saree at the wedding.', fields:[{type:'radio',options:['A','B','C','D','E'],correct:'A'}]},
@@ -280,6 +527,7 @@ const SECTIONS = [
 
   { id:'t9', title:'TASK 9 · COMPLETE WITH THE CORRECT ADJECTIVE', marks:5, type:'fillblank',
     instr:'Word bank: polite · serious · strict · generous · helpful · narrow · crowded · expensive · tired · important (use each once).',
+    instrBn:'Word bank থেকে উপযুক্ত adjective বেছে প্রতিটি শূন্যস্থান পূরণ করো। প্রতিটি word একবার করে ব্যবহার করবে।',
     items:[
       {label:'1. The lane behind our school is very ____, so a car cannot pass.', correct:['narrow']},
       {label:'2. Our headmaster is ____ about punctuality; nobody dares to come late.', correct:['strict']},
@@ -298,6 +546,7 @@ const SECTIONS = [
 
   { id:'t10', title:'TASK 10 · FIND THE ADVERB', marks:6, type:'fields',
     instr:'Write the adverb, then what it modifies (a verb, adjective, adverb, or the whole sentence).',
+    instrBn:'প্রতিটি sentence-এর adverb-টি লিখো, এরপর সেটি কী modify করছে তা লিখো—Verb, Adjective, Adverb অথবা পুরো Sentence।',
     fieldNames:['Adverb','Modifies'],
     items:[
       {label:'1. The peon opened the gate slowly.', fields:[{type:'text',correct:['slowly']},{type:'text',correct:['opened']}]},
@@ -316,6 +565,7 @@ const SECTIONS = [
 
   { id:'t11', title:'TASK 11 · TYPE OF ADVERB', marks:6, type:'fields',
     instr:'M=Manner T=Time P=Place F=Frequency D=Degree S=Sentence Adverb C=Connecting Adverb',
+    instrBn:'প্রথমে adverb-টি লিখো, তারপর তার type নির্বাচন করো: M = Manner, T = Time, P = Place, F = Frequency, D = Degree, S = Sentence Adverb, C = Connecting Adverb।',
     fieldNames:['Adverb','Type'],
     items:[
       {label:'1. The students worked quietly.', fields:[{type:'text',correct:['quietly']},{type:'radio',options:['M','T','P','F','D','S','C'],correct:'M'}]},
@@ -337,6 +587,7 @@ const SECTIONS = [
 
   { id:'t12', title:'TASK 12 · ADVERB OR ADJECTIVE?', marks:5, type:'fields',
     instr:'Choose the correct form.',
+    instrBn:'প্রতিটি sentence-এর জন্য Adjective অথবা Adverb-এর সঠিক form নির্বাচন করো।',
     fieldNames:['Correct Answer'],
     items:[
       {label:'1. She speaks English (fluent / fluently).', fields:[{type:'radio',options:['fluent','fluently'],correct:'fluently'}]},
@@ -355,6 +606,7 @@ const SECTIONS = [
 
   { id:'t13', title:'TASK 13 · CONNECTING ADVERBS', marks:3, type:'freetext',
     instr:'Join or begin each pair using one word from the bank: therefore · however · then · moreover · fortunately · honestly · obviously · finally. (Auto-check: your sentence must contain the required connector.)',
+    instrBn:'Word bank থেকে উপযুক্ত connecting/sentence adverb ব্যবহার করে প্রতিটি sentence pair যুক্ত করো অথবা নির্দেশনা অনুযায়ী sentence শুরু করো। Auto-check-এর জন্য প্রয়োজনীয় connector-টি তোমার sentence-এ অবশ্যই থাকতে হবে।',
     items:[
       {prompt:'I studied for six hours. I could not finish the syllabus.', keyword:'however', correct:['I studied for six hours; however, I could not finish the syllabus.']},
       {prompt:'The main road was blocked. We took another route.', keyword:'therefore', correct:['The main road was blocked; therefore, we took another route.']},
@@ -371,6 +623,7 @@ const SECTIONS = [
 
   { id:'t14', title:'TASK 14 · COMPLETE THE WORD FAMILY TABLE', marks:15, type:'wordfamily',
     instr:'Fill in the missing forms. A dash (—) means there is no common word for that form.',
+    instrBn:'Word family table-এর missing form-গুলো পূরণ করো। কোনো ঘরে dash (—) থাকলে বুঝবে ওই form-এর প্রচলিত কোনো শব্দ নেই।',
     cols:['Noun Form','Verb Form','Adjective Form','Adverb Form'],
     rows:[
       {vals:['Beauty','Beautify','Beautiful','Beautifully'], given:[true,false,true,false]},
@@ -389,6 +642,7 @@ const SECTIONS = [
 
   { id:'t15', title:'TASK 15 · USE THE WORD FORMS', marks:5, type:'formcheck',
     instr:'Write two sentences for each family, using two different forms of the word. (Auto-check: looks for two different word-forms across your sentences.)',
+    instrBn:'প্রতিটি word family থেকে দুটি ভিন্ন form ব্যবহার করে দুটি sentence লেখো। Auto-check তোমার দুটি sentence-এ অন্তত দুটি আলাদা word form খুঁজবে।',
     items:[
       {label:'success / succeed / successful / successfully', forms:['success','succeed','successful','successfully']},
       {label:'care / careful / carefully', forms:['care','careful','carefully']},
@@ -405,6 +659,7 @@ const SECTIONS = [
 
   { id:'t16', title:'TASK 16 · IDENTIFY THE WORD CLASS', marks:10, type:'fields',
     instr:'Is the bold word a Noun, Verb, Adjective or Adverb?',
+    instrBn:'প্রতিটি sentence-এর bold word-টি Noun, Verb, Adjective নাকি Adverb—সঠিক word class নির্বাচন করো।',
     fieldNames:['Word Class'],
     items:[
       {label:'1. The student answered politely.', fields:[{type:'radio',options:['Noun','Verb','Adjective','Adverb'],correct:'Noun'}]},
@@ -431,6 +686,7 @@ const SECTIONS = [
 
   { id:'t17', title:'TASK 17 · CORRECT THE MISTAKE', marks:7, type:'freetext',
     instr:'Each sentence has one mistake. Rewrite the correct sentence.',
+    instrBn:'প্রতিটি sentence-এ একটি grammatical mistake আছে। ভুলটি ঠিক করে সম্পূর্ণ sentence-টি আবার লেখো।',
     items:[
       {prompt:'She sings very beautiful.', correct:['She sings very beautifully.']},
       {prompt:'The children is playing outside.', correct:['The children are playing outside.']},
@@ -448,6 +704,7 @@ const SECTIONS = [
 
   { id:'t18', title:'TASK 18 · IELTS SENTENCE UPGRADE', marks:3, type:'upgradecheck',
     instr:'Improve each sentence by adding suitable adjectives and adverbs. (Auto-check: your sentence should be meaningfully longer than the original.)',
+    instrBn:'উপযুক্ত adjective এবং adverb যোগ করে প্রতিটি sentence-কে আরও উন্নত ও বিস্তারিত করো। Auto-check-এর জন্য তোমার sentence-টি original sentence-এর তুলনায় অর্থপূর্ণভাবে বড় হতে হবে।',
     items:[
       {label:'The boy read a book.'},
       {label:'The teacher explained the topic.'},
@@ -465,14 +722,20 @@ const SECTIONS = [
 const root = document.getElementById('renderRoot');
 let outHtml = '';
 SECTIONS.forEach(sec=>{
-  outHtml += `<h2 class="section-title">${sec.title}</h2><div class="section-sub">${sec.sub}</div>`;
+  outHtml += `<section class="section-shell"><h2 class="section-title">${sec.title}</h2><div class="section-sub">${sec.sub}</div>`;
   sec.tasks.forEach(t=>{
     outHtml += `<div class="task" id="${t.id}"><div class="task-head"><h3>${t.title}</h3><span class="marks-pill">${t.marks} marks</span></div>`;
-    if(t.instr) outHtml += `<div class="instr">${t.instr}</div>`;
+    if(t.instr || t.instrBn){
+      outHtml += `<div class="instruction-box">`;
+      if(t.instr) outHtml += `<div class="instr instr-en"><span class="lang-label">EN</span>${t.instr}</div>`;
+      if(t.instrBn) outHtml += `<div class="instr instr-bn"><span class="lang-label">বাংলা</span>${t.instrBn}</div>`;
+      outHtml += `</div>`;
+    }
     outHtml += renderTask(t);
     if(t.hint) outHtml += `<div class="hint">💡 ${t.hint}</div>`;
-    outHtml += `<div id="${t.id}_result" style="margin-top:8px;font-size:13px;font-weight:600;"></div></div>`;
+    outHtml += `<div id="${t.id}_result" style="margin-top:11px;font-size:14.5px;font-weight:700;"></div></div>`;
   });
+  outHtml += `</section>`;
 });
 root.innerHTML = outHtml;
 
@@ -541,6 +804,7 @@ function renderMatch(t){
     h+=`</select></td></tr>`;
   });
   h+='</table>';
+  h='<div class="qtable-wrap">'+h+'</div>';
   if(t.extraNote){
     h+=`<div class="ungraded-note">${t.extraNote}</div>`;
     for(let k=0;k<t.extraCount;k++){ h+=`<textarea id="${t.id}_extra${k}" placeholder="Sentence ${k+1} (optional, not scored)" style="margin-bottom:6px;"></textarea>`; }
@@ -575,7 +839,7 @@ function renderWordfamily(t){
     });
     h+=`</tr>`;
   });
-  return h+'</table>';
+  return '<div class="qtable-wrap">'+h+'</table></div>';
 }
 
 function renderFormcheck(t){
