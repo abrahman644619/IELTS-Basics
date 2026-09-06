@@ -8,78 +8,236 @@
 <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Baloo+Da+2:wght@500;600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <style>
-html,body[data-theme="light"]{
-  --bg:#FCF5EE; --bg-soft:#FFF9F4; --card:#FFFFFF; --card-alt:#FFF3EC;
+:root{
+  --accent:#EE6983;
+  --accent-strong:#D94F70;
+  --ok:#2e8b57;
+  --bad:#c0392b;
+}
+body[data-theme="light"]{
+  --bg:#FCF5EE; --bg-soft:#FFF9F4;
   --text:#402028; --text-soft:#7a4a56; --heading:#850E35;
-  --accent:#EE6983; --accent-soft:#FFC4C4; --border:#FFD9D9;
-  --ok:#2e8b57; --bad:#c0392b; --shadow:0 8px 24px rgba(133,14,53,.08);
+  --accent-soft:#FFC4C4; --border:#FFD9D9;
+  --glass:rgba(255,255,255,.68); --glass-strong:rgba(255,255,255,.84);
+  --task-glass:rgba(255,255,255,.58); --glass-border:rgba(255,255,255,.82);
+  --field-bg:rgba(255,249,244,.90);
+  --shadow:0 16px 40px rgba(133,14,53,.09);
+  --shadow-hover:0 22px 52px rgba(133,14,53,.14);
 }
 body[data-theme="dark"]{
-  --bg:#2A0A16; --bg-soft:#33101F; --card:#3B1224; --card-alt:#451529;
+  --bg:#220812; --bg-soft:#33101F;
   --text:#FCEFEF; --text-soft:#E9B9C4; --heading:#FFC4C4;
-  --accent:#EE6983; --accent-soft:#850E35; --border:#5C1A34;
-  --ok:#6fcf97; --bad:#ff8a80; --shadow:0 8px 24px rgba(0,0,0,.35);
+  --accent-soft:#850E35; --border:#5C1A34;
+  --glass:rgba(59,18,36,.62); --glass-strong:rgba(59,18,36,.80);
+  --task-glass:rgba(69,21,41,.56); --glass-border:rgba(255,196,196,.13);
+  --field-bg:rgba(42,10,22,.72);
+  --ok:#6fcf97; --bad:#ff8a80;
+  --shadow:0 18px 46px rgba(0,0,0,.32);
+  --shadow-hover:0 24px 56px rgba(0,0,0,.43);
 }
 *{box-sizing:border-box;}
-body{margin:0;background:var(--bg);color:var(--text);font-family:'Hind Siliguri',sans-serif;transition:background .3s,color .3s;padding-bottom:60px;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0; min-height:100vh; padding-bottom:88px;
+  color:var(--text); font-family:'Hind Siliguri',sans-serif;
+  font-size:17px; line-height:1.58;
+  transition:background .35s ease,color .35s ease;
+  background:
+    radial-gradient(circle at 8% 5%,rgba(238,105,131,.18),transparent 27%),
+    radial-gradient(circle at 95% 31%,rgba(133,14,53,.10),transparent 29%),
+    var(--bg);
+}
+body[data-theme="dark"]{
+  background:
+    radial-gradient(circle at 8% 5%,rgba(238,105,131,.14),transparent 28%),
+    radial-gradient(circle at 92% 34%,rgba(133,14,53,.20),transparent 30%),
+    var(--bg);
+}
+button,input,select,textarea{font-family:inherit;}
 h1,h2,h3,.brand{font-family:'Baloo Da 2',cursive;color:var(--heading);}
-.wrap{max-width:900px;margin:0 auto;padding:16px;}
-.topbar{position:sticky;top:0;z-index:50;background:var(--bg);padding:10px 16px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border);}
-.brand{font-size:15px;}
-.theme-btn{border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:20px;padding:8px 14px;cursor:pointer;font-family:inherit;font-weight:600;}
-.header-card{background:var(--card);border-radius:18px;box-shadow:var(--shadow);padding:22px;margin:16px 0;border:1px solid var(--border);}
-.header-card h1{margin:0 0 4px;font-size:24px;}
-.subtitle{color:var(--text-soft);font-size:14px;margin-bottom:14px;}
-.meta-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;}
-@media(max-width:600px){.meta-grid{grid-template-columns:1fr;}}
-.meta-grid label{font-size:13px;font-weight:600;color:var(--text-soft);display:block;margin-bottom:4px;}
-.meta-grid input{width:100%;padding:9px 10px;border-radius:10px;border:1.5px solid var(--border);background:var(--bg-soft);color:var(--text);font-family:inherit;font-size:14px;}
-.section-title{margin:26px 0 6px;font-size:19px;}
-.section-sub{color:var(--text-soft);font-size:13px;margin-bottom:14px;}
-.task{background:var(--card);border-radius:16px;box-shadow:var(--shadow);padding:18px;margin-bottom:16px;border:1px solid var(--border);}
-.task-head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:6px;}
-.task-head h3{margin:0;font-size:15.5px;}
-.marks-pill{background:var(--accent-soft);color:var(--heading);font-weight:700;font-size:12px;padding:4px 10px;border-radius:20px;white-space:nowrap;}
-.instr{font-size:13.5px;color:var(--text-soft);margin-bottom:4px;}
-.hint{font-size:12.5px;background:var(--card-alt);border-left:3px solid var(--accent);padding:8px 10px;border-radius:8px;margin-top:8px;color:var(--text-soft);}
-table.qtable{width:100%;border-collapse:collapse;margin-top:10px;font-size:13px;}
-table.qtable th,table.qtable td{border:1px solid var(--border);padding:6px 7px;text-align:left;vertical-align:middle;}
-table.qtable th{background:var(--card-alt);}
-input[type=text],select,textarea{width:100%;padding:6px 8px;border-radius:8px;border:1.5px solid var(--border);background:var(--bg-soft);color:var(--text);font-family:inherit;font-size:13.5px;}
-textarea{resize:vertical;min-height:44px;}
-.radio-row{display:flex;gap:10px;flex-wrap:wrap;}
-.radio-row label{display:flex;align-items:center;gap:4px;font-size:12.5px;cursor:pointer;}
-.given{opacity:.75;}
-.given input,.given select,.given td{background:var(--accent-soft);font-weight:600;}
-.freeitem{margin-bottom:12px;}
-.freeitem .prompt{font-size:13.5px;margin-bottom:5px;}
-.subfield{margin-bottom:5px;}
-.subfield .flabel{font-size:11.5px;color:var(--text-soft);}
-.result-tag{display:inline-block;font-size:11.5px;font-weight:700;padding:2px 8px;border-radius:10px;margin-left:6px;}
+.wrap{max-width:980px;margin:0 auto;padding:22px 18px;}
+
+/* Topbar */
+.topbar{
+  position:sticky; top:0; z-index:50;
+  display:flex; justify-content:space-between; align-items:center; gap:15px;
+  padding:13px 20px; border-bottom:1px solid var(--glass-border);
+  background:var(--glass); backdrop-filter:blur(18px) saturate(140%);
+  -webkit-backdrop-filter:blur(18px) saturate(140%);
+  box-shadow:0 7px 25px rgba(0,0,0,.05);
+}
+.brand{font-size:18px;font-weight:700;letter-spacing:.2px;}
+.theme-btn{
+  border:1px solid var(--border); background:var(--glass-strong); color:var(--text);
+  border-radius:999px; padding:10px 17px; cursor:pointer; font-size:15px; font-weight:700;
+  backdrop-filter:blur(10px); transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease;
+}
+.theme-btn:hover{transform:translateY(-2px);border-color:var(--accent);box-shadow:0 8px 22px rgba(238,105,131,.16);}
+
+/* Header */
+.header-card{
+  position:relative; overflow:hidden; padding:30px 28px; margin:22px 0 28px;
+  border-radius:24px; border:1px solid var(--glass-border); background:var(--glass);
+  backdrop-filter:blur(22px) saturate(145%); -webkit-backdrop-filter:blur(22px) saturate(145%);
+  box-shadow:var(--shadow);
+}
+.header-card::before{
+  content:""; position:absolute; width:220px; height:220px; top:-135px; right:-115px;
+  border-radius:50%; background:radial-gradient(circle,rgba(238,105,131,.22),transparent 68%); pointer-events:none;
+}
+.header-card h1{position:relative;margin:0 0 5px;font-size:clamp(31px,5vw,40px);line-height:1.2;font-weight:800;}
+.subtitle{position:relative;color:var(--text-soft);font-size:17px;line-height:1.6;margin-bottom:22px;}
+.meta-grid{position:relative;display:grid;grid-template-columns:1fr 1fr 1fr;gap:13px;}
+.meta-grid label{display:block;margin-bottom:6px;color:var(--text-soft);font-size:15px;font-weight:700;}
+.meta-grid input{
+  width:100%; padding:11px 12px; border-radius:12px; border:1.5px solid var(--border);
+  background:var(--field-bg); color:var(--text); font-size:16px; outline:none;
+  transition:border-color .2s,box-shadow .2s;
+}
+.meta-grid input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(238,105,131,.12);}
+
+/* Glass section shell */
+.section-shell{
+  position:relative; margin:30px 0; padding:24px; border-radius:26px;
+  border:1px solid var(--glass-border); background:var(--glass);
+  backdrop-filter:blur(20px) saturate(135%); -webkit-backdrop-filter:blur(20px) saturate(135%);
+  box-shadow:var(--shadow);
+}
+.section-title{margin:0 0 5px;font-size:28px;line-height:1.25;font-weight:800;}
+.section-sub{color:var(--text-soft);font-size:16px;line-height:1.6;margin-bottom:22px;}
+
+/* Task cards */
+.task{
+  position:relative; overflow:hidden; padding:24px; margin-bottom:20px;
+  border-radius:20px; border:1px solid var(--glass-border); background:var(--task-glass);
+  backdrop-filter:blur(15px) saturate(135%); -webkit-backdrop-filter:blur(15px) saturate(135%);
+  box-shadow:0 10px 30px rgba(0,0,0,.055);
+  transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;
+}
+.task:last-child{margin-bottom:0;}
+.task::before{
+  content:""; position:absolute; width:150px; height:150px; top:-105px; right:-90px;
+  border-radius:50%; background:radial-gradient(circle,rgba(238,105,131,.18),transparent 68%); pointer-events:none;
+}
+.task:hover{transform:translateY(-3px);border-color:rgba(238,105,131,.32);box-shadow:var(--shadow-hover);}
+.task-head{position:relative;display:flex;justify-content:space-between;align-items:flex-start;gap:14px;margin-bottom:12px;}
+.task-head h3{margin:0;font-size:21px;line-height:1.35;font-weight:800;}
+.marks-pill{flex-shrink:0;background:var(--accent-soft);color:var(--heading);font-weight:800;font-size:13.5px;padding:6px 12px;border-radius:999px;white-space:nowrap;}
+
+/* Bilingual instructions */
+.instruction-box{
+  position:relative; margin:10px 0 16px; padding:14px 16px; border-radius:14px;
+  border:1px solid rgba(238,105,131,.17); background:rgba(238,105,131,.055);
+}
+.instr{font-size:16px;line-height:1.58;}
+.instr+.instr{margin-top:7px;}
+.instr-en{color:var(--text);}
+.instr-bn{color:var(--text-soft);font-weight:500;}
+.lang-label{display:inline-block;min-width:46px;margin-right:7px;color:var(--heading);font-size:12px;font-weight:800;letter-spacing:.45px;text-transform:uppercase;}
+.hint{font-size:14.5px;background:rgba(238,105,131,.075);border-left:4px solid var(--accent);padding:11px 13px;border-radius:11px;margin-top:12px;color:var(--text-soft);line-height:1.55;}
+
+/* Tables */
+table.qtable{width:100%;border-collapse:separate;border-spacing:0;margin-top:14px;overflow:hidden;border-radius:12px;font-size:15.5px;}
+table.qtable th,table.qtable td{border-right:1px solid var(--border);border-bottom:1px solid var(--border);padding:10px 11px;text-align:left;vertical-align:middle;}
+table.qtable th:first-child,table.qtable td:first-child{border-left:1px solid var(--border);}
+table.qtable tr:first-child th{border-top:1px solid var(--border);}
+table.qtable th:first-child{border-top-left-radius:12px;}
+table.qtable th:last-child{border-top-right-radius:12px;}
+table.qtable th{background:rgba(238,105,131,.075);font-weight:700;}
+
+/* Fields */
+input[type=text],select,textarea{
+  width:100%; padding:9px 11px; border-radius:10px; border:1.5px solid var(--border);
+  background:var(--field-bg); color:var(--text); font-size:15.5px; outline:none;
+  transition:border-color .2s ease,box-shadow .2s ease;
+}
+input[type=text]:focus,select:focus,textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(238,105,131,.11);}
+textarea{resize:vertical;min-height:72px;line-height:1.52;}
+.radio-row{display:flex;gap:10px 16px;flex-wrap:wrap;margin-top:5px;}
+.radio-row label{display:flex;align-items:center;gap:6px;font-size:15px;cursor:pointer;}
+.radio-row input[type=radio]{width:16px;height:16px;accent-color:var(--accent);}
+.given{opacity:.78;}
+.given input,.given select,.given td{background:var(--accent-soft);font-weight:700;}
+.freeitem{padding:7px 0;margin-bottom:14px;}
+.freeitem:last-child{margin-bottom:0;}
+.freeitem .prompt{font-size:16px;line-height:1.55;margin-bottom:7px;}
+.subfield{margin-bottom:9px;}
+.subfield .flabel{display:block;margin-bottom:5px;font-size:14px;font-weight:600;color:var(--text-soft);}
+
+/* Results */
+.result-tag{display:inline-block;font-size:12.5px;font-weight:800;padding:3px 9px;border-radius:999px;margin-left:7px;}
 .tag-full{background:#d6f5df;color:var(--ok);}
 .tag-partial{background:#fff3cd;color:#8a6500;}
 .tag-zero{background:#ffe0e0;color:var(--bad);}
 [data-theme="dark"] .tag-full{background:#154a2c;}
 [data-theme="dark"] .tag-partial{background:#4a3c10;color:#ffd76b;}
 [data-theme="dark"] .tag-zero{background:#4a1414;}
-.footer-bar{position:sticky;bottom:0;background:var(--card);border-top:1px solid var(--border);padding:14px 16px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;box-shadow:0 -6px 18px rgba(0,0,0,.06);}
-.btn{border:none;border-radius:24px;padding:12px 22px;font-weight:700;font-family:inherit;font-size:14.5px;cursor:pointer;transition:transform .15s;}
+.score-banner{
+  text-align:center; margin:30px 0; padding:26px; border-radius:22px;
+  border:1px solid var(--glass-border); background:var(--glass);
+  backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); box-shadow:var(--shadow);
+}
+.score-banner .big{margin-top:4px;font-size:54px;font-weight:800;color:var(--heading);font-family:'Baloo Da 2',cursive;line-height:1.2;}
+.tracker{width:100%;border-collapse:collapse;margin-top:18px;font-size:15px;}
+.tracker th,.tracker td{border:1px solid var(--border);padding:9px 10px;text-align:center;}
+.tracker th{background:rgba(238,105,131,.08);}
+
+/* Oral drill card */
+.oral-card{
+  position:relative; overflow:hidden; background:var(--task-glass); border:1px solid var(--glass-border);
+  border-left:4px solid var(--accent); border-radius:20px; padding:20px 22px; margin:28px 0;
+  font-size:16px; line-height:1.65; color:var(--text-soft); box-shadow:var(--shadow);
+  backdrop-filter:blur(16px) saturate(135%); -webkit-backdrop-filter:blur(16px) saturate(135%);
+}
+.oral-card b{color:var(--heading);font-size:18px;}
+.oral-card .oral-bn{display:block;margin-top:7px;}
+
+/* Sticky actions */
+.footer-bar{
+  position:sticky; bottom:0; z-index:40; display:flex; gap:12px; justify-content:center; flex-wrap:wrap;
+  padding:15px 16px; border-top:1px solid var(--glass-border); background:var(--glass-strong);
+  backdrop-filter:blur(20px) saturate(140%); -webkit-backdrop-filter:blur(20px) saturate(140%);
+  box-shadow:0 -8px 28px rgba(0,0,0,.08);
+}
+.btn{border:none;border-radius:999px;padding:13px 24px;font-weight:800;font-size:16px;cursor:pointer;transition:transform .18s ease,box-shadow .18s ease;}
+.btn:hover{transform:translateY(-2px);}
 .btn:active{transform:scale(.97);}
-.btn-primary{background:var(--accent);color:#fff;}
-.btn-secondary{background:var(--heading);color:#fff;}
-.score-banner{text-align:center;margin:18px 0;}
-.score-banner .big{font-size:44px;font-weight:800;color:var(--heading);font-family:'Baloo Da 2',cursive;}
-.tracker{width:100%;border-collapse:collapse;margin-top:16px;font-size:12.5px;}
-.tracker th,.tracker td{border:1px solid var(--border);padding:6px 8px;text-align:center;}
-.tracker th{background:var(--card-alt);}
-.page-footer{text-align:center;color:var(--text-soft);font-size:12px;padding:26px 0 6px;}
+.btn-primary{background:var(--accent);color:#fff;box-shadow:0 8px 20px rgba(238,105,131,.22);}
+.btn-secondary{background:var(--heading);color:#fff;box-shadow:0 8px 20px rgba(133,14,53,.17);}
+.page-footer{text-align:center;color:var(--text-soft);font-size:14px;padding:30px 0 8px;}
+
+/* Modal */
 #resultCardHolder{position:fixed;left:-9999px;top:0;}
-.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;align-items:center;justify-content:center;z-index:100;}
-.modal-box{background:var(--card);border-radius:16px;padding:22px;max-width:340px;width:90%;box-shadow:var(--shadow);}
-.modal-box h3{margin-top:0;}
-.modal-box input{margin-bottom:10px;}
-.modal-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:10px;}
-.oral-card{background:var(--card-alt);border:1.5px dashed var(--accent);border-radius:14px;padding:18px;margin:16px 0;font-size:13.5px;}
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.50);display:none;align-items:center;justify-content:center;z-index:100;padding:20px;backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);}
+.modal-box{background:var(--glass-strong);border:1px solid var(--glass-border);border-radius:22px;padding:26px;max-width:380px;width:90%;box-shadow:0 24px 60px rgba(0,0,0,.28);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);}
+.modal-box h3{margin:0 0 5px;font-size:24px;}
+.modal-box input{margin-bottom:12px;}
+.modal-actions{display:flex;gap:9px;justify-content:flex-end;margin-top:12px;}
+
+@media(max-width:700px){
+  body{font-size:16px;}
+  .wrap{padding:14px 12px;}
+  .topbar{padding:11px 13px;}
+  .brand{font-size:15px;line-height:1.25;}
+  .theme-btn{padding:8px 12px;font-size:14px;}
+  .header-card{padding:24px 19px;border-radius:20px;}
+  .header-card h1{font-size:30px;}
+  .subtitle{font-size:15.5px;}
+  .meta-grid{grid-template-columns:1fr;}
+  .section-shell{padding:17px 13px;border-radius:20px;}
+  .section-title{font-size:24px;}
+  .section-sub{font-size:15px;}
+  .task{padding:19px 15px;border-radius:17px;}
+  .task-head h3{font-size:19px;}
+  .marks-pill{font-size:12px;padding:5px 9px;}
+  .instruction-box{padding:12px;}
+  .instr{font-size:15px;}
+  .freeitem .prompt{font-size:15.5px;}
+  table.qtable{display:block;overflow-x:auto;white-space:normal;font-size:14.5px;}
+  input[type=text],select,textarea{font-size:16px;}
+  .btn{width:100%;max-width:420px;font-size:15px;}
+  .oral-card{padding:17px 15px;font-size:15px;}
+}
 </style>
 </head>
 <body data-theme="light">
@@ -103,7 +261,9 @@ textarea{resize:vertical;min-height:44px;}
   <div id="renderRoot"></div>
 
   <div class="oral-card">
-    🗣️ <b>SECTION C · 100-Pair Oral Drill</b> — এটা মুখে বলার জন্য (তিনবার), কোনো নম্বর নেই। এই ডিজিটাল worksheet-এ এই অংশটা অন্তর্ভুক্ত করা হয়নি যেহেতু এটা spoken practice-এর জন্য — আলাদা প্রিন্টেড শীট থেকে অনুশীলন করবে।
+    🗣️ <b>SECTION C · 100-Pair Oral Drill</b>
+    <span>EN: This section is for oral practice. Say each pair aloud three times. It carries no marks and is not included in this digital worksheet; practise it from the separate printed sheet.</span>
+    <span class="oral-bn">বাংলা: এই অংশটি মুখে বলার অনুশীলনের জন্য। প্রতিটি pair তিনবার করে বলবে। এর কোনো নম্বর নেই এবং digital worksheet-এ অংশটি রাখা হয়নি; আলাদা printed sheet থেকে practice করবে।</span>
   </div>
 
   <div class="score-banner" id="scoreBanner" style="display:none;">
@@ -123,10 +283,10 @@ textarea{resize:vertical;min-height:44px;}
 <div class="modal-overlay" id="saveModal">
   <div class="modal-box">
     <h3>Confirm details</h3>
-    <p style="font-size:13px;color:var(--text-soft);">ছবি তৈরির আগে নাম ও তারিখ দিন।</p>
-    <label style="font-size:13px;">Name</label>
+    <p style="font-size:15px;color:var(--text-soft);">ছবি তৈরির আগে নাম ও তারিখ দিন।</p>
+    <label style="font-size:15px;">Name</label>
     <input type="text" id="modalName" placeholder="তোমার নাম">
-    <label style="font-size:13px;">Date</label>
+    <label style="font-size:15px;">Date</label>
     <input type="date" id="modalDate">
     <div class="modal-actions">
       <button class="btn" style="background:var(--border);color:var(--text);" onclick="closeSaveModal()">বাতিল</button>
@@ -141,10 +301,11 @@ textarea{resize:vertical;min-height:44px;}
 /* ===================== WORKSHEET CONFIG ===================== */
 const TOPIC = "Tense — Extensive Worksheet";
 const SECTIONS = [
-{ id:'A', title:'SECTION A · GUIDED PRACTICE', sub:'গাইডেড অনুশীলন — প্রতিটি টাস্কে উদাহরণ ও ইঙ্গিত আছে', tasks:[
+{ id:'A', title:'SECTION A · GUIDED PRACTICE', sub:'Guided practice — examples and hints are provided in every task. / গাইডেড অনুশীলন — প্রতিটি টাস্কে উদাহরণ ও ইঙ্গিত আছে', tasks:[
 
   { id:'t1', title:'TASK 1 · REBUILD THE WHOLE CHART', marks:8, type:'tensechart',
     instr:'Write the structure of each tense form. Four boxes are filled in for you; complete the other eight.',
+    instrBn:'প্রতিটি tense form-এর structure লিখো। চারটি box উদাহরণ হিসেবে পূরণ করা আছে; বাকি আটটি নিজে সম্পূর্ণ করো।',
     cols:['PRESENT','PAST','FUTURE'],
     rows:[
       {label:'Indefinite (Simple)', vals:['Sub + V1 (+s/es)','Sub + V2','Sub + will + V1'], given:[true,false,false]},
@@ -156,6 +317,7 @@ const SECTIONS = [
 
   { id:'t2', title:'TASK 2 · WHO TAKES THE s/es?', marks:6, type:'sort2',
     instr:'Tick one column for each subject.',
+    instrBn:'প্রতিটি subject-এর জন্য সঠিক column-এ tick দাও—এটি 3rd person singular কি না নির্ধারণ করো।',
     cols:['3rd person singular','Not 3rd person singular'],
     items:[
       {noun:'The gardener', given:true, correct:'3rd person singular'},
@@ -175,6 +337,7 @@ const SECTIONS = [
 
   { id:'t3', title:'TASK 3 · BUILD IT — PRESENT SIMPLE', marks:6, type:'freetext',
     instr:'Use each Subject with the Verb given, add your own extension, and write a full Present Simple sentence. (Auto-check looks for the correctly-agreed verb form.)',
+    instrBn:'দেওয়া Subject ও Verb ব্যবহার করে নিজের মতো extension যোগ করে একটি পূর্ণ Present Simple sentence লেখো। Auto-check subject–verb agreement অনুযায়ী verb-এর সঠিক form খুঁজবে।',
     items:[
       {prompt:'My uncle + repair', keyword:'repairs', correct:['My uncle repairs the shop.']},
       {prompt:'Those farmers + harvest', keyword:'harvest', correct:['Those farmers harvest rice.']},
@@ -186,6 +349,7 @@ const SECTIONS = [
 
   { id:'t4', title:'TASK 4 · SHIFT THE TIME — PAST & FUTURE', marks:6, type:'fields',
     instr:'Take your six Task 3 sentences and rewrite each one twice — Past Simple, then Future Simple.',
+    instrBn:'Task 3-এর ছয়টি sentence প্রতিটি দুইবার rewrite করো—প্রথমে Past Simple, তারপর Future Simple-এ।',
     fieldNames:['Past Simple (V2)','Future Simple (will + V1)'],
     items:[
       {label:'1. My uncle...', given:true, fields:[{correct:'repaired'},{correct:'will repair'}]},
@@ -198,6 +362,7 @@ const SECTIONS = [
 
   { id:'t5', title:'TASK 5 · BE FORM — am / is / are / was / were / will be', marks:6, type:'fillblank',
     instr:'Fill each gap with the correct Be form. Look at the subject first, then at the time word.',
+    instrBn:'প্রথমে subject, তারপর time word দেখে প্রতিটি gap-এ সঠিক Be form (am/is/are/was/were/will be) বসাও।',
     items:[
       {label:'1. My uncle ___ a mechanic.', given:true, correct:['is']},
       {label:'2. The nurses ___ very kind to us yesterday.', correct:['were']},
@@ -210,6 +375,7 @@ const SECTIONS = [
 
   { id:'t6', title:'TASK 6 · HAVE / HAS / HAD / WILL HAVE', marks:6, type:'fillblank',
     instr:'Fill each gap with the correct form of the verb "to have".',
+    instrBn:'প্রতিটি gap-এ verb ‘to have’-এর সঠিক form (have/has/had/will have) বসাও।',
     items:[
       {label:'1. My cousin ___ a new bicycle.', given:true, correct:['has']},
       {label:'2. The fishermen ___ three boats last year.', correct:['had']},
@@ -222,6 +388,7 @@ const SECTIONS = [
 
   { id:'t7', title:'TASK 7 · বাংলা → ENGLISH', marks:6, type:'freetext',
     instr:'Translate each Bengali sentence. Two are Do-form, two are Be-form, two use "have".',
+    instrBn:'প্রতিটি বাংলা sentence ইংরেজিতে translate করো। দুটি Do-form, দুটি Be-form এবং দুটি sentence-এ ‘have’ ব্যবহার হবে।',
     items:[
       {prompt:'আমার চাচা একজন মিস্ত্রি।', keyword:'is', correct:['My uncle is a mechanic.']},
       {prompt:'কৃষকেরা ভোরে মাঠে যায়।', keyword:'go', correct:['The farmers go to the field early in the morning.']},
@@ -233,6 +400,7 @@ const SECTIONS = [
 
   { id:'t8', title:'TASK 8 · THE ERROR IS NAMED — NOW FIX IT', marks:6, type:'freetext',
     instr:'Each sentence has one agreement error, already named. Write the correct sentence.',
+    instrBn:'প্রতিটি sentence-এ একটি agreement error আছে এবং ভুলের ধরন আগেই উল্লেখ করা হয়েছে। পুরো sentence-টি সঠিকভাবে rewrite করো।',
     items:[
       {prompt:'The gardener water the plants. (missing -s)', given:true, correct:['The gardener waters the plants.']},
       {prompt:'My cousins visits us every Eid. (extra -s)', keyword:'visit', correct:['My cousins visit us every Eid.']},
@@ -244,10 +412,11 @@ const SECTIONS = [
     ], hint:'Say the subject and verb together out loud — "cousins visit", "Nadia sings". Your ear catches the mismatch faster than your eye.' }
 ]},
 
-{ id:'B', title:'SECTION B · INDEPENDENT PRACTICE', sub:'ইনডিপেনডেন্ট অনুশীলন — কোনো উদাহরণ নেই, ৪০ মিনিট, closed book', tasks:[
+{ id:'B', title:'SECTION B · INDEPENDENT PRACTICE', sub:'Independent practice — no examples, 40 minutes, closed book. / ইনডিপেনডেন্ট অনুশীলন — কোনো উদাহরণ নেই, ৪০ মিনিট, closed book', tasks:[
 
   { id:'t9', title:'TASK 9 · CORRECT FORM OF THE VERB', marks:8, type:'fillblank',
     instr:'Put the verb in brackets into the correct form. The time expression tells you which tense to use.',
+    instrBn:'Bracket-এর verb-টিকে সঠিক form-এ বসাও। কোন tense ব্যবহার হবে তা time expression দেখে নির্ধারণ করো।',
     items:[
       {label:'1. The postman ___ (deliver) letters every morning.', correct:['delivers']},
       {label:'2. Last Friday my aunt ___ (bake) a cake for all of us.', correct:['baked']},
@@ -261,6 +430,7 @@ const SECTIONS = [
 
   { id:'t10', title:'TASK 10 · বাংলা → ENGLISH TRANSLATION', marks:10, type:'freetext',
     instr:'Translate each sentence into English. Watch the subject, the verb form and the time carefully.',
+    instrBn:'প্রতিটি sentence ইংরেজিতে translate করো। Subject, verb form এবং time expression খুব সতর্কভাবে মিলিয়ে লেখো।',
     items:[
       {prompt:'আমার খালা প্রতি শুক্রবার পিঠা বানান।', keyword:'makes', correct:['My aunt makes pitha every Friday.']},
       {prompt:'গতরাতে পাহারাদাররা সজাগ ছিল।', keyword:'were', correct:['The guards were alert last night.']},
@@ -276,6 +446,7 @@ const SECTIONS = [
 
   { id:'t11', title:'TASK 11 · CONSTRUCT THE SENTENCE', marks:8, type:'freetext',
     instr:'Build one complete sentence from each set. The time expression decides the tense.',
+    instrBn:'প্রতিটি cue set ব্যবহার করে একটি পূর্ণ sentence তৈরি করো। কোন tense হবে তা time expression নির্ধারণ করবে।',
     items:[
       {prompt:'the mechanic + fix + every afternoon', keyword:'fixes', correct:['The mechanic fixes bikes every afternoon.']},
       {prompt:'those journalists + report + last night', keyword:'reported', correct:['Those journalists reported the news last night.']},
@@ -289,6 +460,7 @@ const SECTIONS = [
 
   { id:'t12', title:'TASK 12 · READ THE TIME SIGNAL', marks:6, type:'fields',
     instr:'For each time expression, name the tense it demands, then write one sentence using it.',
+    instrBn:'প্রতিটি time expression কোন tense নির্দেশ করে তা নির্বাচন করো, এরপর সেই expression ব্যবহার করে নিজের একটি sentence লেখো।',
     fieldNames:['Tense it demands','Your own sentence'],
     items:[
       {label:'1. every Ramadan', fields:[{type:'radio',options:['Present Simple','Past Simple','Future Simple'],correct:'Present Simple'},{type:'text',checkType:'nonempty'}]},
@@ -301,6 +473,7 @@ const SECTIONS = [
 
   { id:'t13', title:'TASK 13 · CORRECT THE MISTAKES', marks:10, type:'freetext',
     instr:'Each sentence has one mistake of tense, agreement or capitalisation. Rewrite it correctly.',
+    instrBn:'প্রতিটি sentence-এ tense, agreement অথবা capitalisation-এর একটি ভুল আছে। ভুলটি ঠিক করে পুরো sentence rewrite করো।',
     items:[
       {prompt:'My uncle repair motorbikes in his small workshop.', keyword:'repairs', correct:['My uncle repairs motorbikes in his small workshop.']},
       {prompt:'The nurses is very busy today.', keyword:'are', correct:['The nurses are very busy today.']},
@@ -316,10 +489,13 @@ const SECTIONS = [
 
   { id:'t14', title:'TASK 14 · SHIFT THE WHOLE PARAGRAPH', marks:4, type:'paragraph',
     instr:'Rewrite the paragraph below in the Past Simple. Five verb-forms must change.',
+    instrBn:'নিচের paragraph-টি Past Simple-এ rewrite করো। মোট পাঁচটি verb form পরিবর্তন করতে হবে।',
     original:'Every morning my uncle opens his workshop at eight. He repairs motorbikes while his two helpers clean the tools. The customers wait outside, and by noon the shop is very busy.',
     required:['opened','repaired','cleaned','waited','was'] },
 
   { id:'t15', title:'TASK 15 · MULTIPLE CHOICE — THE RULES', marks:4, type:'mcq',
+    instr:'Choose the correct answer for each question based on the tense rules you practised above.',
+    instrBn:'উপরে অনুশীলন করা tense-এর নিয়মগুলো ব্যবহার করে প্রতিটি প্রশ্নের সঠিক answer নির্বাচন করো।',
     items:[
       {prompt:'How many tense forms are there in total?', options:['3','9','12','16'], correct:2},
       {prompt:'Which structure belongs to the Past Perfect?', options:['Sub + had + V3','Sub + have/has + V3','Sub + was/were + V-ing','Sub + will have + V3'], correct:0},
@@ -333,14 +509,20 @@ const SECTIONS = [
 const root = document.getElementById('renderRoot');
 let outHtml = '';
 SECTIONS.forEach(sec=>{
-  outHtml += `<h2 class="section-title">${sec.title}</h2><div class="section-sub">${sec.sub}</div>`;
+  outHtml += `<section class="section-shell"><h2 class="section-title">${sec.title}</h2><div class="section-sub">${sec.sub}</div>`;
   sec.tasks.forEach(t=>{
     outHtml += `<div class="task" id="${t.id}"><div class="task-head"><h3>${t.title}</h3><span class="marks-pill">${t.marks} marks</span></div>`;
-    if(t.instr) outHtml += `<div class="instr">${t.instr}</div>`;
+    if(t.instr || t.instrBn){
+      outHtml += `<div class="instruction-box">`;
+      if(t.instr) outHtml += `<div class="instr instr-en"><span class="lang-label">EN</span>${t.instr}</div>`;
+      if(t.instrBn) outHtml += `<div class="instr instr-bn"><span class="lang-label">বাংলা</span>${t.instrBn}</div>`;
+      outHtml += `</div>`;
+    }
     outHtml += renderTask(t);
     if(t.hint) outHtml += `<div class="hint">💡 ${t.hint}</div>`;
-    outHtml += `<div id="${t.id}_result" style="margin-top:8px;font-size:13px;font-weight:600;"></div></div>`;
+    outHtml += `<div id="${t.id}_result" style="margin-top:11px;font-size:14.5px;font-weight:700;"></div></div>`;
   });
+  outHtml += `</section>`;
 });
 root.innerHTML = outHtml;
 
