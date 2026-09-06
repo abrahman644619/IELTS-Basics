@@ -8,82 +8,214 @@
 <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Baloo+Da+2:wght@500;600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <style>
-html,body[data-theme="light"]{
-  --bg:#FCF5EE; --bg-soft:#FFF9F4; --card:#FFFFFF; --card-alt:#FFF3EC;
-  --text:#402028; --text-soft:#7a4a56; --heading:#850E35;
-  --accent:#EE6983; --accent-soft:#FFC4C4; --border:#FFD9D9;
-  --ok:#2e8b57; --bad:#c0392b; --shadow:0 8px 24px rgba(133,14,53,.08);
+:root{
+  --accent:#EE6983;
+  --accent-strong:#D94F70;
+  --ok:#2e8b57;
+  --bad:#c0392b;
+}
+body[data-theme="light"]{
+  --bg:#FCF5EE;
+  --bg-soft:#FFF9F4;
+  --text:#402028;
+  --text-soft:#7a4a56;
+  --heading:#850E35;
+  --accent-soft:#FFC4C4;
+  --border:#FFD9D9;
+  --glass:rgba(255,255,255,.68);
+  --glass-strong:rgba(255,255,255,.84);
+  --task-glass:rgba(255,255,255,.58);
+  --glass-border:rgba(255,255,255,.80);
+  --field-bg:rgba(255,249,244,.90);
+  --shadow:0 16px 40px rgba(133,14,53,.09);
+  --shadow-hover:0 20px 48px rgba(133,14,53,.14);
 }
 body[data-theme="dark"]{
-  --bg:#2A0A16; --bg-soft:#33101F; --card:#3B1224; --card-alt:#451529;
-  --text:#FCEFEF; --text-soft:#E9B9C4; --heading:#FFC4C4;
-  --accent:#EE6983; --accent-soft:#850E35; --border:#5C1A34;
-  --ok:#6fcf97; --bad:#ff8a80; --shadow:0 8px 24px rgba(0,0,0,.35);
+  --bg:#220812;
+  --bg-soft:#33101F;
+  --text:#FCEFEF;
+  --text-soft:#E9B9C4;
+  --heading:#FFC4C4;
+  --accent-soft:#850E35;
+  --border:#5C1A34;
+  --glass:rgba(59,18,36,.62);
+  --glass-strong:rgba(59,18,36,.80);
+  --task-glass:rgba(69,21,41,.55);
+  --glass-border:rgba(255,196,196,.12);
+  --field-bg:rgba(42,10,22,.70);
+  --ok:#6fcf97;
+  --bad:#ff8a80;
+  --shadow:0 18px 46px rgba(0,0,0,.32);
+  --shadow-hover:0 22px 54px rgba(0,0,0,.42);
 }
 *{box-sizing:border-box;}
-body{margin:0;background:var(--bg);color:var(--text);font-family:'Hind Siliguri',sans-serif;transition:background .3s,color .3s;padding-bottom:60px;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  min-height:100vh;
+  color:var(--text);
+  font-family:'Hind Siliguri',sans-serif;
+  font-size:17px;
+  line-height:1.58;
+  padding-bottom:88px;
+  transition:background .35s ease,color .35s ease;
+  background:
+    radial-gradient(circle at 8% 5%,rgba(238,105,131,.18),transparent 27%),
+    radial-gradient(circle at 95% 30%,rgba(133,14,53,.10),transparent 28%),
+    var(--bg);
+}
+body[data-theme="dark"]{
+  background:
+    radial-gradient(circle at 8% 5%,rgba(238,105,131,.15),transparent 28%),
+    radial-gradient(circle at 92% 34%,rgba(133,14,53,.20),transparent 30%),
+    var(--bg);
+}
+button,input,select,textarea{font-family:inherit;}
 h1,h2,h3,.brand{font-family:'Baloo Da 2',cursive;color:var(--heading);}
-.wrap{max-width:900px;margin:0 auto;padding:16px;}
-.topbar{position:sticky;top:0;z-index:50;background:var(--bg);padding:10px 16px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border);}
-.brand{font-size:15px;}
-.theme-btn{border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:20px;padding:8px 14px;cursor:pointer;font-family:inherit;font-weight:600;}
-.header-card{background:var(--card);border-radius:18px;box-shadow:var(--shadow);padding:22px;margin:16px 0;border:1px solid var(--border);}
-.header-card h1{margin:0 0 4px;font-size:23px;}
-.subtitle{color:var(--text-soft);font-size:14px;margin-bottom:14px;}
-.meta-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;}
-@media(max-width:600px){.meta-grid{grid-template-columns:1fr;}}
-.meta-grid label{font-size:13px;font-weight:600;color:var(--text-soft);display:block;margin-bottom:4px;}
-.meta-grid input{width:100%;padding:9px 10px;border-radius:10px;border:1.5px solid var(--border);background:var(--bg-soft);color:var(--text);font-family:inherit;font-size:14px;}
-.engine-table{width:100%;border-collapse:collapse;margin:10px 0 16px;font-size:12px;}
-.engine-table th,.engine-table td{border:1px solid var(--border);padding:5px 7px;text-align:left;}
-.engine-table th{background:var(--card-alt);}
-.section-title{margin:26px 0 6px;font-size:18px;}
-.section-sub{color:var(--text-soft);font-size:13px;margin-bottom:14px;}
-.task{background:var(--card);border-radius:16px;box-shadow:var(--shadow);padding:18px;margin-bottom:16px;border:1px solid var(--border);}
-.task-head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:6px;}
-.task-head h3{margin:0;font-size:15px;}
-.marks-pill{background:var(--accent-soft);color:var(--heading);font-weight:700;font-size:12px;padding:4px 10px;border-radius:20px;white-space:nowrap;}
-.instr{font-size:13px;color:var(--text-soft);margin-bottom:4px;}
-.hint{font-size:12.5px;background:var(--card-alt);border-left:3px solid var(--accent);padding:8px 10px;border-radius:8px;margin-top:8px;color:var(--text-soft);}
-table.qtable{width:100%;border-collapse:collapse;margin-top:10px;font-size:12.5px;}
-table.qtable th,table.qtable td{border:1px solid var(--border);padding:5px 6px;text-align:left;vertical-align:middle;}
-table.qtable th{background:var(--card-alt);}
-input[type=text],select,textarea{width:100%;padding:6px 8px;border-radius:8px;border:1.5px solid var(--border);background:var(--bg-soft);color:var(--text);font-family:inherit;font-size:13px;}
-textarea{resize:vertical;min-height:40px;}
-.radio-row{display:flex;gap:9px;flex-wrap:wrap;}
-.radio-row label{display:flex;align-items:center;gap:4px;font-size:12px;cursor:pointer;}
-.given{opacity:.75;}
-.given input,.given select,.given td{background:var(--accent-soft);font-weight:600;}
-.freeitem{margin-bottom:11px;}
-.freeitem .prompt{font-size:13px;margin-bottom:4px;}
-.subfield{margin-bottom:4px;}
-.subfield .flabel{font-size:11px;color:var(--text-soft);}
-.result-tag{display:inline-block;font-size:11.5px;font-weight:700;padding:2px 8px;border-radius:10px;margin-left:6px;}
+.wrap{max-width:980px;margin:0 auto;padding:22px 18px;}
+.topbar{
+  position:sticky;top:0;z-index:50;
+  display:flex;justify-content:space-between;align-items:center;gap:15px;
+  padding:13px 20px;
+  border-bottom:1px solid var(--glass-border);
+  background:var(--glass);
+  backdrop-filter:blur(18px) saturate(140%);
+  -webkit-backdrop-filter:blur(18px) saturate(140%);
+  box-shadow:0 7px 25px rgba(0,0,0,.05);
+}
+.brand{font-size:18px;font-weight:700;letter-spacing:.2px;}
+.theme-btn{
+  border:1px solid var(--border);background:var(--glass-strong);color:var(--text);
+  border-radius:999px;padding:10px 17px;cursor:pointer;font-size:15px;font-weight:700;
+  backdrop-filter:blur(10px);transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease;
+}
+.theme-btn:hover{transform:translateY(-2px);border-color:var(--accent);box-shadow:0 8px 22px rgba(238,105,131,.16);}
+.header-card{
+  position:relative;overflow:hidden;padding:30px 28px;margin:22px 0 28px;border-radius:24px;
+  border:1px solid var(--glass-border);background:var(--glass);
+  backdrop-filter:blur(22px) saturate(145%);-webkit-backdrop-filter:blur(22px) saturate(145%);
+  box-shadow:var(--shadow);
+}
+.header-card::before{
+  content:"";position:absolute;width:220px;height:220px;top:-135px;right:-115px;border-radius:50%;
+  background:radial-gradient(circle,rgba(238,105,131,.22),transparent 68%);pointer-events:none;
+}
+.header-card h1{position:relative;margin:0 0 5px;font-size:clamp(31px,5vw,40px);line-height:1.2;font-weight:800;}
+.subtitle{position:relative;color:var(--text-soft);font-size:17px;line-height:1.6;margin-bottom:22px;}
+.meta-grid{position:relative;display:grid;grid-template-columns:1fr 1fr 1fr;gap:13px;}
+.meta-grid label{display:block;margin-bottom:6px;color:var(--text-soft);font-size:15px;font-weight:700;}
+.meta-grid input{width:100%;padding:11px 12px;border-radius:12px;border:1.5px solid var(--border);background:var(--field-bg);color:var(--text);font-size:16px;outline:none;transition:border-color .2s,box-shadow .2s;}
+.meta-grid input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(238,105,131,.12);}
+.engine-table{width:100%;border-collapse:separate;border-spacing:0;margin:18px 0 18px;font-size:15.5px;overflow:hidden;border-radius:14px;position:relative;}
+.engine-table th,.engine-table td{border-right:1px solid var(--border);border-bottom:1px solid var(--border);padding:10px 11px;text-align:left;vertical-align:top;}
+.engine-table th:first-child,.engine-table td:first-child{border-left:1px solid var(--border);}
+.engine-table tr:first-child th{border-top:1px solid var(--border);}
+.engine-table th{background:rgba(238,105,131,.08);font-weight:700;}
+.engine-table tr:first-child th:first-child{border-top-left-radius:14px;}
+.engine-table tr:first-child th:last-child{border-top-right-radius:14px;}
+.section-shell{
+  position:relative;margin:30px 0;padding:24px;border-radius:26px;border:1px solid var(--glass-border);
+  background:var(--glass);backdrop-filter:blur(20px) saturate(135%);-webkit-backdrop-filter:blur(20px) saturate(135%);
+  box-shadow:var(--shadow);
+}
+.section-title{margin:0 0 5px;font-size:28px;line-height:1.25;font-weight:800;}
+.section-sub{color:var(--text-soft);font-size:16px;line-height:1.55;margin-bottom:22px;}
+.task{
+  position:relative;overflow:hidden;padding:24px;margin-bottom:20px;border-radius:20px;
+  border:1px solid var(--glass-border);background:var(--task-glass);
+  backdrop-filter:blur(15px) saturate(135%);-webkit-backdrop-filter:blur(15px) saturate(135%);
+  box-shadow:0 10px 30px rgba(0,0,0,.055);
+  transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;
+}
+.task:last-child{margin-bottom:0;}
+.task::before{
+  content:"";position:absolute;width:150px;height:150px;top:-105px;right:-90px;border-radius:50%;
+  background:radial-gradient(circle,rgba(238,105,131,.18),transparent 68%);pointer-events:none;
+}
+.task:hover{transform:translateY(-3px);border-color:rgba(238,105,131,.32);box-shadow:var(--shadow-hover);}
+.task-head{position:relative;display:flex;justify-content:space-between;align-items:flex-start;gap:14px;margin-bottom:12px;}
+.task-head h3{margin:0;font-size:21px;line-height:1.35;font-weight:800;}
+.marks-pill{flex-shrink:0;background:var(--accent-soft);color:var(--heading);font-size:13.5px;font-weight:800;padding:6px 12px;border-radius:999px;white-space:nowrap;}
+.instruction-box{position:relative;margin:10px 0 16px;padding:14px 16px;border-radius:14px;border:1px solid rgba(238,105,131,.16);background:rgba(238,105,131,.055);}
+.instr{font-size:16px;line-height:1.55;}
+.instr+.instr{margin-top:7px;}
+.instr-en{color:var(--text);}
+.instr-bn{color:var(--text-soft);font-weight:500;}
+.lang-label{display:inline-block;min-width:42px;margin-right:7px;color:var(--heading);font-size:12px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;}
+.hint{font-size:14.5px;background:rgba(238,105,131,.075);border-left:4px solid var(--accent);padding:11px 13px;border-radius:11px;margin-top:12px;color:var(--text-soft);line-height:1.55;}
+table.qtable{width:100%;border-collapse:separate;border-spacing:0;margin-top:14px;overflow:hidden;border-radius:12px;font-size:15.5px;}
+table.qtable th,table.qtable td{border-right:1px solid var(--border);border-bottom:1px solid var(--border);padding:10px 11px;text-align:left;vertical-align:middle;}
+table.qtable th:first-child,table.qtable td:first-child{border-left:1px solid var(--border);}
+table.qtable tr:first-child th{border-top:1px solid var(--border);}
+table.qtable th:first-child{border-top-left-radius:12px;}
+table.qtable th:last-child{border-top-right-radius:12px;}
+table.qtable th{background:rgba(238,105,131,.075);font-weight:700;}
+input[type=text],select,textarea{width:100%;padding:9px 11px;border-radius:10px;border:1.5px solid var(--border);background:var(--field-bg);color:var(--text);font-size:15.5px;outline:none;transition:border-color .2s ease,box-shadow .2s ease;}
+input[type=text]:focus,select:focus,textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(238,105,131,.11);}
+textarea{resize:vertical;min-height:72px;line-height:1.5;}
+.radio-row{display:flex;gap:10px 16px;flex-wrap:wrap;margin-top:5px;}
+.radio-row label{display:flex;align-items:center;gap:6px;font-size:15px;cursor:pointer;}
+.radio-row input[type="radio"]{width:16px;height:16px;accent-color:var(--accent);}
+.given{opacity:.78;}
+.given input,.given select,.given td{background:var(--accent-soft);font-weight:700;}
+.freeitem{padding:7px 0;margin-bottom:14px;}
+.freeitem:last-child{margin-bottom:0;}
+.freeitem .prompt{margin-bottom:7px;font-size:16px;line-height:1.55;}
+.subfield{margin-bottom:8px;}
+.subfield .flabel{display:block;margin-bottom:5px;font-size:14px;color:var(--text-soft);font-weight:600;}
+.result-tag{display:inline-block;margin-left:7px;padding:3px 9px;border-radius:999px;font-size:12.5px;font-weight:800;}
 .tag-full{background:#d6f5df;color:var(--ok);}
 .tag-partial{background:#fff3cd;color:#8a6500;}
 .tag-zero{background:#ffe0e0;color:var(--bad);}
 [data-theme="dark"] .tag-full{background:#154a2c;}
 [data-theme="dark"] .tag-partial{background:#4a3c10;color:#ffd76b;}
 [data-theme="dark"] .tag-zero{background:#4a1414;}
-.footer-bar{position:sticky;bottom:0;background:var(--card);border-top:1px solid var(--border);padding:14px 16px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;box-shadow:0 -6px 18px rgba(0,0,0,.06);}
-.btn{border:none;border-radius:24px;padding:12px 22px;font-weight:700;font-family:inherit;font-size:14.5px;cursor:pointer;transition:transform .15s;}
+.passage-box{white-space:pre-wrap;background:rgba(238,105,131,.055);border:1px solid var(--border);border-radius:14px;padding:16px;font-size:15.5px;line-height:1.75;margin-bottom:16px;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:var(--text);}
+.errow{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px;padding:12px;border-radius:14px;background:rgba(238,105,131,.035);border:1px solid rgba(238,105,131,.10);}
+.score-banner{margin:30px 0;padding:26px;text-align:center;border-radius:22px;border:1px solid var(--glass-border);background:var(--glass);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);box-shadow:var(--shadow);}
+.score-banner .big{margin-top:4px;color:var(--heading);font-family:'Baloo Da 2',cursive;font-size:54px;font-weight:800;line-height:1.2;}
+.tracker{width:100%;border-collapse:collapse;margin-top:18px;font-size:15px;}
+.tracker th,.tracker td{border:1px solid var(--border);padding:9px 10px;text-align:center;}
+.tracker th{background:rgba(238,105,131,.08);}
+.footer-bar{position:sticky;bottom:0;z-index:40;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;padding:15px 16px;border-top:1px solid var(--glass-border);background:var(--glass-strong);backdrop-filter:blur(20px) saturate(140%);-webkit-backdrop-filter:blur(20px) saturate(140%);box-shadow:0 -8px 28px rgba(0,0,0,.08);}
+.btn{border:none;border-radius:999px;padding:13px 24px;font-size:16px;font-weight:800;cursor:pointer;transition:transform .18s ease,box-shadow .18s ease;}
+.btn:hover{transform:translateY(-2px);}
 .btn:active{transform:scale(.97);}
-.btn-primary{background:var(--accent);color:#fff;}
-.btn-secondary{background:var(--heading);color:#fff;}
-.score-banner{text-align:center;margin:18px 0;}
-.score-banner .big{font-size:44px;font-weight:800;color:var(--heading);font-family:'Baloo Da 2',cursive;}
-.tracker{width:100%;border-collapse:collapse;margin-top:16px;font-size:12px;}
-.tracker th,.tracker td{border:1px solid var(--border);padding:5px 7px;text-align:center;}
-.tracker th{background:var(--card-alt);}
-.page-footer{text-align:center;color:var(--text-soft);font-size:12px;padding:26px 0 6px;}
+.btn-primary{background:var(--accent);color:#fff;box-shadow:0 8px 20px rgba(238,105,131,.22);}
+.btn-secondary{background:var(--heading);color:#fff;box-shadow:0 8px 20px rgba(133,14,53,.17);}
+.page-footer{text-align:center;color:var(--text-soft);font-size:14px;padding:30px 0 8px;}
 #resultCardHolder{position:fixed;left:-9999px;top:0;}
-.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;align-items:center;justify-content:center;z-index:100;}
-.modal-box{background:var(--card);border-radius:16px;padding:22px;max-width:340px;width:90%;box-shadow:var(--shadow);}
-.modal-box h3{margin-top:0;}
-.modal-box input{margin-bottom:10px;}
-.modal-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:10px;}
-.passage-box{white-space:pre-wrap;background:var(--card-alt);border:1px solid var(--border);border-radius:10px;padding:12px;font-size:12.5px;line-height:1.7;margin-bottom:12px;font-family:monospace;}
-.errow{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px;}
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.50);display:none;align-items:center;justify-content:center;z-index:100;padding:20px;backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);}
+.modal-box{width:90%;max-width:380px;padding:26px;border-radius:22px;border:1px solid var(--glass-border);background:var(--glass-strong);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);box-shadow:0 24px 60px rgba(0,0,0,.28);}
+.modal-box h3{margin:0 0 5px;font-size:24px;}
+.modal-box input{margin-bottom:12px;}
+.modal-actions{display:flex;gap:9px;justify-content:flex-end;margin-top:12px;}
+@media(max-width:700px){
+  body{font-size:16px;}
+  .wrap{padding:14px 12px;}
+  .topbar{padding:11px 13px;}
+  .brand{font-size:15px;line-height:1.25;}
+  .theme-btn{padding:8px 12px;font-size:14px;}
+  .header-card{padding:24px 19px;border-radius:20px;}
+  .header-card h1{font-size:30px;}
+  .subtitle{font-size:15.5px;}
+  .meta-grid{grid-template-columns:1fr;}
+  .engine-table{display:block;overflow-x:auto;font-size:14.5px;}
+  .section-shell{padding:17px 13px;border-radius:20px;}
+  .section-title{font-size:24px;}
+  .section-sub{font-size:15px;}
+  .task{padding:19px 15px;border-radius:17px;}
+  .task-head h3{font-size:19px;}
+  .marks-pill{font-size:12px;padding:5px 9px;}
+  .instruction-box{padding:12px;}
+  .instr{font-size:15px;}
+  .freeitem .prompt{font-size:15.5px;}
+  table.qtable{display:block;overflow-x:auto;white-space:normal;font-size:14.5px;}
+  input[type=text],select,textarea{font-size:16px;}
+  .passage-box{font-size:14.5px;line-height:1.7;overflow-x:auto;}
+  .errow{grid-template-columns:1fr;gap:9px;}
+  .btn{width:100%;max-width:420px;font-size:15px;}
+}
 @media(max-width:520px){.errow{grid-template-columns:1fr;}}
 </style>
 </head>
@@ -138,10 +270,10 @@ textarea{resize:vertical;min-height:40px;}
 <div class="modal-overlay" id="saveModal">
   <div class="modal-box">
     <h3>Confirm details</h3>
-    <p style="font-size:13px;color:var(--text-soft);">ছবি তৈরির আগে নাম ও তারিখ দিন।</p>
-    <label style="font-size:13px;">Name</label>
+    <p style="font-size:15px;color:var(--text-soft);">ছবি তৈরির আগে নাম ও তারিখ দিন।</p>
+    <label style="font-size:15px;">Name</label>
     <input type="text" id="modalName" placeholder="তোমার নাম">
-    <label style="font-size:13px;">Date</label>
+    <label style="font-size:15px;">Date</label>
     <input type="date" id="modalDate">
     <div class="modal-actions">
       <button class="btn" style="background:var(--border);color:var(--text);" onclick="closeSaveModal()">বাতিল</button>
@@ -158,10 +290,11 @@ const TOPIC = "Subject-Verb Agreement — Worksheet 07";
 const RULES = ['Core Rule','AND Rule','First Subject Rule','Nearer Subject Rule','Collective Noun','Measurement Rule','Plural Form Singular Meaning','Paired Item Rule','One of the Rule','Gerund or Infinitive Subject','Fraction Rule','A number of and The number of'];
 
 const SECTIONS = [
-{ id:'P1', title:'PART 1 · GUIDED PRACTICE', sub:'প্রতিটা Section-এ Worked Example ও Hint Box আছে', tasks:[
+{ id:'P1', title:'PART 1 · GUIDED PRACTICE', sub:'Guided practice with worked support · প্রতিটি Section-এ Worked Example ও Hint Box আছে', tasks:[
 
   { id:'A', title:'A · CONCEPT CHECK: DO YOU REMEMBER THE RULES?', marks:8, type:'freetext',
-    instr:'এক কথায় উত্তর লিখো (যেমন Singular / Plural / কোন Subject-এর সাথে মিলবে)।',
+    instrEn:'Answer briefly in one or two words (for example: Singular, Plural, or which subject the verb agrees with).',
+    instrBn:'এক বা দুই কথায় উত্তর লিখো (যেমন Singular / Plural / Verb কোন Subject-এর সাথে মিলবে)।',
     items:[
       {prompt:'1. A number of students এর পরে Verb singular হবে না plural?', keyword:['plural','বহুবচন']},
       {prompt:'2. The number of students এর পরে Verb singular হবে না plural?', keyword:['singular','একবচন']},
@@ -174,7 +307,8 @@ const SECTIONS = [
     ]},
 
   { id:'B', title:'B · CHOOSE THE VERB AND NAME THE RULE', marks:16, type:'fields',
-    instr:'সঠিক Verb লিখো এবং Rule বেছে নাও।', fieldNames:['Verb','Rule'],
+    instrEn:'Write the correct verb form and then select the rule that explains the agreement.',
+    instrBn:'সঠিক Verb form লিখো এবং এরপর যে Rule-এর কারণে Verbটি এমন হয়েছে সেটি বেছে নাও।', fieldNames:['Verb','Rule'],
     items:[
       {label:'1. The Prime Minister, together with his ministers, (was / were) present at the summit.', fields:[{type:'text',keyword:'was'},{type:'select',options:RULES,correct:'First Subject Rule'}]},
       {label:'2. Sixty kilograms (is / are) too heavy for that small trolley.', fields:[{type:'text',keyword:'is'},{type:'select',options:RULES,correct:'Measurement Rule'}]},
@@ -187,7 +321,8 @@ const SECTIONS = [
     ]},
 
   { id:'C', title:'C · GUIDED TRANSLATION: বাংলা থেকে ENGLISH', marks:8, type:'fillblank',
-    instr:'বন্ধনীর Verb-কে সঠিক রূপে বসাও।',
+    instrEn:'Put the verb in brackets into the correct form so that it agrees with the subject.',
+    instrBn:'Subject-এর সঙ্গে agreement ঠিক রেখে বন্ধনীর Verb-কে সঠিক রূপে বসাও।',
     items:[
       {label:'1. Mathematics and Physics ___ my favourite subjects. (be)', correct:['are']},
       {label:'2. My scissors ___ very old. (be)', correct:['are']},
@@ -200,7 +335,8 @@ const SECTIONS = [
     ]},
 
   { id:'D', title:'D · GUIDED CONSTRUCTION: FINISH THE SENTENCE', marks:6, type:'freetext',
-    instr:'নিয়ম মাথায় রেখে বাকিটা লিখে শেষ করো। (Auto-check শুধু Verb-এর রূপ দেখে।)',
+    instrEn:'Complete each sentence according to the rule shown. Auto-check looks only for the required verb form.',
+    instrBn:'দেওয়া Rule অনুসরণ করে প্রতিটি Sentence সম্পূর্ণ করো। Auto-check শুধু প্রয়োজনীয় Verb form পরীক্ষা করবে।',
     items:[
       {prompt:'1. Rule: First Subject. The captain, as well as ...', keyword:['is','was']},
       {prompt:'2. Rule: The number of. The number of ...', keyword:['is','was']},
@@ -211,7 +347,8 @@ const SECTIONS = [
     ]},
 
   { id:'E', title:'E · GUIDED ERROR CORRECTION: THE ERROR IS MARKED', marks:12, type:'freetext',
-    instr:'ভুল Verb-টা বোল্ড করা আছে। সঠিক রূপ লেখো। (মার্কস শুধু সঠিক Verb-এর ওপর — কারণ ব্যাখ্যা করার দরকার নেই।)',
+    instrEn:'The verb shown is incorrect. Rewrite it in the correct form. Marks are based only on the corrected verb; no explanation is required.',
+    instrBn:'দেওয়া Verbটি ভুল। Subject-Verb Agreement অনুযায়ী সঠিক Verb form লেখো। মার্কস শুধু সঠিক Verb-এর জন্য; কারণ ব্যাখ্যা করতে হবে না।',
     items:[
       {prompt:'1. The jury have announced its final verdict.', keyword:'has'},
       {prompt:'2. A number of tourists visits the tea gardens every winter.', keyword:'visit'},
@@ -222,9 +359,11 @@ const SECTIONS = [
     ]}
 ]},
 
-{ id:'P2', title:'PART 2 · INDEPENDENT PRACTICE', sub:'কোনো Example বা Hint নাই', tasks:[
+{ id:'P2', title:'PART 2 · INDEPENDENT PRACTICE', sub:'Independent practice without examples or hints · কোনো Example বা Hint নেই', tasks:[
 
   { id:'F', title:'F · CHOOSE THE CORRECT VERB', marks:10, type:'mcq',
+    instrEn:'Choose the verb that correctly agrees with the subject in each sentence.',
+    instrBn:'প্রতিটি Sentence-এ Subject-এর সঙ্গে সঠিকভাবে agree করে এমন Verbটি নির্বাচন করো।',
     items:[
       {prompt:'1. Half of the furniture ___ damaged in the fire.', options:['was','were'], correct:0},
       {prompt:'2. The gentry of this area ___ very cooperative.', options:['is','are'], correct:1},
@@ -239,7 +378,8 @@ const SECTIONS = [
     ]},
 
   { id:'G', title:'G · TRANSLATION: বাংলা থেকে ENGLISH', marks:8, type:'freetext',
-    instr:'কোনো কাঠামো দেওয়া নেই — পুরো Sentence নিজে লেখো।',
+    instrEn:'Translate each Bangla sentence into a complete English sentence. No structure is provided.',
+    instrBn:'প্রতিটি বাংলা Sentence সম্পূর্ণ English Sentence-এ অনুবাদ করো। কোনো কাঠামো দেওয়া নেই—পুরো Sentence নিজে লিখবে।',
     items:[
       {prompt:'১. পুলিশ এখনো ঘটনাস্থলে পৌঁছায়নি।', keyword:['have not','haven\u2019t'], correct:['The police have not reached the spot yet.']},
       {prompt:'২. দশ হাজার টাকা এই কাজের জন্য যথেষ্ট।', keyword:'is', correct:['Ten thousand taka is enough for this work.']},
@@ -252,7 +392,8 @@ const SECTIONS = [
     ]},
 
   { id:'H', title:'H · SENTENCE CONSTRUCTION FROM CUE WORDS', marks:6, type:'freetext',
-    instr:'নিচের শব্দগুলো ব্যবহার করে একটা সঠিক Sentence লেখো।',
+    instrEn:'Use all the cue words to write one grammatically correct sentence with accurate subject-verb agreement.',
+    instrBn:'দেওয়া cue words ব্যবহার করে Subject-Verb Agreement ঠিক রেখে একটি সম্পূর্ণ ও সঠিক Sentence লেখো।',
     items:[
       {prompt:'1. neither / the manager / the clerks / responsible', keyword:'are'},
       {prompt:'2. two-thirds / the villagers / depend on / farming', keyword:'depend'},
@@ -263,7 +404,8 @@ const SECTIONS = [
     ]},
 
   { id:'I', title:'I · FIND AND FIX THE ERROR', marks:8, type:'freetext',
-    instr:'ভুলটা কোথায় বলা নেই — নিজে খুঁজে পুরো Sentence শুদ্ধ করে লেখো।',
+    instrEn:'Find the subject-verb agreement error yourself and rewrite the whole sentence correctly.',
+    instrBn:'ভুলটি কোথায় আছে তা বলা নেই। নিজে Subject-Verb Agreement-এর ভুল খুঁজে পুরো Sentence শুদ্ধ করে লেখো।',
     items:[
       {prompt:'1. The cattle is grazing beside the highway.', keyword:'are', correct:['The cattle are grazing beside the highway.']},
       {prompt:'2. Twenty miles are a long distance for an old man.', keyword:'is', correct:['Twenty miles is a long distance for an old man.']},
@@ -276,7 +418,8 @@ const SECTIONS = [
     ]},
 
   { id:'J1', title:'J1 · IELTS ERROR HUNT — Speaking Part 2', marks:6, type:'errorhunt',
-    instr:'Describe a teacher who influenced you. এই লেখায় ৬টি Subject-Verb Agreement ভুল আছে — খুঁজে বের করো।',
+    instrEn:'Read the Speaking Part 2 response. It contains 6 subject-verb agreement errors. Find each wrong verb and write its correction.',
+    instrBn:'Speaking Part 2-এর লেখাটি পড়ো। এতে ৬টি Subject-Verb Agreement-এর ভুল আছে। প্রতিটি ভুল Verb খুঁজে তার সঠিক রূপ লেখো।',
     passage:'01  I would like to talk about my mathematics teacher, Mr Rahman.\n02  Mathematics were always my weakest subject at school, so my\n03  parents was very worried about my final results. The number of\n04  students in his coaching centre were around fifty, but he still\n05  remembered every single name. One of my friends say that he has\n06  never scolded anyone in his life. Neither his notes nor his teaching\n07  style are boring. Honestly, a pair of glasses and an old red pen was\n08  his only equipment, and yet he completely changed my future.',
     items:[
       {wrong:'were', correct:'was'},
@@ -288,7 +431,8 @@ const SECTIONS = [
     ]},
 
   { id:'J2', title:'J2 · IELTS ERROR HUNT — Writing Task 2', marks:8, type:'errorhunt',
-    instr:'Body paragraph on online education. এই লেখায় ৮টি ভুল আছে।',
+    instrEn:'Read the Writing Task 2 body paragraph on online education. It contains 8 subject-verb agreement errors. Find each wrong verb and correct it.',
+    instrBn:'Online education বিষয়ক Writing Task 2 body paragraph-টি পড়ো। এতে ৮টি Subject-Verb Agreement-এর ভুল আছে। প্রতিটি ভুল Verb খুঁজে সঠিক রূপ লেখো।',
     passage:'01  Nowadays, a number of students prefers online classes to traditional\n02  ones. To study at home save both time and money, and the number of\n03  platforms offering free courses have grown rapidly in recent years.\n04  However, statistics shows that many of the learners drops out within\n05  a month. In my opinion, neither the teachers nor the students is\n06  fully responsible for this problem. Physics, along with other practical\n07  subjects, require a proper laboratory, which no website can provide.\n08  Every boy and every girl need a real classroom at least once a week.',
     items:[
       {wrong:'prefers', correct:'prefer'},
@@ -302,7 +446,8 @@ const SECTIONS = [
     ]},
 
   { id:'J3', title:'J3 · IELTS ERROR HUNT — Speaking Part 3', marks:4, type:'errorhunt',
-    instr:'Why are people using public transport more? এই লেখায় ৪টি ভুল আছে।',
+    instrEn:'Read the Speaking Part 3 response. It contains 4 subject-verb agreement errors. Find each wrong verb and write its correction.',
+    instrBn:'Speaking Part 3-এর লেখাটি পড়ো। এতে ৪টি Subject-Verb Agreement-এর ভুল আছে। প্রতিটি ভুল Verb খুঁজে তার সঠিক রূপ লেখো।',
     passage:'01  There are several reasons behind this change. First, the police in our\n02  city is quite strict about traffic rules now. Second, twenty kilometres\n03  are not a long distance if the roads are good. Also, a pair of headphones\n04  make the journey enjoyable. Finally, what most commuters wants is a seat.',
     items:[
       {wrong:'is', correct:'are'},
@@ -317,15 +462,29 @@ const SECTIONS = [
 const root = document.getElementById('renderRoot');
 let outHtml = '';
 SECTIONS.forEach(sec=>{
-  outHtml += `<h2 class="section-title">${sec.title}</h2>`;
+  outHtml += `<section class="section-shell"><h2 class="section-title">${sec.title}</h2>`;
   if(sec.sub) outHtml += `<div class="section-sub">${sec.sub}</div>`;
   sec.tasks.forEach(t=>{
     outHtml += `<div class="task" id="${t.id}"><div class="task-head"><h3>${t.title}</h3><span class="marks-pill">${t.marks} marks</span></div>`;
-    if(t.instr) outHtml += `<div class="instr">${t.instr}</div>`;
+
+    const englishInstruction = t.instrEn || '';
+    const banglaInstruction = t.instrBn || t.instr || '';
+    if(englishInstruction || banglaInstruction){
+      outHtml += `<div class="instruction-box">`;
+      if(englishInstruction){
+        outHtml += `<div class="instr instr-en"><span class="lang-label">EN</span>${englishInstruction}</div>`;
+      }
+      if(banglaInstruction){
+        outHtml += `<div class="instr instr-bn"><span class="lang-label">বাংলা</span>${banglaInstruction}</div>`;
+      }
+      outHtml += `</div>`;
+    }
+
     outHtml += renderTask(t);
     if(t.hint) outHtml += `<div class="hint">💡 ${t.hint}</div>`;
-    outHtml += `<div id="${t.id}_result" style="margin-top:8px;font-size:13px;font-weight:600;"></div></div>`;
+    outHtml += `<div id="${t.id}_result" style="margin-top:11px;font-size:14.5px;font-weight:700;"></div></div>`;
   });
+  outHtml += `</section>`;
 });
 root.innerHTML = outHtml;
 
