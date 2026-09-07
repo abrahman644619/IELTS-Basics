@@ -8,87 +8,215 @@
 <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Baloo+Da+2:wght@500;600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <style>
-html,body[data-theme="light"]{
-  --bg:#FCF5EE; --bg-soft:#FFF9F4; --card:#FFFFFF; --card-alt:#FFF3EC;
-  --text:#402028; --text-soft:#7a4a56; --heading:#850E35;
-  --accent:#EE6983; --accent-soft:#FFC4C4; --border:#FFD9D9;
-  --ok:#2e8b57; --bad:#c0392b; --shadow:0 8px 24px rgba(133,14,53,.08);
+/* =========================================================
+   BANGLAY IELTS · GRAMMAR FOUNDATION SERIES
+   Premium glass / accessible reading upgrade
+   Presentation only: original exercise data and grading retained.
+========================================================= */
+:root{--accent:#EE6983;--accent-strong:#D94F70;--ok:#2e8b57;--bad:#c0392b;}
+body[data-theme="light"]{
+  --bg:#FCF5EE;--bg-soft:#FFF9F4;--card:#FFFFFF;--card-alt:#FFF3EC;
+  --text:#402028;--text-soft:#7a4a56;--heading:#850E35;
+  --accent-soft:#FFC4C4;--border:#FFD9D9;--ok:#2e8b57;--bad:#c0392b;
+  --glass:rgba(255,255,255,.68);--glass-strong:rgba(255,255,255,.84);
+  --task-glass:rgba(255,255,255,.58);--glass-border:rgba(255,255,255,.80);
+  --field-bg:rgba(255,249,244,.90);--button-secondary-text:#FFFFFF;
+  --shadow:0 16px 40px rgba(133,14,53,.09);
+  --shadow-hover:0 20px 48px rgba(133,14,53,.14);
 }
 body[data-theme="dark"]{
-  --bg:#2A0A16; --bg-soft:#33101F; --card:#3B1224; --card-alt:#451529;
-  --text:#FCEFEF; --text-soft:#E9B9C4; --heading:#FFC4C4;
-  --accent:#EE6983; --accent-soft:#850E35; --border:#5C1A34;
-  --ok:#6fcf97; --bad:#ff8a80; --shadow:0 8px 24px rgba(0,0,0,.35);
+  --bg:#220812;--bg-soft:#33101F;--card:#3B1224;--card-alt:#451529;
+  --text:#FCEFEF;--text-soft:#E9B9C4;--heading:#FFC4C4;
+  --accent-soft:#850E35;--border:#5C1A34;--ok:#6fcf97;--bad:#ff8a80;
+  --glass:rgba(59,18,36,.66);--glass-strong:rgba(59,18,36,.84);
+  --task-glass:rgba(69,21,41,.60);--glass-border:rgba(255,196,196,.15);
+  --field-bg:rgba(42,10,22,.72);--button-secondary-text:#2A0A16;
+  --shadow:0 18px 46px rgba(0,0,0,.32);
+  --shadow-hover:0 22px 54px rgba(0,0,0,.42);
 }
 *{box-sizing:border-box;}
-body{margin:0;background:var(--bg);color:var(--text);font-family:'Hind Siliguri',sans-serif;transition:background .3s,color .3s;padding-bottom:60px;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;min-height:100vh;padding-bottom:86px;color:var(--text);
+  font-family:'Hind Siliguri',sans-serif;font-size:17px;line-height:1.6;
+  background:radial-gradient(circle at 8% 5%,rgba(238,105,131,.18),transparent 27%),
+             radial-gradient(circle at 95% 32%,rgba(133,14,53,.10),transparent 29%),var(--bg);
+  transition:background .35s ease,color .35s ease;
+}
+body[data-theme="dark"]{
+  background:radial-gradient(circle at 8% 5%,rgba(238,105,131,.15),transparent 28%),
+             radial-gradient(circle at 92% 34%,rgba(133,14,53,.20),transparent 30%),var(--bg);
+}
+button,input,select,textarea{font-family:inherit;}
 h1,h2,h3,.brand{font-family:'Baloo Da 2',cursive;color:var(--heading);}
-.wrap{max-width:900px;margin:0 auto;padding:16px;}
-.topbar{position:sticky;top:0;z-index:50;background:var(--bg);padding:10px 16px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border);}
-.brand{font-size:15px;}
-.theme-btn{border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:20px;padding:8px 14px;cursor:pointer;font-family:inherit;font-weight:600;}
-.header-card{background:var(--card);border-radius:18px;box-shadow:var(--shadow);padding:22px;margin:16px 0;border:1px solid var(--border);}
-.header-card h1{margin:0 0 4px;font-size:24px;}
-.subtitle{color:var(--text-soft);font-size:14px;margin-bottom:14px;}
-.meta-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;}
-@media(max-width:600px){.meta-grid{grid-template-columns:1fr;}}
-.meta-grid label{font-size:13px;font-weight:600;color:var(--text-soft);display:block;margin-bottom:4px;}
-.meta-grid input{width:100%;padding:9px 10px;border-radius:10px;border:1.5px solid var(--border);background:var(--bg-soft);color:var(--text);font-family:inherit;font-size:14px;}
-.engine-table{width:100%;border-collapse:collapse;margin:10px 0 16px;font-size:12.5px;}
-.engine-table th,.engine-table td{border:1px solid var(--border);padding:5px 7px;text-align:left;}
-.engine-table th{background:var(--card-alt);}
-.section-title{margin:26px 0 6px;font-size:18px;}
-.section-sub{color:var(--text-soft);font-size:13px;margin-bottom:14px;}
-.task{background:var(--card);border-radius:16px;box-shadow:var(--shadow);padding:18px;margin-bottom:16px;border:1px solid var(--border);}
-.task-head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:6px;}
-.task-head h3{margin:0;font-size:15px;}
-.marks-pill{background:var(--accent-soft);color:var(--heading);font-weight:700;font-size:12px;padding:4px 10px;border-radius:20px;white-space:nowrap;}
-.instr{font-size:13px;color:var(--text-soft);margin-bottom:4px;}
-.hint{font-size:12.5px;background:var(--card-alt);border-left:3px solid var(--accent);padding:8px 10px;border-radius:8px;margin-top:8px;color:var(--text-soft);}
-table.qtable{width:100%;border-collapse:collapse;margin-top:10px;font-size:12.5px;}
-table.qtable th,table.qtable td{border:1px solid var(--border);padding:5px 6px;text-align:left;vertical-align:middle;}
-table.qtable th{background:var(--card-alt);}
-input[type=text],select,textarea{width:100%;padding:6px 8px;border-radius:8px;border:1.5px solid var(--border);background:var(--bg-soft);color:var(--text);font-family:inherit;font-size:13px;}
-textarea{resize:vertical;min-height:40px;}
-.radio-row{display:flex;gap:9px;flex-wrap:wrap;}
-.radio-row label{display:flex;align-items:center;gap:4px;font-size:12px;cursor:pointer;}
-.given{opacity:.75;}
-.given input,.given select,.given td{background:var(--accent-soft);font-weight:600;}
-.freeitem{margin-bottom:11px;}
-.freeitem .prompt{font-size:13px;margin-bottom:4px;}
-.subfield{margin-bottom:4px;}
-.subfield .flabel{font-size:11px;color:var(--text-soft);}
-.result-tag{display:inline-block;font-size:11.5px;font-weight:700;padding:2px 8px;border-radius:10px;margin-left:6px;}
+.wrap{max-width:980px;margin:0 auto;padding:22px 18px;}
+.topbar{
+  position:sticky;top:0;z-index:50;display:flex;align-items:center;
+  justify-content:space-between;gap:15px;padding:13px 20px;
+  border-bottom:1px solid var(--glass-border);background:var(--glass);
+  backdrop-filter:blur(18px) saturate(140%);-webkit-backdrop-filter:blur(18px) saturate(140%);
+  box-shadow:0 7px 25px rgba(0,0,0,.05);
+}
+.brand{font-size:18px;font-weight:700;letter-spacing:.2px;line-height:1.35;}
+.theme-btn{
+  flex-shrink:0;border:1px solid var(--border);background:var(--glass-strong);
+  color:var(--text);border-radius:999px;padding:10px 17px;cursor:pointer;
+  font-size:15px;font-weight:700;transition:transform .2s,box-shadow .2s,border-color .2s;
+}
+.theme-btn:hover{transform:translateY(-2px);border-color:var(--accent);box-shadow:0 8px 22px rgba(238,105,131,.16);}
+.header-card,.section-shell,.score-banner,.modal-box{
+  border:1px solid var(--glass-border);background:var(--glass);
+  backdrop-filter:blur(20px) saturate(140%);-webkit-backdrop-filter:blur(20px) saturate(140%);
+  box-shadow:var(--shadow);
+}
+.header-card{position:relative;overflow:hidden;border-radius:24px;padding:30px 28px;margin:22px 0 28px;}
+.header-card::before,.task::before{
+  content:"";position:absolute;border-radius:50%;pointer-events:none;
+  background:radial-gradient(circle,rgba(238,105,131,.20),transparent 68%);
+}
+.header-card::before{width:220px;height:220px;top:-135px;right:-115px;}
+.header-card>*{position:relative;}
+.header-card h1{margin:0 0 5px;font-size:clamp(31px,5vw,40px);line-height:1.2;font-weight:800;}
+.subtitle{color:var(--text-soft);font-size:17px;line-height:1.6;margin-bottom:22px;}
+.meta-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px;}
+.meta-grid label{display:block;margin-bottom:6px;color:var(--text-soft);font-size:15px;font-weight:700;}
+.meta-grid input{width:100%;padding:11px 12px;border-radius:12px;border:1.5px solid var(--border);background:var(--field-bg);color:var(--text);font-size:16px;outline:none;}
+.table-scroll{width:100%;max-width:100%;overflow-x:auto;margin-top:14px;border-radius:13px;-webkit-overflow-scrolling:touch;}
+.engine-table,.qtable{width:100%;border-collapse:separate;border-spacing:0;font-size:15.5px;line-height:1.55;}
+.engine-table{min-width:560px;margin:0;}
+.engine-table th,.engine-table td,.qtable th,.qtable td{
+  border-right:1px solid var(--border);border-bottom:1px solid var(--border);
+  padding:11px 12px;text-align:left;vertical-align:middle;
+}
+.engine-table th:first-child,.engine-table td:first-child,.qtable th:first-child,.qtable td:first-child{border-left:1px solid var(--border);}
+.engine-table tr:first-child th,.qtable tr:first-child th{border-top:1px solid var(--border);}
+.engine-table th,.qtable th{background:rgba(238,105,131,.09);font-weight:700;}
+.engine-table th:first-child,.qtable th:first-child{border-top-left-radius:12px;}
+.engine-table th:last-child,.qtable th:last-child{border-top-right-radius:12px;}
+.section-shell{position:relative;margin:30px 0;padding:24px;border-radius:26px;}
+.section-title{margin:0 0 5px;font-size:28px;line-height:1.25;font-weight:800;}
+.section-sub{color:var(--text-soft);font-size:16px;line-height:1.55;margin-bottom:22px;}
+.section-heading{margin-bottom:22px;}
+.section-heading .section-sub{margin-bottom:0;}
+.task{
+  position:relative;overflow:hidden;padding:24px;margin-bottom:20px;border-radius:20px;
+  border:1px solid var(--glass-border);background:var(--task-glass);
+  backdrop-filter:blur(15px) saturate(135%);-webkit-backdrop-filter:blur(15px) saturate(135%);
+  box-shadow:0 10px 30px rgba(0,0,0,.055);
+  transition:transform .25s,box-shadow .25s,border-color .25s;
+  scroll-margin-top:90px;
+}
+.task:last-child{margin-bottom:0;}
+.task::before{width:150px;height:150px;top:-105px;right:-90px;}
+.task:hover{transform:translateY(-3px);border-color:rgba(238,105,131,.32);box-shadow:var(--shadow-hover);}
+.task>*{position:relative;}
+.task-head{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;margin-bottom:12px;}
+.task-head h3{margin:0;font-size:21px;line-height:1.35;font-weight:800;}
+.marks-pill{flex-shrink:0;background:var(--accent-soft);color:var(--heading);font-size:13.5px;font-weight:800;padding:6px 12px;border-radius:999px;white-space:nowrap;}
+.instruction-box{margin:10px 0 16px;padding:14px 16px;border-radius:14px;border:1px solid rgba(238,105,131,.17);background:rgba(238,105,131,.055);}
+.instr{font-size:16px;line-height:1.6;}
+.instr+.instr{margin-top:8px;}
+.instr-en{color:var(--text);}
+.instr-bn{color:var(--text-soft);font-weight:500;}
+.lang-label{display:inline-block;min-width:40px;margin-right:7px;color:var(--heading);font-size:12px;font-weight:800;letter-spacing:.4px;vertical-align:baseline;}
+.hint{font-size:14.5px;line-height:1.6;background:rgba(238,105,131,.075);border-left:4px solid var(--accent);padding:11px 13px;border-radius:11px;margin-top:12px;color:var(--text-soft);}
+.qtable{min-width:440px;margin:0;}
+input[type=text],select,textarea{
+  width:100%;min-width:0;padding:10px 12px;border-radius:10px;border:1.5px solid var(--border);
+  background:var(--field-bg);color:var(--text);font-size:16px;line-height:1.5;outline:none;
+  transition:border-color .2s,box-shadow .2s;
+}
+input[type=text]:focus,select:focus,textarea:focus,.meta-grid input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(238,105,131,.12);}
+input:disabled{cursor:default;}
+textarea{resize:vertical;min-height:78px;}
+.radio-row{display:flex;gap:10px 17px;flex-wrap:wrap;margin-top:6px;}
+.radio-row label{display:inline-flex;align-items:flex-start;gap:7px;font-size:15.5px;line-height:1.5;cursor:pointer;}
+.radio-row input[type=radio]{width:17px;height:17px;flex-shrink:0;margin:3px 0 0;accent-color:var(--accent);}
+.given{opacity:.8;}
+.given input,.given select,.given td{background:var(--accent-soft);font-weight:700;}
+.freeitem{padding:7px 0;margin-bottom:14px;}
+.freeitem:last-child{margin-bottom:0;}
+.freeitem .prompt{font-size:16px;line-height:1.6;margin-bottom:8px;overflow-wrap:anywhere;}
+.subfield{margin-bottom:11px;}
+.subfield:last-child{margin-bottom:0;}
+.subfield .flabel{display:block;font-size:14px;line-height:1.5;color:var(--text-soft);font-weight:600;margin-bottom:5px;}
+.result-tag{display:inline-block;font-size:12.5px;font-weight:800;padding:3px 9px;border-radius:999px;margin-left:7px;}
 .tag-full{background:#d6f5df;color:var(--ok);}
 .tag-partial{background:#fff3cd;color:#8a6500;}
 .tag-zero{background:#ffe0e0;color:var(--bad);}
 [data-theme="dark"] .tag-full{background:#154a2c;}
 [data-theme="dark"] .tag-partial{background:#4a3c10;color:#ffd76b;}
 [data-theme="dark"] .tag-zero{background:#4a1414;}
-.footer-bar{position:sticky;bottom:0;background:var(--card);border-top:1px solid var(--border);padding:14px 16px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;box-shadow:0 -6px 18px rgba(0,0,0,.06);}
-.btn{border:none;border-radius:24px;padding:12px 22px;font-weight:700;font-family:inherit;font-size:14.5px;cursor:pointer;transition:transform .15s;}
+.task-result{margin-top:11px;font-size:14.5px;font-weight:700;}
+.score-banner{margin:30px 0;padding:26px;text-align:center;border-radius:22px;scroll-margin-top:90px;}
+.score-banner .big{margin-top:4px;color:var(--heading);font-family:'Baloo Da 2',cursive;font-size:54px;font-weight:800;line-height:1.2;}
+.tracker{width:100%;border-collapse:collapse;margin-top:18px;font-size:15px;}
+.tracker th,.tracker td{border:1px solid var(--border);padding:10px;text-align:center;}
+.tracker th{background:rgba(238,105,131,.08);}
+.footer-bar{
+  position:sticky;bottom:0;z-index:40;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;
+  padding:15px 16px;border-top:1px solid var(--glass-border);background:var(--glass-strong);
+  backdrop-filter:blur(20px) saturate(140%);-webkit-backdrop-filter:blur(20px) saturate(140%);
+  box-shadow:0 -8px 28px rgba(0,0,0,.08);
+}
+.btn{border:none;border-radius:999px;padding:13px 24px;font-size:16px;font-weight:800;cursor:pointer;transition:transform .18s,box-shadow .18s;}
+.btn:hover{transform:translateY(-2px);}
 .btn:active{transform:scale(.97);}
-.btn-primary{background:var(--accent);color:#fff;}
-.btn-secondary{background:var(--heading);color:#fff;}
-.score-banner{text-align:center;margin:18px 0;}
-.score-banner .big{font-size:44px;font-weight:800;color:var(--heading);font-family:'Baloo Da 2',cursive;}
-.tracker{width:100%;border-collapse:collapse;margin-top:16px;font-size:12px;}
-.tracker th,.tracker td{border:1px solid var(--border);padding:5px 7px;text-align:center;}
-.tracker th{background:var(--card-alt);}
-.page-footer{text-align:center;color:var(--text-soft);font-size:12px;padding:26px 0 6px;}
+.btn-primary{background:var(--accent);color:#fff;box-shadow:0 8px 20px rgba(238,105,131,.22);}
+.btn-secondary{background:var(--heading);color:var(--button-secondary-text);box-shadow:0 8px 20px rgba(133,14,53,.17);}
+.page-footer{text-align:center;color:var(--text-soft);font-size:14px;padding:30px 0 8px;}
 #resultCardHolder{position:fixed;left:-9999px;top:0;}
-.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;align-items:center;justify-content:center;z-index:100;}
-.modal-box{background:var(--card);border-radius:16px;padding:22px;max-width:340px;width:90%;box-shadow:var(--shadow);}
-.modal-box h3{margin-top:0;}
-.modal-box input{margin-bottom:10px;}
-.modal-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:10px;}
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.50);display:none;align-items:center;justify-content:center;z-index:100;padding:20px;backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);}
+.modal-box{width:100%;max-width:410px;max-height:calc(100vh - 40px);overflow-y:auto;padding:26px;border-radius:22px;background:var(--glass-strong);}
+.modal-box h3{margin:0 0 5px;font-size:24px;}
+.modal-box p{font-size:15px;color:var(--text-soft);line-height:1.6;}
+.modal-box label{display:block;font-size:15px;font-weight:600;margin-bottom:5px;}
+.modal-box input{margin-bottom:12px;}
+.modal-actions{display:flex;gap:9px;justify-content:flex-end;margin-top:12px;}
+.btn-cancel{background:var(--border);color:var(--text);}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--accent);outline-offset:3px;}
+@media(max-width:700px){
+  body{font-size:16px;padding-bottom:35px;}
+  .wrap{padding:14px 12px;}
+  .topbar{padding:11px 13px;}
+  .brand{font-size:15px;line-height:1.3;}
+  .theme-btn{padding:8px 12px;font-size:14px;}
+  .header-card{padding:24px 19px;border-radius:20px;}
+  .header-card h1{font-size:30px;}
+  .subtitle{font-size:15.5px;}
+  .meta-grid{grid-template-columns:1fr;}
+  .section-shell{padding:17px 13px;border-radius:20px;}
+  .section-title{font-size:24px;}
+  .section-sub{font-size:15px;}
+  .task{padding:19px 15px;border-radius:17px;}
+  .task-head h3{font-size:19px;}
+  .marks-pill{font-size:12px;padding:5px 9px;}
+  .instruction-box{padding:12px;}
+  .instr{font-size:15px;}
+  .freeitem .prompt{font-size:15.5px;}
+  .engine-table,.qtable{font-size:14.5px;}
+  .engine-table th,.engine-table td,.qtable th,.qtable td{padding:9px 10px;}
+  input[type=text],select,textarea{font-size:16px;}
+  .footer-bar{gap:9px;padding:11px 12px;}
+  .footer-bar .btn{width:100%;max-width:420px;font-size:15px;padding:11px 17px;}
+  .score-banner{padding:22px 14px;}
+  .score-banner .big{font-size:44px;}
+  .modal-box{padding:23px 20px;}
+  .modal-actions .btn{padding:11px 16px;font-size:15px;}
+}
+@media(max-width:380px){
+  .task-head{flex-wrap:wrap;gap:8px;}
+  .marks-pill{margin-left:auto;}
+  .brand{font-size:14px;}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto;}*,*::before,*::after{transition:none!important;animation:none!important;}}
 </style>
 </head>
 <body data-theme="light">
 
 <div class="topbar">
   <div class="brand">বাংলায় IELTS · Grammar Foundation Series · Companion to Lecture Sheet 04</div>
-  <button class="theme-btn" onclick="toggleTheme()">🌓 Theme</button>
+  <button class="theme-btn" type="button" onclick="toggleTheme()">🌓 Theme</button>
 </div>
 
 <div class="wrap">
@@ -96,10 +224,11 @@ textarea{resize:vertical;min-height:40px;}
     <h1>NEGATIVES — PRACTICE WORKSHEET</h1>
     <div class="subtitle">27 exercises · 288 marks · find the helping verb, put not right after it — for the Do-engine, the main verb goes back to its base form</div>
     <div class="meta-grid">
-      <div><label>Name / নাম</label><input type="text" id="stuName" placeholder="তোমার নাম লেখো"></div>
-      <div><label>Batch / ব্যাচ</label><input type="text" id="stuBatch" placeholder="ব্যাচ নম্বর"></div>
-      <div><label>Date / তারিখ</label><input type="date" id="stuDate"></div>
+      <div><label for="stuName">Name / নাম</label><input type="text" id="stuName" placeholder="তোমার নাম লেখো"></div>
+      <div><label for="stuBatch">Batch / ব্যাচ</label><input type="text" id="stuBatch" placeholder="ব্যাচ নম্বর"></div>
+      <div><label for="stuDate">Date / তারিখ</label><input type="date" id="stuDate"></div>
     </div>
+    <div class="table-scroll" role="region" aria-label="Negative engine reference table" tabindex="0">
     <table class="engine-table">
       <tr><th>Engine</th><th>Helping verb + not</th><th>Used for</th></tr>
       <tr><td><b>BE</b></td><td>am/is/are/was/were + not</td><td>Be-sentences &amp; Continuous</td></tr>
@@ -107,6 +236,7 @@ textarea{resize:vertical;min-height:40px;}
       <tr><td><b>HAVE</b></td><td>have/has/had + not + V3</td><td>Perfect tenses</td></tr>
       <tr><td><b>WILL</b></td><td>will/can/should + not + V1</td><td>Future &amp; modals</td></tr>
     </table>
+    </div>
   </div>
 
   <div id="renderRoot"></div>
@@ -121,20 +251,20 @@ textarea{resize:vertical;min-height:40px;}
 </div>
 
 <div class="footer-bar">
-  <button class="btn btn-primary" onclick="checkScore()">✅ Check My Score</button>
-  <button class="btn btn-secondary" onclick="openSaveModal()">🖼️ Save your result as an image</button>
+  <button class="btn btn-primary" type="button" onclick="checkScore()">✅ Check My Score</button>
+  <button class="btn btn-secondary" type="button" onclick="openSaveModal()">🖼️ Save your result as an image</button>
 </div>
 
 <div class="modal-overlay" id="saveModal">
   <div class="modal-box">
     <h3>Confirm details</h3>
-    <p style="font-size:13px;color:var(--text-soft);">ছবি তৈরির আগে নাম ও তারিখ দিন।</p>
-    <label style="font-size:13px;">Name</label>
+    <p>ছবি তৈরির আগে নাম ও তারিখ দিন।</p>
+    <label for="modalName">Name</label>
     <input type="text" id="modalName" placeholder="তোমার নাম">
-    <label style="font-size:13px;">Date</label>
+    <label for="modalDate">Date</label>
     <input type="date" id="modalDate">
     <div class="modal-actions">
-      <button class="btn" style="background:var(--border);color:var(--text);" onclick="closeSaveModal()">বাতিল</button>
+      <button class="btn btn-cancel" onclick="closeSaveModal()">বাতিল</button>
       <button class="btn btn-primary" onclick="generateImage()">তৈরি করো</button>
     </div>
   </div>
@@ -148,6 +278,7 @@ const TOPIC = "Negatives — Practice Worksheet";
 const SECTIONS = [
 { id:'A', title:'A · RECOGNISE THE ENGINE', sub:'', tasks:[
   { id:'e1', title:'EXERCISE 1 · Match the helper to its engine', marks:12, type:'fields',
+    instrBn:"প্রতিটি helping verb কোন engine-এর অন্তর্ভুক্ত তা নির্বাচন করো। B = Be, D = Do, H = Have এবং W = Will/Modal।",
     instr:'Write the engine for each helping verb: B=Be, D=Do, H=Have, W=Will/Modal.', fieldNames:['Engine'],
     items:[
       {label:"1. isn't", fields:[{type:'radio',options:['B','D','H','W'],correct:'B'}]},
@@ -164,6 +295,7 @@ const SECTIONS = [
       {label:"12. can't", fields:[{type:'radio',options:['B','D','H','W'],correct:'W'}]}
     ]},
   { id:'e2', title:'EXERCISE 2 · Which engine would you use?', marks:15, type:'fields',
+    instrBn:"প্রতিটি sentence-কে negative করতে কোন engine ব্যবহার করতে হবে, তা নির্বাচন করো।",
     instr:'Write which engine you would use to make each sentence negative.', fieldNames:['Engine'],
     items:[
       {label:'1. She is a nurse.', fields:[{type:'radio',options:['B','D','H','W'],correct:'B'}]},
@@ -183,6 +315,8 @@ const SECTIONS = [
       {label:'15. He watched TV.', fields:[{type:'radio',options:['B','D','H','W'],correct:'D'}]}
     ]},
   { id:'e3', title:'EXERCISE 3 · Circle the correct helper', marks:12, type:'mcq',
+    instrEn:"Choose the correct helping verb to complete each negative sentence.",
+    instrBn:"প্রতিটি negative sentence-এর শূন্যস্থান পূরণের জন্য সঠিক helping verb নির্বাচন করো।",
     items:[
       {prompt:'1. She ___ tired.', options:["isn't","don't","hasn't"], correct:0},
       {prompt:'2. They ___ play football.', options:["aren't","don't","haven't"], correct:1},
@@ -201,6 +335,8 @@ const SECTIONS = [
 
 { id:'B', title:'B · BE VERB NEGATIVES', sub:'am / is / are / was / were + not', tasks:[
   { id:'e4', title:'EXERCISE 4 · Fill in the Be-negative', marks:12, type:'fillblank',
+    instrEn:"Fill in each gap with the correct negative form of the Be verb.",
+    instrBn:"Subject ও সময় অনুযায়ী am/is/are/was/were-এর সঠিক negative form দিয়ে প্রতিটি শূন্যস্থান পূরণ করো।",
     items:[
       {label:'1. I ___ a doctor.', correct:['am not']},
       {label:'2. She ___ my teacher.', correct:['is not']},
@@ -216,6 +352,7 @@ const SECTIONS = [
       {label:'12. The boys ___ in the field then.', correct:['were not']}
     ]},
   { id:'e5', title:'EXERCISE 5 · Make it negative — full form', marks:10, type:'freetext',
+    instrBn:"প্রতিটি sentence-কে negative করো। Contraction ব্যবহার না করে helping verb + not-এর পূর্ণরূপ লিখবে।",
     instr:'Write not, not the contraction.',
     items:[
       {prompt:'1. I am a student.', keyword:'am not', correct:['I am not a student.']},
@@ -230,6 +367,8 @@ const SECTIONS = [
       {prompt:'10. The rooms are clean.', keyword:'are not', correct:['The rooms are not clean.']}
     ]},
   { id:'e6', title:'EXERCISE 6 · Write the short form', marks:12, type:'fillblank',
+    instrEn:"Write the contracted (short) form of each expression.",
+    instrBn:"প্রতিটি full form-এর সঠিক contracted বা short form লিখো।",
     items:[
       {label:'1. is not', correct:["isn't"]},
       {label:'2. are not', correct:["aren't"]},
@@ -245,6 +384,7 @@ const SECTIONS = [
       {label:'12. cannot', correct:["can't"]}
     ]},
   { id:'e7', title:'EXERCISE 7 · Continuous-tense negatives', marks:8, type:'freetext',
+    instrBn:"প্রতিটি Continuous-tense sentence-কে negative করো। Be verb-এর পরে not বসাবে এবং মূল verb-এর V-ing form অপরিবর্তিত রাখবে।",
     instr:'Still the Be-engine: be + not + V-ing.',
     items:[
       {prompt:'1. She is cooking now.', keyword:["isn't","is not"], correct:['She is not cooking now.']},
@@ -260,6 +400,8 @@ const SECTIONS = [
 
 { id:'C', title:'C · DO VERB NEGATIVES', sub:'do / does / did + not + base verb', tasks:[
   { id:'e8', title:'EXERCISE 8 · Choose do / does / did', marks:12, type:'fillblank',
+    instrEn:"Complete each negative sentence with the correct form of do, does or did.",
+    instrBn:"Subject ও tense অনুযায়ী do/does/did-এর সঠিক negative form দিয়ে শূন্যস্থান পূরণ করো।",
     items:[
       {label:'1. I ___ like tea.', correct:["don't"]},
       {label:'2. She ___ eat meat.', correct:["doesn't"]},
@@ -275,6 +417,7 @@ const SECTIONS = [
       {label:'12. She ___ understand the question.', correct:["doesn't"]}
     ]},
   { id:'e9', title:'EXERCISE 9 · The base-verb trap', marks:12, type:'mcq',
+    instrBn:"Helping verb-ই tense বহন করে। তাই প্রতিটি শূন্যস্থানে মূল verb-এর base form (V1) নির্বাচন করো।",
     instr:'The helper already carries the tense — circle the base form.',
     items:[
       {prompt:"1. He doesn't ___ cricket.", options:['play','plays','played'], correct:0},
@@ -291,6 +434,8 @@ const SECTIONS = [
       {prompt:"12. Children don't ___ fast.", options:['run','runs','ran'], correct:0}
     ]},
   { id:'e10', title:'EXERCISE 10 · Spot & fix the mistake', marks:10, type:'freetext',
+    instrEn:"Find the mistake in each sentence and rewrite it correctly.",
+    instrBn:"প্রতিটি sentence-এর ভুলটি খুঁজে বের করে সম্পূর্ণ sentence-টি সঠিকভাবে আবার লেখো।",
     items:[
       {prompt:"1. He doesn't plays football.", keyword:'play', correct:["He doesn't play football."]},
       {prompt:"2. She don't like coffee.", keyword:"doesn't", correct:["She doesn't like coffee."]},
@@ -304,6 +449,7 @@ const SECTIONS = [
       {prompt:"10. Birds doesn't fly at night.", keyword:"don't", correct:["Birds don't fly at night."]}
     ]},
   { id:'e11', title:'EXERCISE 11 · Make it negative — Do-engine', marks:12, type:'freetext',
+    instrBn:"প্রতিটি sentence-কে Do-engine ব্যবহার করে negative করো। ৭, ৮, ১০ ও ১১ নম্বর Past Simple; did not-এর পরে মূল verb-এর base form ব্যবহার করবে।",
     instr:'Nos. 7, 8, 10 and 11 are past tense — base form.',
     items:[
       {prompt:'1. He plays football.', keyword:"doesn't", correct:["He doesn't play football."]},
@@ -323,6 +469,8 @@ const SECTIONS = [
 
 { id:'D', title:'D · HAVE VERB NEGATIVES', sub:'have / has / had + not', tasks:[
   { id:'e12', title:'EXERCISE 12 · Fill in the Have-negative', marks:10, type:'fillblank',
+    instrEn:"Fill in each gap with the correct negative form of have, has or had.",
+    instrBn:"Subject ও tense অনুযায়ী have/has/had-এর সঠিক negative form দিয়ে প্রতিটি শূন্যস্থান পূরণ করো।",
     items:[
       {label:'1. I ___ finished my homework.', correct:['have not']},
       {label:'2. She ___ read the book.', correct:['has not']},
@@ -336,6 +484,7 @@ const SECTIONS = [
       {label:'10. She ___ done her work when I arrived.', correct:['had not']}
     ]},
   { id:'e13', title:'EXERCISE 13 · Make it negative — Perfect tenses', marks:10, type:'freetext',
+    instrBn:"প্রতিটি Perfect-tense sentence-কে negative করো। Helping verb-এর পরে not বসাবে এবং মূল verb-এর past participle (V3) অপরিবর্তিত রাখবে।",
     instr:'The V3 (past participle) never changes.',
     items:[
       {prompt:'1. I have done my homework.', keyword:"haven't", correct:["I haven't done my homework."]},
@@ -350,6 +499,7 @@ const SECTIONS = [
       {prompt:'10. The team has won the match.', keyword:"hasn't", correct:["The team hasn't won the match."]}
     ]},
   { id:'e14', title:'EXERCISE 14 · Perfect have vs. possessive have', marks:8, type:'mcq',
+    instrBn:"প্রতিটি sentence-এ have/has Perfect-tense auxiliary নাকি possession বোঝাচ্ছে, তা বুঝে সঠিক negative sentence নির্বাচন করো।",
     instr:'Perfect helper → have/has not. Possess → do/does + not have.',
     items:[
       {prompt:'1. She has finished her lunch.', options:["She hasn't finished her lunch.","She doesn't have finished her lunch."], correct:0},
@@ -365,6 +515,8 @@ const SECTIONS = [
 
 { id:'E', title:'E · MIXED MASTERY', sub:'All engines together', tasks:[
   { id:'e15', title:'EXERCISE 15 · Choose the engine, then complete', marks:15, type:'fields',
+    instrEn:"Identify the engine, then rewrite each sentence in the negative.",
+    instrBn:"প্রথমে সঠিক engine (B/D/H/W) নির্বাচন করো। এরপর মূল sentence-এর tense ও অর্থ বজায় রেখে সম্পূর্ণ negative sentence লেখো।",
     fieldNames:['Engine (B/D/H/W)','Your negative sentence'],
     items:[
       {label:'1. She is a doctor.', fields:[{type:'radio',options:['B','D','H','W'],correct:'B'},{keyword:["isn't","is not"]}]},
@@ -384,6 +536,8 @@ const SECTIONS = [
       {label:'15. We can swim.', fields:[{type:'radio',options:['B','D','H','W'],correct:'W'},{keyword:["can't","cannot"]}]}
     ]},
   { id:'e16', title:'EXERCISE 16 · Fix the mistake — all engines', marks:12, type:'freetext',
+    instrEn:"Find and correct the mistake in each negative sentence.",
+    instrBn:"প্রতিটি negative sentence-এর ভুলটি খুঁজে বের করে সম্পূর্ণ sentence-টি সঠিকভাবে আবার লেখো।",
     items:[
       {prompt:"1. He don't play cricket.", keyword:"doesn't", correct:["He doesn't play cricket."]},
       {prompt:"2. She isn't have a car.", keyword:"doesn't", correct:["She doesn't have a car."]},
@@ -399,6 +553,7 @@ const SECTIONS = [
       {prompt:"12. I don't have seen it.", keyword:"haven't", correct:["I haven't seen it."]}
     ]},
   { id:'e17', title:'EXERCISE 17 · Rewrite the paragraph in the negative', marks:7, type:'paragraph',
+    instrBn:"পুরো paragraph-টি negative করে আবার লেখো। প্রতিটি sentence-এর মূল tense ও বাকি অর্থ বজায় রাখবে; শুধু negative করার জন্য প্রয়োজনীয় পরিবর্তন করবে।",
     instr:'Keep the meaning and tense; only change what makes each sentence negative.',
     original:'Maria is a busy student. She wakes up early. She eats breakfast at home. She goes to school by bus. She has finished her science project. She was late yesterday. She will come to the party tonight.',
     groups:[
@@ -409,6 +564,7 @@ const SECTIONS = [
       {forms:['will not',"won't"], count:1}
     ]},
   { id:'e18', title:'EXERCISE 18 · Unscramble the negative', marks:10, type:'fillblank',
+    instrBn:"এলোমেলো শব্দগুলো সঠিক ক্রমে সাজিয়ে negative sentence তৈরি করো। Sentence-এর শুরুতে capital letter এবং শেষে full stop দেবে।",
     instr:'Add a capital letter and a full stop.',
     items:[
       {label:'1. is / she / happy / not', correct:['She is not happy.']},
@@ -423,6 +579,8 @@ const SECTIONS = [
       {label:'10. will / not / I / go', correct:['I will not go.']}
     ]},
   { id:'e19', title:'EXERCISE 19 · Complete the dialogue', marks:8, type:'fillblank',
+    instrEn:"Complete each dialogue with the correct negative helping verb.",
+    instrBn:"প্রতিটি dialogue-এর উত্তরে শূন্যস্থানটি সঠিক negative helping verb দিয়ে পূরণ করো।",
     items:[
       {label:'A: Do you like coffee?  B: No, I ___ like coffee.', correct:["don't"]},
       {label:'A: Is Rahim at home?  B: No, he ___ at home.', correct:["isn't"]},
@@ -434,6 +592,8 @@ const SECTIONS = [
       {label:'A: Will you be late?  B: No, I ___ be late.', correct:["won't"]}
     ]},
   { id:'e20', title:'EXERCISE 20 · বাংলা → English (negative)', marks:15, type:'freetext',
+    instrEn:"Translate each Bengali sentence into English in the negative form.",
+    instrBn:"প্রতিটি বাংলা sentence-এর অর্থ ও tense বজায় রেখে সঠিক English negative sentence লেখো।",
     items:[
       {prompt:'১. আমি ছাত্র নই।', keyword:["'m not","am not"], correct:['I am not a student.']},
       {prompt:'২. সে স্কুলে যায় না।', keyword:["doesn't","does not"], correct:['She does not go to school.']},
@@ -452,6 +612,7 @@ const SECTIONS = [
       {prompt:'১৫. তারা ইংরেজি বলে না।', keyword:["don't","do not"], correct:['They do not speak English.']}
     ]},
   { id:'e21', title:'EXERCISE 21 · True or false?', marks:12, type:'fields',
+    instrBn:"প্রতিটি negative sentence grammatically correct কি না, তা নির্ধারণ করো। সঠিক হলে T, ভুল হলে F নির্বাচন করো।",
     instr:'Is the negative correct? T or F.', fieldNames:['T / F'],
     items:[
       {label:"1. He doesn't plays football.", fields:[{type:'radio',options:['T','F'],correct:'F'}]},
@@ -471,6 +632,7 @@ const SECTIONS = [
 
 { id:'F', title:'F · CHALLENGE ZONE', sub:'', tasks:[
   { id:'e22', title:'EXERCISE 22 · Odd one out', marks:8, type:'mcq',
+    instrBn:"প্রতিটি group থেকে যে sentence-টি সঠিক negative নয়, সেটি নির্বাচন করো।",
     instr:'Circle the sentence that is NOT a correct negative.',
     items:[
       {prompt:'1.', options:["She isn't happy.","She doesn't happy.","She wasn't happy."], correct:1},
@@ -483,6 +645,8 @@ const SECTIONS = [
       {prompt:'8.', options:["He isn't play.","He doesn't play.","He isn't playing."], correct:0}
     ]},
   { id:'e23', title:'EXERCISE 23 · Sentence transformation', marks:10, type:'freetext',
+    instrEn:"Rewrite each sentence in the negative without changing its tense.",
+    instrBn:"প্রতিটি sentence-কে negative করে সম্পূর্ণ sentence আবার লেখো। মূল tense ও অর্থ বজায় রাখবে।",
     items:[
       {prompt:'1. She is my friend.', keyword:["isn't","is not"], correct:["She is not my friend."]},
       {prompt:'2. They play cricket every day.', keyword:["don't","do not"], correct:["They do not play cricket every day."]},
@@ -499,6 +663,8 @@ const SECTIONS = [
 
 { id:'G', title:'G · EXTRA DRILLS', sub:'', tasks:[
   { id:'e24', title:'EXERCISE 24 · Choose the fully correct sentence', marks:10, type:'mcq',
+    instrEn:"Choose the fully correct sentence from each set of options.",
+    instrBn:"প্রতিটি group-এর options থেকে সম্পূর্ণ সঠিক sentence-টি নির্বাচন করো।",
     items:[
       {prompt:'1.', options:["She don't like tea.","She doesn't like tea.","She doesn't likes tea."], correct:1},
       {prompt:'2.', options:["They isn't ready.","They aren't ready.","They aren't readies."], correct:1},
@@ -512,6 +678,7 @@ const SECTIONS = [
       {prompt:'10.', options:["They didn't arrived.","They hadn't arrive.","They hadn't arrived."], correct:2}
     ]},
   { id:'e25', title:'EXERCISE 25 · Negative short answers', marks:10, type:'fillblank',
+    instrBn:"প্রতিটি প্রশ্নের জন্য সঠিক negative short answer লিখো। No, আগে থেকেই দেওয়া আছে, তাই শূন্যস্থানে শুধু বাকি অংশটি লিখবে।",
     instr:'Begin with "No,".',
     items:[
       {label:'1. Do you like coffee?  No, ___', correct:["I don't"]},
@@ -526,6 +693,7 @@ const SECTIONS = [
       {label:'10. Were they at home?  No, ___', correct:["they weren't"]}
     ]},
   { id:'e26', title:'EXERCISE 26 · Cloze passage', marks:10, type:'fillblank',
+    instrBn:"দেওয়া word bank থেকে উপযুক্ত negative expression বেছে passage-এর প্রতিটি শূন্যস্থান পূরণ করো। Subject ও tense-এর সঙ্গে মিল রাখবে।",
     instr:'Word bank: isn\u2019t · aren\u2019t · doesn\u2019t · don\u2019t · didn\u2019t · wasn\u2019t · weren\u2019t · hasn\u2019t · haven\u2019t · won\u2019t',
     items:[
       {label:'My cousin Tamim is not a morning person. He (1) ___ wake up before nine.', correct:["doesn't"]},
@@ -540,6 +708,7 @@ const SECTIONS = [
       {label:'and he (10) ___ have his notes ready.', correct:["won't"]}
     ]},
   { id:'e27', title:'EXERCISE 27 · About you — write your own negatives', marks:6, type:'personalcheck',
+    instrBn:"নিজের সম্পর্কে সত্যিকারের negative sentence লেখো। নির্দেশিত engine-গুলো ব্যবহার করবে এবং প্রতিটি sentence-এ সঠিক negative construction রাখবে। Auto-check শুধু not বা n’t-এর উপস্থিতি পরীক্ষা করে।",
     instr:'Write true negative sentences about yourself, using each engine at least once. (Auto-check: looks for a real negative construction — "not" or "n\u2019t" — in each sentence.)',
     items:[
       'something you are NOT (Be):',
@@ -556,15 +725,24 @@ const SECTIONS = [
 const root = document.getElementById('renderRoot');
 let outHtml = '';
 SECTIONS.forEach(sec=>{
-  outHtml += `<h2 class="section-title">${sec.title}</h2>`;
+  outHtml += `<section class="section-shell" aria-labelledby="section-${sec.id}">
+    <div class="section-heading"><h2 class="section-title" id="section-${sec.id}">${sec.title}</h2>`;
   if(sec.sub) outHtml += `<div class="section-sub">${sec.sub}</div>`;
+  outHtml += `</div>`;
   sec.tasks.forEach(t=>{
     outHtml += `<div class="task" id="${t.id}"><div class="task-head"><h3>${t.title}</h3><span class="marks-pill">${t.marks} marks</span></div>`;
-    if(t.instr) outHtml += `<div class="instr">${t.instr}</div>`;
+    const englishInstruction = t.instrEn || t.instr;
+    if(englishInstruction || t.instrBn){
+      outHtml += `<div class="instruction-box">`;
+      if(englishInstruction) outHtml += `<div class="instr instr-en"><span class="lang-label">EN</span>${englishInstruction}</div>`;
+      if(t.instrBn) outHtml += `<div class="instr instr-bn"><span class="lang-label">বাংলা</span>${t.instrBn}</div>`;
+      outHtml += `</div>`;
+    }
     outHtml += renderTask(t);
     if(t.hint) outHtml += `<div class="hint">💡 ${t.hint}</div>`;
-    outHtml += `<div id="${t.id}_result" style="margin-top:8px;font-size:13px;font-weight:600;"></div></div>`;
+    outHtml += `<div id="${t.id}_result" class="task-result" aria-live="polite"></div></div>`;
   });
+  outHtml += `</section>`;
 });
 root.innerHTML = outHtml;
 
