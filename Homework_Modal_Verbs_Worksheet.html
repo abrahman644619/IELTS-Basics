@@ -8,87 +8,226 @@
 <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Baloo+Da+2:wght@500;600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <style>
-html,body[data-theme="light"]{
-  --bg:#FCF5EE; --bg-soft:#FFF9F4; --card:#FFFFFF; --card-alt:#FFF3EC;
-  --text:#402028; --text-soft:#7a4a56; --heading:#850E35;
-  --accent:#EE6983; --accent-soft:#FFC4C4; --border:#FFD9D9;
-  --ok:#2e8b57; --bad:#c0392b; --shadow:0 8px 24px rgba(133,14,53,.08);
+
+/* =========================================================
+   BANGLAY IELTS · GLASS WORKSHEET DESIGN
+   Visual and readability upgrade — original assessment logic retained.
+========================================================= */
+:root{color-scheme:light;}
+body[data-theme="light"]{
+  --bg:#FCF5EE;--bg-soft:#FFF9F4;--card:#FFFFFF;--card-alt:#FFF3EC;
+  --text:#402028;--text-soft:#70414e;--heading:#850E35;
+  --accent:#EE6983;--accent-soft:#FFC4C4;--border:#FFD9D9;
+  --ok:#2e8b57;--bad:#c0392b;
+  --glass:rgba(255,255,255,.76);--glass-strong:rgba(255,255,255,.88);
+  --task-glass:rgba(255,255,255,.61);--glass-border:rgba(255,255,255,.88);
+  --field-bg:rgba(255,249,244,.94);--focus:rgba(238,105,131,.17);
+  --shadow:0 16px 42px rgba(133,14,53,.085);
+  --shadow-hover:0 20px 48px rgba(133,14,53,.13);
+  --table-head:rgba(238,105,131,.085);
 }
 body[data-theme="dark"]{
-  --bg:#2A0A16; --bg-soft:#33101F; --card:#3B1224; --card-alt:#451529;
-  --text:#FCEFEF; --text-soft:#E9B9C4; --heading:#FFC4C4;
-  --accent:#EE6983; --accent-soft:#850E35; --border:#5C1A34;
-  --ok:#6fcf97; --bad:#ff8a80; --shadow:0 8px 24px rgba(0,0,0,.35);
+  color-scheme:dark;
+  --bg:#220812;--bg-soft:#33101F;--card:#3B1224;--card-alt:#451529;
+  --text:#FCEFEF;--text-soft:#E9B9C4;--heading:#FFC4C4;
+  --accent:#EE6983;--accent-soft:#850E35;--border:#5C1A34;
+  --ok:#6fcf97;--bad:#ff8a80;
+  --glass:rgba(59,18,36,.76);--glass-strong:rgba(59,18,36,.88);
+  --task-glass:rgba(69,21,41,.60);--glass-border:rgba(255,196,196,.13);
+  --field-bg:rgba(42,10,22,.78);--focus:rgba(238,105,131,.21);
+  --shadow:0 18px 46px rgba(0,0,0,.30);
+  --shadow-hover:0 22px 52px rgba(0,0,0,.40);
+  --table-head:rgba(238,105,131,.10);
 }
 *{box-sizing:border-box;}
-body{margin:0;background:var(--bg);color:var(--text);font-family:'Hind Siliguri',sans-serif;transition:background .3s,color .3s;padding-bottom:60px;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;min-height:100vh;padding-bottom:90px;color:var(--text);
+  font-family:'Hind Siliguri',sans-serif;font-size:17px;line-height:1.6;
+  background:radial-gradient(ellipse at 8% 4%,rgba(238,105,131,.16),transparent 28%),
+    radial-gradient(ellipse at 95% 34%,rgba(133,14,53,.09),transparent 30%),var(--bg);
+  transition:background .3s,color .3s;
+}
+body[data-theme="dark"]{
+  background:radial-gradient(ellipse at 8% 4%,rgba(238,105,131,.13),transparent 28%),
+    radial-gradient(ellipse at 94% 34%,rgba(133,14,53,.20),transparent 30%),var(--bg);
+}
 h1,h2,h3,.brand{font-family:'Baloo Da 2',cursive;color:var(--heading);}
-.wrap{max-width:900px;margin:0 auto;padding:16px;}
-.topbar{position:sticky;top:0;z-index:50;background:var(--bg);padding:10px 16px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border);}
-.brand{font-size:15px;}
-.theme-btn{border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:20px;padding:8px 14px;cursor:pointer;font-family:inherit;font-weight:600;}
-.header-card{background:var(--card);border-radius:18px;box-shadow:var(--shadow);padding:22px;margin:16px 0;border:1px solid var(--border);}
-.header-card h1{margin:0 0 4px;font-size:24px;}
-.subtitle{color:var(--text-soft);font-size:14px;margin-bottom:14px;}
-.meta-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;}
-@media(max-width:600px){.meta-grid{grid-template-columns:1fr;}}
-.meta-grid label{font-size:13px;font-weight:600;color:var(--text-soft);display:block;margin-bottom:4px;}
-.meta-grid input{width:100%;padding:9px 10px;border-radius:10px;border:1.5px solid var(--border);background:var(--bg-soft);color:var(--text);font-family:inherit;font-size:14px;}
-.engine-table{width:100%;border-collapse:collapse;margin:10px 0 16px;font-size:12.5px;}
-.engine-table th,.engine-table td{border:1px solid var(--border);padding:5px 7px;text-align:left;}
-.engine-table th{background:var(--card-alt);}
-.section-title{margin:26px 0 6px;font-size:18px;}
-.section-sub{color:var(--text-soft);font-size:13px;margin-bottom:14px;}
-.task{background:var(--card);border-radius:16px;box-shadow:var(--shadow);padding:18px;margin-bottom:16px;border:1px solid var(--border);}
-.task-head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:6px;}
-.task-head h3{margin:0;font-size:15px;}
-.marks-pill{background:var(--accent-soft);color:var(--heading);font-weight:700;font-size:12px;padding:4px 10px;border-radius:20px;white-space:nowrap;}
-.instr{font-size:13px;color:var(--text-soft);margin-bottom:4px;}
-.hint{font-size:12.5px;background:var(--card-alt);border-left:3px solid var(--accent);padding:8px 10px;border-radius:8px;margin-top:8px;color:var(--text-soft);}
-table.qtable{width:100%;border-collapse:collapse;margin-top:10px;font-size:12.5px;}
-table.qtable th,table.qtable td{border:1px solid var(--border);padding:5px 6px;text-align:left;vertical-align:middle;}
-table.qtable th{background:var(--card-alt);}
-input[type=text],select,textarea{width:100%;padding:6px 8px;border-radius:8px;border:1.5px solid var(--border);background:var(--bg-soft);color:var(--text);font-family:inherit;font-size:13px;}
-textarea{resize:vertical;min-height:40px;}
-.radio-row{display:flex;gap:9px;flex-wrap:wrap;}
-.radio-row label{display:flex;align-items:center;gap:4px;font-size:12px;cursor:pointer;}
-.given{opacity:.75;}
-.given input,.given select,.given td{background:var(--accent-soft);font-weight:600;}
-.freeitem{margin-bottom:11px;}
-.freeitem .prompt{font-size:13px;margin-bottom:4px;}
-.subfield{margin-bottom:4px;}
-.subfield .flabel{font-size:11px;color:var(--text-soft);}
-.result-tag{display:inline-block;font-size:11.5px;font-weight:700;padding:2px 8px;border-radius:10px;margin-left:6px;}
-.tag-full{background:#d6f5df;color:var(--ok);}
-.tag-partial{background:#fff3cd;color:#8a6500;}
-.tag-zero{background:#ffe0e0;color:var(--bad);}
-[data-theme="dark"] .tag-full{background:#154a2c;}
-[data-theme="dark"] .tag-partial{background:#4a3c10;color:#ffd76b;}
-[data-theme="dark"] .tag-zero{background:#4a1414;}
-.footer-bar{position:sticky;bottom:0;background:var(--card);border-top:1px solid var(--border);padding:14px 16px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;box-shadow:0 -6px 18px rgba(0,0,0,.06);}
-.btn{border:none;border-radius:24px;padding:12px 22px;font-weight:700;font-family:inherit;font-size:14.5px;cursor:pointer;transition:transform .15s;}
-.btn:active{transform:scale(.97);}
-.btn-primary{background:var(--accent);color:#fff;}
-.btn-secondary{background:var(--heading);color:#fff;}
-.score-banner{text-align:center;margin:18px 0;}
-.score-banner .big{font-size:44px;font-weight:800;color:var(--heading);font-family:'Baloo Da 2',cursive;}
-.tracker{width:100%;border-collapse:collapse;margin-top:16px;font-size:12px;}
-.tracker th,.tracker td{border:1px solid var(--border);padding:5px 7px;text-align:center;}
-.tracker th{background:var(--card-alt);}
-.page-footer{text-align:center;color:var(--text-soft);font-size:12px;padding:26px 0 6px;}
+button,input,select,textarea{font-family:inherit;}
+button,input,select,textarea{font-size:inherit;}
+button{touch-action:manipulation;}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{
+  outline:2px solid var(--accent);outline-offset:3px;
+}
+.wrap{max-width:1000px;margin:0 auto;padding:22px 18px;min-width:0;}
+.topbar{
+  position:sticky;top:0;z-index:50;display:flex;align-items:center;
+  justify-content:space-between;gap:16px;padding:12px max(18px,calc((100vw - 1000px)/2));
+  border-bottom:1px solid var(--glass-border);background:var(--glass-strong);
+  backdrop-filter:blur(20px) saturate(140%);-webkit-backdrop-filter:blur(20px) saturate(140%);
+  box-shadow:0 7px 25px rgba(0,0,0,.045);
+}
+.brand{font-size:18px;font-weight:700;line-height:1.35;min-width:0;}
+.theme-btn{
+  flex-shrink:0;border:1px solid var(--border);background:var(--field-bg);
+  color:var(--text);border-radius:999px;padding:10px 17px;cursor:pointer;
+  font-weight:700;font-size:15px;transition:transform .2s,border-color .2s,box-shadow .2s;
+}
+.theme-btn:hover{transform:translateY(-2px);border-color:var(--accent);box-shadow:0 8px 22px rgba(238,105,131,.14);}
+.header-card,.section-shell,.score-banner,.modal-box{
+  border:1px solid var(--glass-border);background:var(--glass);
+  backdrop-filter:blur(22px) saturate(140%);-webkit-backdrop-filter:blur(22px) saturate(140%);
+  box-shadow:var(--shadow);
+}
+.header-card{position:relative;overflow:hidden;border-radius:24px;padding:30px 28px;margin:22px 0 28px;}
+.header-card::before,.task::before{
+  content:"";position:absolute;pointer-events:none;border-radius:50%;
+  background:radial-gradient(circle,rgba(238,105,131,.17),transparent 70%);
+}
+.header-card::before{width:230px;height:230px;top:-140px;right:-115px;}
+.header-card>*{position:relative;}
+.header-card h1{margin:0 0 5px;font-size:clamp(30px,4.3vw,40px);line-height:1.22;font-weight:800;overflow-wrap:anywhere;}
+.subtitle{color:var(--text-soft);font-size:17px;line-height:1.6;margin-bottom:22px;}
+.meta-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;}
+.meta-grid label{display:block;margin-bottom:6px;font-size:15px;font-weight:700;color:var(--text-soft);}
+.meta-grid input{width:100%;min-width:0;padding:11px 13px;border-radius:12px;border:1.5px solid var(--border);background:var(--field-bg);color:var(--text);font-size:16px;min-height:46px;}
+.table-scroll{max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:13px;}
+.engine-scroll{margin:22px 0 0;}
+.engine-table,.qtable{width:100%;border-collapse:separate;border-spacing:0;font-size:15.5px;line-height:1.5;}
+.engine-table{margin:0;min-width:430px;}
+table.qtable{margin-top:14px;}
+.engine-table th,.engine-table td,.qtable th,.qtable td{
+  border-right:1px solid var(--border);border-bottom:1px solid var(--border);
+  padding:11px 12px;text-align:left;vertical-align:middle;
+}
+.engine-table th:first-child,.engine-table td:first-child,.qtable th:first-child,.qtable td:first-child{border-left:1px solid var(--border);}
+.engine-table tr:first-child th,.qtable tr:first-child th{border-top:1px solid var(--border);}
+.engine-table th,.qtable th{background:var(--table-head);font-weight:700;}
+.engine-table tr:first-child th:first-child,.qtable tr:first-child th:first-child{border-top-left-radius:12px;}
+.engine-table tr:first-child th:last-child,.qtable tr:first-child th:last-child{border-top-right-radius:12px;}
+.engine-table tr:last-child td:first-child,.qtable tr:last-child td:first-child{border-bottom-left-radius:12px;}
+.engine-table tr:last-child td:last-child,.qtable tr:last-child td:last-child{border-bottom-right-radius:12px;}
+.sort-table{min-width:510px;}
+.sort-table th:not(:first-child),.sort-table td:not(:first-child){text-align:center;}
+.sort-table th:first-child{width:38%;}
+.sort-table input[type="radio"]{width:19px;height:19px;}
+.section-shell{position:relative;margin:30px 0;padding:25px;border-radius:26px;}
+.section-title{margin:0 0 6px;font-size:28px;line-height:1.3;font-weight:800;}
+.section-sub{color:var(--text-soft);font-size:16px;margin-bottom:20px;line-height:1.6;}
+.task{
+  position:relative;overflow:hidden;padding:24px;margin-bottom:20px;border-radius:20px;
+  border:1px solid var(--glass-border);background:var(--task-glass);
+  backdrop-filter:blur(14px) saturate(130%);-webkit-backdrop-filter:blur(14px) saturate(130%);
+  box-shadow:0 10px 30px rgba(0,0,0,.05);transition:transform .22s,box-shadow .22s,border-color .22s;
+  scroll-margin-top:90px;
+}
+.task:last-child{margin-bottom:0;}
+.task::before{width:150px;height:150px;top:-108px;right:-92px;}
+.task>*{position:relative;}
+.task:hover{transform:translateY(-2px);border-color:rgba(238,105,131,.30);box-shadow:var(--shadow-hover);}
+.task-head{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;margin-bottom:12px;}
+.task-head h3{margin:0;font-size:21.5px;line-height:1.35;font-weight:800;}
+.marks-pill{flex-shrink:0;background:var(--accent-soft);color:var(--heading);font-weight:800;font-size:13.5px;padding:6px 12px;border-radius:999px;white-space:nowrap;}
+.instruction-box{margin:11px 0 17px;padding:15px 17px;border-radius:14px;border:1px solid rgba(238,105,131,.18);background:rgba(238,105,131,.055);}
+.instr{font-size:16.5px;line-height:1.65;margin:0;color:var(--text);}
+.instr+.instr{margin-top:8px;}
+.instr-bn{color:var(--text-soft);font-weight:500;}
+.lang-label{display:inline-block;min-width:43px;margin-right:7px;color:var(--heading);font-size:12.5px;font-weight:800;letter-spacing:.3px;vertical-align:baseline;}
+.hint{font-size:15px;background:rgba(238,105,131,.075);border-left:4px solid var(--accent);padding:12px 14px;border-radius:11px;margin-top:13px;color:var(--text-soft);line-height:1.6;}
+input[type=text],select,textarea{
+  width:100%;min-width:0;padding:10px 12px;border-radius:11px;border:1.5px solid var(--border);
+  background:var(--field-bg);color:var(--text);font-size:16px;line-height:1.5;
+  transition:border-color .2s,box-shadow .2s;
+}
+input[type=text]:focus,select:focus,textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--focus);}
+input::placeholder,textarea::placeholder{color:var(--text-soft);opacity:.8;}
+select{min-height:44px;max-width:100%;}
+select option{background:var(--card);color:var(--text);}
+textarea{resize:vertical;min-height:84px;line-height:1.65;}
+.radio-row{display:flex;gap:10px 17px;flex-wrap:wrap;align-items:center;margin-top:7px;}
+.radio-row label{display:inline-flex;align-items:center;gap:8px;font-size:15.5px;cursor:pointer;line-height:1.5;max-width:100%;}
+.radio-row input[type="radio"]{flex-shrink:0;width:18px;height:18px;margin:0;accent-color:var(--accent);cursor:pointer;}
+.given{opacity:.83;}
+.given input,.given select,.given td{background:var(--accent-soft);font-weight:700;}
+.freeitem{margin-bottom:17px;min-width:0;}
+.freeitem:last-child{margin-bottom:0;}
+.freeitem .prompt{font-size:16.5px;line-height:1.6;margin-bottom:9px;overflow-wrap:break-word;}
+.subfield{margin-bottom:11px;min-width:0;}
+.subfield:last-child{margin-bottom:0;}
+.subfield .flabel{display:block;margin-bottom:6px;font-size:14.5px;color:var(--text-soft);font-weight:700;line-height:1.5;}
+.result-line{margin-top:13px;font-size:15px;font-weight:700;line-height:1.6;}
+.result-tag{display:inline-block;font-size:13px;font-weight:800;padding:4px 10px;border-radius:999px;margin-left:7px;vertical-align:middle;}
+.tag-full{background:#d6f5df;color:#216942;}.tag-partial{background:#fff3cd;color:#765600;}.tag-zero{background:#ffe0e0;color:#a42922;}
+[data-theme="dark"] .tag-full{background:#154a2c;color:#a3efbb;}
+[data-theme="dark"] .tag-partial{background:#4a3c10;color:#ffe18b;}
+[data-theme="dark"] .tag-zero{background:#4a1414;color:#ffb5ae;}
+.footer-bar{
+  position:sticky;bottom:0;z-index:40;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;
+  padding:15px 18px;border-top:1px solid var(--glass-border);background:var(--glass-strong);
+  backdrop-filter:blur(20px) saturate(140%);-webkit-backdrop-filter:blur(20px) saturate(140%);
+  box-shadow:0 -8px 28px rgba(0,0,0,.07);
+}
+.btn{border:none;border-radius:999px;padding:13px 24px;font-weight:800;font-size:16px;line-height:1.4;cursor:pointer;transition:transform .18s,box-shadow .18s;}
+.btn:hover{transform:translateY(-2px);}.btn:active{transform:scale(.97);}
+.btn-primary{background:var(--accent);color:#fff;box-shadow:0 8px 20px rgba(238,105,131,.20);}
+.btn-secondary{background:var(--heading);color:#fff;box-shadow:0 8px 20px rgba(133,14,53,.14);}
+body[data-theme="dark"] .btn-secondary{background:#FFC4C4;color:#402028;}
+.score-banner{border-radius:22px;text-align:center;margin:30px 0;padding:26px;scroll-margin-top:100px;}
+.score-banner .big{font-size:clamp(42px,6vw,55px);font-weight:800;color:var(--heading);font-family:'Baloo Da 2',cursive;line-height:1.3;}
+.tracker{width:100%;border-collapse:collapse;margin-top:18px;font-size:15px;}
+.tracker th,.tracker td{border:1px solid var(--border);padding:10px 12px;text-align:center;}
+.tracker th{background:var(--table-head);}
+.page-footer{text-align:center;color:var(--text-soft);font-size:14px;padding:30px 0 8px;}
 #resultCardHolder{position:fixed;left:-9999px;top:0;}
-.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;align-items:center;justify-content:center;z-index:100;}
-.modal-box{background:var(--card);border-radius:16px;padding:22px;max-width:340px;width:90%;box-shadow:var(--shadow);}
-.modal-box h3{margin-top:0;}
-.modal-box input{margin-bottom:10px;}
-.modal-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:10px;}
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);display:none;align-items:center;justify-content:center;z-index:100;padding:20px;backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);}
+.modal-box{background:var(--glass-strong);border-radius:22px;padding:26px;max-width:390px;width:100%;max-height:calc(100vh - 40px);overflow-y:auto;}
+.modal-box h3{margin:0 0 6px;font-size:25px;line-height:1.3;}
+.modal-box p{font-size:15.5px!important;line-height:1.6;}
+.modal-box label{display:block;font-size:15px!important;font-weight:700;margin-bottom:6px;}
+.modal-box input{margin-bottom:14px;}
+.modal-actions{display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap;margin-top:10px;}
+.modal-actions .btn{font-size:15px;padding:11px 18px;}
+@media(max-width:700px){
+  body{font-size:16px;padding-bottom:84px;}
+  .wrap{padding:14px 12px;}
+  .topbar{padding:11px 13px;gap:10px;}
+  .brand{font-size:15px;}
+  .theme-btn{font-size:14px;padding:8px 12px;}
+  .header-card{padding:24px 19px;border-radius:20px;margin:16px 0 24px;}
+  .header-card h1{font-size:clamp(27px,6vw,33px);}
+  .subtitle{font-size:15.5px;}
+  .meta-grid{grid-template-columns:1fr;gap:12px;}
+  .section-shell{padding:17px 13px;margin:24px 0;border-radius:20px;}
+  .section-title{font-size:24px;}
+  .section-sub{font-size:15px;}
+  .task{padding:20px 15px;border-radius:17px;margin-bottom:16px;}
+  .task-head h3{font-size:19px;}
+  .marks-pill{font-size:12.5px;padding:5px 9px;}
+  .instruction-box{padding:12px 13px;}
+  .instr{font-size:15.5px;}
+  .freeitem .prompt{font-size:16px;}
+  .radio-row label{font-size:15px;}
+  .engine-table,.qtable{font-size:14.5px;}
+  .engine-table th,.engine-table td,.qtable th,.qtable td{padding:10px;}
+  .footer-bar{gap:9px;padding:12px;}
+  .footer-bar .btn{width:100%;max-width:430px;font-size:15px;padding:12px 16px;}
+  .score-banner{padding:22px 16px;}
+  .modal-box{padding:23px 19px;}
+}
+@media(max-width:380px){
+  .task-head{gap:7px;}.task-head h3{font-size:18px;}
+  .marks-pill{font-size:12px;padding:5px 8px;}
+}
+@media(hover:none){.task:hover,.theme-btn:hover,.btn:hover{transform:none;}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto;}*,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important;}}
+
 </style>
 </head>
 <body data-theme="light">
 
 <div class="topbar">
-  <div class="brand">বাংলায় IELTS · Grammar Foundation Series · Companion to Lecture Sheet 05</div>
-  <button class="theme-btn" onclick="toggleTheme()">🌓 Theme</button>
+  <div class="brand">বাংলায় IELTS · Grammar Foundation Series · Companion to Lecture Sheet 04</div>
+  <button type="button" class="theme-btn" onclick="toggleTheme()" aria-label="Toggle light and dark theme">🌓 Theme</button>
 </div>
 
 <div class="wrap">
@@ -100,6 +239,7 @@ textarea{resize:vertical;min-height:40px;}
       <div><label>Batch / ব্যাচ</label><input type="text" id="stuBatch" placeholder="ব্যাচ নম্বর"></div>
       <div><label>Date / তারিখ</label><input type="date" id="stuDate"></div>
     </div>
+    <div class="table-scroll engine-scroll">
     <table class="engine-table">
       <tr><th>Modal</th><th>What it usually means</th></tr>
       <tr><td><b>can</b></td><td>ability · permission · possibility</td></tr>
@@ -113,11 +253,12 @@ textarea{resize:vertical;min-height:40px;}
       <tr><td><b>must</b></td><td>strong obligation · certainty</td></tr>
       <tr><td><b>ought to</b></td><td>advice · moral duty</td></tr>
     </table>
+    </div>
   </div>
 
   <div id="renderRoot"></div>
 
-  <div class="score-banner" id="scoreBanner" style="display:none;">
+  <div class="score-banner" id="scoreBanner" style="display:none;" aria-live="polite">
     <div>মোট স্কোর</div>
     <div class="big" id="scoreBig">0 / 254</div>
     <table class="tracker" id="trackerTable"></table>
@@ -127,8 +268,8 @@ textarea{resize:vertical;min-height:40px;}
 </div>
 
 <div class="footer-bar">
-  <button class="btn btn-primary" onclick="checkScore()">✅ Check My Score</button>
-  <button class="btn btn-secondary" onclick="openSaveModal()">🖼️ Save your result as an image</button>
+  <button type="button" class="btn btn-primary" onclick="checkScore()">✅ Check My Score</button>
+  <button type="button" class="btn btn-secondary" onclick="openSaveModal()">🖼️ Save your result as an image</button>
 </div>
 
 <div class="modal-overlay" id="saveModal">
@@ -511,24 +652,135 @@ const SECTIONS = [
 ]}
 ];
 
+/* ===================== BILINGUAL DISPLAY GUIDES ===================== */
+/* The original exercise data and answer keys above remain unchanged. */
+const TASK_GUIDES = {
+  "e1": {
+    "en": "Sort the sixteen words into Modals and Main verbs. Eight of each.",
+    "bn": "ষোলোটি শব্দকে Modal ও Main verb—এই দুই ভাগে সাজাও। প্রতিটি ভাগে আটটি করে শব্দ আছে।"
+  },
+  "e2": {
+    "en": "Circle the modal verb in each sentence, then write it.",
+    "bn": "প্রতিটি বাক্যে modal verb শনাক্ত করে নিচের ঘরে সেটি লিখো।"
+  },
+  "e3": {
+    "en": "Read each statement about modal verbs and decide whether it is true (T) or false (F).",
+    "bn": "Modal verb-এর নিয়ম সম্পর্কে প্রতিটি বক্তব্য পড়ো। বক্তব্যটি সঠিক হলে T এবং ভুল হলে F নির্বাচন করো।"
+  },
+  "e4": {
+    "en": "Choose the correct base verb to complete each sentence. No \"to\" (except ought to).",
+    "bn": "প্রতিটি বাক্য সম্পূর্ণ করতে সঠিক base verb (V1) নির্বাচন করো। সাধারণত modal-এর পরে to বসে না; ought to একটি ব্যতিক্রম।"
+  },
+  "e5": {
+    "en": "Choose the correct meaning for each modal from the word bank.",
+    "bn": "Word bank থেকে প্রতিটি modal বা semi-modal-এর উপযুক্ত অর্থ নির্বাচন করো।"
+  },
+  "e6": {
+    "en": "Complete each sentence with a modal that expresses the meaning in brackets. More than one answer may be possible.",
+    "bn": "বন্ধনীতে দেওয়া অর্থ অনুযায়ী উপযুক্ত modal বসিয়ে প্রতিটি বাক্য সম্পূর্ণ করো। একাধিক উত্তর গ্রহণযোগ্য হতে পারে।"
+  },
+  "e7": {
+    "en": "Choose the best modal to complete each sentence according to its meaning and context.",
+    "bn": "বাক্যের অর্থ ও পরিস্থিতি বিবেচনা করে দেওয়া options থেকে সবচেয়ে উপযুক্ত modal নির্বাচন করো।"
+  },
+  "e8": {
+    "en": "Rewrite each sentence as a polite request or question. Use could, would, may or can.",
+    "bn": "প্রতিটি বাক্যকে ভদ্র অনুরোধ বা প্রশ্নে রূপান্তর করো। প্রয়োজন অনুযায়ী could, would, may অথবা can ব্যবহার করো।"
+  },
+  "e9": {
+    "en": "Write the function of the modal in each sentence.",
+    "bn": "প্রতিটি বাক্যে modal-টি কোন অর্থ বা কাজ প্রকাশ করছে, তা নির্বাচন করো।"
+  },
+  "e10": {
+    "en": "Find the incorrect modal or verb form in each sentence and rewrite the complete sentence correctly.",
+    "bn": "প্রতিটি বাক্যে modal বা verb form-এর ভুলটি খুঁজে পুরো বাক্যটি সঠিকভাবে আবার লেখো।"
+  },
+  "e11": {
+    "en": "Rewrite each sentence using the modal in brackets. Drop the -s, use the base verb.",
+    "bn": "বন্ধনীতে দেওয়া modal ব্যবহার করে প্রতিটি বাক্য আবার লেখো। প্রয়োজন অনুযায়ী verb-এর -s বাদ দিয়ে base form (V1) ব্যবহার করো।"
+  },
+  "e12": {
+    "en": "Rewrite each sentence using the modal in brackets. After a modal the verb becomes base form again.",
+    "bn": "বন্ধনীতে দেওয়া modal ব্যবহার করে বাক্যগুলো আবার লেখো। Past form-এর পরিবর্তে modal-এর পরে verb-এর base form (V1) বসাও।"
+  },
+  "e13": {
+    "en": "Find the mistake in each sentence and rewrite the complete sentence using the correct modal structure.",
+    "bn": "প্রতিটি বাক্যে modal-এর গঠনগত ভুলটি খুঁজে সঠিক structure ব্যবহার করে পুরো বাক্যটি আবার লেখো।"
+  },
+  "e14": {
+    "en": "Rewrite each sentence using the modal in brackets. am/is/are all become \"be\" after a modal.",
+    "bn": "বন্ধনীতে দেওয়া modal ব্যবহার করে প্রতিটি বাক্য আবার লেখো। Modal-এর পরে am/is/are-এর পরিবর্তে be ব্যবহার করো।"
+  },
+  "e15": {
+    "en": "Choose the best deduction for each situation: must be (almost certain) · might be (possible) · can't be (impossible).",
+    "bn": "প্রতিটি পরিস্থিতির জন্য উপযুক্ত deduction নির্বাচন করো: must be = প্রায় নিশ্চিত, might be = সম্ভাব্য, can't be = অসম্ভব।"
+  },
+  "e16": {
+    "en": "Complete each sentence with the modal in brackets followed by be.",
+    "bn": "বন্ধনীতে দেওয়া modal-এর সঙ্গে be ব্যবহার করে প্রতিটি শূন্যস্থান পূরণ করো।"
+  },
+  "e17": {
+    "en": "Rewrite each sentence in the negative. Add not after the modal. Short form accepted too.",
+    "bn": "প্রতিটি বাক্যকে negative করো। Modal-এর পরে not বসাও; সঠিক short form-ও গ্রহণযোগ্য।"
+  },
+  "e18": {
+    "en": "Rewrite each statement as a question. The modal jumps in front of the subject.",
+    "bn": "প্রতিটি statement-কে question-এ রূপান্তর করো। Modal-টি subject-এর আগে বসিয়ে পুরো প্রশ্নটি লেখো।"
+  },
+  "e19": {
+    "en": "Write the contracted negative form of each modal expression.",
+    "bn": "প্রতিটি modal expression-এর negative short form বা contraction লিখো।"
+  },
+  "e20": {
+    "en": "Complete the cloze passage using the word bank. Write a complete sentence for each numbered item. Word bank: can · can't · may · might · must · shall · should · will (some used more than once)",
+    "bn": "Word bank থেকে উপযুক্ত modal বেছে প্রতিটি numbered item-এর সম্পূর্ণ বাক্য লেখো। কিছু modal একাধিকবার ব্যবহার করতে হবে।"
+  },
+  "e21": {
+    "en": "Complete each line of the dialogue with a suitable modal. More than one modal may fit.",
+    "bn": "সংলাপের প্রতিটি লাইনে অর্থ অনুযায়ী উপযুক্ত modal বসিয়ে বাক্যটি সম্পূর্ণ করো। একাধিক modal গ্রহণযোগ্য হতে পারে।"
+  },
+  "e22": {
+    "en": "Translate each Bengali sentence into English using a suitable modal for the meaning in brackets.",
+    "bn": "প্রতিটি বাংলা বাক্য ইংরেজিতে অনুবাদ করো। বন্ধনীতে দেওয়া অর্থ অনুযায়ী উপযুক্ত modal ও সঠিক verb form ব্যবহার করো।"
+  },
+  "e23": {
+    "en": "Complete each gap with the correct semi-modal form. Use have to/has to · had better · used to · be able to (correct form).",
+    "bn": "প্রতিটি শূন্যস্থানে উপযুক্ত semi-modal-এর সঠিক form বসাও। বন্ধনীতে দেওয়া অর্থ ও সময়ের ইঙ্গিত অনুসরণ করো।"
+  },
+  "e24": {
+    "en": "Choose the fully correct sentence from the three options in each question.",
+    "bn": "প্রতিটি প্রশ্নের তিনটি option থেকে সম্পূর্ণ সঠিক বাক্যটি নির্বাচন করো।"
+  },
+  "e25": {
+    "en": "Write true sentences about yourself, using the modal named in each prompt.",
+    "bn": "প্রতিটি নির্দেশনায় উল্লেখ করা modal ব্যবহার করে নিজের সম্পর্কে একটি করে সত্য ও সম্পূর্ণ বাক্য লেখো।"
+  }
+};
+
 /* ===================== RENDER ===================== */
 const root = document.getElementById('renderRoot');
 let outHtml = '';
 SECTIONS.forEach(sec=>{
-  outHtml += `<h2 class="section-title">${sec.title}</h2>`;
+  outHtml += `<section class="section-shell" aria-label="${sec.title}"><h2 class="section-title">${sec.title}</h2>`;
   if(sec.sub) outHtml += `<div class="section-sub">${sec.sub}</div>`;
   sec.tasks.forEach(t=>{
+    const guide = TASK_GUIDES[t.id];
     outHtml += `<div class="task" id="${t.id}"><div class="task-head"><h3>${t.title}</h3><span class="marks-pill">${t.marks} marks</span></div>`;
-    if(t.instr) outHtml += `<div class="instr">${t.instr}</div>`;
+    if(guide){
+      outHtml += `<div class="instruction-box"><div class="instr instr-en"><span class="lang-label">EN</span>${guide.en}</div><div class="instr instr-bn" lang="bn"><span class="lang-label">বাংলা</span>${guide.bn}</div></div>`;
+    } else if(t.instr){
+      outHtml += `<div class="instruction-box"><div class="instr instr-en">${t.instr}</div></div>`;
+    }
     outHtml += renderTask(t);
     if(t.hint) outHtml += `<div class="hint">💡 ${t.hint}</div>`;
-    outHtml += `<div id="${t.id}_result" style="margin-top:8px;font-size:13px;font-weight:600;"></div></div>`;
+    outHtml += `<div id="${t.id}_result" class="result-line" aria-live="polite"></div></div>`;
   });
+  outHtml += `</section>`;
 });
 root.innerHTML = outHtml;
 
 function renderTask(t){
-  if(t.type==='sort2') return renderSort2(t);
+  if(t.type==='sort2') return '<div class="table-scroll">'+renderSort2(t)+'</div>';
   if(t.type==='fields') return renderFields(t);
   if(t.type==='fillblank') return renderFillblank(t);
   if(t.type==='freetext') return renderFreetext(t);
@@ -537,7 +789,7 @@ function renderTask(t){
 }
 
 function renderSort2(t){
-  let h = `<table class="qtable"><tr><th>Word</th><th>${t.cols[0]}</th><th>${t.cols[1]}</th></tr>`;
+  let h = `<table class="qtable sort-table"><tr><th>Word</th><th>${t.cols[0]}</th><th>${t.cols[1]}</th></tr>`;
   t.items.forEach((it,i)=>{
     const name=`${t.id}_i${i}`;
     if(it.given){
