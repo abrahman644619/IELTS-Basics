@@ -8,87 +8,1605 @@
 <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Baloo+Da+2:wght@500;600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <style>
-html,body[data-theme="light"]{
-  --bg:#FCF5EE; --bg-soft:#FFF9F4; --card:#FFFFFF; --card-alt:#FFF3EC;
-  --text:#402028; --text-soft:#7a4a56; --heading:#850E35;
-  --accent:#EE6983; --accent-soft:#FFC4C4; --border:#FFD9D9;
-  --ok:#2e8b57; --bad:#c0392b; --shadow:0 8px 24px rgba(133,14,53,.08);
+
+/* =========================================================
+   THEME VARIABLES
+========================================================= */
+
+:root {
+    --accent:#EE6983;
+    --accent-strong:#D94F70;
+    --ok:#2e8b57;
+    --bad:#c0392b;
 }
-body[data-theme="dark"]{
-  --bg:#2A0A16; --bg-soft:#33101F; --card:#3B1224; --card-alt:#451529;
-  --text:#FCEFEF; --text-soft:#E9B9C4; --heading:#FFC4C4;
-  --accent:#EE6983; --accent-soft:#850E35; --border:#5C1A34;
-  --ok:#6fcf97; --bad:#ff8a80; --shadow:0 8px 24px rgba(0,0,0,.35);
+
+
+body[data-theme="light"] {
+
+    --bg:#FCF5EE;
+    --bg-soft:#FFF9F4;
+
+    --text:#402028;
+    --text-soft:#7a4a56;
+
+    --heading:#850E35;
+
+    --accent-soft:#FFC4C4;
+    --border:#FFD9D9;
+
+    --glass:
+        rgba(255,255,255,.68);
+
+    --glass-strong:
+        rgba(255,255,255,.82);
+
+    --task-glass:
+        rgba(255,255,255,.58);
+
+    --glass-border:
+        rgba(255,255,255,.78);
+
+    --field-bg:
+        rgba(255,249,244,.88);
+
+    --shadow:
+        0 16px 40px
+        rgba(133,14,53,.09);
+
+    --shadow-hover:
+        0 20px 48px
+        rgba(133,14,53,.14);
 }
-*{box-sizing:border-box;}
-body{margin:0;background:var(--bg);color:var(--text);font-family:'Hind Siliguri',sans-serif;transition:background .3s,color .3s;padding-bottom:60px;}
-h1,h2,h3,.brand{font-family:'Baloo Da 2',cursive;color:var(--heading);}
-.wrap{max-width:900px;margin:0 auto;padding:16px;}
-.topbar{position:sticky;top:0;z-index:50;background:var(--bg);padding:10px 16px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border);}
-.brand{font-size:15px;}
-.theme-btn{border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:20px;padding:8px 14px;cursor:pointer;font-family:inherit;font-weight:600;}
-.header-card{background:var(--card);border-radius:18px;box-shadow:var(--shadow);padding:22px;margin:16px 0;border:1px solid var(--border);}
-.header-card h1{margin:0 0 4px;font-size:22px;}
-.subtitle{color:var(--text-soft);font-size:14px;margin-bottom:14px;}
-.meta-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;}
-@media(max-width:600px){.meta-grid{grid-template-columns:1fr;}}
-.meta-grid label{font-size:13px;font-weight:600;color:var(--text-soft);display:block;margin-bottom:4px;}
-.meta-grid input{width:100%;padding:9px 10px;border-radius:10px;border:1.5px solid var(--border);background:var(--bg-soft);color:var(--text);font-family:inherit;font-size:14px;}
-.engine-table{width:100%;border-collapse:collapse;margin:10px 0 16px;font-size:12px;}
-.engine-table th,.engine-table td{border:1px solid var(--border);padding:5px 6px;text-align:left;}
-.engine-table th{background:var(--card-alt);}
-.section-title{margin:26px 0 6px;font-size:18px;}
-.section-sub{color:var(--text-soft);font-size:13px;margin-bottom:14px;}
-.task{background:var(--card);border-radius:16px;box-shadow:var(--shadow);padding:18px;margin-bottom:16px;border:1px solid var(--border);}
-.task-head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:6px;}
-.task-head h3{margin:0;font-size:15px;}
-.marks-pill{background:var(--accent-soft);color:var(--heading);font-weight:700;font-size:12px;padding:4px 10px;border-radius:20px;white-space:nowrap;}
-.instr{font-size:13px;color:var(--text-soft);margin-bottom:4px;}
-.hint{font-size:12.5px;background:var(--card-alt);border-left:3px solid var(--accent);padding:8px 10px;border-radius:8px;margin-top:8px;color:var(--text-soft);}
-table.qtable{width:100%;border-collapse:collapse;margin-top:10px;font-size:12.5px;}
-table.qtable th,table.qtable td{border:1px solid var(--border);padding:5px 6px;text-align:left;vertical-align:middle;}
-table.qtable th{background:var(--card-alt);}
-input[type=text],select,textarea{width:100%;padding:6px 8px;border-radius:8px;border:1.5px solid var(--border);background:var(--bg-soft);color:var(--text);font-family:inherit;font-size:13px;}
-textarea{resize:vertical;min-height:40px;}
-.radio-row{display:flex;gap:9px;flex-wrap:wrap;}
-.radio-row label{display:flex;align-items:center;gap:4px;font-size:12px;cursor:pointer;}
-.given{opacity:.75;}
-.given input,.given select,.given td{background:var(--accent-soft);font-weight:600;}
-.freeitem{margin-bottom:11px;}
-.freeitem .prompt{font-size:13px;margin-bottom:4px;}
-.subfield{margin-bottom:4px;}
-.subfield .flabel{font-size:11px;color:var(--text-soft);}
-.result-tag{display:inline-block;font-size:11.5px;font-weight:700;padding:2px 8px;border-radius:10px;margin-left:6px;}
-.tag-full{background:#d6f5df;color:var(--ok);}
-.tag-partial{background:#fff3cd;color:#8a6500;}
-.tag-zero{background:#ffe0e0;color:var(--bad);}
-[data-theme="dark"] .tag-full{background:#154a2c;}
-[data-theme="dark"] .tag-partial{background:#4a3c10;color:#ffd76b;}
-[data-theme="dark"] .tag-zero{background:#4a1414;}
-.footer-bar{position:sticky;bottom:0;background:var(--card);border-top:1px solid var(--border);padding:14px 16px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;box-shadow:0 -6px 18px rgba(0,0,0,.06);}
-.btn{border:none;border-radius:24px;padding:12px 22px;font-weight:700;font-family:inherit;font-size:14.5px;cursor:pointer;transition:transform .15s;}
-.btn:active{transform:scale(.97);}
-.btn-primary{background:var(--accent);color:#fff;}
-.btn-secondary{background:var(--heading);color:#fff;}
-.score-banner{text-align:center;margin:18px 0;}
-.score-banner .big{font-size:44px;font-weight:800;color:var(--heading);font-family:'Baloo Da 2',cursive;}
-.tracker{width:100%;border-collapse:collapse;margin-top:16px;font-size:12px;}
-.tracker th,.tracker td{border:1px solid var(--border);padding:5px 7px;text-align:center;}
-.tracker th{background:var(--card-alt);}
-.page-footer{text-align:center;color:var(--text-soft);font-size:12px;padding:26px 0 6px;}
-#resultCardHolder{position:fixed;left:-9999px;top:0;}
-.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;align-items:center;justify-content:center;z-index:100;}
-.modal-box{background:var(--card);border-radius:16px;padding:22px;max-width:340px;width:90%;box-shadow:var(--shadow);}
-.modal-box h3{margin-top:0;}
-.modal-box input{margin-bottom:10px;}
-.modal-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:10px;}
-.passage-box{white-space:pre-wrap;background:var(--card-alt);border:1px solid var(--border);border-radius:10px;padding:12px;font-size:12.5px;line-height:1.7;margin-bottom:10px;font-family:monospace;}
-.errow{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px;}
+
+
+body[data-theme="dark"] {
+
+    --bg:#220812;
+    --bg-soft:#33101F;
+
+    --text:#FCEFEF;
+    --text-soft:#E9B9C4;
+
+    --heading:#FFC4C4;
+
+    --accent-soft:#850E35;
+    --border:#5C1A34;
+
+    --glass:
+        rgba(59,18,36,.62);
+
+    --glass-strong:
+        rgba(59,18,36,.78);
+
+    --task-glass:
+        rgba(69,21,41,.55);
+
+    --glass-border:
+        rgba(255,196,196,.12);
+
+    --field-bg:
+        rgba(42,10,22,.68);
+
+    --ok:#6fcf97;
+    --bad:#ff8a80;
+
+    --shadow:
+        0 18px 46px
+        rgba(0,0,0,.32);
+
+    --shadow-hover:
+        0 22px 54px
+        rgba(0,0,0,.42);
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    box-sizing:border-box;
+}
+
+
+html {
+    scroll-behavior:smooth;
+}
+
+
+body {
+
+    margin:0;
+
+    min-height:100vh;
+
+    color:var(--text);
+
+    font-family:
+        'Hind Siliguri',
+        sans-serif;
+
+    font-size:17px;
+
+    line-height:1.55;
+
+    padding-bottom:86px;
+
+    transition:
+        background .35s ease,
+        color .35s ease;
+
+
+    background:
+
+        radial-gradient(
+            circle at 8% 5%,
+            rgba(238,105,131,.18),
+            transparent 27%
+        ),
+
+        radial-gradient(
+            circle at 95% 30%,
+            rgba(133,14,53,.10),
+            transparent 28%
+        ),
+
+        var(--bg);
+
+}
+
+
+body[data-theme="dark"] {
+
+    background:
+
+        radial-gradient(
+            circle at 8% 5%,
+            rgba(238,105,131,.15),
+            transparent 28%
+        ),
+
+        radial-gradient(
+            circle at 92% 34%,
+            rgba(133,14,53,.20),
+            transparent 30%
+        ),
+
+        var(--bg);
+
+}
+
+
+button,
+input,
+select,
+textarea {
+    font-family:inherit;
+}
+
+
+h1,
+h2,
+h3,
+.brand {
+
+    font-family:
+        'Baloo Da 2',
+        cursive;
+
+    color:var(--heading);
+
+}
+
+
+/* =========================================================
+   PAGE WRAPPER
+========================================================= */
+
+.wrap {
+
+    max-width:980px;
+
+    margin:0 auto;
+
+    padding:
+        22px 18px;
+}
+
+
+/* =========================================================
+   GLASS TOPBAR
+========================================================= */
+
+.topbar {
+
+    position:sticky;
+
+    top:0;
+
+    z-index:50;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:15px;
+
+    padding:
+        13px 20px;
+
+    border-bottom:
+        1px solid
+        var(--glass-border);
+
+    background:
+        var(--glass);
+
+    backdrop-filter:
+        blur(18px)
+        saturate(140%);
+
+    -webkit-backdrop-filter:
+        blur(18px)
+        saturate(140%);
+
+    box-shadow:
+        0 7px 25px
+        rgba(0,0,0,.05);
+}
+
+
+.brand {
+
+    font-size:18px;
+
+    font-weight:700;
+
+    letter-spacing:.2px;
+}
+
+
+.theme-btn {
+
+    border:
+        1px solid
+        var(--border);
+
+    background:
+        var(--glass-strong);
+
+    color:
+        var(--text);
+
+    border-radius:999px;
+
+    padding:
+        10px 17px;
+
+    cursor:pointer;
+
+    font-size:15px;
+
+    font-weight:700;
+
+    backdrop-filter:
+        blur(10px);
+
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease,
+        border-color .2s ease;
+}
+
+
+.theme-btn:hover {
+
+    transform:
+        translateY(-2px);
+
+    border-color:
+        var(--accent);
+
+    box-shadow:
+        0 8px 22px
+        rgba(238,105,131,.16);
+}
+
+
+/* =========================================================
+   HEADER GLASS CARD
+========================================================= */
+
+.header-card {
+
+    position:relative;
+
+    overflow:hidden;
+
+    padding:
+        30px 28px;
+
+    margin:
+        22px 0
+        28px;
+
+    border-radius:24px;
+
+    border:
+        1px solid
+        var(--glass-border);
+
+    background:
+        var(--glass);
+
+    backdrop-filter:
+        blur(22px)
+        saturate(145%);
+
+    -webkit-backdrop-filter:
+        blur(22px)
+        saturate(145%);
+
+    box-shadow:
+        var(--shadow);
+}
+
+
+.header-card::before {
+
+    content:"";
+
+    position:absolute;
+
+    width:220px;
+    height:220px;
+
+    top:-135px;
+    right:-115px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(238,105,131,.22),
+            transparent 68%
+        );
+
+    pointer-events:none;
+}
+
+
+.header-card h1 {
+
+    position:relative;
+
+    margin:
+        0 0 5px;
+
+    font-size:
+        clamp(31px,5vw,40px);
+
+    line-height:1.2;
+
+    font-weight:800;
+}
+
+
+.subtitle {
+
+    position:relative;
+
+    color:
+        var(--text-soft);
+
+    font-size:17px;
+
+    line-height:1.6;
+
+    margin-bottom:22px;
+}
+
+
+/* =========================================================
+   STUDENT DETAILS
+========================================================= */
+
+.meta-grid {
+
+    position:relative;
+
+    display:grid;
+
+    grid-template-columns:
+        1fr 1fr 1fr;
+
+    gap:13px;
+}
+
+
+.meta-grid label {
+
+    display:block;
+
+    margin-bottom:6px;
+
+    color:
+        var(--text-soft);
+
+    font-size:15px;
+
+    font-weight:700;
+}
+
+
+.meta-grid input {
+
+    width:100%;
+
+    padding:
+        11px 12px;
+
+    border-radius:12px;
+
+    border:
+        1.5px solid
+        var(--border);
+
+    background:
+        var(--field-bg);
+
+    color:
+        var(--text);
+
+    font-size:16px;
+
+    outline:none;
+
+    transition:
+        border-color .2s,
+        box-shadow .2s;
+}
+
+
+.meta-grid input:focus {
+
+    border-color:
+        var(--accent);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(238,105,131,.12);
+}
+
+
+/* =========================================================
+   GLASS SECTION CONTAINER
+========================================================= */
+
+.section-shell {
+
+    position:relative;
+
+    margin:
+        30px 0;
+
+    padding:
+        24px;
+
+    border-radius:26px;
+
+    border:
+        1px solid
+        var(--glass-border);
+
+    background:
+        var(--glass);
+
+    backdrop-filter:
+        blur(20px)
+        saturate(135%);
+
+    -webkit-backdrop-filter:
+        blur(20px)
+        saturate(135%);
+
+    box-shadow:
+        var(--shadow);
+}
+
+
+.section-title {
+
+    margin:
+        0 0 5px;
+
+    font-size:28px;
+
+    line-height:1.25;
+
+    font-weight:800;
+}
+
+
+.section-sub {
+
+    color:
+        var(--text-soft);
+
+    font-size:16px;
+
+    line-height:1.55;
+
+    margin-bottom:22px;
+}
+
+
+/* =========================================================
+   GLASS TASK CARDS
+========================================================= */
+
+.task {
+
+    position:relative;
+
+    overflow:hidden;
+
+    padding:
+        24px;
+
+    margin-bottom:20px;
+
+    border-radius:20px;
+
+    border:
+        1px solid
+        var(--glass-border);
+
+    background:
+        var(--task-glass);
+
+    backdrop-filter:
+        blur(15px)
+        saturate(135%);
+
+    -webkit-backdrop-filter:
+        blur(15px)
+        saturate(135%);
+
+    box-shadow:
+        0 10px 30px
+        rgba(0,0,0,.055);
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease,
+        border-color .25s ease;
+}
+
+
+.task:last-child {
+    margin-bottom:0;
+}
+
+
+.task::before {
+
+    content:"";
+
+    position:absolute;
+
+    width:150px;
+    height:150px;
+
+    top:-105px;
+    right:-90px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(238,105,131,.18),
+            transparent 68%
+        );
+
+    pointer-events:none;
+}
+
+
+.task:hover {
+
+    transform:
+        translateY(-3px);
+
+    border-color:
+        rgba(238,105,131,.32);
+
+    box-shadow:
+        var(--shadow-hover);
+}
+
+
+.task-head {
+
+    position:relative;
+
+    display:flex;
+
+    justify-content:
+        space-between;
+
+    align-items:flex-start;
+
+    gap:14px;
+
+    margin-bottom:12px;
+}
+
+
+.task-head h3 {
+
+    margin:0;
+
+    font-size:21px;
+
+    line-height:1.35;
+
+    font-weight:800;
+}
+
+
+.marks-pill {
+
+    flex-shrink:0;
+
+    background:
+        var(--accent-soft);
+
+    color:
+        var(--heading);
+
+    font-size:13.5px;
+
+    font-weight:800;
+
+    padding:
+        6px 12px;
+
+    border-radius:999px;
+}
+
+
+/* =========================================================
+   BILINGUAL INSTRUCTION BOX
+========================================================= */
+
+.instruction-box {
+
+    position:relative;
+
+    margin:
+        10px 0
+        16px;
+
+    padding:
+        14px 16px;
+
+    border-radius:14px;
+
+    border:
+        1px solid
+        rgba(238,105,131,.16);
+
+    background:
+        rgba(238,105,131,.055);
+}
+
+
+.instr {
+
+    font-size:16px;
+
+    line-height:1.55;
+}
+
+
+.instr + .instr {
+
+    margin-top:7px;
+}
+
+
+.instr-en {
+
+    color:
+        var(--text);
+}
+
+
+.instr-bn {
+
+    color:
+        var(--text-soft);
+
+    font-weight:500;
+}
+
+
+.lang-label {
+
+    display:inline-block;
+
+    min-width:40px;
+
+    margin-right:7px;
+
+    color:
+        var(--heading);
+
+    font-size:12px;
+
+    font-weight:800;
+
+    letter-spacing:.5px;
+
+    text-transform:uppercase;
+}
+
+
+/* =========================================================
+   HINT
+========================================================= */
+
+.hint {
+
+    margin-top:12px;
+
+    padding:
+        11px 13px;
+
+    border-radius:11px;
+
+    border-left:
+        4px solid
+        var(--accent);
+
+    background:
+        rgba(238,105,131,.075);
+
+    color:
+        var(--text-soft);
+
+    font-size:14.5px;
+
+    line-height:1.55;
+}
+
+
+/* =========================================================
+   TABLES
+========================================================= */
+
+table.qtable {
+
+    width:100%;
+
+    border-collapse:
+        separate;
+
+    border-spacing:0;
+
+    margin-top:14px;
+
+    overflow:hidden;
+
+    border-radius:12px;
+
+    font-size:15.5px;
+}
+
+
+table.qtable th,
+table.qtable td {
+
+    border-right:
+        1px solid
+        var(--border);
+
+    border-bottom:
+        1px solid
+        var(--border);
+
+    padding:
+        10px 11px;
+
+    text-align:left;
+
+    vertical-align:middle;
+}
+
+
+table.qtable th:first-child,
+table.qtable td:first-child {
+
+    border-left:
+        1px solid
+        var(--border);
+}
+
+
+table.qtable tr:first-child th {
+
+    border-top:
+        1px solid
+        var(--border);
+}
+
+
+table.qtable th:first-child {
+
+    border-top-left-radius:
+        12px;
+}
+
+
+table.qtable th:last-child {
+
+    border-top-right-radius:
+        12px;
+}
+
+
+table.qtable th {
+
+    background:
+        rgba(238,105,131,.075);
+
+    font-weight:700;
+}
+
+
+/* =========================================================
+   INPUTS
+========================================================= */
+
+input[type=text],
+select,
+textarea {
+
+    width:100%;
+
+    padding:
+        9px 11px;
+
+    border-radius:10px;
+
+    border:
+        1.5px solid
+        var(--border);
+
+    background:
+        var(--field-bg);
+
+    color:
+        var(--text);
+
+    font-size:15.5px;
+
+    outline:none;
+
+    transition:
+        border-color .2s ease,
+        box-shadow .2s ease;
+}
+
+
+input[type=text]:focus,
+select:focus,
+textarea:focus {
+
+    border-color:
+        var(--accent);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(238,105,131,.11);
+}
+
+
+textarea {
+
+    resize:vertical;
+
+    min-height:72px;
+
+    line-height:1.5;
+}
+
+
+/* =========================================================
+   RADIO OPTIONS
+========================================================= */
+
+.radio-row {
+
+    display:flex;
+
+    gap:
+        10px 16px;
+
+    flex-wrap:wrap;
+
+    margin-top:5px;
+}
+
+
+.radio-row label {
+
+    display:flex;
+
+    align-items:center;
+
+    gap:6px;
+
+    font-size:15px;
+
+    cursor:pointer;
+}
+
+
+.radio-row input[type="radio"] {
+
+    width:16px;
+    height:16px;
+
+    accent-color:
+        var(--accent);
+}
+
+
+/* =========================================================
+   GIVEN / EXAMPLE
+========================================================= */
+
+.given {
+    opacity:.78;
+}
+
+
+.given input,
+.given select {
+
+    background:
+        var(--accent-soft);
+
+    font-weight:700;
+}
+
+
+/* =========================================================
+   FREE ITEMS / PROMPTS
+========================================================= */
+
+.freeitem {
+
+    padding:
+        7px 0;
+
+    margin-bottom:14px;
+}
+
+
+.freeitem:last-child {
+    margin-bottom:0;
+}
+
+
+.freeitem .prompt {
+
+    margin-bottom:7px;
+
+    font-size:16px;
+
+    line-height:1.55;
+}
+
+
+/* =========================================================
+   RESULT TAGS
+========================================================= */
+
+.result-tag {
+
+    display:inline-block;
+
+    margin-left:7px;
+
+    padding:
+        3px 9px;
+
+    border-radius:999px;
+
+    font-size:12.5px;
+
+    font-weight:800;
+}
+
+
+.tag-full {
+
+    background:#d6f5df;
+
+    color:
+        var(--ok);
+}
+
+
+.tag-partial {
+
+    background:#fff3cd;
+
+    color:#8a6500;
+}
+
+
+.tag-zero {
+
+    background:#ffe0e0;
+
+    color:
+        var(--bad);
+}
+
+
+[data-theme="dark"] .tag-full {
+
+    background:#154a2c;
+}
+
+
+[data-theme="dark"] .tag-partial {
+
+    background:#4a3c10;
+
+    color:#ffd76b;
+}
+
+
+[data-theme="dark"] .tag-zero {
+
+    background:#4a1414;
+}
+
+
+/* =========================================================
+   SCORE GLASS CARD
+========================================================= */
+
+.score-banner {
+
+    margin:
+        30px 0;
+
+    padding:
+        26px;
+
+    text-align:center;
+
+    border-radius:22px;
+
+    border:
+        1px solid
+        var(--glass-border);
+
+    background:
+        var(--glass);
+
+    backdrop-filter:
+        blur(20px);
+
+    -webkit-backdrop-filter:
+        blur(20px);
+
+    box-shadow:
+        var(--shadow);
+}
+
+
+.score-banner .big {
+
+    margin-top:4px;
+
+    color:
+        var(--heading);
+
+    font-family:
+        'Baloo Da 2',
+        cursive;
+
+    font-size:54px;
+
+    font-weight:800;
+
+    line-height:1.2;
+}
+
+
+.tracker {
+
+    width:100%;
+
+    border-collapse:
+        collapse;
+
+    margin-top:18px;
+
+    font-size:15px;
+}
+
+
+.tracker th,
+.tracker td {
+
+    border:
+        1px solid
+        var(--border);
+
+    padding:
+        9px 10px;
+
+    text-align:center;
+}
+
+
+.tracker th {
+
+    background:
+        rgba(238,105,131,.08);
+}
+
+
+/* =========================================================
+   STICKY FOOTER ACTION BAR
+========================================================= */
+
+.footer-bar {
+
+    position:sticky;
+
+    bottom:0;
+
+    z-index:40;
+
+    display:flex;
+
+    gap:12px;
+
+    justify-content:center;
+
+    flex-wrap:wrap;
+
+    padding:
+        15px 16px;
+
+    border-top:
+        1px solid
+        var(--glass-border);
+
+    background:
+        var(--glass-strong);
+
+    backdrop-filter:
+        blur(20px)
+        saturate(140%);
+
+    -webkit-backdrop-filter:
+        blur(20px)
+        saturate(140%);
+
+    box-shadow:
+        0 -8px 28px
+        rgba(0,0,0,.08);
+}
+
+
+.btn {
+
+    border:none;
+
+    border-radius:999px;
+
+    padding:
+        13px 24px;
+
+    font-size:16px;
+
+    font-weight:800;
+
+    cursor:pointer;
+
+    transition:
+        transform .18s ease,
+        box-shadow .18s ease;
+}
+
+
+.btn:hover {
+
+    transform:
+        translateY(-2px);
+}
+
+
+.btn:active {
+
+    transform:
+        scale(.97);
+}
+
+
+.btn-primary {
+
+    background:
+        var(--accent);
+
+    color:#fff;
+
+    box-shadow:
+        0 8px 20px
+        rgba(238,105,131,.22);
+}
+
+
+.btn-secondary {
+
+    background:
+        var(--heading);
+
+    color:#fff;
+
+    box-shadow:
+        0 8px 20px
+        rgba(133,14,53,.17);
+}
+
+
+/* =========================================================
+   PAGE FOOTER
+========================================================= */
+
+.page-footer {
+
+    padding:
+        30px 0
+        8px;
+
+    color:
+        var(--text-soft);
+
+    text-align:center;
+
+    font-size:14px;
+}
+
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+.modal-overlay {
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:100;
+
+    display:none;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:20px;
+
+    background:
+        rgba(0,0,0,.50);
+
+    backdrop-filter:
+        blur(7px);
+
+    -webkit-backdrop-filter:
+        blur(7px);
+}
+
+
+.modal-box {
+
+    width:90%;
+
+    max-width:380px;
+
+    padding:26px;
+
+    border-radius:22px;
+
+    border:
+        1px solid
+        var(--glass-border);
+
+    background:
+        var(--glass-strong);
+
+    backdrop-filter:
+        blur(22px);
+
+    -webkit-backdrop-filter:
+        blur(22px);
+
+    box-shadow:
+        0 24px 60px
+        rgba(0,0,0,.28);
+}
+
+
+.modal-box h3 {
+
+    margin:
+        0 0 5px;
+
+    font-size:24px;
+}
+
+
+.modal-box input {
+
+    margin-bottom:12px;
+}
+
+
+.modal-actions {
+
+    display:flex;
+
+    gap:9px;
+
+    justify-content:flex-end;
+
+    margin-top:12px;
+}
+
+
+#resultCardHolder {
+
+    position:fixed;
+
+    left:-9999px;
+
+    top:0;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:700px) {
+
+    body {
+        font-size:16px;
+    }
+
+
+    .wrap {
+
+        padding:
+            14px 12px;
+    }
+
+
+    .topbar {
+
+        padding:
+            11px 13px;
+    }
+
+
+    .brand {
+
+        font-size:15px;
+
+        line-height:1.25;
+    }
+
+
+    .theme-btn {
+
+        padding:
+            8px 12px;
+
+        font-size:14px;
+    }
+
+
+    .header-card {
+
+        padding:
+            24px 19px;
+
+        border-radius:20px;
+    }
+
+
+    .header-card h1 {
+
+        font-size:30px;
+    }
+
+
+    .subtitle {
+
+        font-size:15.5px;
+    }
+
+
+    .meta-grid {
+
+        grid-template-columns:1fr;
+    }
+
+
+    .section-shell {
+
+        padding:
+            17px 13px;
+
+        border-radius:20px;
+    }
+
+
+    .section-title {
+
+        font-size:24px;
+    }
+
+
+    .section-sub {
+
+        font-size:15px;
+    }
+
+
+    .task {
+
+        padding:
+            19px 15px;
+
+        border-radius:17px;
+    }
+
+
+    .task-head h3 {
+
+        font-size:19px;
+    }
+
+
+    .marks-pill {
+
+        font-size:12px;
+
+        padding:
+            5px 9px;
+    }
+
+
+    .instruction-box {
+
+        padding:
+            12px;
+    }
+
+
+    .instr {
+
+        font-size:15px;
+    }
+
+
+    .freeitem .prompt {
+
+        font-size:15.5px;
+    }
+
+
+    table.qtable {
+
+        display:block;
+
+        overflow-x:auto;
+
+        white-space:normal;
+
+        font-size:14.5px;
+    }
+
+
+    input[type=text],
+    select,
+    textarea {
+
+        font-size:16px;
+    }
+
+
+    .btn {
+
+        width:100%;
+
+        max-width:420px;
+
+        font-size:15px;
+    }
+
+}
+
+
+
+
+/* Engine table - upgraded */
+.engine-table{
+    width:100%;
+    border-collapse:separate;
+    border-spacing:0;
+    margin:16px 0 20px;
+    overflow:hidden;
+    border-radius:12px;
+    font-size:15px;
+}
+.engine-table th,.engine-table td{
+    border-right:1px solid var(--border);
+    border-bottom:1px solid var(--border);
+    padding:10px 11px;
+    text-align:left;
+    vertical-align:middle;
+}
+.engine-table th:first-child,.engine-table td:first-child{border-left:1px solid var(--border);}
+.engine-table tr:first-child th{border-top:1px solid var(--border);}
+.engine-table th:first-child{border-top-left-radius:12px;}
+.engine-table th:last-child{border-top-right-radius:12px;}
+.engine-table th{background:rgba(238,105,131,.075);font-weight:700;}
+.engine-table td{background:var(--field-bg);}
+.passage-box{
+    white-space:pre-wrap;
+    background:rgba(238,105,131,.06);
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:14px 16px;
+    font-size:15.5px;
+    line-height:1.7;
+    margin-bottom:14px;
+    font-family:monospace;
+}
+.passage-block{margin-bottom:22px;}
+.passage-block h4{margin:0 0 8px;font-size:16px;color:var(--heading);font-weight:700;}
+.blank-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:10px;margin-top:10px;}
+.errow{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+    margin-bottom:14px;
+}
 @media(max-width:520px){.errow{grid-template-columns:1fr;}}
-.passage-block{margin-bottom:18px;}
-.passage-block h4{margin:0 0 6px;font-size:13.5px;color:var(--heading);}
-.blank-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(90px,1fr));gap:8px;margin-top:8px;}
-.blank-grid label{font-size:11px;color:var(--text-soft);display:block;margin-bottom:3px;}
+.subfield{margin-bottom:10px;}
+.subfield .flabel{font-size:14px;color:var(--text-soft);font-weight:600;display:block;margin-bottom:5px;}
+@media(max-width:700px){
+  .task{backdrop-filter:blur(10px) saturate(130%);-webkit-backdrop-filter:blur(10px) saturate(130%);}
+  .header-card{backdrop-filter:blur(16px) saturate(135%);-webkit-backdrop-filter:blur(16px) saturate(135%);}
+}
 </style>
 </head>
 <body data-theme="light">
@@ -155,10 +1673,11 @@ const TOPIC = "Connecting Sentences — Worksheet 10";
 const FUNCTIONS = ['Addition','Contrast','Concession','Cause','Result','Example','Sequence','Emphasis','Similarity','Condition','Purpose','Conclusion'];
 
 const SECTIONS = [
-{ id:'P1', title:'PART 1 · GUIDED PRACTICE', sub:'প্রতিটা Section-এ Worked Example ও Hint Box আছে', tasks:[
+{ id:'P1', title:'PART 1 \u00b7 GUIDED PRACTICE', sub:'\u09aa\u09cd\u09b0\u09a4\u09bf\u099f\u09be Section-\u098f Worked Example \u0993 Hint Box \u0986\u099b\u09c7', tasks:[
 
-  { id:'A', title:'A · CONCEPT CHECK: WHICH KIND OF LINKER IS IT?', marks:10, type:'mixedA',
-    instr:'প্রথম ছয়টিতে Linker-এর ধরন লিখো, শেষ চারটি প্রশ্নের এক কথায় উত্তর দাও।',
+  { id:'A', title:'A \u00b7 CONCEPT CHECK: WHICH KIND OF LINKER IS IT?', marks:10, type:'mixedA',
+    instr:'For first six, write the type: Conjunction, Connecting Adverb, Preposition Phrase. Last four: answer in one word.',
+    instrBn:'\u09aa\u09cd\u09b0\u09a5\u09ae \u099b\u09af\u09bc\u099f\u09bf\u09a4\u09c7 Linker-\u098f\u09b0 \u09a7\u09b0\u09a8 \u09b2\u09bf\u0996\u09cb, \u09b6\u09c7\u09b7 \u099a\u09be\u09b0\u099f\u09bf \u09aa\u09cd\u09b0\u09b6\u09cd\u09a8\u09c7\u09b0 \u098f\u0995 \u0995\u09a5\u09be\u09af\u09bc \u0989\u09a4\u09cd\u09a4\u09b0 \u09a6\u09be\u0993\u0964',
     cats:['Conjunction','Connecting Adverb','Preposition Phrase'],
     items1:[
       {label:'1. however', correct:'Connecting Adverb'},
@@ -169,14 +1688,16 @@ const SECTIONS = [
       {label:'6. in spite of', correct:'Preposition Phrase'}
     ],
     items2:[
-      {prompt:'1. Connecting Adverb-এর ঠিক পরে কোন Punctuation বসে?', keyword:['comma','কমা']},
-      {prompt:'2. Despite-এর পরে Clause বসে না, তাহলে কী বসে?', keyword:['noun','verb-ing','gerund']},
-      {prompt:'3. Unless-এর পরে কোন শব্দটি কখনো বসে না?', keyword:['not']},
-      {prompt:'4. In order to-এর পরে Verb-এর কোন রূপ বসে?', keyword:['base','base form']}
+      {prompt:'1. Connecting Adverb-\u098f\u09b0 \u09a0\u09bf\u0995 \u09aa\u09b0\u09c7 \u0995\u09cb\u09a8 Punctuation \u09ac\u09b8\u09c7?', keyword:['comma','\u0995\u09ae\u09be']},
+      {prompt:'2. Despite-\u098f\u09b0 \u09aa\u09b0\u09c7 Clause \u09ac\u09b8\u09c7 \u09a8\u09be, \u09a4\u09be\u09b9\u09b2\u09c7 \u0995\u09c0 \u09ac\u09b8\u09c7?', keyword:['noun','verb-ing','gerund']},
+      {prompt:'3. Unless-\u098f\u09b0 \u09aa\u09b0\u09c7 \u0995\u09cb\u09a8 \u09b6\u09ac\u09cd\u09a6\u099f\u09bf \u0995\u0996\u09a8\u09cb \u09ac\u09b8\u09c7 \u09a8\u09be?', keyword:['not']},
+      {prompt:'4. In order to-\u098f\u09b0 \u09aa\u09b0\u09c7 Verb-\u098f\u09b0 \u0995\u09cb\u09a8 \u09b0\u09c2\u09aa \u09ac\u09b8\u09c7?', keyword:['base','base form']}
     ]},
 
-  { id:'B', title:'B · MATCH THE LINKER TO ITS FUNCTION', marks:10, type:'fields',
-    instr:'প্রতিটি Linker কোন কাজ করে বেছে নাও।', fieldNames:['Function'],
+  { id:'B', title:'B \u00b7 MATCH THE LINKER TO ITS FUNCTION', marks:10, type:'fields',
+    instr:'Choose the function that each linker performs: Contrast, Result, Example, etc.',
+    instrBn:'\u09aa\u09cd\u09b0\u09a4\u09bf\u099f\u09bf Linker \u0995\u09cb\u09a8 \u0995\u09be\u099c \u0995\u09b0\u09c7 \u09ac\u09c7\u099b\u09c7 \u09a8\u09be\u0993\u0964',
+    fieldNames:['Function'],
     items:[
       {label:'1. nevertheless', fields:[{type:'select',options:FUNCTIONS,correct:'Contrast'}]},
       {label:'2. consequently', fields:[{type:'select',options:FUNCTIONS,correct:'Result'}]},
@@ -190,8 +1711,9 @@ const SECTIONS = [
       {label:'10. furthermore', fields:[{type:'select',options:FUNCTIONS,correct:'Addition'}]}
     ]},
 
-  { id:'C', title:'C · GUIDED GAP FILL: ONE LINKER PER SENTENCE', marks:10, type:'fillblank',
-    instr:'Word Bank: However · Therefore · Moreover · For instance · Despite · because of · such as · Unless · so that · Overall (প্রতিটি একবার করে)।',
+  { id:'C', title:'C \u00b7 GUIDED GAP FILL: ONE LINKER PER SENTENCE', marks:10, type:'fillblank',
+    instr:'Word Bank: However \u00b7 Therefore \u00b7 Moreover \u00b7 For instance \u00b7 Despite \u00b7 because of \u00b7 such as \u00b7 Unless \u00b7 so that \u00b7 Overall (Use each once).',
+    instrBn:'\u09aa\u09cd\u09b0\u09a4\u09bf\u099f\u09bf \u09ab\u09be\u0981\u0995\u09be \u099c\u09be\u09af\u09bc\u0997\u09be\u09af\u09bc Word Bank \u09a5\u09c7\u0995\u09c7 \u09b8\u09a0\u09bf\u0995 linker \u09ac\u09b8\u09be\u0993\u0964 \u09aa\u09cd\u09b0\u09a4\u09bf\u099f\u09bf \u098f\u0995\u09ac\u09be\u09b0 \u0995\u09b0\u09c7 \u09ac\u09cd\u09af\u09ac\u09b9\u09be\u09b0 \u0995\u09b0\u09ac\u09c7\u0964',
     items:[
       {label:'1. The team practised very hard. ___, they lost the final.', correct:['However']},
       {label:'2. The road was flooded. ___, the bus could not reach the village.', correct:['Therefore']},
@@ -205,81 +1727,88 @@ const SECTIONS = [
       {label:'10. ___, the results of the survey were quite encouraging.', correct:['Overall']}
     ]},
 
-  { id:'D', title:'D · GUIDED TRANSLATION: INSERT THE RIGHT LINKER', marks:10, type:'fillblank',
+  { id:'D', title:'D \u00b7 GUIDED TRANSLATION: INSERT THE RIGHT LINKER', marks:10, type:'fillblank',
+    instr:'Read the Bangla sentence and fill in the correct English linker.',
+    instrBn:'\u09ac\u09be\u0982\u09b2\u09be \u09ac\u09be\u0995\u09cd\u09af\u099f\u09bf \u09aa\u09a1\u09bc\u09c7 \u09b8\u09a0\u09bf\u0995 connector-\u099f\u09bf \u09ac\u09b8\u09be\u0993\u0964',
     items:[
-      {label:'1. যদিও সে অসুস্থ ছিল, সে অফিসে এসেছিল। — ___ his illness, he came to the office.', correct:['Despite']},
-      {label:'2. রাস্তা বন্ধ ছিল। তাই আমরা হেঁটে গেলাম। — The road was closed. ___, we walked.', correct:['Therefore']},
-      {label:'3. হোটেলটি সস্তা। তাছাড়া এটি খুব পরিষ্কার। — The hotel is cheap. ___, it is very clean.', correct:['Moreover']},
-      {label:'4. খারাপ আবহাওয়ার কারণে খেলাটি বন্ধ ছিল। — The match was stopped ___ bad weather.', correct:['due to','because of']},
-      {label:'5. সে ধীরে কথা বলল যেন সবাই বুঝতে পারে। — He spoke slowly ___ everyone could understand.', correct:['so that']},
-      {label:'6. তাড়াতাড়ি না করলে তুমি বাসটি মিস করবে। — ___ you hurry, you will miss the bus.', correct:['Unless']},
-      {label:'7. অনেক ফল এখানে জন্মে, যেমন আম ও কাঁঠাল। — Many fruits grow here, ___ mangoes and jackfruits.', correct:['such as']},
-      {label:'8. পরিশেষে, শিক্ষাই সবচেয়ে বড় সম্পদ। — ___, education is the greatest asset.', correct:['In conclusion']},
-      {label:'9. সে পরিশ্রমী। অন্যদিকে তার ভাই অলস। — He is hardworking. ___, his brother is lazy.', correct:['On the other hand']},
-      {label:'10. সামগ্রিকভাবে, সংখ্যাগুলো ধীরে ধীরে বেড়েছে। — ___, the figures increased gradually.', correct:['Overall']}
+      {label:'1. \u09af\u09a6\u09bf\u0993 \u09b8\u09c7 \u0985\u09b8\u09c1\u09b8\u09cd\u09a5 \u099b\u09bf\u09b2, \u09b8\u09c7 \u0985\u09ab\u09bf\u09b8\u09c7 \u098f\u09b8\u09c7\u099b\u09bf\u09b2\u0964 \u2014 ___ his illness, he came to the office.', correct:['Despite']},
+      {label:'2. \u09b0\u09be\u09b8\u09cd\u09a4\u09be \u09ac\u09a8\u09cd\u09a7 \u099b\u09bf\u09b2\u0964 \u09a4\u09be\u0987 \u0986\u09ae\u09b0\u09be \u09b9\u09c7\u0981\u099f\u09c7 \u0997\u09c7\u09b2\u09be\u09ae\u0964 \u2014 The road was closed. ___, we walked.', correct:['Therefore']},
+      {label:'3. \u09b9\u09cb\u099f\u09c7\u09b2\u099f\u09bf \u09b8\u09b8\u09cd\u09a4\u09be\u0964 \u09a4\u09be\u099b\u09be\u09a1\u09bc\u09be \u098f\u099f\u09bf \u0996\u09c1\u09ac \u09aa\u09b0\u09bf\u09b7\u09cd\u0995\u09be\u09b0\u0964 \u2014 The hotel is cheap. ___, it is very clean.', correct:['Moreover']},
+      {label:'4. \u0996\u09be\u09b0\u09be\u09aa \u0986\u09ac\u09b9\u09be\u0993\u09af\u09bc\u09be\u09b0 \u0995\u09be\u09b0\u09a3\u09c7 \u0996\u09c7\u09b2\u09be\u099f\u09bf \u09ac\u09a8\u09cd\u09a7 \u099b\u09bf\u09b2\u0964 \u2014 The match was stopped ___ bad weather.', correct:['due to','because of']},
+      {label:'5. \u09b8\u09c7 \u09a7\u09c0\u09b0\u09c7 \u0995\u09a5\u09be \u09ac\u09b2\u09b2 \u09af\u09c7\u09a8 \u09b8\u09ac\u09be\u0987 \u09ac\u09c1\u099d\u09a4\u09c7 \u09aa\u09be\u09b0\u09c7\u0964 \u2014 He spoke slowly ___ everyone could understand.', correct:['so that']},
+      {label:'6. \u09a4\u09be\u09a1\u09bc\u09be\u09a4\u09be\u09a1\u09bc\u09bf \u09a8\u09be \u0995\u09b0\u09b2\u09c7 \u09a4\u09c1\u09ae\u09bf \u09ac\u09be\u09b8\u099f\u09bf \u09ae\u09bf\u09b8 \u0995\u09b0\u09ac\u09c7\u0964 \u2014 ___ you hurry, you will miss the bus.', correct:['Unless']},
+      {label:'7. \u0985\u09a8\u09c7\u0995 \u09ab\u09b2 \u098f\u0996\u09be\u09a8\u09c7 \u099c\u09a8\u09cd\u09ae\u09c7, \u09af\u09c7\u09ae\u09a8 \u0986\u09ae \u0993 \u0995\u09be\u0981\u09a0\u09be\u09b2\u0964 \u2014 Many fruits grow here, ___ mangoes and jackfruits.', correct:['such as']},
+      {label:'8. \u09aa\u09b0\u09bf\u09b6\u09c7\u09b7\u09c7, \u09b6\u09bf\u0995\u09cd\u09b7\u09be\u0987 \u09b8\u09ac\u099a\u09c7\u09af\u09bc\u09c7 \u09ac\u09a1\u09bc \u09b8\u09ae\u09cd\u09aa\u09a6\u0964 \u2014 ___, education is the greatest asset.', correct:['In conclusion']},
+      {label:'9. \u09b8\u09c7 \u09aa\u09b0\u09bf\u09b6\u09cd\u09b0\u09ae\u09c0\u0964 \u0985\u09a8\u09cd\u09af\u09a6\u09bf\u0995\u09c7 \u09a4\u09be\u09b0 \u09ad\u09be\u0987 \u0985\u09b2\u09b8\u0964 \u2014 He is hardworking. ___, his brother is lazy.', correct:['On the other hand']},
+      {label:'10. \u09b8\u09be\u09ae\u0997\u09cd\u09b0\u09bf\u0995\u09ad\u09be\u09ac\u09c7, \u09b8\u0982\u0996\u09cd\u09af\u09be\u0997\u09c1\u09b2\u09cb \u09a7\u09c0\u09b0\u09c7 \u09a7\u09c0\u09b0\u09c7 \u09ac\u09c7\u09a1\u09bc\u09c7\u099b\u09c7\u0964 \u2014 ___, the figures increased gradually.', correct:['Overall']}
     ]},
 
-  { id:'E', title:'E · GUIDED CONSTRUCTION: THE OPENING IS GIVEN', marks:10, type:'freetext',
-    instr:'বন্ধনীর Linker ব্যবহার করে দুইটা বাক্যকে এক করো — শুরুটা দেওয়া আছে, বাকিটা শেষ করো।',
+  { id:'E', title:'E \u00b7 GUIDED CONSTRUCTION: THE OPENING IS GIVEN', marks:10, type:'freetext',
+    instr:'Combine two sentences using the linker in brackets \u2014 beginning is given, complete the rest.',
+    instrBn:'\u09ac\u09a8\u09cd\u09a7\u09a8\u09c0\u09b0 Linker \u09ac\u09cd\u09af\u09ac\u09b9\u09be\u09b0 \u0995\u09b0\u09c7 \u09a6\u09c1\u0987\u099f\u09be \u09ac\u09be\u0995\u09cd\u09af\u0995\u09c7 \u098f\u0995 \u0995\u09b0\u09cb \u2014 \u09b6\u09c1\u09b0\u09c1\u099f\u09be \u09a6\u09c7\u0993\u09af\u09bc\u09be \u0986\u099b\u09c7, \u09ac\u09be\u0995\u09bf\u099f\u09be \u09b6\u09c7\u09b7 \u0995\u09b0\u09cb\u0964',
     items:[
-      {prompt:'1. (however) The shop was very crowded. We found a seat quickly. — "The shop was very crowded. However, ___"', keyword:'found a seat'},
-      {prompt:'2. (despite) The price was very high. She bought the phone. — "Despite the high price, ___"', keyword:'bought the phone'},
-      {prompt:'3. (therefore) The file was corrupted. It could not be opened. — "The file was corrupted. Therefore, ___"', keyword:'could not be opened'},
-      {prompt:'4. (moreover) The course is short. It is very cheap. — "The course is short. Moreover, ___"', keyword:'very cheap'},
-      {prompt:'5. (unless) You save money now. You cannot buy a bike. — "Unless you save money now, ___"', keyword:'cannot buy a bike'},
-      {prompt:'6. (such as) Sylhet has many attractions. Ratargul and Jaflong are two of them. — "Sylhet has many attractions such as ___"', keyword:['ratargul','jaflong']},
-      {prompt:'7. (so that) He left home early. He wanted to avoid the traffic. — "He left home early so that ___"', keyword:'avoid the traffic'},
-      {prompt:'8. (as a result) The factory closed last month. Two hundred workers lost their jobs. — "The factory closed last month. As a result, ___"', keyword:'lost their jobs'},
-      {prompt:'9. (on the other hand) Buses are cheap. Trains are far more comfortable. — "Buses are cheap. On the other hand, ___"', keyword:'more comfortable'},
-      {prompt:'10. (in order to) She woke up at five. She wanted to finish the assignment. — "She woke up at five in order to ___"', keyword:'finish the assignment'}
+      {prompt:'1. (however) The shop was very crowded. We found a seat quickly. \u2014 "The shop was very crowded. However, ___"', keyword:'found a seat'},
+      {prompt:'2. (despite) The price was very high. She bought the phone. \u2014 "Despite the high price, ___"', keyword:'bought the phone'},
+      {prompt:'3. (therefore) The file was corrupted. It could not be opened. \u2014 "The file was corrupted. Therefore, ___"', keyword:'could not be opened'},
+      {prompt:'4. (moreover) The course is short. It is very cheap. \u2014 "The course is short. Moreover, ___"', keyword:'very cheap'},
+      {prompt:'5. (unless) You save money now. You cannot buy a bike. \u2014 "Unless you save money now, ___"', keyword:'cannot buy a bike'},
+      {prompt:'6. (such as) Sylhet has many attractions. Ratargul and Jaflong are two of them. \u2014 "Sylhet has many attractions such as ___"', keyword:['ratargul','jaflong']},
+      {prompt:'7. (so that) He left home early. He wanted to avoid the traffic. \u2014 "He left home early so that ___"', keyword:'avoid the traffic'},
+      {prompt:'8. (as a result) The factory closed last month. Two hundred workers lost their jobs. \u2014 "The factory closed last month. As a result, ___"', keyword:'lost their jobs'},
+      {prompt:'9. (on the other hand) Buses are cheap. Trains are far more comfortable. \u2014 "Buses are cheap. On the other hand, ___"', keyword:'more comfortable'},
+      {prompt:'10. (in order to) She woke up at five. She wanted to finish the assignment. \u2014 "She woke up at five in order to ___"', keyword:'finish the assignment'}
     ]},
 
-  { id:'F', title:'F · IELTS TASK 1: COMPLETE THE MODEL ANSWER (GUIDED)', marks:10, type:'clozepassages',
-    instr:'ছকের তথ্য ও Clue Box দেখে ফাঁকা জায়গাগুলো পূরণ করো।',
+  { id:'F', title:'F \u00b7 IELTS TASK 1: COMPLETE THE MODEL ANSWER (GUIDED)', marks:10, type:'clozepassages',
+    instr:'Look at the table and Clue Box, fill in the blanks. IELTS Task 1 guided practice.',
+    instrBn:'\u099b\u0995\u09c7\u09b0 \u09a4\u09a5\u09cd\u09af \u0993 Clue Box \u09a6\u09c7\u0996\u09c7 \u09ab\u09be\u0981\u0995\u09be \u099c\u09be\u09af\u09bc\u0997\u09be\u0997\u09c1\u09b2\u09cb \u09aa\u09c2\u09b0\u09a3 \u0995\u09b0\u09cb\u0964',
     passages:[
-      { label:'F1 · Line Graph — International visitors to three countries, 2010–2020 (millions)',
+      { label:'F1 \u00b7 Line Graph \u2014 International visitors to three countries, 2010\u20132020 (millions)',
         table:{cols:['Country','2010','2015','2020'], rows:[['Japan','8','20','32'],['Turkey','27','36','16'],['Egypt','14','9','13']]},
-        clues:'CLUES: Overall · whereas · However · on the other hand · Despite',
-        text:'01  The line graph compares the number of international visitors to Japan,\n02  Turkey and Egypt between 2010 and 2020. ___(1)___, the figures for\n03  Japan rose steadily throughout the period, ___(2)___ the numbers for\n04  Turkey fell sharply after 2015.\n05  Japan received only 8 million visitors in 2010. ___(3)___, this figure\n06  climbed to 32 million by 2020. Turkey, ___(4)___, began the period as\n07  the most popular destination with 27 million arrivals. ___(5)___ a rise\n08  to 36 million in 2015, the number collapsed to just 16 million in 2020.',
+        clues:'CLUES: Overall \u00b7 whereas \u00b7 However \u00b7 on the other hand \u00b7 Despite',
+        text:'01  The line graph compares the number of international visitors to Japan,\\n02  Turkey and Egypt between 2010 and 2020. ___(1)___, the figures for\\n03  Japan rose steadily throughout the period, ___(2)___ the numbers for\\n04  Turkey fell sharply after 2015.\\n05  Japan received only 8 million visitors in 2010. ___(3)___, this figure\\n06  climbed to 32 million by 2020. Turkey, ___(4)___, began the period as\\n07  the most popular destination with 27 million arrivals. ___(5)___ a rise\\n08  to 36 million in 2015, the number collapsed to just 16 million in 2020.',
         items:[{correct:['Overall']},{correct:['whereas']},{correct:['However']},{correct:['on the other hand']},{correct:['Despite']}] },
-      { label:'F2 · Bar Chart — Household spending, 1990 and 2020 (percentage)',
+      { label:'F2 \u00b7 Bar Chart \u2014 Household spending, 1990 and 2020 (percentage)',
         table:{cols:['Category','1990','2020'], rows:[['Food','40','22'],['Housing','25','34'],['Transport','12','18'],['Leisure','8','16']]},
-        clues:'CLUES: Overall · while · However · by contrast · in fact',
-        text:'01  The bar chart illustrates how an average household divided its spending in\n02  1990 and in 2020. ___(1)___, spending on food fell dramatically,\n03  ___(2)___ the other three categories all increased.\n04  In 1990 food took the largest share at 40 per cent. ___(3)___, by 2020\n05  this had almost halved to 22 per cent. Housing, ___(4)___, rose from 25\n06  to 34 per cent and became the biggest single item. Transport and leisure also\n07  grew; ___(5)___, leisure spending doubled from 8 to 16 per cent.',
+        clues:'CLUES: Overall \u00b7 while \u00b7 However \u00b7 by contrast \u00b7 in fact',
+        text:'01  The bar chart illustrates how an average household divided its spending in\\n02  1990 and in 2020. ___(1)___, spending on food fell dramatically,\\n03  ___(2)___ the other three categories all increased.\\n04  In 1990 food took the largest share at 40 per cent. ___(3)___, by 2020\\n05  this had almost halved to 22 per cent. Housing, ___(4)___, rose from 25\\n06  to 34 per cent and became the biggest single item. Transport and leisure also\\n07  grew; ___(5)___, leisure spending doubled from 8 to 16 per cent.',
         items:[{correct:['Overall']},{correct:['while']},{correct:['However']},{correct:['by contrast']},{correct:['in fact']}] }
     ]}
 ]},
 
-{ id:'P2', title:'PART 2 · INDEPENDENT PRACTICE', sub:'কোনো Example বা Hint নাই', tasks:[
+{ id:'P2', title:'PART 2 \u00b7 INDEPENDENT PRACTICE', sub:'\u0995\u09cb\u09a8\u09cb Example \u09ac\u09be Hint \u09a8\u09be\u0987', tasks:[
 
-  { id:'G', title:'G · GAP FILL: TWO FULL PARAGRAPHS', marks:12, type:'clozepassages',
-    instr:'কোনো Word Bank নেই — অর্থ বুঝে উপযুক্ত Linker বসাও।',
+  { id:'G', title:'G \u00b7 GAP FILL: TWO FULL PARAGRAPHS', marks:12, type:'clozepassages',
+    instr:'No Word Bank \u2014 choose suitable linker by understanding meaning.',
+    instrBn:'\u0995\u09cb\u09a8\u09cb Word Bank \u09a8\u09c7\u0987 \u2014 \u0985\u09b0\u09cd\u09a5 \u09ac\u09c1\u099d\u09c7 \u0989\u09aa\u09af\u09c1\u0995\u09cd\u09a4 Linker \u09ac\u09b8\u09be\u0993\u0964',
     passages:[
-      { label:'Paragraph 1 · Plastic pollution',
-        text:'01  Plastic waste has become a serious threat to our rivers. ___(1)___, most\n02  households still use plastic bags every single day. ___(2)___, thousands of\n03  tonnes of plastic reach the water each year. ___(3)___ several public\n04  campaigns, the habit has hardly changed. ___(4)___, cheap alternatives such\n05  as jute bags are already available in every market. ___(5)___, the government\n06  should ban single use plastic completely. ___(6)___, our rivers will not\n07  survive another decade.',
+      { label:'Paragraph 1 \u00b7 Plastic pollution',
+        text:'01  Plastic waste has become a serious threat to our rivers. ___(1)___, most\\n02  households still use plastic bags every single day. ___(2)___, thousands of\\n03  tonnes of plastic reach the water each year. ___(3)___ several public\\n04  campaigns, the habit has hardly changed. ___(4)___, cheap alternatives such\\n05  as jute bags are already available in every market. ___(5)___, the government\\n06  should ban single use plastic completely. ___(6)___, our rivers will not\\n07  survive another decade.',
         items:[{correct:['First','Firstly']},{correct:['As a result']},{correct:['Despite','In spite of']},{correct:['However']},{correct:['Therefore']},{correct:['Otherwise']}] },
-      { label:'Paragraph 2 · Learning a second language',
-        text:'01  Learning a second language brings many benefits. ___(1)___, it opens the\n02  door to far better jobs. ___(2)___, it improves memory and concentration.\n03  ___(3)___, bilingual children often perform better in mathematics.\n04  ___(4)___ these clear advantages, many students give up within a few\n05  months. ___(5)___ they practise every day, they quickly forget what they\n06  have learnt. ___(6)___, regular practice matters far more than natural talent.',
+      { label:'Paragraph 2 \u00b7 Learning a second language',
+        text:'01  Learning a second language brings many benefits. ___(1)___, it opens the\\n02  door to far better jobs. ___(2)___, it improves memory and concentration.\\n03  ___(3)___, bilingual children often perform better in mathematics.\\n04  ___(4)___ these clear advantages, many students give up within a few\\n05  months. ___(5)___ they practise every day, they quickly forget what they\\n06  have learnt. ___(6)___, regular practice matters far more than natural talent.',
         items:[{correct:['Firstly']},{correct:['Moreover','Secondly']},{correct:['In fact','For example']},{correct:['Despite','In spite of']},{correct:['Unless']},{correct:['In conclusion','Overall']}] }
     ]},
 
-  { id:'H', title:'H · TRANSLATION: বাংলা থেকে ENGLISH', marks:10, type:'freetext',
-    instr:'উপযুক্ত Linker নিজেই বেছে নাও, কোনো কাঠামো দেওয়া নেই।',
+  { id:'H', title:'H \u00b7 TRANSLATION: \u09ac\u09be\u0982\u09b2\u09be \u09a5\u09c7\u0995\u09c7 ENGLISH', marks:10, type:'freetext',
+    instr:'Choose suitable linker yourself, no structure given. Translate Bangla to English.',
+    instrBn:'\u0989\u09aa\u09af\u09c1\u0995\u09cd\u09a4 Linker \u09a8\u09bf\u099c\u09c7\u0987 \u09ac\u09c7\u099b\u09c7 \u09a8\u09be\u0993, \u0995\u09cb\u09a8\u09cb \u0995\u09be\u09a0\u09be\u09ae\u09cb \u09a6\u09c7\u0993\u09af\u09bc\u09be \u09a8\u09c7\u0987\u0964',
     items:[
-      {prompt:'১. যদিও টিকিটটি দামি ছিল, আমরা সেটি কিনেছিলাম।', keyword:['although','though'], correct:['Although the ticket was expensive, we bought it.']},
-      {prompt:'২. প্রবল বৃষ্টির কারণে ম্যাচটি স্থগিত হয়েছিল।', keyword:['due to','because of'], correct:['The match was postponed due to heavy rain.']},
-      {prompt:'৩. খাবারটি সস্তা ছিল। তাছাড়া এটি খুব সুস্বাদু ছিল।', keyword:'moreover', correct:['The food was cheap. Moreover, it was very delicious.']},
-      {prompt:'৪. সে সারা রাত পড়েছিল। তবুও সে পরীক্ষায় ফেল করল।', keyword:['nevertheless','however'], correct:['He studied all night. Nevertheless, he failed the exam.']},
-      {prompt:'৫. এখনই শুরু করো, নাহলে তুমি দেরি করে ফেলবে।', keyword:'otherwise', correct:['Start now. Otherwise, you will be late.']},
-      {prompt:'৬. প্রথম বাসটি ধরার জন্য সে ভোরে ঘুম থেকে উঠল।', keyword:'in order to', correct:['He got up early in order to catch the first bus.']},
-      {prompt:'৭. অনেক দেশ, যেমন জাপান ও কোরিয়া, এই প্রযুক্তি ব্যবহার করে।', keyword:'such as', correct:['Many countries such as Japan and Korea use this technology.']},
-      {prompt:'৮. দাম বেড়ে গিয়েছিল। ফলে বিক্রি কমে গেল।', keyword:'as a result', correct:['Prices rose. As a result, sales fell.']},
-      {prompt:'৯. শহরে কাজের সুযোগ বেশি। অন্যদিকে জীবনযাত্রার খরচও বেশি।', keyword:'on the other hand', correct:['There are more jobs in the city. On the other hand, the cost of living is also higher.']},
-      {prompt:'১০. সামগ্রিকভাবে, পুরো দশক জুড়ে সংখ্যাগুলো বেড়েছে।', keyword:'overall', correct:['Overall, the figures increased throughout the decade.']}
+      {prompt:'\u09e7. \u09af\u09a6\u09bf\u0993 \u099f\u09bf\u0995\u09bf\u099f\u099f\u09bf \u09a6\u09be\u09ae\u09bf \u099b\u09bf\u09b2, \u0986\u09ae\u09b0\u09be \u09b8\u09c7\u099f\u09bf \u0995\u09bf\u09a8\u09c7\u099b\u09bf\u09b2\u09be\u09ae\u0964', keyword:['although','though'], correct:['Although the ticket was expensive, we bought it.']},
+      {prompt:'\u09e8. \u09aa\u09cd\u09b0\u09ac\u09b2 \u09ac\u09c3\u09b7\u09cd\u099f\u09bf\u09b0 \u0995\u09be\u09b0\u09a3\u09c7 \u09ae\u09cd\u09af\u09be\u099a\u099f\u09bf \u09b8\u09cd\u09a5\u0997\u09bf\u09a4 \u09b9\u09af\u09bc\u09c7\u099b\u09bf\u09b2\u0964', keyword:['due to','because of'], correct:['The match was postponed due to heavy rain.']},
+      {prompt:'\u09e9. \u0996\u09be\u09ac\u09be\u09b0\u099f\u09bf \u09b8\u09b8\u09cd\u09a4\u09be \u099b\u09bf\u09b2\u0964 \u09a4\u09be\u099b\u09be\u09a1\u09bc\u09be \u098f\u099f\u09bf \u0996\u09c1\u09ac \u09b8\u09c1\u09b8\u09cd\u09ac\u09be\u09a6\u09c1 \u099b\u09bf\u09b2\u0964', keyword:'moreover', correct:['The food was cheap. Moreover, it was very delicious.']},
+      {prompt:'\u09ea. \u09b8\u09c7 \u09b8\u09be\u09b0\u09be \u09b0\u09be\u09a4 \u09aa\u09a1\u09bc\u09c7\u099b\u09bf\u09b2\u0964 \u09a4\u09ac\u09c1\u0993 \u09b8\u09c7 \u09aa\u09b0\u09c0\u0995\u09cd\u09b7\u09be\u09af\u09bc \u09ab\u09c7\u09b2 \u0995\u09b0\u09b2\u0964', keyword:['nevertheless','however'], correct:['He studied all night. Nevertheless, he failed the exam.']},
+      {prompt:'\u09eb. \u098f\u0996\u09a8\u0987 \u09b6\u09c1\u09b0\u09c1 \u0995\u09b0\u09cb, \u09a8\u09be\u09b9\u09b2\u09c7 \u09a4\u09c1\u09ae\u09bf \u09a6\u09c7\u09b0\u09bf \u0995\u09b0\u09c7 \u09ab\u09c7\u09b2\u09ac\u09c7\u0964', keyword:'otherwise', correct:['Start now. Otherwise, you will be late.']},
+      {prompt:'\u09ec. \u09aa\u09cd\u09b0\u09a5\u09ae \u09ac\u09be\u09b8\u099f\u09bf \u09a7\u09b0\u09be\u09b0 \u099c\u09a8\u09cd\u09af \u09b8\u09c7 \u09ad\u09cb\u09b0\u09c7 \u0998\u09c1\u09ae \u09a5\u09c7\u0995\u09c7 \u0989\u09a0\u09b2\u0964', keyword:'in order to', correct:['He got up early in order to catch the first bus.']},
+      {prompt:'\u09ed. \u0985\u09a8\u09c7\u0995 \u09a6\u09c7\u09b6, \u09af\u09c7\u09ae\u09a8 \u099c\u09be\u09aa\u09be\u09a8 \u0993 \u0995\u09cb\u09b0\u09bf\u09af\u09bc\u09be, \u098f\u0987 \u09aa\u09cd\u09b0\u09af\u09c1\u0995\u09cd\u09a4\u09bf \u09ac\u09cd\u09af\u09ac\u09b9\u09be\u09b0 \u0995\u09b0\u09c7\u0964', keyword:'such as', correct:['Many countries such as Japan and Korea use this technology.']},
+      {prompt:'\u09ee. \u09a6\u09be\u09ae \u09ac\u09c7\u09a1\u09bc\u09c7 \u0997\u09bf\u09af\u09bc\u09c7\u099b\u09bf\u09b2\u0964 \u09ab\u09b2\u09c7 \u09ac\u09bf\u0995\u09cd\u09b0\u09bf \u0995\u09ae\u09c7 \u0997\u09c7\u09b2\u0964', keyword:'as a result', correct:['Prices rose. As a result, sales fell.']},
+      {prompt:'\u09ef. \u09b6\u09b9\u09b0\u09c7 \u0995\u09be\u099c\u09c7\u09b0 \u09b8\u09c1\u09af\u09cb\u0997 \u09ac\u09c7\u09b6\u09bf\u0964 \u0985\u09a8\u09cd\u09af\u09a6\u09bf\u0995\u09c7 \u099c\u09c0\u09ac\u09a8\u09af\u09be\u09a4\u09cd\u09b0\u09be\u09b0 \u0996\u09b0\u099a\u0993 \u09ac\u09c7\u09b6\u09bf\u0964', keyword:'on the other hand', correct:['There are more jobs in the city. On the other hand, the cost of living is also higher.']},
+      {prompt:'\u09e7\u09e6. \u09b8\u09be\u09ae\u0997\u09cd\u09b0\u09bf\u0995\u09ad\u09be\u09ac\u09c7, \u09aa\u09c1\u09b0\u09cb \u09a6\u09b6\u0995 \u099c\u09c1\u09a1\u09bc\u09c7 \u09b8\u0982\u0996\u09cd\u09af\u09be\u0997\u09c1\u09b2\u09cb \u09ac\u09c7\u09a1\u09bc\u09c7\u099b\u09c7\u0964', keyword:'overall', correct:['Overall, the figures increased throughout the decade.']}
     ]},
 
-  { id:'I', title:'I · JOIN THEM WITH A LINKER OF YOUR CHOICE', marks:8, type:'linkerchoice',
-    instr:'যেকোনো উপযুক্ত Linker দিয়ে জোড়া লাগাও। কোন Linker ব্যবহার করলে সেটাও লেখো। (Auto-check: তোমার sentence-এ তোমারই লেখা linker-টা থাকতে হবে।)',
+  { id:'I', title:'I \u00b7 JOIN THEM WITH A LINKER OF YOUR CHOICE', marks:8, type:'linkerchoice',
+    instr:'Join with any suitable linker. Write which linker you used. (Auto-check: your sentence must contain your linker.)',
+    instrBn:'\u09af\u09c7\u0995\u09cb\u09a8\u09cb \u0989\u09aa\u09af\u09c1\u0995\u09cd\u09a4 Linker \u09a6\u09bf\u09af\u09bc\u09c7 \u099c\u09cb\u09a1\u09bc\u09be \u09b2\u09be\u0997\u09be\u0993\u0964 \u0995\u09cb\u09a8 Linker \u09ac\u09cd\u09af\u09ac\u09b9\u09be\u09b0 \u0995\u09b0\u09b2\u09c7 \u09b8\u09c7\u099f\u09be\u0993 \u09b2\u09c7\u0996\u09cb\u0964 (Auto-check: \u09a4\u09cb\u09ae\u09be\u09b0 sentence-\u098f \u09a4\u09cb\u09ae\u09be\u09b0\u0987 \u09b2\u09c7\u0996\u09be linker-\u099f\u09be \u09a5\u09be\u0995\u09a4\u09c7 \u09b9\u09ac\u09c7\u0964)',
     items:[
       {prompt:'1. The library closed at six. We could not return the books.'},
       {prompt:'2. He has a car. He walks to work every day.'},
@@ -291,8 +1820,9 @@ const SECTIONS = [
       {prompt:'8. Prices increased sharply. Many families reduced their spending.'}
     ]},
 
-  { id:'J', title:'J · FIND AND FIX THE LINKER ERROR', marks:10, type:'freetext',
-    instr:'ভুলটা কোথায় বলা নেই — নিজে খুঁজে পুরো বাক্যটি শুদ্ধ করে লেখো।',
+  { id:'J', title:'J \u00b7 FIND AND FIX THE LINKER ERROR', marks:10, type:'freetext',
+    instr:'Error location not marked \u2014 find it and rewrite correctly.',
+    instrBn:'\u09ad\u09c1\u09b2\u099f\u09be \u0995\u09cb\u09a5\u09be\u09af\u09bc \u09ac\u09b2\u09be \u09a8\u09c7\u0987 \u2014 \u09a8\u09bf\u099c\u09c7 \u0996\u09c1\u0981\u099c\u09c7 \u09aa\u09c1\u09b0\u09cb \u09ac\u09be\u0995\u09cd\u09af\u099f\u09bf \u09b6\u09c1\u09a6\u09cd\u09a7 \u0995\u09b0\u09c7 \u09b2\u09c7\u0996\u09cb\u0964',
     items:[
       {prompt:'1. Despite of his illness, he came to the office.', keyword:'despite', forbidden:'despite of'},
       {prompt:'2. He was very tired, however he finished the whole work.', keyword:'finished the whole work'},
@@ -306,9 +1836,10 @@ const SECTIONS = [
       {prompt:'10. Firstly, we collect the data. Finally, we plan the project. Then we present it.', keyword:['firstly, we plan']}
     ]},
 
-  { id:'K1', title:'K1 · IELTS ERROR HUNT — Speaking Part 2', marks:4, type:'errorhunt',
-    instr:'Describe a website you use often. এই লেখায় Linker ব্যবহারে ৪টি ভুল আছে।',
-    passage:'01  The website I use most is a language learning app. Despite it is free, it\n02  offers thousands of short lessons. Moreover it also has a speaking section.\n03  I open it every morning, however I practise for about twenty minutes.\n04  Beside the lessons, there is a community forum where learners help each\n05  other with difficult words.',
+  { id:'K1', title:'K1 \u00b7 IELTS ERROR HUNT \u2014 Speaking Part 2', marks:4, type:'errorhunt',
+    instr:'Describe a website you use often. There are 4 linker errors.',
+    instrBn:'\u098f\u0995\u099f\u09bf \u09ac\u09be\u09b0 \u09ac\u09be\u09b0 \u09ac\u09cd\u09af\u09ac\u09b9\u09c3\u09a4 \u0993\u09af\u09bc\u09c7\u09ac\u09b8\u09be\u0987\u099f\u09c7\u09b0 \u09ac\u09b0\u09cd\u09a3\u09a8\u09be\u0964 \u098f\u0987 \u09b2\u09c7\u0996\u09be\u09af\u09bc Linker \u09ac\u09cd\u09af\u09ac\u09b9\u09be\u09b0\u09c7 \u09ea\u099f\u09bf \u09ad\u09c1\u09b2 \u0986\u099b\u09c7\u0964',
+    passage:'01  The website I use most is a language learning app. Despite it is free, it\\n02  offers thousands of short lessons. Moreover it also has a speaking section.\\n03  I open it every morning, however I practise for about twenty minutes.\\n04  Beside the lessons, there is a community forum where learners help each\\n05  other with difficult words.',
     items:[
       {wrong:'Despite it is', correct:['although it is','although']},
       {wrong:'Moreover it', correct:['moreover,','comma']},
@@ -316,9 +1847,10 @@ const SECTIONS = [
       {wrong:'Beside', correct:['besides']}
     ]},
 
-  { id:'K2', title:'K2 · IELTS ERROR HUNT — Writing Task 2', marks:5, type:'errorhunt',
-    instr:'Body paragraph on public transport. এই লেখায় Linker ব্যবহারে ৫টি ভুল আছে।',
-    passage:'01  Many cities are now investing in public transport. Because of the traffic\n02  is severe, buses cannot move quickly through the centre. Although\n03  governments spend huge sums, but the situation rarely improves. Therefore\n04  they should build metro lines. In spite of metro systems are expensive,\n05  they carry far more passengers than buses. Unless cities do not act now,\n06  congestion will get worse every year.',
+  { id:'K2', title:'K2 \u00b7 IELTS ERROR HUNT \u2014 Writing Task 2', marks:5, type:'errorhunt',
+    instr:'Body paragraph on public transport. There are 5 linker errors.',
+    instrBn:'\u09aa\u09be\u09ac\u09b2\u09bf\u0995 \u099f\u09cd\u09b0\u09be\u09a8\u09cd\u09b8\u09aa\u09cb\u09b0\u09cd\u099f \u09ac\u09bf\u09b7\u09af\u09bc\u0995 \u0985\u09a8\u09c1\u099a\u09cd\u099b\u09c7\u09a6\u0964 \u098f\u0987 \u09b2\u09c7\u0996\u09be\u09af\u09bc Linker \u09ac\u09cd\u09af\u09ac\u09b9\u09be\u09b0\u09c7 \u09eb\u099f\u09bf \u09ad\u09c1\u09b2 \u0986\u099b\u09c7\u0964',
+    passage:'01  Many cities are now investing in public transport. Because of the traffic\\n02  is severe, buses cannot move quickly through the centre. Although\\n03  governments spend huge sums, but the situation rarely improves. Therefore\\n04  they should build metro lines. In spite of metro systems are expensive,\\n05  they carry far more passengers than buses. Unless cities do not act now,\\n06  congestion will get worse every year.',
     items:[
       {wrong:'Because of the traffic is', correct:['because the traffic is','because']},
       {wrong:'but the situation', correct:['remove but','delete but']},
@@ -327,45 +1859,57 @@ const SECTIONS = [
       {wrong:'do not act', correct:['act','remove do not']}
     ]},
 
-  { id:'K3', title:'K3 · IELTS ERROR HUNT — Speaking Part 3', marks:3, type:'errorhunt',
-    instr:'Why do young people read less these days? এই লেখায় Linker ব্যবহারে ৩টি ভুল আছে।',
-    passage:'01  Young people read much less nowadays. Firstly, they spend hours on their\n02  phones. Secondly, books are expensive. Moreover of the price, libraries are\n03  far away from most neighbourhoods. Despite these problems are serious,\n04  few schools take any action. In conclusion I think schools should open\n05  reading clubs for teenagers.',
+  { id:'K3', title:'K3 \u00b7 IELTS ERROR HUNT \u2014 Speaking Part 3', marks:3, type:'errorhunt',
+    instr:'Why do young people read less these days? There are 3 linker errors.',
+    instrBn:'\u09a4\u09b0\u09c1\u09a3\u09b0\u09be \u0986\u099c\u0995\u09be\u09b2 \u0995\u09ae \u09aa\u09a1\u09bc\u09c7 \u0995\u09c7\u09a8? \u098f\u0987 \u09b2\u09c7\u0996\u09be\u09af\u09bc Linker \u09ac\u09cd\u09af\u09ac\u09b9\u09be\u09b0\u09c7 \u09e9\u099f\u09bf \u09ad\u09c1\u09b2 \u0986\u099b\u09c7\u0964',
+    passage:'01  Young people read much less nowadays. Firstly, they spend hours on their\\n02  phones. Secondly, books are expensive. Moreover of the price, libraries are\\n03  far away from most neighbourhoods. Despite these problems are serious,\\n04  few schools take any action. In conclusion I think schools should open\\n05  reading clubs for teenagers.',
     items:[
       {wrong:'Moreover of', correct:['because of']},
       {wrong:'Despite these problems are', correct:['although these problems are','although']},
       {wrong:'In conclusion I', correct:['in conclusion,','comma']}
     ]},
 
-  { id:'L', title:'L · IELTS TASK 1: COMPLETE THE MODEL ANSWER (INDEPENDENT)', marks:8, type:'clozepassages',
-    instr:'এবার কোনো Word Bank নেই। ব্র্যাকেটে শুধু Linker-এর কাজ বলা আছে।',
+  { id:'L', title:'L \u00b7 IELTS TASK 1: COMPLETE THE MODEL ANSWER (INDEPENDENT)', marks:8, type:'clozepassages',
+    instr:'Now no Word Bank. Only function is given in brackets.',
+    instrBn:'\u098f\u09ac\u09be\u09b0 \u0995\u09cb\u09a8\u09cb Word Bank \u09a8\u09c7\u0987\u0964 \u09ac\u09cd\u09b0\u09cd\u09af\u09be\u0995\u09c7\u099f\u09c7 \u09b6\u09c1\u09a7\u09c1 Linker-\u098f\u09b0 \u0995\u09be\u099c \u09ac\u09b2\u09be \u0986\u099b\u09c7\u0964',
     passages:[
-      { label:'L1 · Pie Charts — Sources of electricity in Country X, 2000 & 2020 (%)',
+      { label:'L1 \u00b7 Pie Charts \u2014 Sources of electricity in Country X, 2000 & 2020 (%)',
         table:{cols:['Source','2000','2020'], rows:[['Coal','55','20'],['Gas','20','28'],['Renewables','5','40'],['Nuclear','20','12']]},
-        text:'01  The two pie charts show the sources of electricity in Country X in 2000 and\n02  in 2020. ___(1) [summary]___, the country moved away from coal and\n03  towards renewable energy over the two decades.\n04  In 2000 coal supplied more than half of all electricity. ___(2) [contrast]___,\n05  its share had dropped to only one fifth by 2020. Renewables followed the\n06  opposite path. ___(3) [emphasis]___, they generated a mere 5 per cent in\n07  2000. ___(4) [contrast]___, they became the leading source at 40 per cent\n08  by 2020. Gas rose modestly, ___(5) [contrast]___ nuclear power declined.',
+        text:'01  The two pie charts show the sources of electricity in Country X in 2000 and\\n02  in 2020. ___(1) [summary]___, the country moved away from coal and\\n03  towards renewable energy over the two decades.\\n04  In 2000 coal supplied more than half of all electricity. ___(2) [contrast]___,\\n05  its share had dropped to only one fifth by 2020. Renewables followed the\\n06  opposite path. ___(3) [emphasis]___, they generated a mere 5 per cent in\\n07  2000. ___(4) [contrast]___, they became the leading source at 40 per cent\\n08  by 2020. Gas rose modestly, ___(5) [contrast]___ nuclear power declined.',
         items:[{correct:['Overall']},{correct:['However','By contrast']},{correct:['In fact','Indeed']},{correct:['However','By contrast']},{correct:['whereas','while']}] },
-      { label:'L2 · Process Diagram — Making paper from wood (7 stages)',
-        table:{cols:['Stage','What happens'], rows:[['1–2','Trees felled, logs taken to mill'],['3','Bark removed, chipped'],['4','Chips boiled with chemicals → pulp'],['5','Pulp bleached and washed'],['6','Pulp pressed & dried'],['7','Sheets cut & packed']]},
-        text:'01  The diagram illustrates how paper is manufactured from wood.\n02  ___(1) [summary]___, the process consists of seven main stages, beginning\n03  with the felling of trees and ending with finished sheets of paper.\n04  ___(2) [first step]___, logs are transported to the mill, where the bark is\n05  removed. ___(3) [next step]___, the wood is cut into small chips. These chips\n06  are then boiled with chemicals ___(4) [purpose]___ they turn into a soft pulp.\n07  ___(5) [time]___ the pulp has been bleached and washed, it is pressed between\n08  heavy rollers. ___(6) [last step]___, the dried sheets are cut to size and packed.',
+      { label:'L2 \u00b7 Process Diagram \u2014 Making paper from wood (7 stages)',
+        table:{cols:['Stage','What happens'], rows:[['1\u20132','Trees felled, logs taken to mill'],['3','Bark removed, chipped'],['4','Chips boiled with chemicals \u2192 pulp'],['5','Pulp bleached and washed'],['6','Pulp pressed & dried'],['7','Sheets cut & packed']]},
+        text:'01  The diagram illustrates how paper is manufactured from wood.\\n02  ___(1) [summary]___, the process consists of seven main stages, beginning\\n03  with the felling of trees and ending with finished sheets of paper.\\n04  ___(2) [first step]___, logs are transported to the mill, where the bark is\\n05  removed. ___(3) [next step]___, the wood is cut into small chips. These chips\\n06  are then boiled with chemicals ___(4) [purpose]___ they turn into a soft pulp.\\n07  ___(5) [time]___ the pulp has been bleached and washed, it is pressed between\\n08  heavy rollers. ___(6) [last step]___, the dried sheets are cut to size and packed.',
         items:[{correct:['Overall']},{correct:['First','Firstly']},{correct:['Then','After that']},{correct:['so that']},{correct:['After','Once']},{correct:['Finally']}] }
     ]}
 ]}
 ];
 
+
 /* ===================== RENDER ===================== */
 const root = document.getElementById('renderRoot');
 let outHtml = '';
 SECTIONS.forEach(sec=>{
-  outHtml += `<h2 class="section-title">${sec.title}</h2>`;
-  if(sec.sub) outHtml += `<div class="section-sub">${sec.sub}</div>`;
+  outHtml += `<section class="section-shell">
+    <h2 class="section-title">${sec.title}</h2>
+    ${sec.sub ? `<div class="section-sub">${sec.sub}</div>` : ''}
+  `;
   sec.tasks.forEach(t=>{
     outHtml += `<div class="task" id="${t.id}"><div class="task-head"><h3>${t.title}</h3><span class="marks-pill">${t.marks} marks</span></div>`;
-    if(t.instr) outHtml += `<div class="instr">${t.instr}</div>`;
+    if(t.instr || t.instrBn){
+      outHtml += `<div class="instruction-box">`;
+      if(t.instr) outHtml += `<div class="instr instr-en"><span class="lang-label">EN</span> ${t.instr}</div>`;
+      if(t.instrBn) outHtml += `<div class="instr instr-bn"><span class="lang-label">\u09ac\u09be\u0982\u09b2\u09be</span> ${t.instrBn}</div>`;
+      outHtml += `</div>`;
+    }
     outHtml += renderTask(t);
-    if(t.hint) outHtml += `<div class="hint">💡 ${t.hint}</div>`;
-    outHtml += `<div id="${t.id}_result" style="margin-top:8px;font-size:13px;font-weight:600;"></div></div>`;
+    if(t.hint) outHtml += `<div class="hint">\uD83D\uDCA1 ${t.hint}</div>`;
+    outHtml += `<div id="${t.id}_result" style="margin-top:12px;font-size:14.5px;font-weight:700;"></div></div>`;
   });
+  outHtml += `</section>`;
 });
 root.innerHTML = outHtml;
+
 
 function renderTask(t){
   if(t.type==='mixedA') return renderMixedA(t);
