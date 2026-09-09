@@ -8,87 +8,1614 @@
 <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Baloo+Da+2:wght@500;600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <style>
-html,body[data-theme="light"]{
-  --bg:#FCF5EE; --bg-soft:#FFF9F4; --card:#FFFFFF; --card-alt:#FFF3EC;
-  --text:#402028; --text-soft:#7a4a56; --heading:#850E35;
-  --accent:#EE6983; --accent-soft:#FFC4C4; --border:#FFD9D9;
-  --ok:#2e8b57; --bad:#c0392b; --shadow:0 8px 24px rgba(133,14,53,.08);
+
+/* =========================================================
+   THEME VARIABLES
+========================================================= */
+
+:root {
+    --accent:#EE6983;
+    --accent-strong:#D94F70;
+    --ok:#2e8b57;
+    --bad:#c0392b;
 }
-body[data-theme="dark"]{
-  --bg:#2A0A16; --bg-soft:#33101F; --card:#3B1224; --card-alt:#451529;
-  --text:#FCEFEF; --text-soft:#E9B9C4; --heading:#FFC4C4;
-  --accent:#EE6983; --accent-soft:#850E35; --border:#5C1A34;
-  --ok:#6fcf97; --bad:#ff8a80; --shadow:0 8px 24px rgba(0,0,0,.35);
+
+
+body[data-theme="light"] {
+
+    --bg:#FCF5EE;
+    --bg-soft:#FFF9F4;
+
+    --text:#402028;
+    --text-soft:#7a4a56;
+
+    --heading:#850E35;
+
+    --accent-soft:#FFC4C4;
+    --border:#FFD9D9;
+
+    --glass:
+        rgba(255,255,255,.68);
+
+    --glass-strong:
+        rgba(255,255,255,.82);
+
+    --task-glass:
+        rgba(255,255,255,.58);
+
+    --glass-border:
+        rgba(255,255,255,.78);
+
+    --field-bg:
+        rgba(255,249,244,.88);
+
+    --shadow:
+        0 16px 40px
+        rgba(133,14,53,.09);
+
+    --shadow-hover:
+        0 20px 48px
+        rgba(133,14,53,.14);
 }
-*{box-sizing:border-box;}
-body{margin:0;background:var(--bg);color:var(--text);font-family:'Hind Siliguri',sans-serif;transition:background .3s,color .3s;padding-bottom:60px;}
-h1,h2,h3,.brand{font-family:'Baloo Da 2',cursive;color:var(--heading);}
-.wrap{max-width:900px;margin:0 auto;padding:16px;}
-.topbar{position:sticky;top:0;z-index:50;background:var(--bg);padding:10px 16px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border);gap:10px;}
-.brand{font-size:15px;}
-.theme-btn{border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:20px;padding:8px 14px;cursor:pointer;font-family:inherit;font-weight:600;white-space:nowrap;}
-.header-card{background:var(--card);border-radius:18px;box-shadow:var(--shadow);padding:22px;margin:16px 0;border:1px solid var(--border);}
-.header-card h1{margin:0 0 4px;font-size:23px;}
-.subtitle{color:var(--text-soft);font-size:14px;margin-bottom:14px;}
-.intro{font-size:13px;color:var(--text-soft);background:var(--card-alt);border-left:3px solid var(--accent);padding:10px 12px;border-radius:8px;margin-bottom:14px;line-height:1.7;}
-.meta-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;}
-@media(max-width:600px){.meta-grid{grid-template-columns:1fr;}}
-.meta-grid label{font-size:13px;font-weight:600;color:var(--text-soft);display:block;margin-bottom:4px;}
-.meta-grid input{width:100%;padding:9px 10px;border-radius:10px;border:1.5px solid var(--border);background:var(--bg-soft);color:var(--text);font-family:inherit;font-size:14px;}
-.engine-table{width:100%;border-collapse:collapse;margin:14px 0 4px;font-size:12px;}
-.engine-table th,.engine-table td{border:1px solid var(--border);padding:5px 7px;text-align:left;}
-.engine-table th{background:var(--card-alt);}
-.section-title{margin:26px 0 6px;font-size:18px;}
-.section-sub{color:var(--text-soft);font-size:13px;margin-bottom:14px;}
-.task{background:var(--card);border-radius:16px;box-shadow:var(--shadow);padding:18px;margin-bottom:16px;border:1px solid var(--border);}
-.task-head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:6px;}
-.task-head h3{margin:0;font-size:15px;}
-.marks-pill{background:var(--accent-soft);color:var(--heading);font-weight:700;font-size:12px;padding:4px 10px;border-radius:20px;white-space:nowrap;}
-.instr{font-size:13px;color:var(--text-soft);margin-bottom:4px;}
-.hint{font-size:12.5px;background:var(--card-alt);border-left:3px solid var(--accent);padding:8px 10px;border-radius:8px;margin-top:8px;color:var(--text-soft);line-height:1.65;}
-.example{font-size:12.5px;background:var(--bg-soft);border:1px dashed var(--accent);padding:8px 10px;border-radius:8px;margin:8px 0 4px;color:var(--text-soft);line-height:1.65;}
-.example b,.hint b{color:var(--heading);}
-table.qtable{width:100%;border-collapse:collapse;margin-top:10px;font-size:12.5px;}
-table.qtable th,table.qtable td{border:1px solid var(--border);padding:5px 6px;text-align:left;vertical-align:middle;}
-table.qtable th{background:var(--card-alt);}
-input[type=text],select,textarea{width:100%;padding:6px 8px;border-radius:8px;border:1.5px solid var(--border);background:var(--bg-soft);color:var(--text);font-family:inherit;font-size:13px;}
-textarea{resize:vertical;min-height:40px;}
-.radio-row{display:flex;gap:9px;flex-wrap:wrap;}
-.radio-row label{display:flex;align-items:center;gap:4px;font-size:12px;cursor:pointer;}
-.freeitem{margin-bottom:11px;}
-.freeitem .prompt{font-size:13px;margin-bottom:4px;line-height:1.6;}
-.grouphead{font-family:'Baloo Da 2',cursive;color:var(--heading);font-size:13.5px;margin:14px 0 6px;}
-.subfield{margin-bottom:4px;}
-.subfield .flabel{font-size:11px;color:var(--text-soft);}
-.fieldgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+
+
+body[data-theme="dark"] {
+
+    --bg:#220812;
+    --bg-soft:#33101F;
+
+    --text:#FCEFEF;
+    --text-soft:#E9B9C4;
+
+    --heading:#FFC4C4;
+
+    --accent-soft:#850E35;
+    --border:#5C1A34;
+
+    --glass:
+        rgba(59,18,36,.62);
+
+    --glass-strong:
+        rgba(59,18,36,.78);
+
+    --task-glass:
+        rgba(69,21,41,.55);
+
+    --glass-border:
+        rgba(255,196,196,.12);
+
+    --field-bg:
+        rgba(42,10,22,.68);
+
+    --ok:#6fcf97;
+    --bad:#ff8a80;
+
+    --shadow:
+        0 18px 46px
+        rgba(0,0,0,.32);
+
+    --shadow-hover:
+        0 22px 54px
+        rgba(0,0,0,.42);
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    box-sizing:border-box;
+}
+
+
+html {
+    scroll-behavior:smooth;
+}
+
+
+body {
+
+    margin:0;
+
+    min-height:100vh;
+
+    color:var(--text);
+
+    font-family:
+        'Hind Siliguri',
+        sans-serif;
+
+    font-size:17px;
+
+    line-height:1.55;
+
+    padding-bottom:86px;
+
+    transition:
+        background .35s ease,
+        color .35s ease;
+
+
+    background:
+
+        radial-gradient(
+            circle at 8% 5%,
+            rgba(238,105,131,.18),
+            transparent 27%
+        ),
+
+        radial-gradient(
+            circle at 95% 30%,
+            rgba(133,14,53,.10),
+            transparent 28%
+        ),
+
+        var(--bg);
+
+}
+
+
+body[data-theme="dark"] {
+
+    background:
+
+        radial-gradient(
+            circle at 8% 5%,
+            rgba(238,105,131,.15),
+            transparent 28%
+        ),
+
+        radial-gradient(
+            circle at 92% 34%,
+            rgba(133,14,53,.20),
+            transparent 30%
+        ),
+
+        var(--bg);
+
+}
+
+
+button,
+input,
+select,
+textarea {
+    font-family:inherit;
+}
+
+
+h1,
+h2,
+h3,
+.brand {
+
+    font-family:
+        'Baloo Da 2',
+        cursive;
+
+    color:var(--heading);
+
+}
+
+
+/* =========================================================
+   PAGE WRAPPER
+========================================================= */
+
+.wrap {
+
+    max-width:980px;
+
+    margin:0 auto;
+
+    padding:
+        22px 18px;
+}
+
+
+/* =========================================================
+   GLASS TOPBAR
+========================================================= */
+
+.topbar {
+
+    position:sticky;
+
+    top:0;
+
+    z-index:50;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:15px;
+
+    padding:
+        13px 20px;
+
+    border-bottom:
+        1px solid
+        var(--glass-border);
+
+    background:
+        var(--glass);
+
+    backdrop-filter:
+        blur(18px)
+        saturate(140%);
+
+    -webkit-backdrop-filter:
+        blur(18px)
+        saturate(140%);
+
+    box-shadow:
+        0 7px 25px
+        rgba(0,0,0,.05);
+}
+
+
+.brand {
+
+    font-size:18px;
+
+    font-weight:700;
+
+    letter-spacing:.2px;
+}
+
+
+.theme-btn {
+
+    border:
+        1px solid
+        var(--border);
+
+    background:
+        var(--glass-strong);
+
+    color:
+        var(--text);
+
+    border-radius:999px;
+
+    padding:
+        10px 17px;
+
+    cursor:pointer;
+
+    font-size:15px;
+
+    font-weight:700;
+
+    backdrop-filter:
+        blur(10px);
+
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease,
+        border-color .2s ease;
+}
+
+
+.theme-btn:hover {
+
+    transform:
+        translateY(-2px);
+
+    border-color:
+        var(--accent);
+
+    box-shadow:
+        0 8px 22px
+        rgba(238,105,131,.16);
+}
+
+
+/* =========================================================
+   HEADER GLASS CARD
+========================================================= */
+
+.header-card {
+
+    position:relative;
+
+    overflow:hidden;
+
+    padding:
+        30px 28px;
+
+    margin:
+        22px 0
+        28px;
+
+    border-radius:24px;
+
+    border:
+        1px solid
+        var(--glass-border);
+
+    background:
+        var(--glass);
+
+    backdrop-filter:
+        blur(22px)
+        saturate(145%);
+
+    -webkit-backdrop-filter:
+        blur(22px)
+        saturate(145%);
+
+    box-shadow:
+        var(--shadow);
+}
+
+
+.header-card::before {
+
+    content:"";
+
+    position:absolute;
+
+    width:220px;
+    height:220px;
+
+    top:-135px;
+    right:-115px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(238,105,131,.22),
+            transparent 68%
+        );
+
+    pointer-events:none;
+}
+
+
+.header-card h1 {
+
+    position:relative;
+
+    margin:
+        0 0 5px;
+
+    font-size:
+        clamp(31px,5vw,40px);
+
+    line-height:1.2;
+
+    font-weight:800;
+}
+
+
+.subtitle {
+
+    position:relative;
+
+    color:
+        var(--text-soft);
+
+    font-size:17px;
+
+    line-height:1.6;
+
+    margin-bottom:22px;
+}
+
+
+/* =========================================================
+   STUDENT DETAILS
+========================================================= */
+
+.meta-grid {
+
+    position:relative;
+
+    display:grid;
+
+    grid-template-columns:
+        1fr 1fr 1fr;
+
+    gap:13px;
+}
+
+
+.meta-grid label {
+
+    display:block;
+
+    margin-bottom:6px;
+
+    color:
+        var(--text-soft);
+
+    font-size:15px;
+
+    font-weight:700;
+}
+
+
+.meta-grid input {
+
+    width:100%;
+
+    padding:
+        11px 12px;
+
+    border-radius:12px;
+
+    border:
+        1.5px solid
+        var(--border);
+
+    background:
+        var(--field-bg);
+
+    color:
+        var(--text);
+
+    font-size:16px;
+
+    outline:none;
+
+    transition:
+        border-color .2s,
+        box-shadow .2s;
+}
+
+
+.meta-grid input:focus {
+
+    border-color:
+        var(--accent);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(238,105,131,.12);
+}
+
+
+/* =========================================================
+   GLASS SECTION CONTAINER
+========================================================= */
+
+.section-shell {
+
+    position:relative;
+
+    margin:
+        30px 0;
+
+    padding:
+        24px;
+
+    border-radius:26px;
+
+    border:
+        1px solid
+        var(--glass-border);
+
+    background:
+        var(--glass);
+
+    backdrop-filter:
+        blur(20px)
+        saturate(135%);
+
+    -webkit-backdrop-filter:
+        blur(20px)
+        saturate(135%);
+
+    box-shadow:
+        var(--shadow);
+}
+
+
+.section-title {
+
+    margin:
+        0 0 5px;
+
+    font-size:28px;
+
+    line-height:1.25;
+
+    font-weight:800;
+}
+
+
+.section-sub {
+
+    color:
+        var(--text-soft);
+
+    font-size:16px;
+
+    line-height:1.55;
+
+    margin-bottom:22px;
+}
+
+
+/* =========================================================
+   GLASS TASK CARDS
+========================================================= */
+
+.task {
+
+    position:relative;
+
+    overflow:hidden;
+
+    padding:
+        24px;
+
+    margin-bottom:20px;
+
+    border-radius:20px;
+
+    border:
+        1px solid
+        var(--glass-border);
+
+    background:
+        var(--task-glass);
+
+    backdrop-filter:
+        blur(15px)
+        saturate(135%);
+
+    -webkit-backdrop-filter:
+        blur(15px)
+        saturate(135%);
+
+    box-shadow:
+        0 10px 30px
+        rgba(0,0,0,.055);
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease,
+        border-color .25s ease;
+}
+
+
+.task:last-child {
+    margin-bottom:0;
+}
+
+
+.task::before {
+
+    content:"";
+
+    position:absolute;
+
+    width:150px;
+    height:150px;
+
+    top:-105px;
+    right:-90px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(238,105,131,.18),
+            transparent 68%
+        );
+
+    pointer-events:none;
+}
+
+
+.task:hover {
+
+    transform:
+        translateY(-3px);
+
+    border-color:
+        rgba(238,105,131,.32);
+
+    box-shadow:
+        var(--shadow-hover);
+}
+
+
+.task-head {
+
+    position:relative;
+
+    display:flex;
+
+    justify-content:
+        space-between;
+
+    align-items:flex-start;
+
+    gap:14px;
+
+    margin-bottom:12px;
+}
+
+
+.task-head h3 {
+
+    margin:0;
+
+    font-size:21px;
+
+    line-height:1.35;
+
+    font-weight:800;
+}
+
+
+.marks-pill {
+
+    flex-shrink:0;
+
+    background:
+        var(--accent-soft);
+
+    color:
+        var(--heading);
+
+    font-size:13.5px;
+
+    font-weight:800;
+
+    padding:
+        6px 12px;
+
+    border-radius:999px;
+}
+
+
+/* =========================================================
+   BILINGUAL INSTRUCTION BOX
+========================================================= */
+
+.instruction-box {
+
+    position:relative;
+
+    margin:
+        10px 0
+        16px;
+
+    padding:
+        14px 16px;
+
+    border-radius:14px;
+
+    border:
+        1px solid
+        rgba(238,105,131,.16);
+
+    background:
+        rgba(238,105,131,.055);
+}
+
+
+.instr {
+
+    font-size:16px;
+
+    line-height:1.55;
+}
+
+
+.instr + .instr {
+
+    margin-top:7px;
+}
+
+
+.instr-en {
+
+    color:
+        var(--text);
+}
+
+
+.instr-bn {
+
+    color:
+        var(--text-soft);
+
+    font-weight:500;
+}
+
+
+.lang-label {
+
+    display:inline-block;
+
+    min-width:40px;
+
+    margin-right:7px;
+
+    color:
+        var(--heading);
+
+    font-size:12px;
+
+    font-weight:800;
+
+    letter-spacing:.5px;
+
+    text-transform:uppercase;
+}
+
+
+/* =========================================================
+   HINT
+========================================================= */
+
+.hint {
+
+    margin-top:12px;
+
+    padding:
+        11px 13px;
+
+    border-radius:11px;
+
+    border-left:
+        4px solid
+        var(--accent);
+
+    background:
+        rgba(238,105,131,.075);
+
+    color:
+        var(--text-soft);
+
+    font-size:14.5px;
+
+    line-height:1.55;
+}
+
+
+/* =========================================================
+   TABLES
+========================================================= */
+
+table.qtable {
+
+    width:100%;
+
+    border-collapse:
+        separate;
+
+    border-spacing:0;
+
+    margin-top:14px;
+
+    overflow:hidden;
+
+    border-radius:12px;
+
+    font-size:15.5px;
+}
+
+
+table.qtable th,
+table.qtable td {
+
+    border-right:
+        1px solid
+        var(--border);
+
+    border-bottom:
+        1px solid
+        var(--border);
+
+    padding:
+        10px 11px;
+
+    text-align:left;
+
+    vertical-align:middle;
+}
+
+
+table.qtable th:first-child,
+table.qtable td:first-child {
+
+    border-left:
+        1px solid
+        var(--border);
+}
+
+
+table.qtable tr:first-child th {
+
+    border-top:
+        1px solid
+        var(--border);
+}
+
+
+table.qtable th:first-child {
+
+    border-top-left-radius:
+        12px;
+}
+
+
+table.qtable th:last-child {
+
+    border-top-right-radius:
+        12px;
+}
+
+
+table.qtable th {
+
+    background:
+        rgba(238,105,131,.075);
+
+    font-weight:700;
+}
+
+
+/* =========================================================
+   INPUTS
+========================================================= */
+
+input[type=text],
+select,
+textarea {
+
+    width:100%;
+
+    padding:
+        9px 11px;
+
+    border-radius:10px;
+
+    border:
+        1.5px solid
+        var(--border);
+
+    background:
+        var(--field-bg);
+
+    color:
+        var(--text);
+
+    font-size:15.5px;
+
+    outline:none;
+
+    transition:
+        border-color .2s ease,
+        box-shadow .2s ease;
+}
+
+
+input[type=text]:focus,
+select:focus,
+textarea:focus {
+
+    border-color:
+        var(--accent);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(238,105,131,.11);
+}
+
+
+textarea {
+
+    resize:vertical;
+
+    min-height:72px;
+
+    line-height:1.5;
+}
+
+
+/* =========================================================
+   RADIO OPTIONS
+========================================================= */
+
+.radio-row {
+
+    display:flex;
+
+    gap:
+        10px 16px;
+
+    flex-wrap:wrap;
+
+    margin-top:5px;
+}
+
+
+.radio-row label {
+
+    display:flex;
+
+    align-items:center;
+
+    gap:6px;
+
+    font-size:15px;
+
+    cursor:pointer;
+}
+
+
+.radio-row input[type="radio"] {
+
+    width:16px;
+    height:16px;
+
+    accent-color:
+        var(--accent);
+}
+
+
+/* =========================================================
+   GIVEN / EXAMPLE
+========================================================= */
+
+.given {
+    opacity:.78;
+}
+
+
+.given input,
+.given select {
+
+    background:
+        var(--accent-soft);
+
+    font-weight:700;
+}
+
+
+/* =========================================================
+   FREE ITEMS / PROMPTS
+========================================================= */
+
+.freeitem {
+
+    padding:
+        7px 0;
+
+    margin-bottom:14px;
+}
+
+
+.freeitem:last-child {
+    margin-bottom:0;
+}
+
+
+.freeitem .prompt {
+
+    margin-bottom:7px;
+
+    font-size:16px;
+
+    line-height:1.55;
+}
+
+
+/* =========================================================
+   RESULT TAGS
+========================================================= */
+
+.result-tag {
+
+    display:inline-block;
+
+    margin-left:7px;
+
+    padding:
+        3px 9px;
+
+    border-radius:999px;
+
+    font-size:12.5px;
+
+    font-weight:800;
+}
+
+
+.tag-full {
+
+    background:#d6f5df;
+
+    color:
+        var(--ok);
+}
+
+
+.tag-partial {
+
+    background:#fff3cd;
+
+    color:#8a6500;
+}
+
+
+.tag-zero {
+
+    background:#ffe0e0;
+
+    color:
+        var(--bad);
+}
+
+
+[data-theme="dark"] .tag-full {
+
+    background:#154a2c;
+}
+
+
+[data-theme="dark"] .tag-partial {
+
+    background:#4a3c10;
+
+    color:#ffd76b;
+}
+
+
+[data-theme="dark"] .tag-zero {
+
+    background:#4a1414;
+}
+
+
+/* =========================================================
+   SCORE GLASS CARD
+========================================================= */
+
+.score-banner {
+
+    margin:
+        30px 0;
+
+    padding:
+        26px;
+
+    text-align:center;
+
+    border-radius:22px;
+
+    border:
+        1px solid
+        var(--glass-border);
+
+    background:
+        var(--glass);
+
+    backdrop-filter:
+        blur(20px);
+
+    -webkit-backdrop-filter:
+        blur(20px);
+
+    box-shadow:
+        var(--shadow);
+}
+
+
+.score-banner .big {
+
+    margin-top:4px;
+
+    color:
+        var(--heading);
+
+    font-family:
+        'Baloo Da 2',
+        cursive;
+
+    font-size:54px;
+
+    font-weight:800;
+
+    line-height:1.2;
+}
+
+
+.tracker {
+
+    width:100%;
+
+    border-collapse:
+        collapse;
+
+    margin-top:18px;
+
+    font-size:15px;
+}
+
+
+.tracker th,
+.tracker td {
+
+    border:
+        1px solid
+        var(--border);
+
+    padding:
+        9px 10px;
+
+    text-align:center;
+}
+
+
+.tracker th {
+
+    background:
+        rgba(238,105,131,.08);
+}
+
+
+/* =========================================================
+   STICKY FOOTER ACTION BAR
+========================================================= */
+
+.footer-bar {
+
+    position:sticky;
+
+    bottom:0;
+
+    z-index:40;
+
+    display:flex;
+
+    gap:12px;
+
+    justify-content:center;
+
+    flex-wrap:wrap;
+
+    padding:
+        15px 16px;
+
+    border-top:
+        1px solid
+        var(--glass-border);
+
+    background:
+        var(--glass-strong);
+
+    backdrop-filter:
+        blur(20px)
+        saturate(140%);
+
+    -webkit-backdrop-filter:
+        blur(20px)
+        saturate(140%);
+
+    box-shadow:
+        0 -8px 28px
+        rgba(0,0,0,.08);
+}
+
+
+.btn {
+
+    border:none;
+
+    border-radius:999px;
+
+    padding:
+        13px 24px;
+
+    font-size:16px;
+
+    font-weight:800;
+
+    cursor:pointer;
+
+    transition:
+        transform .18s ease,
+        box-shadow .18s ease;
+}
+
+
+.btn:hover {
+
+    transform:
+        translateY(-2px);
+}
+
+
+.btn:active {
+
+    transform:
+        scale(.97);
+}
+
+
+.btn-primary {
+
+    background:
+        var(--accent);
+
+    color:#fff;
+
+    box-shadow:
+        0 8px 20px
+        rgba(238,105,131,.22);
+}
+
+
+.btn-secondary {
+
+    background:
+        var(--heading);
+
+    color:#fff;
+
+    box-shadow:
+        0 8px 20px
+        rgba(133,14,53,.17);
+}
+
+
+/* =========================================================
+   PAGE FOOTER
+========================================================= */
+
+.page-footer {
+
+    padding:
+        30px 0
+        8px;
+
+    color:
+        var(--text-soft);
+
+    text-align:center;
+
+    font-size:14px;
+}
+
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+.modal-overlay {
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:100;
+
+    display:none;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:20px;
+
+    background:
+        rgba(0,0,0,.50);
+
+    backdrop-filter:
+        blur(7px);
+
+    -webkit-backdrop-filter:
+        blur(7px);
+}
+
+
+.modal-box {
+
+    width:90%;
+
+    max-width:380px;
+
+    padding:26px;
+
+    border-radius:22px;
+
+    border:
+        1px solid
+        var(--glass-border);
+
+    background:
+        var(--glass-strong);
+
+    backdrop-filter:
+        blur(22px);
+
+    -webkit-backdrop-filter:
+        blur(22px);
+
+    box-shadow:
+        0 24px 60px
+        rgba(0,0,0,.28);
+}
+
+
+.modal-box h3 {
+
+    margin:
+        0 0 5px;
+
+    font-size:24px;
+}
+
+
+.modal-box input {
+
+    margin-bottom:12px;
+}
+
+
+.modal-actions {
+
+    display:flex;
+
+    gap:9px;
+
+    justify-content:flex-end;
+
+    margin-top:12px;
+}
+
+
+#resultCardHolder {
+
+    position:fixed;
+
+    left:-9999px;
+
+    top:0;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:700px) {
+
+    body {
+        font-size:16px;
+    }
+
+
+    .wrap {
+
+        padding:
+            14px 12px;
+    }
+
+
+    .topbar {
+
+        padding:
+            11px 13px;
+    }
+
+
+    .brand {
+
+        font-size:15px;
+
+        line-height:1.25;
+    }
+
+
+    .theme-btn {
+
+        padding:
+            8px 12px;
+
+        font-size:14px;
+    }
+
+
+    .header-card {
+
+        padding:
+            24px 19px;
+
+        border-radius:20px;
+    }
+
+
+    .header-card h1 {
+
+        font-size:30px;
+    }
+
+
+    .subtitle {
+
+        font-size:15.5px;
+    }
+
+
+    .meta-grid {
+
+        grid-template-columns:1fr;
+    }
+
+
+    .section-shell {
+
+        padding:
+            17px 13px;
+
+        border-radius:20px;
+    }
+
+
+    .section-title {
+
+        font-size:24px;
+    }
+
+
+    .section-sub {
+
+        font-size:15px;
+    }
+
+
+    .task {
+
+        padding:
+            19px 15px;
+
+        border-radius:17px;
+    }
+
+
+    .task-head h3 {
+
+        font-size:19px;
+    }
+
+
+    .marks-pill {
+
+        font-size:12px;
+
+        padding:
+            5px 9px;
+    }
+
+
+    .instruction-box {
+
+        padding:
+            12px;
+    }
+
+
+    .instr {
+
+        font-size:15px;
+    }
+
+
+    .freeitem .prompt {
+
+        font-size:15.5px;
+    }
+
+
+    table.qtable {
+
+        display:block;
+
+        overflow-x:auto;
+
+        white-space:normal;
+
+        font-size:14.5px;
+    }
+
+
+    input[type=text],
+    select,
+    textarea {
+
+        font-size:16px;
+    }
+
+
+    .btn {
+
+        width:100%;
+
+        max-width:420px;
+
+        font-size:15px;
+    }
+
+}
+
+
+
+
+/* Engine table - upgraded */
+.engine-table{
+    width:100%;
+    border-collapse:separate;
+    border-spacing:0;
+    margin:16px 0 20px;
+    overflow:hidden;
+    border-radius:12px;
+    font-size:15px;
+}
+.engine-table th,.engine-table td{
+    border-right:1px solid var(--border);
+    border-bottom:1px solid var(--border);
+    padding:10px 11px;
+    text-align:left;
+    vertical-align:middle;
+}
+.engine-table th:first-child,.engine-table td:first-child{border-left:1px solid var(--border);}
+.engine-table tr:first-child th{border-top:1px solid var(--border);}
+.engine-table th:first-child{border-top-left-radius:12px;}
+.engine-table th:last-child{border-top-right-radius:12px;}
+.engine-table th{background:rgba(238,105,131,.075);font-weight:700;}
+.engine-table td{background:var(--field-bg);}
+.intro{
+    font-size:15px;
+    color:var(--text-soft);
+    background:rgba(238,105,131,.06);
+    border-left:4px solid var(--accent);
+    padding:12px 14px;
+    border-radius:10px;
+    margin-bottom:16px;
+    line-height:1.7;
+}
+.example{
+    font-size:14.5px;
+    background:rgba(238,105,131,.055);
+    border:1px dashed var(--accent);
+    padding:11px 13px;
+    border-radius:11px;
+    margin:10px 0 6px;
+    color:var(--text-soft);
+    line-height:1.6;
+}
+.example b{color:var(--heading);}
+.grouphead{
+    font-family:'Baloo Da 2',cursive;
+    color:var(--heading);
+    font-size:16px;
+    margin:18px 0 8px;
+    font-weight:700;
+}
+.fieldgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
 @media(max-width:520px){.fieldgrid{grid-template-columns:1fr;}}
-.result-tag{display:inline-block;font-size:11.5px;font-weight:700;padding:2px 8px;border-radius:10px;margin-left:6px;}
-.tag-full{background:#d6f5df;color:var(--ok);}
-.tag-partial{background:#fff3cd;color:#8a6500;}
-.tag-zero{background:#ffe0e0;color:var(--bad);}
-[data-theme="dark"] .tag-full{background:#154a2c;}
-[data-theme="dark"] .tag-partial{background:#4a3c10;color:#ffd76b;}
-[data-theme="dark"] .tag-zero{background:#4a1414;}
-.footer-bar{position:sticky;bottom:0;background:var(--card);border-top:1px solid var(--border);padding:14px 16px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;box-shadow:0 -6px 18px rgba(0,0,0,.06);}
-.btn{border:none;border-radius:24px;padding:12px 22px;font-weight:700;font-family:inherit;font-size:14.5px;cursor:pointer;transition:transform .15s;}
-.btn:active{transform:scale(.97);}
-.btn-primary{background:var(--accent);color:#fff;}
-.btn-secondary{background:var(--heading);color:#fff;}
-.score-banner{text-align:center;margin:18px 0;}
-.score-banner .big{font-size:44px;font-weight:800;color:var(--heading);font-family:'Baloo Da 2',cursive;}
-.tracker{width:100%;border-collapse:collapse;margin-top:16px;font-size:12px;}
-.tracker th,.tracker td{border:1px solid var(--border);padding:5px 7px;text-align:center;}
-.tracker th{background:var(--card-alt);}
-.page-footer{text-align:center;color:var(--text-soft);font-size:12px;padding:26px 0 6px;}
-#resultCardHolder{position:fixed;left:-9999px;top:0;}
-.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;align-items:center;justify-content:center;z-index:100;}
-.modal-box{background:var(--card);border-radius:16px;padding:22px;max-width:340px;width:90%;box-shadow:var(--shadow);}
-.modal-box h3{margin-top:0;}
-.modal-box input{margin-bottom:10px;}
-.modal-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:10px;}
-.passage-box{white-space:pre-wrap;background:var(--card-alt);border:1px solid var(--border);border-radius:10px;padding:12px;font-size:12.5px;line-height:1.8;margin-bottom:12px;font-family:monospace;}
-.errow{display:grid;grid-template-columns:70px 1fr 1fr;gap:8px;margin-bottom:10px;align-items:end;}
-@media(max-width:560px){.errow{grid-template-columns:1fr;}}
+.subfield{margin-bottom:10px;}
+.subfield .flabel{font-size:14px;color:var(--text-soft);font-weight:600;display:block;margin-bottom:5px;}
+@media(max-width:700px){
+  .task{backdrop-filter:blur(10px) saturate(130%);-webkit-backdrop-filter:blur(10px) saturate(130%);}
+  .header-card{backdrop-filter:blur(16px) saturate(135%);-webkit-backdrop-filter:blur(16px) saturate(135%);}
+}
 </style>
 </head>
 <body data-theme="light">
@@ -162,12 +1689,13 @@ const TFNG = ['TRUE','FALSE','NOT GIVEN'];
 const DEFN = ['Defining','Non-Defining'];
 
 const SECTIONS = [
-{ id:'P1', title:'PART 1 · GUIDED PRACTICE', sub:'Worked Example, Hint Box আর দাগানো কাট · 60 Marks', tasks:[
+{ id:'P1', title:'PART 1 \u00b7 GUIDED PRACTICE', sub:'Worked Example, Hint Box \u0986\u09b0 \u09a6\u09be\u0997\u09be\u09a8\u09cb \u0995\u09be\u099f \u00b7 60 Marks', tasks:[
 
-  { id:'A1', title:'A · CONCEPT CHECK: SHAPES', marks:6, type:'mcq',
-    instr:'বাক্যের আকার বেছে নাও।',
-    example:'<b>WORKED EXAMPLE</b> — <i>The man wearing the grey coat is my uncle.</i> উত্তর: <b>Simple</b>. wearing the grey coat একটা Participle Phrase, Clause নয়। Finite Verb একটাই, is.',
-    hint:'Simple = একটা Independent Clause. &nbsp; Compound = দুইটা Independent Clause. &nbsp; Complex = একটা Independent আর এক বা একাধিক Dependent. &nbsp; Compound-Complex = দুইটা Independent আর অন্তত একটা Dependent.',
+  { id:'A1', title:'A \u00b7 CONCEPT CHECK: SHAPES', marks:6, type:'mcq',
+    instr:'Choose the shape/type of the sentence: Simple, Compound, Complex, Compound-Complex.',
+    instrBn:'\u09ac\u09be\u0995\u09cd\u09af\u09c7\u09b0 \u0986\u0995\u09be\u09b0 \u09ac\u09c7\u099b\u09c7 \u09a8\u09be\u0993\u0964',
+    example:'<b>WORKED EXAMPLE</b> \u2014 <i>The man wearing the grey coat is my uncle.</i> \u0989\u09a4\u09cd\u09a4\u09b0: <b>Simple</b>. wearing the grey coat \u098f\u0995\u099f\u09be Participle Phrase, Clause \u09a8\u09af\u09bc\u0964 Finite Verb \u098f\u0995\u099f\u09be\u0987, is.',
+    hint:'Simple = \u098f\u0995\u099f\u09be Independent Clause. &nbsp; Compound = \u09a6\u09c1\u0987\u099f\u09be Independent Clause. &nbsp; Complex = \u098f\u0995\u099f\u09be Independent \u0986\u09b0 \u098f\u0995 \u09ac\u09be \u098f\u0995\u09be\u09a7\u09bf\u0995 Dependent. &nbsp; Compound-Complex = \u09a6\u09c1\u0987\u099f\u09be Independent \u0986\u09b0 \u0985\u09a8\u09cd\u09a4\u09a4 \u098f\u0995\u099f\u09be Dependent.',
     items:[
       {prompt:'1. The parcel arrived this morning.', options:SHAPES, correct:0},
       {prompt:'2. The parcel arrived, but nobody signed for it.', options:SHAPES, correct:1},
@@ -177,19 +1705,21 @@ const SECTIONS = [
       {prompt:'6. Chittagong, the largest port of the country, handles most of our imports.', options:SHAPES, correct:0}
     ]},
 
-  { id:'A2', title:'A · CONCEPT CHECK: RULES', marks:4, type:'freetext',
-    instr:'নিচের চারটি প্রশ্নের এক কথায় উত্তর দাও।',
+  { id:'A2', title:'A \u00b7 CONCEPT CHECK: RULES', marks:4, type:'freetext',
+    instr:'Answer the four questions in one word. Check the punctuation and reduction rules.',
+    instrBn:'\u09a8\u09bf\u099a\u09c7\u09b0 \u099a\u09be\u09b0\u099f\u09bf \u09aa\u09cd\u09b0\u09b6\u09cd\u09a8\u09c7\u09b0 \u098f\u0995 \u0995\u09a5\u09be\u09af\u09bc \u0989\u09a4\u09cd\u09a4\u09b0 \u09a6\u09be\u0993\u0964',
     items:[
-      {prompt:'1. Non-Defining Relative Clause এর দুই পাশে কোন Punctuation বসে?', keyword:['comma','commas','কমা']},
-      {prompt:'2. Defining Clause এ which বা who এর বদলে কোন শব্দ লেখা যায়?', keyword:['that']},
-      {prompt:'3. Reduced Relative Clause বানাতে কোন দুইটা জিনিস মুছে ফেলা হয়?', all:[['relative pronoun','pronoun','who','which','that','রিলেটিভ'],['be verb','be','is','was','are','were','বি ভার্ব']]},
-      {prompt:'4. লম্বা Noun Phrase এ Head Noun সাধারণত কোথায় থাকে?', keyword:['preposition','of','in','প্রিপজিশন','আগে']}
+      {prompt:'1. Non-Defining Relative Clause \u098f\u09b0 \u09a6\u09c1\u0987 \u09aa\u09be\u09b6\u09c7 \u0995\u09cb\u09a8 Punctuation \u09ac\u09b8\u09c7?', keyword:['comma','commas','\u0995\u09ae\u09be']},
+      {prompt:'2. Defining Clause \u098f which \u09ac\u09be who \u098f\u09b0 \u09ac\u09a6\u09b2\u09c7 \u0995\u09cb\u09a8 \u09b6\u09ac\u09cd\u09a6 \u09b2\u09c7\u0996\u09be \u09af\u09be\u09af\u09bc?', keyword:['that']},
+      {prompt:'3. Reduced Relative Clause \u09ac\u09be\u09a8\u09be\u09a4\u09c7 \u0995\u09cb\u09a8 \u09a6\u09c1\u0987\u099f\u09be \u099c\u09bf\u09a8\u09bf\u09b8 \u09ae\u09c1\u099b\u09c7 \u09ab\u09c7\u09b2\u09be \u09b9\u09af\u09bc?', all:[['relative pronoun','pronoun','who','which','that','\u09b0\u09bf\u09b2\u09c7\u099f\u09bf\u09ad'],['be verb','be','is','was','are','were','\u09ac\u09bf \u09ad\u09be\u09b0\u09cd\u09ac']]},
+      {prompt:'4. \u09b2\u09ae\u09cd\u09ac\u09be Noun Phrase \u098f Head Noun \u09b8\u09be\u09a7\u09be\u09b0\u09a3\u09a4 \u0995\u09cb\u09a5\u09be\u09af\u09bc \u09a5\u09be\u0995\u09c7?', keyword:['preposition','of','in','\u09aa\u09cd\u09b0\u09bf\u09aa\u099c\u09bf\u09b6\u09a8','\u0986\u0997\u09c7']}
     ]},
 
-  { id:'B', title:'B · SKELETON HUNT: THE CUTS ARE MARKED', marks:12, type:'fields',
-    instr:'বন্ধনীর ভিতরের সব বাদ দিয়ে যা বাকি থাকে, সেখান থেকে Subject আর Main Verb লিখো।',
-    example:'<b>WORKED EXAMPLE</b> — <i>The cost [of the new building] has risen [by twenty per cent].</i> &nbsp; Subject: <b>The cost</b> &nbsp; Main Verb: <b>has risen</b>. খেয়াল করো, building শব্দটা Subject নয়, ওটা Preposition Phrase এর ভিতরে বন্দী।',
-    hint:'প্রতিটা আইটেমে ১ নম্বর — Subject এ ০.৫, Main Verb এ ০.৫।',
+  { id:'B', title:'B \u00b7 SKELETON HUNT: THE CUTS ARE MARKED', marks:12, type:'fields',
+    instr:'Remove everything inside brackets, then write Subject and Main Verb from what remains.',
+    instrBn:'\u09ac\u09a8\u09cd\u09a7\u09a8\u09c0\u09b0 \u09ad\u09bf\u09a4\u09b0\u09c7\u09b0 \u09b8\u09ac \u09ac\u09be\u09a6 \u09a6\u09bf\u09af\u09bc\u09c7 \u09af\u09be \u09ac\u09be\u0995\u09bf \u09a5\u09be\u0995\u09c7, \u09b8\u09c7\u0996\u09be\u09a8 \u09a5\u09c7\u0995\u09c7 Subject \u0986\u09b0 Main Verb \u09b2\u09bf\u0996\u09cb\u0964',
+    example:'<b>WORKED EXAMPLE</b> \u2014 <i>The cost [of the new building] has risen [by twenty per cent].</i> &nbsp; Subject: <b>The cost</b> &nbsp; Main Verb: <b>has risen</b>. \u0996\u09c7\u09af\u09bc\u09be\u09b2 \u0995\u09b0\u09cb, building \u09b6\u09ac\u09cd\u09a6\u099f\u09be Subject \u09a8\u09af\u09bc, \u0993\u099f\u09be Preposition Phrase \u098f\u09b0 \u09ad\u09bf\u09a4\u09b0\u09c7 \u09ac\u09a8\u09cd\u09a6\u09c0\u0964',
+    hint:'\u09aa\u09cd\u09b0\u09a4\u09bf\u099f\u09be \u0986\u0987\u099f\u09c7\u09ae\u09c7 \u09e7 \u09a8\u09ae\u09cd\u09ac\u09b0 \u2014 Subject \u098f \u09e6.\u09eb, Main Verb \u098f \u09e6.\u09eb\u0964',
     fieldNames:['Subject','Main Verb'], grid:true,
     items:[
       {label:'1. The results [of the survey] were published [last week].', fields:[{type:'text',keyword:['results']},{type:'text',keyword:['were published']}]},
@@ -206,11 +1736,12 @@ const SECTIONS = [
       {label:'12. The committee, [formed last April], has recommended [several changes].', fields:[{type:'text',keyword:['committee']},{type:'text',keyword:['has recommended']}]}
     ]},
 
-  { id:'C', title:'C · DEFINING OR NON-DEFINING?', marks:10, type:'fields',
-    instr:'প্রতিটি Relative Clause টি Defining নাকি Non-Defining বেছে নাও। Non-Defining হলে Comma বসিয়ে বাক্যটি আবার লিখো।',
-    example:'<b>WORKED EXAMPLE</b> — <i>My sister who lives in Canada is a nurse.</i> ধরন: <b>Non-Defining</b> (আমার একটাই বোন, তাই তথ্যটা বাড়তি)। শুদ্ধ রূপ: <b>My sister, who lives in Canada, is a nurse.</b>',
-    hint:'নিজেকে প্রশ্ন করো: Clause টা কেটে দিলে কি বোঝা যাবে কার কথা বলছি? বোঝা গেলে Non-Defining, তাই Comma লাগবে। না বোঝা গেলে Defining, তাই Comma লাগবে না। আর that থাকলে সেটা সবসময় Defining. <b>Defining আইটেমে দ্বিতীয় ঘর নাই — শুধু ধরনটাই বেছে নাও।</b>',
-    fieldNames:['ধরন','Comma সহ বাক্য'],
+  { id:'C', title:'C \u00b7 DEFINING OR NON-DEFINING?', marks:10, type:'fields',
+    instr:'Choose whether each Relative Clause is Defining or Non-Defining. If Non-Defining, rewrite with commas.',
+    instrBn:'\u09aa\u09cd\u09b0\u09a4\u09bf\u099f\u09bf Relative Clause \u099f\u09bf Defining \u09a8\u09be\u0995\u09bf Non-Defining \u09ac\u09c7\u099b\u09c7 \u09a8\u09be\u0993\u0964 Non-Defining \u09b9\u09b2\u09c7 Comma \u09ac\u09b8\u09bf\u09af\u09bc\u09c7 \u09ac\u09be\u0995\u09cd\u09af\u099f\u09bf \u0986\u09ac\u09be\u09b0 \u09b2\u09bf\u0996\u09cb\u0964',
+    example:'<b>WORKED EXAMPLE</b> \u2014 <i>My sister who lives in Canada is a nurse.</i> \u09a7\u09b0\u09a8: <b>Non-Defining</b> (\u0986\u09ae\u09be\u09b0 \u098f\u0995\u099f\u09be\u0987 \u09ac\u09cb\u09a8, \u09a4\u09be\u0987 \u09a4\u09a5\u09cd\u09af\u099f\u09be \u09ac\u09be\u09a1\u09bc\u09a4\u09bf)\u0964 \u09b6\u09c1\u09a6\u09cd\u09a7 \u09b0\u09c2\u09aa: <b>My sister, who lives in Canada, is a nurse.</b>',
+    hint:'\u09a8\u09bf\u099c\u09c7\u0995\u09c7 \u09aa\u09cd\u09b0\u09b6\u09cd\u09a8 \u0995\u09b0\u09cb: Clause \u099f\u09be \u0995\u09c7\u099f\u09c7 \u09a6\u09bf\u09b2\u09c7 \u0995\u09bf \u09ac\u09cb\u099d\u09be \u09af\u09be\u09ac\u09c7 \u0995\u09be\u09b0 \u0995\u09a5\u09be \u09ac\u09b2\u099b\u09bf? \u09ac\u09cb\u099d\u09be \u0997\u09c7\u09b2\u09c7 Non-Defining, \u09a4\u09be\u0987 Comma \u09b2\u09be\u0997\u09ac\u09c7\u0964 \u09a8\u09be \u09ac\u09cb\u099d\u09be \u0997\u09c7\u09b2\u09c7 Defining, \u09a4\u09be\u0987 Comma \u09b2\u09be\u0997\u09ac\u09c7 \u09a8\u09be\u0964 \u0986\u09b0 that \u09a5\u09be\u0995\u09b2\u09c7 \u09b8\u09c7\u099f\u09be \u09b8\u09ac\u09b8\u09ae\u09af\u09bc Defining. <b>Defining \u0986\u0987\u099f\u09c7\u09ae\u09c7 \u09a6\u09cd\u09ac\u09bf\u09a4\u09c0\u09af\u09bc \u0998\u09b0 \u09a8\u09be\u0987 \u2014 \u09b6\u09c1\u09a7\u09c1 \u09a7\u09b0\u09a8\u099f\u09be\u0987 \u09ac\u09c7\u099b\u09c7 \u09a8\u09be\u0993\u0964</b>',
+    fieldNames:['\u09a7\u09b0\u09a8','Comma \u09b8\u09b9 \u09ac\u09be\u0995\u09cd\u09af'],
     items:[
       {label:'1. The girl who won the gold medal is my niece.', fields:[{type:'select',options:DEFN,correct:'Defining'}]},
       {label:'2. My mother who is a doctor works at the district hospital.', fields:[{type:'select',options:DEFN,correct:'Non-Defining'},{type:'text',regex:'mother,\\s*who is a doctor,\\s*works'}]},
@@ -224,25 +1755,27 @@ const SECTIONS = [
       {label:'10. Mr Karim who lives upstairs has sold his old car.', fields:[{type:'select',options:DEFN,correct:'Non-Defining'},{type:'text',regex:'karim,\\s*who lives upstairs,\\s*has sold'}]}
     ]},
 
-  { id:'D', title:'D · REDUCE AND EXPAND', marks:8, type:'fillblank',
-    instr:'প্রথম চারটিতে পূর্ণ Relative Clause কে সংক্ষিপ্ত করো। শেষ চারটিতে সংক্ষিপ্ত রূপকে আবার পূর্ণ Clause এ ফিরিয়ে আনো।',
-    example:'<b>WORKED EXAMPLE</b> — পূর্ণ: <i>The car which was parked outside has been towed away.</i> সংক্ষিপ্ত: <b>The car parked outside has been towed away.</b> which was মুছে গেল, বাকি রইল শুধু Past Participle.',
-    hint:'who is, which was, that are এই অংশগুলো মুছে ফেলো। Noun নিজে কাজ করলে ing রূপ থাকবে, আর Noun এর উপর কাজ হলে V3 রূপ থাকবে। <b>এখানে Auto-check পুরো বাক্যের গঠনটাই দেখে, তাই বাক্যটি সম্পূর্ণ করে লেখো।</b>',
+  { id:'D', title:'D \u00b7 REDUCE AND EXPAND', marks:8, type:'fillblank',
+    instr:'First four: reduce full Relative Clause to short form. Last four: expand short form back to full clause.',
+    instrBn:'\u09aa\u09cd\u09b0\u09a5\u09ae \u099a\u09be\u09b0\u099f\u09bf\u09a4\u09c7 \u09aa\u09c2\u09b0\u09cd\u09a3 Relative Clause \u0995\u09c7 \u09b8\u0982\u0995\u09cd\u09b7\u09bf\u09aa\u09cd\u09a4 \u0995\u09b0\u09cb\u0964 \u09b6\u09c7\u09b7 \u099a\u09be\u09b0\u099f\u09bf\u09a4\u09c7 \u09b8\u0982\u0995\u09cd\u09b7\u09bf\u09aa\u09cd\u09a4 \u09b0\u09c2\u09aa\u0995\u09c7 \u0986\u09ac\u09be\u09b0 \u09aa\u09c2\u09b0\u09cd\u09a3 Clause \u098f \u09ab\u09bf\u09b0\u09bf\u09af\u09bc\u09c7 \u0986\u09a8\u09cb\u0964',
+    example:'<b>WORKED EXAMPLE</b> \u2014 \u09aa\u09c2\u09b0\u09cd\u09a3: <i>The car which was parked outside has been towed away.</i> \u09b8\u0982\u0995\u09cd\u09b7\u09bf\u09aa\u09cd\u09a4: <b>The car parked outside has been towed away.</b> which was \u09ae\u09c1\u099b\u09c7 \u0997\u09c7\u09b2, \u09ac\u09be\u0995\u09bf \u09b0\u0987\u09b2 \u09b6\u09c1\u09a7\u09c1 Past Participle.',
+    hint:'who is, which was, that are \u098f\u0987 \u0985\u0982\u09b6\u0997\u09c1\u09b2\u09cb \u09ae\u09c1\u099b\u09c7 \u09ab\u09c7\u09b2\u09cb\u0964 Noun \u09a8\u09bf\u099c\u09c7 \u0995\u09be\u099c \u0995\u09b0\u09b2\u09c7 ing \u09b0\u09c2\u09aa \u09a5\u09be\u0995\u09ac\u09c7, \u0986\u09b0 Noun \u098f\u09b0 \u0989\u09aa\u09b0 \u0995\u09be\u099c \u09b9\u09b2\u09c7 V3 \u09b0\u09c2\u09aa \u09a5\u09be\u0995\u09ac\u09c7\u0964 <b>\u098f\u0996\u09be\u09a8\u09c7 Auto-check \u09aa\u09c1\u09b0\u09cb \u09ac\u09be\u0995\u09cd\u09af\u09c7\u09b0 \u0997\u09a0\u09a8\u099f\u09be\u0987 \u09a6\u09c7\u0996\u09c7, \u09a4\u09be\u0987 \u09ac\u09be\u0995\u09cd\u09af\u099f\u09bf \u09b8\u09ae\u09cd\u09aa\u09c2\u09b0\u09cd\u09a3 \u0995\u09b0\u09c7 \u09b2\u09c7\u0996\u09cb\u0964</b>',
     items:[
-      {head:'সংক্ষিপ্ত করো', label:'1. The man who is repairing the roof is my cousin.', regex:'\\bman repairing the roof\\b'},
+      {head:'\u09b8\u0982\u0995\u09cd\u09b7\u09bf\u09aa\u09cd\u09a4 \u0995\u09b0\u09cb', label:'1. The man who is repairing the roof is my cousin.', regex:'\\bman repairing the roof\\b'},
       {label:'2. The chairs which were bought last year are already broken.', regex:'\\bchairs bought last year\\b'},
       {label:'3. The path which leads to the river is very muddy.', regex:'\\bpath leading to the river\\b'},
       {label:'4. The notice that was posted yesterday has been removed.', regex:'\\bnotice posted yesterday\\b'},
-      {head:'পূর্ণ রূপে ফিরিয়ে আনো', label:'5. The woman standing at the gate is a journalist.', regex:'\\bwoman (who|that) is standing\\b'},
+      {head:'\u09aa\u09c2\u09b0\u09cd\u09a3 \u09b0\u09c2\u09aa\u09c7 \u09ab\u09bf\u09b0\u09bf\u09af\u09bc\u09c7 \u0986\u09a8\u09cb', label:'5. The woman standing at the gate is a journalist.', regex:'\\bwoman (who|that) is standing\\b'},
       {label:'6. The trees planted last monsoon have grown well.', regex:'\\btrees (which|that) were planted\\b'},
       {label:'7. The road connecting the two villages is very narrow.', regex:'\\broad (which|that) connects\\b'},
       {label:'8. The documents signed by the manager are missing.', regex:'\\bdocuments (which|that) were signed\\b'}
     ]},
 
-  { id:'E', title:'E · FIND THE HEAD NOUN', marks:10, type:'fillblank',
-    instr:'প্রতিটি লম্বা Noun Phrase থেকে Head Noun টি খুঁজে বের করো। শুধু একটি শব্দ লেখো।',
-    example:'<b>WORKED EXAMPLE</b> — <i>the steady increase in the number of private cars in the capital</i> &nbsp; Head Noun: <b>increase</b>. প্রথম Preposition (in) এর ঠিক আগের Noun টাই Head Noun.',
-    hint:'Determiner + Adjective + <b>HEAD NOUN</b> + of / in / for Phrase + Relative Clause. প্রথম of বা প্রথম Preposition এর ঠিক আগে থামো, ওটাই Head Noun.',
+  { id:'E', title:'E \u00b7 FIND THE HEAD NOUN', marks:10, type:'fillblank',
+    instr:'Find the Head Noun from each long Noun Phrase. Write only one word.',
+    instrBn:'\u09aa\u09cd\u09b0\u09a4\u09bf\u099f\u09bf \u09b2\u09ae\u09cd\u09ac\u09be Noun Phrase \u09a5\u09c7\u0995\u09c7 Head Noun \u099f\u09bf \u0996\u09c1\u0981\u099c\u09c7 \u09ac\u09c7\u09b0 \u0995\u09b0\u09cb\u0964 \u09b6\u09c1\u09a7\u09c1 \u098f\u0995\u099f\u09bf \u09b6\u09ac\u09cd\u09a6 \u09b2\u09c7\u0996\u09cb\u0964',
+    example:'<b>WORKED EXAMPLE</b> \u2014 <i>the steady increase in the number of private cars in the capital</i> &nbsp; Head Noun: <b>increase</b>. \u09aa\u09cd\u09b0\u09a5\u09ae Preposition (in) \u098f\u09b0 \u09a0\u09bf\u0995 \u0986\u0997\u09c7\u09b0 Noun \u099f\u09be\u0987 Head Noun.',
+    hint:'Determiner + Adjective + <b>HEAD NOUN</b> + of / in / for Phrase + Relative Clause. \u09aa\u09cd\u09b0\u09a5\u09ae of \u09ac\u09be \u09aa\u09cd\u09b0\u09a5\u09ae Preposition \u098f\u09b0 \u09a0\u09bf\u0995 \u0986\u0997\u09c7 \u09a5\u09be\u09ae\u09cb, \u0993\u099f\u09be\u0987 Head Noun.',
     items:[
       {label:'1. the sudden rise in the cost of building materials', correct:['rise']},
       {label:'2. a serious lack of clean drinking water in the camps', correct:['lack']},
@@ -256,29 +1789,31 @@ const SECTIONS = [
       {label:'10. the increasing demand for skilled workers in the garment sector', correct:['demand']}
     ]},
 
-  { id:'F', title:'F · FROM LONG ENGLISH TO BENGALI CORE', marks:10, type:'fields',
-    instr:'প্রতিটি লম্বা বাক্যের জন্য দুইটি কাজ। এক, কঙ্কালটি ইংরেজিতে লিখো। দুই, বাক্যটির মূল বক্তব্য এক লাইনে বাংলায় লিখো। প্রতিটির জন্য ১ + ১ = ২ নম্বর।',
-    example:'<b>WORKED EXAMPLE</b> — <i>The notice, which was pasted on the main gate yesterday, has confused many parents.</i> কঙ্কাল: <b>The notice has confused.</b> মূল বক্তব্য: <b>নোটিশটি অনেক অভিভাবককে বিভ্রান্ত করেছে।</b>',
-    hint:'বাংলা অংশের Auto-check শুধু মূল শব্দটা খুঁজে দেখে, তাই স্যারের চোখে আরেকবার দেখিয়ে নিলে ভালো।',
-    fieldNames:['কঙ্কাল (English)','মূল বক্তব্য (বাংলা)'],
+  { id:'F', title:'F \u00b7 FROM LONG ENGLISH TO BENGALI CORE', marks:10, type:'fields',
+    instr:'For each long sentence, do two tasks: 1) Write the skeleton in English. 2) Write core meaning in one line Bangla. 1+1=2 marks each.',
+    instrBn:'\u09aa\u09cd\u09b0\u09a4\u09bf\u099f\u09bf \u09b2\u09ae\u09cd\u09ac\u09be \u09ac\u09be\u0995\u09cd\u09af\u09c7\u09b0 \u099c\u09a8\u09cd\u09af \u09a6\u09c1\u0987\u099f\u09bf \u0995\u09be\u099c\u0964 \u098f\u0995, \u0995\u0999\u09cd\u0995\u09be\u09b2\u099f\u09bf \u0987\u0982\u09b0\u09c7\u099c\u09bf\u09a4\u09c7 \u09b2\u09bf\u0996\u09cb\u0964 \u09a6\u09c1\u0987, \u09ac\u09be\u0995\u09cd\u09af\u099f\u09bf\u09b0 \u09ae\u09c2\u09b2 \u09ac\u0995\u09cd\u09a4\u09ac\u09cd\u09af \u098f\u0995 \u09b2\u09be\u0987\u09a8\u09c7 \u09ac\u09be\u0982\u09b2\u09be\u09af\u09bc \u09b2\u09bf\u0996\u09cb\u0964 \u09aa\u09cd\u09b0\u09a4\u09bf\u099f\u09bf\u09b0 \u099c\u09a8\u09cd\u09af \u09e7 + \u09e7 = \u09e8 \u09a8\u09ae\u09cd\u09ac\u09b0\u0964',
+    example:'<b>WORKED EXAMPLE</b> \u2014 <i>The notice, which was pasted on the main gate yesterday, has confused many parents.</i> \u0995\u0999\u09cd\u0995\u09be\u09b2: <b>The notice has confused.</b> \u09ae\u09c2\u09b2 \u09ac\u0995\u09cd\u09a4\u09ac\u09cd\u09af: <b>\u09a8\u09cb\u099f\u09bf\u09b6\u099f\u09bf \u0985\u09a8\u09c7\u0995 \u0985\u09ad\u09bf\u09ad\u09be\u09ac\u0995\u0995\u09c7 \u09ac\u09bf\u09ad\u09cd\u09b0\u09be\u09a8\u09cd\u09a4 \u0995\u09b0\u09c7\u099b\u09c7\u0964</b>',
+    hint:'\u09ac\u09be\u0982\u09b2\u09be \u0985\u0982\u09b6\u09c7\u09b0 Auto-check \u09b6\u09c1\u09a7\u09c1 \u09ae\u09c2\u09b2 \u09b6\u09ac\u09cd\u09a6\u099f\u09be \u0996\u09c1\u0981\u099c\u09c7 \u09a6\u09c7\u0996\u09c7, \u09a4\u09be\u0987 \u09b8\u09cd\u09af\u09be\u09b0\u09c7\u09b0 \u099a\u09cb\u0996\u09c7 \u0986\u09b0\u09c7\u0995\u09ac\u09be\u09b0 \u09a6\u09c7\u0996\u09bf\u09af\u09bc\u09c7 \u09a8\u09bf\u09b2\u09c7 \u09ad\u09be\u09b2\u09cb\u0964',
+    fieldNames:['\u0995\u0999\u09cd\u0995\u09be\u09b2 (English)','\u09ae\u09c2\u09b2 \u09ac\u0995\u09cd\u09a4\u09ac\u09cd\u09af (\u09ac\u09be\u0982\u09b2\u09be)'],
     items:[
       {label:'1. The manager, who had been working in the company for twelve years, was suddenly transferred to another branch.',
-       fields:[{type:'text',all:[['manager'],['was transferred','transferred']]},{type:'text',keyword:['বদলি','ট্রান্সফার']}]},
+       fields:[{type:'text',all:[['manager'],['was transferred','transferred']]},{type:'text',keyword:['\u09ac\u09a6\u09b2\u09bf','\u099f\u09cd\u09b0\u09be\u09a8\u09cd\u09b8\u09ab\u09be\u09b0']}]},
       {label:'2. A large number of passengers waiting on the platform since morning have complained about the delay.',
-       fields:[{type:'text',all:[['number'],['have complained','complained']]},{type:'text',keyword:['অভিযোগ','নালিশ']}]},
+       fields:[{type:'text',all:[['number'],['have complained','complained']]},{type:'text',keyword:['\u0985\u09ad\u09bf\u09af\u09cb\u0997','\u09a8\u09be\u09b2\u09bf\u09b6']}]},
       {label:'3. The decision to close the factory, announced by the owners last Friday, has shocked the whole town.',
-       fields:[{type:'text',all:[['decision'],['has shocked','shocked']]},{type:'text',keyword:['হতবাক','স্তম্ভিত','অবাক','স্তব্ধ']}]},
+       fields:[{type:'text',all:[['decision'],['has shocked','shocked']]},{type:'text',keyword:['\u09b9\u09a4\u09ac\u09be\u0995','\u09b8\u09cd\u09a4\u09ae\u09cd\u09ad\u09bf\u09a4','\u0985\u09ac\u09be\u0995','\u09b8\u09cd\u09a4\u09ac\u09cd\u09a7']}]},
       {label:'4. Villages located near the river, most of which have no embankment, are flooded every monsoon.',
-       fields:[{type:'text',all:[['villages'],['are flooded','flooded']]},{type:'text',keyword:['প্লাবিত','বন্যা','ডুবে','তলিয়ে']}]},
+       fields:[{type:'text',all:[['villages'],['are flooded','flooded']]},{type:'text',keyword:['\u09aa\u09cd\u09b2\u09be\u09ac\u09bf\u09a4','\u09ac\u09a8\u09cd\u09af\u09be','\u09a1\u09c1\u09ac\u09c7','\u09a4\u09b2\u09bf\u09af\u09bc\u09c7']}]},
       {label:'5. The teacher told the students that the examination scheduled for Monday had been postponed.',
-       fields:[{type:'text',all:[['teacher'],['told']]},{type:'text',keyword:['স্থগিত','পিছিয়ে','বাতিল']}]}
+       fields:[{type:'text',all:[['teacher'],['told']]},{type:'text',keyword:['\u09b8\u09cd\u09a5\u0997\u09bf\u09a4','\u09aa\u09bf\u099b\u09bf\u09af\u09bc\u09c7','\u09ac\u09be\u09a4\u09bf\u09b2']}]}
     ]}
 ]},
 
-{ id:'P2', title:'PART 2 · INDEPENDENT PRACTICE', sub:'কোন দাগ নাই, কোন Hint নাই · 60 Marks', tasks:[
+{ id:'P2', title:'PART 2 \u00b7 INDEPENDENT PRACTICE', sub:'\u0995\u09cb\u09a8 \u09a6\u09be\u0997 \u09a8\u09be\u0987, \u0995\u09cb\u09a8 Hint \u09a8\u09be\u0987 \u00b7 60 Marks', tasks:[
 
-  { id:'G', title:'G · SKELETON HUNT: NOTHING IS MARKED', marks:12, type:'fields',
-    instr:'এবার কোন বন্ধনী নাই। নিজে বাড়তি অংশগুলো চিহ্নিত করো, তারপর Subject আর Main Verb লিখো।',
+  { id:'G', title:'G \u00b7 SKELETON HUNT: NOTHING IS MARKED', marks:12, type:'fields',
+    instr:'No brackets now. Identify extra parts yourself, then write Subject and Main Verb.',
+    instrBn:'\u098f\u09ac\u09be\u09b0 \u0995\u09cb\u09a8 \u09ac\u09a8\u09cd\u09a7\u09a8\u09c0 \u09a8\u09be\u0987\u0964 \u09a8\u09bf\u099c\u09c7 \u09ac\u09be\u09a1\u09bc\u09a4\u09bf \u0985\u0982\u09b6\u0997\u09c1\u09b2\u09cb \u099a\u09bf\u09b9\u09cd\u09a8\u09bf\u09a4 \u0995\u09b0\u09cb, \u09a4\u09be\u09b0\u09aa\u09b0 Subject \u0986\u09b0 Main Verb \u09b2\u09bf\u0996\u09cb\u0964',
     fieldNames:['Subject','Main Verb'], grid:true,
     items:[
       {label:'1. The results of the recent national survey on reading habits were released yesterday.', fields:[{type:'text',keyword:['results']},{type:'text',keyword:['were released']}]},
@@ -295,38 +1830,41 @@ const SECTIONS = [
       {label:'12. Anyone wishing to join the tour should contact the office before Sunday.', fields:[{type:'text',keyword:['anyone']},{type:'text',keyword:['should contact']}]}
     ]},
 
-  { id:'H', title:'H · BUILD THE LONG SENTENCE', marks:10, type:'build',
-    instr:'নিচের ছোট বাক্যটির সাথে বলে দেওয়া দুইটি স্তর যোগ করে একটি লম্বা বাক্য বানাও। প্রতিটির জন্য ২ নম্বর। ⚠️ এখানে Auto-check আনুমানিক — শুধু দেখে দুইটি স্তর যোগ হয়েছে কি না। চূড়ান্ত নম্বর স্যার দেখে দেবেন।',
+  { id:'H', title:'H \u00b7 BUILD THE LONG SENTENCE', marks:10, type:'build',
+    instr:'Add two given layers to the short sentence to build a long sentence. 2 marks each. Auto-check is approximate \u2014 teacher gives final mark.',
+    instrBn:'\u09a8\u09bf\u099a\u09c7\u09b0 \u099b\u09cb\u099f \u09ac\u09be\u0995\u09cd\u09af\u099f\u09bf\u09b0 \u09b8\u09be\u09a5\u09c7 \u09ac\u09b2\u09c7 \u09a6\u09c7\u0993\u09af\u09bc\u09be \u09a6\u09c1\u0987\u099f\u09bf \u09b8\u09cd\u09a4\u09b0 \u09af\u09cb\u0997 \u0995\u09b0\u09c7 \u098f\u0995\u099f\u09bf \u09b2\u09ae\u09cd\u09ac\u09be \u09ac\u09be\u0995\u09cd\u09af \u09ac\u09be\u09a8\u09be\u0993\u0964 \u09aa\u09cd\u09b0\u09a4\u09bf\u099f\u09bf\u09b0 \u099c\u09a8\u09cd\u09af \u09e8 \u09a8\u09ae\u09cd\u09ac\u09b0\u0964 \u26a0\ufe0f \u098f\u0996\u09be\u09a8\u09c7 Auto-check \u0986\u09a8\u09c1\u09ae\u09be\u09a8\u09bf\u0995 \u2014 \u09b6\u09c1\u09a7\u09c1 \u09a6\u09c7\u0996\u09c7 \u09a6\u09c1\u0987\u099f\u09bf \u09b8\u09cd\u09a4\u09b0 \u09af\u09cb\u0997 \u09b9\u09af\u09bc\u09c7\u099b\u09c7 \u0995\u09bf \u09a8\u09be\u0964 \u099a\u09c2\u09a1\u09bc\u09be\u09a8\u09cd\u09a4 \u09a8\u09ae\u09cd\u09ac\u09b0 \u09b8\u09cd\u09af\u09be\u09b0 \u09a6\u09c7\u0996\u09c7 \u09a6\u09c7\u09ac\u09c7\u09a8\u0964',
     items:[
-      {prompt:'1. <b>The bridge collapsed.</b><br>একটি Relative Clause যোগ করো যা সেতুটিকে বর্ণনা করে, আর একটি সময়সূচক Phrase যোগ করো।',
+      {prompt:'1. <b>The bridge collapsed.</b><br>\u098f\u0995\u099f\u09bf Relative Clause \u09af\u09cb\u0997 \u0995\u09b0\u09cb \u09af\u09be \u09b8\u09c7\u09a4\u09c1\u099f\u09bf\u0995\u09c7 \u09ac\u09b0\u09cd\u09a3\u09a8\u09be \u0995\u09b0\u09c7, \u0986\u09b0 \u098f\u0995\u099f\u09bf \u09b8\u09ae\u09af\u09bc\u09b8\u09c2\u099a\u0995 Phrase \u09af\u09cb\u0997 \u0995\u09b0\u09cb\u0964',
        checks:['\\b(which|that|who)\\b','\\b(last night|last week|last year|last month|yesterday|on friday|during|this morning|at night|in \\d{4}|two days ago)\\b'], minWords:10},
-      {prompt:'2. <b>The students protested.</b><br>একটি Participle Phrase যোগ করো, আর দুই Comma এর মাঝে একটি বাড়তি তথ্য যোগ করো।',
+      {prompt:'2. <b>The students protested.</b><br>\u098f\u0995\u099f\u09bf Participle Phrase \u09af\u09cb\u0997 \u0995\u09b0\u09cb, \u0986\u09b0 \u09a6\u09c1\u0987 Comma \u098f\u09b0 \u09ae\u09be\u099d\u09c7 \u098f\u0995\u099f\u09bf \u09ac\u09be\u09a1\u09bc\u09a4\u09bf \u09a4\u09a5\u09cd\u09af \u09af\u09cb\u0997 \u0995\u09b0\u09cb\u0964',
        checks:['\\b\\w+ing\\b',',[^,]+,'], minWords:10},
-      {prompt:'3. <b>The report shows a serious problem.</b><br>একটি Non-Defining Clause যোগ করো Comma সহ, আর একটি Preposition Phrase যোগ করো।',
+      {prompt:'3. <b>The report shows a serious problem.</b><br>\u098f\u0995\u099f\u09bf Non-Defining Clause \u09af\u09cb\u0997 \u0995\u09b0\u09cb Comma \u09b8\u09b9, \u0986\u09b0 \u098f\u0995\u099f\u09bf Preposition Phrase \u09af\u09cb\u0997 \u0995\u09b0\u09cb\u0964',
        checks:[',\\s*(which|who)\\b','\\b(in|of|on|at|for|among|across|during|about)\\b'], minWords:12},
-      {prompt:'4. <b>My uncle has retired.</b><br>একটি Appositive যোগ করো, আর একটি Relative Clause যোগ করো।',
+      {prompt:'4. <b>My uncle has retired.</b><br>\u098f\u0995\u099f\u09bf Appositive \u09af\u09cb\u0997 \u0995\u09b0\u09cb, \u0986\u09b0 \u098f\u0995\u099f\u09bf Relative Clause \u09af\u09cb\u0997 \u0995\u09b0\u09cb\u0964',
        checks:[',[^,]+,','\\b(who|which|that)\\b'], minWords:10},
-      {prompt:'5. <b>The price has risen.</b><br>Subject টিকে একটি লম্বা Noun Phrase বানাও, আর একটি কারণসূচক Clause যোগ করো।',
+      {prompt:'5. <b>The price has risen.</b><br>Subject \u099f\u09bf\u0995\u09c7 \u098f\u0995\u099f\u09bf \u09b2\u09ae\u09cd\u09ac\u09be Noun Phrase \u09ac\u09be\u09a8\u09be\u0993, \u0986\u09b0 \u098f\u0995\u099f\u09bf \u0995\u09be\u09b0\u09a3\u09b8\u09c2\u099a\u0995 Clause \u09af\u09cb\u0997 \u0995\u09b0\u09cb\u0964',
        checks:['\\bprice of\\b','\\b(because|since|as|due to|owing to)\\b'], minWords:10}
     ]},
 
-  { id:'I', title:'I · TRANSLATION: বাংলা থেকে ENGLISH', marks:10, type:'freetext',
-    instr:'প্রতিটি বাংলা বাক্যকে একটি সঠিক English বাক্যে অনুবাদ করো। বেশিরভাগেই Relative Clause, Participle Phrase বা লম্বা Noun Phrase লাগবে।',
+  { id:'I', title:'I \u00b7 TRANSLATION: \u09ac\u09be\u0982\u09b2\u09be \u09a5\u09c7\u0995\u09c7 ENGLISH', marks:10, type:'freetext',
+    instr:'Translate each Bangla sentence into a correct English sentence. Most need Relative Clause, Participle Phrase or long Noun Phrase.',
+    instrBn:'\u09aa\u09cd\u09b0\u09a4\u09bf\u099f\u09bf \u09ac\u09be\u0982\u09b2\u09be \u09ac\u09be\u0995\u09cd\u09af\u0995\u09c7 \u098f\u0995\u099f\u09bf \u09b8\u09a0\u09bf\u0995 English \u09ac\u09be\u0995\u09cd\u09af\u09c7 \u0985\u09a8\u09c1\u09ac\u09be\u09a6 \u0995\u09b0\u09cb\u0964 \u09ac\u09c7\u09b6\u09bf\u09b0\u09ad\u09be\u0997\u09c7\u0987 Relative Clause, Participle Phrase \u09ac\u09be \u09b2\u09ae\u09cd\u09ac\u09be Noun Phrase \u09b2\u09be\u0997\u09ac\u09c7\u0964',
     items:[
-      {prompt:'১. যে ছেলেটি গেটের পাশে দাঁড়িয়ে আছে সে আমার ভাই।', all:[['standing'],['brother']], correct:['The boy standing near the gate is my brother.']},
-      {prompt:'২. গত সপ্তাহে প্রকাশিত প্রতিবেদনটি অনেক ভুলে ভরা।', all:[['published'],['errors','mistakes']], correct:['The report published last week is full of errors.']},
-      {prompt:'৩. আমার চাচা, যিনি ঢাকায় থাকেন, একজন প্রকৌশলী।', all:[['who'],['engineer']], correct:['My uncle, who lives in Dhaka, is an engineer.']},
-      {prompt:'৪. নদীর পাশে অবস্থিত গ্রামগুলো প্রতি বছর প্লাবিত হয়।', all:[['located','situated','beside','by the river'],['flooded']], correct:['The villages located beside the river are flooded every year.']},
-      {prompt:'৫. শহরে বাড়ির দাম দ্রুত বেড়েছে।', all:[['price','prices'],['risen','increased','gone up']], correct:['The price of houses in the city has risen rapidly.']},
-      {prompt:'৬. যে ছাত্ররা দেরিতে আসবে তাদের ঢুকতে দেওয়া হবে না।', all:[['who'],['not be allowed','not allowed','be barred']], correct:['The students who come late will not be allowed to enter.']},
-      {prompt:'৭. সিলেট, চা বাগানের জন্য বিখ্যাত একটি শহর, অনেক পর্যটক আকর্ষণ করে।', all:[['famous','known'],['attracts','attract']], correct:['Sylhet, a city famous for its tea gardens, attracts many tourists.']},
-      {prompt:'৮. কমিটির নেওয়া সিদ্ধান্তটি সবাইকে অবাক করেছে।', all:[['taken','made'],['surprised','shocked','astonished']], correct:['The decision taken by the committee has surprised everybody.']},
-      {prompt:'৯. পরীক্ষায় ফেল করা ছাত্রদের আবার পরীক্ষা দিতে হবে।', all:[['failed'],['again','retake','resit']], correct:['The students who failed the examination must sit the test again.']},
-      {prompt:'১০. অনলাইন কেনাকাটার দ্রুত বৃদ্ধি ছোট দোকানগুলোর ক্ষতি করেছে।', all:[['growth','increase','rise'],['harmed','damaged','hurt','affected']], correct:['The rapid growth of online shopping has harmed small shops.']}
+      {prompt:'\u09e7. \u09af\u09c7 \u099b\u09c7\u09b2\u09c7\u099f\u09bf \u0997\u09c7\u099f\u09c7\u09b0 \u09aa\u09be\u09b6\u09c7 \u09a6\u09be\u0981\u09a1\u09bc\u09bf\u09af\u09bc\u09c7 \u0986\u099b\u09c7 \u09b8\u09c7 \u0986\u09ae\u09be\u09b0 \u09ad\u09be\u0987\u0964', all:[['standing'],['brother']], correct:['The boy standing near the gate is my brother.']},
+      {prompt:'\u09e8. \u0997\u09a4 \u09b8\u09aa\u09cd\u09a4\u09be\u09b9\u09c7 \u09aa\u09cd\u09b0\u0995\u09be\u09b6\u09bf\u09a4 \u09aa\u09cd\u09b0\u09a4\u09bf\u09ac\u09c7\u09a6\u09a8\u099f\u09bf \u0985\u09a8\u09c7\u0995 \u09ad\u09c1\u09b2\u09c7 \u09ad\u09b0\u09be\u0964', all:[['published'],['errors','mistakes']], correct:['The report published last week is full of errors.']},
+      {prompt:'\u09e9. \u0986\u09ae\u09be\u09b0 \u099a\u09be\u099a\u09be, \u09af\u09bf\u09a8\u09bf \u09a2\u09be\u0995\u09be\u09af\u09bc \u09a5\u09be\u0995\u09c7\u09a8, \u098f\u0995\u099c\u09a8 \u09aa\u09cd\u09b0\u0995\u09cc\u09b6\u09b2\u09c0\u0964', all:[['who'],['engineer']], correct:['My uncle, who lives in Dhaka, is an engineer.']},
+      {prompt:'\u09ea. \u09a8\u09a6\u09c0\u09b0 \u09aa\u09be\u09b6\u09c7 \u0985\u09ac\u09b8\u09cd\u09a5\u09bf\u09a4 \u0997\u09cd\u09b0\u09be\u09ae\u0997\u09c1\u09b2\u09cb \u09aa\u09cd\u09b0\u09a4\u09bf \u09ac\u099b\u09b0 \u09aa\u09cd\u09b2\u09be\u09ac\u09bf\u09a4 \u09b9\u09af\u09bc\u0964', all:[['located','situated','beside','by the river'],['flooded']], correct:['The villages located beside the river are flooded every year.']},
+      {prompt:'\u09eb. \u09b6\u09b9\u09b0\u09c7 \u09ac\u09be\u09a1\u09bc\u09bf\u09b0 \u09a6\u09be\u09ae \u09a6\u09cd\u09b0\u09c1\u09a4 \u09ac\u09c7\u09a1\u09bc\u09c7\u099b\u09c7\u0964', all:[['price','prices'],['risen','increased','gone up']], correct:['The price of houses in the city has risen rapidly.']},
+      {prompt:'\u09ec. \u09af\u09c7 \u099b\u09be\u09a4\u09cd\u09b0\u09b0\u09be \u09a6\u09c7\u09b0\u09bf\u09a4\u09c7 \u0986\u09b8\u09ac\u09c7 \u09a4\u09be\u09a6\u09c7\u09b0 \u09a2\u09c1\u0995\u09a4\u09c7 \u09a6\u09c7\u0993\u09af\u09bc\u09be \u09b9\u09ac\u09c7 \u09a8\u09be\u0964', all:[['who'],['not be allowed','not allowed','be barred']], correct:['The students who come late will not be allowed to enter.']},
+      {prompt:'\u09ed. \u09b8\u09bf\u09b2\u09c7\u099f, \u099a\u09be \u09ac\u09be\u0997\u09be\u09a8\u09c7\u09b0 \u099c\u09a8\u09cd\u09af \u09ac\u09bf\u0996\u09cd\u09af\u09be\u09a4 \u098f\u0995\u099f\u09bf \u09b6\u09b9\u09b0, \u0985\u09a8\u09c7\u0995 \u09aa\u09b0\u09cd\u09af\u099f\u0995 \u0986\u0995\u09b0\u09cd\u09b7\u09a3 \u0995\u09b0\u09c7\u0964', all:[['famous','known'],['attracts','attract']], correct:['Sylhet, a city famous for its tea gardens, attracts many tourists.']},
+      {prompt:'\u09ee. \u0995\u09ae\u09bf\u099f\u09bf\u09b0 \u09a8\u09c7\u0993\u09af\u09bc\u09be \u09b8\u09bf\u09a6\u09cd\u09a7\u09be\u09a8\u09cd\u09a4\u099f\u09bf \u09b8\u09ac\u09be\u0987\u0995\u09c7 \u0985\u09ac\u09be\u0995 \u0995\u09b0\u09c7\u099b\u09c7\u0964', all:[['taken','made'],['surprised','shocked','astonished']], correct:['The decision taken by the committee has surprised everybody.']},
+      {prompt:'\u09ef. \u09aa\u09b0\u09c0\u0995\u09cd\u09b7\u09be\u09af\u09bc \u09ab\u09c7\u09b2 \u0995\u09b0\u09be \u099b\u09be\u09a4\u09cd\u09b0\u09a6\u09c7\u09b0 \u0986\u09ac\u09be\u09b0 \u09aa\u09b0\u09c0\u0995\u09cd\u09b7\u09be \u09a6\u09bf\u09a4\u09c7 \u09b9\u09ac\u09c7\u0964', all:[['failed'],['again','retake','resit']], correct:['The students who failed the examination must sit the test again.']},
+      {prompt:'\u09e7\u09e6. \u0985\u09a8\u09b2\u09be\u0987\u09a8 \u0995\u09c7\u09a8\u09be\u0995\u09be\u099f\u09be\u09b0 \u09a6\u09cd\u09b0\u09c1\u09a4 \u09ac\u09c3\u09a6\u09cd\u09a7\u09bf \u099b\u09cb\u099f \u09a6\u09cb\u0995\u09be\u09a8\u0997\u09c1\u09b2\u09cb\u09b0 \u0995\u09cd\u09b7\u09a4\u09bf \u0995\u09b0\u09c7\u099b\u09c7\u0964', all:[['growth','increase','rise'],['harmed','damaged','hurt','affected']], correct:['The rapid growth of online shopping has harmed small shops.']}
     ]},
 
-  { id:'J', title:'J · FIND AND FIX', marks:10, type:'freetext',
-    instr:'প্রতিটি বাক্যে লম্বা বাক্য সামলানোর একটি ভুল আছে। ভুলটি খুঁজে বের করে পুরো বাক্যটি শুদ্ধ করে লিখো। Comma আছে কি নাই, সেটাও দেখা হবে।',
+  { id:'J', title:'J \u00b7 FIND AND FIX', marks:10, type:'freetext',
+    instr:'Each sentence has one long-sentence handling error. Find and rewrite correctly. Comma usage will be checked too.',
+    instrBn:'\u09aa\u09cd\u09b0\u09a4\u09bf\u099f\u09bf \u09ac\u09be\u0995\u09cd\u09af\u09c7 \u09b2\u09ae\u09cd\u09ac\u09be \u09ac\u09be\u0995\u09cd\u09af \u09b8\u09be\u09ae\u09b2\u09be\u09a8\u09cb\u09b0 \u098f\u0995\u099f\u09bf \u09ad\u09c1\u09b2 \u0986\u099b\u09c7\u0964 \u09ad\u09c1\u09b2\u099f\u09bf \u0996\u09c1\u0981\u099c\u09c7 \u09ac\u09c7\u09b0 \u0995\u09b0\u09c7 \u09aa\u09c1\u09b0\u09cb \u09ac\u09be\u0995\u09cd\u09af\u099f\u09bf \u09b6\u09c1\u09a6\u09cd\u09a7 \u0995\u09b0\u09c7 \u09b2\u09bf\u0996\u09cb\u0964 Comma \u0986\u099b\u09c7 \u0995\u09bf \u09a8\u09be\u0987, \u09b8\u09c7\u099f\u09be\u0993 \u09a6\u09c7\u0996\u09be \u09b9\u09ac\u09c7\u0964',
     items:[
       {prompt:'1. My mother who is a teacher, works at a primary school.', regex:'mother,\\s*who is a teacher,\\s*works'},
       {prompt:'2. The book, that I bought yesterday, is missing from my bag.', regex:'book that i bought yesterday is missing'},
@@ -340,18 +1878,20 @@ const SECTIONS = [
       {prompt:'10. The price of vegetables in the local markets have risen sharply.', regex:'\\bprice of vegetables in the local markets has risen\\b'}
     ]},
 
-  { id:'K1', title:'K1 · IELTS ERROR HUNT — Speaking Part 2', marks:3, type:'errorhunt',
-    instr:'Describe a building you remember. লম্বা বাক্য সামলাতে গিয়ে ৩টি ভুল হয়েছে। Line নম্বর, ভুল অংশ আর Correction লিখো। (Line ০.২ + ভুল অংশ ০.৩ + Correction ০.৫)',
-    passage:'01   The building I want to describe is our old school library, which it stood\n02   beside the playground. The room, that we used every afternoon was very\n03   quiet and cool. Students who wanted to borrow books, had to sign a register\n04   kept near the door.',
+  { id:'K1', title:'K1 \u00b7 IELTS ERROR HUNT \u2014 Speaking Part 2', marks:3, type:'errorhunt',
+    instr:'Describe a building you remember. 3 errors in handling long sentences. Write Line no, wrong part and correction. (Line 0.2 + Wrong 0.3 + Correction 0.5)',
+    instrBn:'\u098f\u0995\u099f\u09bf \u09ac\u09bf\u09b2\u09cd\u09a1\u09bf\u0982\u09af\u09c7\u09b0 \u09ac\u09b0\u09cd\u09a3\u09a8\u09be\u0964 \u09b2\u09ae\u09cd\u09ac\u09be \u09ac\u09be\u0995\u09cd\u09af \u09b8\u09be\u09ae\u09b2\u09be\u09a4\u09c7 \u0997\u09bf\u09af\u09bc\u09c7 \u09e9\u099f\u09bf \u09ad\u09c1\u09b2 \u09b9\u09af\u09bc\u09c7\u099b\u09c7\u0964 Line \u09a8\u09ae\u09cd\u09ac\u09b0, \u09ad\u09c1\u09b2 \u0985\u0982\u09b6 \u0986\u09b0 Correction \u09b2\u09bf\u0996\u09cb\u0964 (Line \u09e6.\u09e8 + \u09ad\u09c1\u09b2 \u0985\u0982\u09b6 \u09e6.\u09e9 + Correction \u09e6.\u09eb)',
+    passage:'01   The building I want to describe is our old school library, which it stood\\n02   beside the playground. The room, that we used every afternoon was very\\n03   quiet and cool. Students who wanted to borrow books, had to sign a register\\n04   kept near the door.',
     items:[
       {line:1, wrong:{any:['which it stood','which it']}, correct:{re:'\\bwhich stood\\b'}},
       {line:2, wrong:{re:'room,\\s*that'}, correct:{re:'room that we used'}},
       {line:3, wrong:{re:'books,\\s*had'}, correct:{re:'books had to sign'}}
     ]},
 
-  { id:'K2', title:'K2 · IELTS ERROR HUNT — Writing Task 2', marks:4, type:'errorhunt',
-    instr:'Body paragraph on social media. এই লেখায় ৪টি ভুল আছে।',
-    passage:'01   The rapid growth of social media platforms have changed the way young\n02   people communicate with each other. Teenagers, who spend hours online,\n03   often lose their concentration in class. Having studied all night, the\n04   examination was extremely difficult for them. The number of students\n05   reporting sleep problems have risen sharply in recent years.',
+  { id:'K2', title:'K2 \u00b7 IELTS ERROR HUNT \u2014 Writing Task 2', marks:4, type:'errorhunt',
+    instr:'Body paragraph on social media. There are 4 errors.',
+    instrBn:'\u09b8\u09cb\u09b6\u09cd\u09af\u09be\u09b2 \u09ae\u09bf\u09a1\u09bf\u09af\u09bc\u09be \u09ac\u09bf\u09b7\u09af\u09bc\u0995 \u0985\u09a8\u09c1\u099a\u09cd\u099b\u09c7\u09a6\u0964 \u098f\u0987 \u09b2\u09c7\u0996\u09be\u09af\u09bc \u09ea\u099f\u09bf \u09ad\u09c1\u09b2 \u0986\u099b\u09c7\u0964',
+    passage:'01   The rapid growth of social media platforms have changed the way young\\n02   people communicate with each other. Teenagers, who spend hours online,\\n03   often lose their concentration in class. Having studied all night, the\\n04   examination was extremely difficult for them. The number of students\\n05   reporting sleep problems have risen sharply in recent years.',
     items:[
       {line:1, wrong:{any:['have changed','growth have']}, correct:{any:['has changed']}},
       {line:2, wrong:{re:'teenagers,\\s*who'}, correct:{re:'teenagers who spend'}},
@@ -359,18 +1899,20 @@ const SECTIONS = [
       {line:4, wrong:{any:['have risen']}, correct:{any:['has risen']}}
     ]},
 
-  { id:'K3', title:'K3 · IELTS ERROR HUNT — Writing Task 1', marks:3, type:'errorhunt',
-    instr:'Describing a sales chart. এই লেখায় ৩টি ভুল আছে।',
-    passage:'01   The chart which it shows the sales figures of three companies covers five\n02   years. The total number of units sold have doubled over this period. The\n03   figure for the first quarter, which was the highest was forty thousand.',
+  { id:'K3', title:'K3 \u00b7 IELTS ERROR HUNT \u2014 Writing Task 1', marks:3, type:'errorhunt',
+    instr:'Describing a sales chart. There are 3 errors.',
+    instrBn:'\u09ac\u09bf\u0995\u09cd\u09b0\u09bf \u099a\u09be\u09b0\u09cd\u099f\u09c7\u09b0 \u09ac\u09b0\u09cd\u09a3\u09a8\u09be\u0964 \u098f\u0987 \u09b2\u09c7\u0996\u09be\u09af\u09bc \u09e9\u099f\u09bf \u09ad\u09c1\u09b2 \u0986\u099b\u09c7\u0964',
+    passage:'01   The chart which it shows the sales figures of three companies covers five\\n02   years. The total number of units sold have doubled over this period. The\\n03   figure for the first quarter, which was the highest was forty thousand.',
     items:[
       {line:1, wrong:{any:['which it shows','which it']}, correct:{re:'\\bwhich shows\\b'}},
       {line:2, wrong:{any:['have doubled']}, correct:{any:['has doubled']}},
       {line:3, wrong:{re:'the highest was'}, correct:{re:'the highest,\\s*was'}}
     ]},
 
-  { id:'L', title:'L · IELTS READING: TRUE, FALSE OR NOT GIVEN', marks:8, type:'mcq',
-    instr:'অনুচ্ছেদটির প্রতিটি বাক্যই লম্বা। আগে প্রতিটি বাক্যের কঙ্কাল বের করো, তারপর বিবৃতিগুলোর পাশে TRUE, FALSE অথবা NOT GIVEN বেছে নাও।',
-    passage:'01   The National Museum, which was established in 1913, houses more than eighty\n02   thousand objects collected from every district of the country. A recent survey\n03   conducted by the Ministry of Culture found that the number of visitors, most of\n04   whom are students, has fallen by nearly a third since 2019. Officials, speaking at\n05   a press conference last month, blamed the decline on the poor condition of the\n06   display halls rather than on a lack of public interest. The renovation project\n07   approved in January, although delayed by a shortage of funds, is expected to be\n08   completed before the end of next year.',
+  { id:'L', title:'L \u00b7 IELTS READING: TRUE, FALSE OR NOT GIVEN', marks:8, type:'mcq',
+    instr:'Each sentence in the passage is long. First find skeleton of each, then choose TRUE, FALSE or NOT GIVEN.',
+    instrBn:'\u0985\u09a8\u09c1\u099a\u09cd\u099b\u09c7\u09a6\u099f\u09bf\u09b0 \u09aa\u09cd\u09b0\u09a4\u09bf\u099f\u09bf \u09ac\u09be\u0995\u09cd\u09af\u0987 \u09b2\u09ae\u09cd\u09ac\u09be\u0964 \u0986\u0997\u09c7 \u09aa\u09cd\u09b0\u09a4\u09bf\u099f\u09bf \u09ac\u09be\u0995\u09cd\u09af\u09c7\u09b0 \u0995\u0999\u09cd\u0995\u09be\u09b2 \u09ac\u09c7\u09b0 \u0995\u09b0\u09cb, \u09a4\u09be\u09b0\u09aa\u09b0 \u09ac\u09bf\u09ac\u09c3\u09a4\u09bf\u0997\u09c1\u09b2\u09cb\u09b0 \u09aa\u09be\u09b6\u09c7 TRUE, FALSE \u0985\u09a5\u09ac\u09be NOT GIVEN \u09ac\u09c7\u099b\u09c7 \u09a8\u09be\u0993\u0964',
+    passage:'01   The National Museum, which was established in 1913, houses more than eighty\\n02   thousand objects collected from every district of the country. A recent survey\\n03   conducted by the Ministry of Culture found that the number of visitors, most of\\n04   whom are students, has fallen by nearly a third since 2019. Officials, speaking at\\n05   a press conference last month, blamed the decline on the poor condition of the\\n06   display halls rather than on a lack of public interest. The renovation project\\n07   approved in January, although delayed by a shortage of funds, is expected to be\\n08   completed before the end of next year.',
     items:[
       {prompt:'1. The museum opened in 1913.', options:TFNG, correct:0},
       {prompt:'2. The museum holds objects from only a few districts.', options:TFNG, correct:1},
@@ -384,22 +1926,32 @@ const SECTIONS = [
 ]}
 ];
 
+
 /* ===================== RENDER ===================== */
 const root = document.getElementById('renderRoot');
 let outHtml = '';
 SECTIONS.forEach(sec=>{
-  outHtml += `<h2 class="section-title">${sec.title}</h2>`;
-  if(sec.sub) outHtml += `<div class="section-sub">${sec.sub}</div>`;
+  outHtml += `<section class="section-shell">
+    <h2 class="section-title">${sec.title}</h2>
+    ${sec.sub ? `<div class="section-sub">${sec.sub}</div>` : ''}
+  `;
   sec.tasks.forEach(t=>{
     outHtml += `<div class="task" id="${t.id}"><div class="task-head"><h3>${t.title}</h3><span class="marks-pill">${t.marks} marks</span></div>`;
-    if(t.instr) outHtml += `<div class="instr">${t.instr}</div>`;
+    if(t.instr || t.instrBn){
+      outHtml += `<div class="instruction-box">`;
+      if(t.instr) outHtml += `<div class="instr instr-en"><span class="lang-label">EN</span> ${t.instr}</div>`;
+      if(t.instrBn) outHtml += `<div class="instr instr-bn"><span class="lang-label">\u09ac\u09be\u0982\u09b2\u09be</span> ${t.instrBn}</div>`;
+      outHtml += `</div>`;
+    }
     if(t.example) outHtml += `<div class="example">${t.example}</div>`;
     outHtml += renderTask(t);
-    if(t.hint) outHtml += `<div class="hint">💡 ${t.hint}</div>`;
-    outHtml += `<div id="${t.id}_result" style="margin-top:8px;font-size:13px;font-weight:600;"></div></div>`;
+    if(t.hint) outHtml += `<div class="hint">\uD83D\uDCA1 ${t.hint}</div>`;
+    outHtml += `<div id="${t.id}_result" style="margin-top:12px;font-size:14.5px;font-weight:700;"></div></div>`;
   });
+  outHtml += `</section>`;
 });
 root.innerHTML = outHtml;
+
 
 function renderTask(t){
   if(t.type==='fields') return renderFields(t);
